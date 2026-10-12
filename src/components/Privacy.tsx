@@ -1,3 +1,4 @@
+import { Reveal } from './motion'
 import { Container, SectionHeading } from './ui'
 
 const POINTS = [
@@ -11,11 +12,11 @@ export function Privacy() {
       <Container className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         <SectionHeading id="privasi">Privasi</SectionHeading>
         <ul className="grid gap-4">
-          {POINTS.map((p) => (
-            <li key={p} className="flex gap-4 rounded-2xl bg-paper/8 p-5 ring-1 ring-paper/15">
+          {POINTS.map((p, i) => (
+            <Reveal as="li" key={p} delay={i * 0.12} className="flex gap-4 rounded-2xl bg-paper/8 p-5 ring-1 ring-paper/15">
               <ShieldIcon />
               <span className="text-lg leading-relaxed">{p}</span>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </Container>

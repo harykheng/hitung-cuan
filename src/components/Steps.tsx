@@ -1,3 +1,5 @@
+import { m } from 'framer-motion'
+import { ConnectorLine, Reveal } from './motion'
 import { Container, SectionHeading } from './ui'
 
 const STEPS = [
@@ -24,20 +26,25 @@ export function Steps() {
         </div>
         <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="flex gap-4 md:flex-col">
-              <span
+            <li key={s.title} className="group relative flex gap-4 md:flex-col">
+              <ConnectorLine className="absolute top-14 left-[1.65rem] h-[calc(100%-1.5rem)] w-0.5 origin-top bg-field/25 group-last:hidden md:top-[1.65rem] md:left-14 md:h-0.5 md:w-[calc(100%-2rem)] md:origin-left" />
+              <m.span
                 aria-hidden="true"
-                className="grid size-14 shrink-0 place-items-center rounded-full bg-field font-display text-2xl font-extrabold text-lime"
+                className="relative grid size-14 shrink-0 place-items-center rounded-full bg-field font-display text-2xl font-extrabold text-lime"
+                initial={{ scale: 0.6 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: '0px 0px -15% 0px' }}
+                transition={{ type: 'spring', stiffness: 320, damping: 16, delay: i * 0.12 }}
               >
                 {i + 1}
-              </span>
-              <div>
+              </m.span>
+              <Reveal delay={i * 0.12}>
                 <h3 className="font-display text-xl font-bold">
                   <span className="sr-only">Langkah {i + 1}: </span>
                   {s.title}
                 </h3>
                 <p className="mt-1.5 leading-relaxed text-ink/75">{s.body}</p>
-              </div>
+              </Reveal>
             </li>
           ))}
         </ol>

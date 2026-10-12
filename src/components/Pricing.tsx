@@ -1,3 +1,5 @@
+import { m } from 'framer-motion'
+import { Reveal } from './motion'
 import { Container, CtaLink, SectionHeading } from './ui'
 
 const INCLUDED = [
@@ -12,8 +14,12 @@ export function Pricing() {
       <Container>
         <SectionHeading id="harga">Harga</SectionHeading>
         <div className="mt-10 grid max-w-4xl gap-5 md:grid-cols-2 md:items-stretch">
-          <PlanCard name="Tahunan" price="Rp499.000" period="/tahun" featured />
-          <PlanCard name="Bulanan" price="Rp69.000" period="/bulan" />
+          <Reveal>
+            <PlanCard name="Tahunan" price="Rp499.000" period="/tahun" featured />
+          </Reveal>
+          <Reveal delay={0.12}>
+            <PlanCard name="Bulanan" price="Rp69.000" period="/bulan" />
+          </Reveal>
         </div>
       </Container>
     </section>
@@ -22,11 +28,13 @@ export function Pricing() {
 
 function PlanCard({ name, price, period, featured = false }: { name: string; price: string; period: string; featured?: boolean }) {
   return (
-    <article
+    <m.article
+      whileHover={{ y: -4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       className={
         featured
-          ? 'dark-surface relative flex flex-col rounded-2xl bg-field p-6 text-paper ring-4 ring-lime sm:p-8'
-          : 'relative flex flex-col rounded-2xl bg-counter p-6 text-ink sm:p-8'
+          ? 'dark-surface relative flex h-full flex-col rounded-2xl bg-field p-6 text-paper ring-4 ring-lime sm:p-8'
+          : 'relative flex h-full flex-col rounded-2xl bg-counter p-6 text-ink sm:p-8'
       }
     >
       <div className="flex items-center justify-between gap-3">
@@ -48,7 +56,7 @@ function PlanCard({ name, price, period, featured = false }: { name: string; pri
         ))}
       </ul>
       <CtaLink variant={featured ? 'lime' : 'outline'} className="mt-8 w-full" />
-    </article>
+    </m.article>
   )
 }
 

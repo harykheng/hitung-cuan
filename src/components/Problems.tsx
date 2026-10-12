@@ -1,3 +1,4 @@
+import { Reveal } from './motion'
 import { Container, SectionHeading } from './ui'
 
 const PROBLEMS = [
@@ -22,7 +23,7 @@ export function Problems() {
         <SectionHeading id="masalah">Masalahnya</SectionHeading>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {PROBLEMS.map((p, i) => (
-            <li key={p.title} className="flex flex-col rounded-2xl bg-counter p-6">
+            <Reveal as="li" key={p.title} delay={i * 0.1} className="flex flex-col rounded-2xl bg-counter p-6">
               <span
                 aria-hidden="true"
                 className="grid size-10 place-items-center rounded-lg bg-loss font-display text-lg font-extrabold text-paper"
@@ -31,7 +32,7 @@ export function Problems() {
               </span>
               <h3 className="mt-5 font-display text-xl leading-snug font-bold">{p.title}</h3>
               <p className="mt-2 leading-relaxed text-ink/75">{p.body}</p>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </Container>

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { buildMultiStoreMessage, waLink } from '../lib/whatsapp'
+import { Reveal } from './motion'
 import { Container, SectionHeading } from './ui'
 
 export function Faq({ source }: { source: string }) {
@@ -35,8 +36,9 @@ export function Faq({ source }: { source: string }) {
       <Container className="max-w-3xl">
         <SectionHeading id="faq">Pertanyaan yang sering muncul</SectionHeading>
         <div className="mt-8 grid gap-3">
-          {items.map((item) => (
-            <details key={item.q} className="group rounded-2xl bg-paper ring-1 ring-ink/10 open:ring-2 open:ring-field">
+          {items.map((item, i) => (
+            <Reveal key={item.q} delay={i * 0.06} y={12}>
+            <details className="group rounded-2xl bg-paper ring-1 ring-ink/10 open:ring-2 open:ring-field">
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-5 py-4 font-display text-lg font-bold [&::-webkit-details-marker]:hidden">
                 {item.q}
                 <span
@@ -48,6 +50,7 @@ export function Faq({ source }: { source: string }) {
               </summary>
               <p className="px-5 pb-5 leading-relaxed text-ink/80">{item.a}</p>
             </details>
+            </Reveal>
           ))}
         </div>
       </Container>
