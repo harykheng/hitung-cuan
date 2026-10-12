@@ -35,22 +35,25 @@ Contoh link per konten TikTok:
   Konversi ke webp (lebih ringan): `convert rekap.png -quality 82 rekap.webp` (ImageMagick) atau lewat squoosh.app.
 - Gambar share/Open Graph: `public/og.png` (1200×630). File yang ada sekarang placeholder — ganti kapan saja dengan nama yang sama.
 
-## Deploy ke Cloudflare Pages
+## Deploy ke Cloudflare
 
-1. Push repo ini ke GitHub.
-2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → pilih repo `hitung-cuan`.
-3. Pengaturan build:
-   - Framework preset: **None** (atau Vite)
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-   - Versi Node dibaca dari `.node-version` (22).
-4. **Save and Deploy**. Setiap push ke `main` otomatis deploy ulang; branch lain dapat URL preview.
+Repo ini punya `wrangler.jsonc` (aset statis dari `dist/`), jadi cocok untuk dua alur:
 
-`public/_headers` mengatur cache: aset ber-hash di `/assets/*` di-cache 1 tahun.
+**Workers Builds (Create → Workers → Import a repository)** — alur yang sekarang dipakai:
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Root directory: kosongkan.
+
+**Pages (Create → Pages → Connect to Git):** build command `npm run build`, output directory `dist`.
+
+Jangan hapus `wrangler.jsonc`: tanpanya, `wrangler deploy` menjalankan autoconfig yang menyisipkan
+`@cloudflare/vite-plugin` ke `vite.config.ts` dan merusak langkah prerender. Versi Node dibaca dari `.node-version` (22).
+Setiap push ke branch produksi otomatis deploy ulang. `public/_headers` mengatur cache aset ber-hash selama 1 tahun.
 
 ## Pasang custom domain `hitungcuan.studioharel.id`
 
-1. Di project Pages → **Custom domains** → **Set up a custom domain** → isi `hitungcuan.studioharel.id`.
+1. Di project Cloudflare (Workers & Pages) → **Settings → Domains & Routes** (di Pages: **Custom domains**) → **Set up a custom domain** → isi `hitungcuan.studioharel.id`.
 2. Kalau DNS `studioharel.id` sudah dikelola Cloudflare: klik **Activate domain**, record CNAME dibuat otomatis.
 3. Kalau DNS di penyedia lain: tambahkan record
    `CNAME  hitungcuan  →  <nama-project>.pages.dev`
