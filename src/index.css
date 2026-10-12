@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-field: #2b2fa6;
+  --color-field-deep: #1d2079;
+  --color-lime: #d7f45a;
+  --color-ink: #16173d;
+  --color-paper: #ffffff;
+  --color-counter: #eef0f7;
+  --color-loss: #b3261e;
+  --color-gain: #146c43;
+
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-field);
+    outline-offset: 3px;
+  }
+
+  .dark-surface :focus-visible {
+    outline-color: var(--color-lime);
+  }
+
+  /* Kartu putih di atas permukaan gelap kembali ke outline biru */
+  .dark-surface form :focus-visible {
+    outline-color: var(--color-field);
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+  }
+
+  input:focus-visible,
+  select:focus-visible {
+    outline: 3px solid var(--color-field);
+    outline-offset: 1px;
+  }
+}
