@@ -10,6 +10,17 @@ npm run build    # hasil di dist/ (sudah di-prerender jadi HTML statis)
 npm run preview  # cek hasil build
 ```
 
+## Animasi
+
+Animasi memakai `framer-motion` lewat `LazyMotion` (fitur dimuat async, ±6 KB gzip terpisah dari bundle awal). Semua ada di `src/components/motion.tsx`:
+
+- `RollingRupiah` — angka hero berputar dari 0 (HTML prerender dan mode reduced-motion memakai teks biasa).
+- `Reveal` — konten muncul sekali saat masuk layar. Jangan dipakai di hero (menunda LCP).
+- `Underline`, `ConnectorLine` — garis yang "digambar" saat terlihat.
+
+Pengguna dengan pengaturan "kurangi gerakan" otomatis tidak mendapat animasi transform. Pola geraknya terinspirasi
+[componentry](https://github.com/harshjdhv/componentry) (MIT): split-flap, letter-cascade, sticky-scroll-cards.
+
 ## Ganti nomor WhatsApp
 
 Buka `src/config.ts`, ganti `WA_NUMBER`:

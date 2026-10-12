@@ -24,7 +24,7 @@ export function CtaLink({ children = 'Coba gratis 30 hari', variant = 'lime', cl
 
 function ArrowDown() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className="size-5" fill="none" stroke="currentColor" strokeWidth="2.25">
+    <svg aria-hidden="true" viewBox="0 0 20 20" className="cta-arrow size-5" fill="none" stroke="currentColor" strokeWidth="2.25">
       <path d="M10 4v12M4.5 10.5 10 16l5.5-5.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )

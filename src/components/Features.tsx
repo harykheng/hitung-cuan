@@ -1,3 +1,5 @@
+import { m } from 'framer-motion'
+import { Reveal } from './motion'
 import { Screenshot } from './Screenshot'
 import { Container, SectionHeading } from './ui'
 
@@ -57,20 +59,29 @@ export function Features() {
               key={f.screen}
               className={`grid items-center gap-6 lg:gap-14 ${i % 2 === 1 ? 'lg:grid-cols-[1.2fr_0.8fr]' : 'lg:grid-cols-[0.8fr_1.2fr]'}`}
             >
-              <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
+              <Reveal className={i % 2 === 1 ? 'lg:order-2' : ''}>
                 <h3 className="font-display text-2xl font-extrabold sm:text-3xl">{f.title}</h3>
                 {f.body ? <p className="mt-2 text-lg leading-relaxed text-ink/75">{f.body}</p> : null}
                 {f.tags ? (
                   <ul className="mt-4 flex flex-wrap gap-2" aria-label={`Status di ${f.title}`}>
-                    {f.tags.map((t) => (
-                      <li key={t.label} className={`rounded-full px-3 py-1 text-sm font-bold ${TONE[t.tone]}`}>
+                    {f.tags.map((t, ti) => (
+                      <m.li
+                        key={t.label}
+                        className={`rounded-full px-3 py-1 text-sm font-bold ${TONE[t.tone]}`}
+                        initial={{ scale: 0.7 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 18, delay: 0.25 + ti * 0.08 }}
+                      >
                         {t.label}
-                      </li>
+                      </m.li>
                     ))}
                   </ul>
                 ) : null}
-              </div>
-              <Screenshot name={f.screen} alt={f.alt} />
+              </Reveal>
+              <Reveal delay={0.12} y={28}>
+                <Screenshot name={f.screen} alt={f.alt} />
+              </Reveal>
             </article>
           ))}
         </div>

@@ -3,7 +3,7 @@
  * Format internasional tanpa "+", spasi, atau tanda hubung. Contoh: 6281234567890
  * Ganti nilai ini sebelum deploy — build akan memberi peringatan selama masih placeholder.
  */
-export const WA_NUMBER = '62XXXXXXXXXX'
+export const WA_NUMBER = '6281292567788'
 
 /** Kode sumber default kalau URL tidak punya ?src= */
 export const DEFAULT_SOURCE = 'WEB'

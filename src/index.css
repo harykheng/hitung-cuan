@@ -56,3 +56,39 @@
     outline-offset: 1px;
   }
 }
+
+/* Panah CTA bergerak pelan untuk mengarahkan mata ke form. */
+@keyframes nudge-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+@layer components {
+  .cta-arrow {
+    animation: nudge-down 1.8s ease-in-out infinite;
+  }
+
+  /* Buka-tutup FAQ halus (Chromium 131+); browser lain tetap membuka langsung. */
+  details {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.28s ease,
+      content-visibility 0.28s allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-arrow {
+    animation: none;
+  }
+  details::details-content {
+    transition: none;
+  }
+}

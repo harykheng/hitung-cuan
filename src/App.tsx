@@ -9,12 +9,13 @@ import { Problems } from './components/Problems'
 import { Punchline } from './components/Punchline'
 import { SignupForm } from './components/SignupForm'
 import { Steps } from './components/Steps'
+import { MotionProvider } from './components/motion'
 import { useSourceCode } from './lib/useSourceCode'
 
 export default function App() {
   const source = useSourceCode()
   return (
-    <>
+    <MotionProvider>
       <Hero />
       <main>
         <Problems />
@@ -28,6 +29,6 @@ export default function App() {
         <SignupForm source={source} />
       </main>
       <Footer />
-    </>
+    </MotionProvider>
   )
 }
