@@ -15,13 +15,13 @@ const withCode = (lines: string[], source: string) => [...lines, `Kode: HC-${sou
 
 export function generalMessage(source: string): string {
   return withCode(
-    ['Halo, saya seller Shopee dan tertarik mencoba HitungCuan untuk toko saya. Bisa dijelaskan cara mulai dan harganya?'],
+    ['Halo admin HitungCuan, saya seller Shopee dan mau minta uji coba gratis 30 hari untuk toko saya. Mohon info langkah selanjutnya.'],
     source,
   )
 }
 
 export function multiStoreMessage(source: string): string {
-  return withCode(['Halo, saya punya lebih dari satu toko Shopee dan mau tanya soal HitungCuan.'], source)
+  return withCode(['Halo admin HitungCuan, saya punya lebih dari satu toko Shopee dan mau tanya soal HitungCuan.'], source)
 }
 
 export function simulatorMessage(
@@ -30,7 +30,7 @@ export function simulatorMessage(
 ): string {
   return withCode(
     [
-      `Halo, saya coba simulasi di HitungCuan: modal Rp${p.hpp}, harga Rp${p.harga}, ROAS Shopee ${p.roas} → hasilnya "${p.verdict}". Saya mau coba HitungCuan untuk toko saya.`,
+      `Halo admin HitungCuan, saya sudah coba simulator di halaman kalian: modal Rp${p.hpp}, harga Rp${p.harga}, ROAS Shopee ${p.roas}, hasilnya "${p.verdict}". Saya mau minta uji coba gratis 30 hari untuk toko saya.`,
     ],
     source,
   )

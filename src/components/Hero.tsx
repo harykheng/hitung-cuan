@@ -15,8 +15,8 @@ function Words({ text, start = 0 }: { text: string; start?: number }) {
   ))
 }
 
-const HEADLINE_A = 'Berapa untung tokomu bulan ini?'
-const HEADLINE_B = 'Jawabannya muncul setelah 3 file.'
+const HEADLINE_A = 'Untung bersih tokomu berapa?'
+const HEADLINE_B = 'Iklan mana yang sebaiknya dimatikan?'
 
 export function Hero() {
   return (
@@ -24,17 +24,16 @@ export function Hero() {
       <Container className="pt-10 pb-16 lg:pt-16 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
-            <p className="font-semibold text-lime">Untuk seller Shopee yang pasang iklan</p>
-            <h1 className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[4.25rem]">
+            <p className="font-semibold text-lime">Untuk seller Shopee yang beriklan</p>
+            <h1 className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
               <Words text={HEADLINE_A} />
               <span className="block text-lime">
                 <Words text={HEADLINE_B} start={HEADLINE_A.split(' ').length} />
               </span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-field-muted sm:text-xl">
-              Upload export pesanan, laporan penghasilan, dan data iklan dari Seller Centre. Dapat untung bersih
-              bulanan, iklan yang harus dimatikan, dan harga minimum yang aman. Bahasa Indonesia biasa, tanpa
-              spreadsheet.
+              HitungCuan menghitung untung bersih toko Shopee dari laporan pesanan, penghasilan, dan iklan milikmu.
+              Hasilnya menunjukkan iklan yang sebaiknya dimatikan dan perkiraan harga minimum yang aman.
             </p>
 
             <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
@@ -43,12 +42,18 @@ export function Hero() {
                 href="#simulator"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-1 font-semibold text-on-field underline decoration-lime decoration-2 underline-offset-4"
               >
-                Coba hitung iklanmu dulu (30 detik)
+                Hitung satu iklanmu dulu di sini, belum perlu chat
                 <ArrowDownIcon />
               </a>
             </div>
-            <p className="mt-4 text-sm font-semibold text-on-field">Coba gratis 30 hari. Tanpa kartu kredit.</p>
-            <p className="mt-1 text-sm text-on-field-muted">Data pembeli tidak pernah dibaca · Bukan produk resmi Shopee</p>
+            <p className="mt-4 text-sm font-semibold text-on-field">Uji coba gratis 30 hari, tanpa kartu kredit.</p>
+            <p className="mt-1 text-sm text-on-field">
+              Akun dibuatkan admin secara manual setelah kamu chat. Admin membalas maksimal 1×24 jam.
+            </p>
+            <p className="mt-2 max-w-xl text-sm text-on-field-muted">
+              Saat ini hanya untuk Shopee · Bukan produk resmi Shopee · Nama, alamat, dan nomor HP pembeli tidak
+              pernah dibaca atau disimpan.
+            </p>
           </div>
 
           <StoryCard />

@@ -3,15 +3,15 @@ import { Section } from './ui'
 const PROBLEMS = [
   {
     title: 'ROAS di Shopee kelihatan bagus, tapi saldo tidak bertambah.',
-    body: 'Shopee menghitung juga pesanan yang kemudian batal, dan ROAS "bagus" tergantung untung per barang.',
+    body: 'ROAS di Shopee ikut menghitung pesanan yang akhirnya batal. ROAS yang kelihatan bagus juga bisa saja belum untung, tergantung untung per barangmu.',
   },
   {
-    title: 'Penghasilan di Seller Centre belum mengurangi modal, iklan, dan packaging-mu.',
-    body: 'Itu angka kotor. Untung sebenarnya baru ketemu setelah semuanya dikurangkan.',
+    title: 'Penghasilan di Seller Centre belum dikurangi modal, biaya iklan, dan packaging.',
+    body: 'Itu belum untung bersih. Untung baru ketemu setelah semuanya dikurangkan.',
   },
   {
     title: 'Tiap awal bulan, sore habis untuk spreadsheet.',
-    body: 'Dan ujungnya tetap tidak yakin angkanya cocok dengan saldo.',
+    body: 'Rekap manual memakan waktu, dan hasilnya bisa saja belum cocok dengan saldo.',
   },
 ]
 

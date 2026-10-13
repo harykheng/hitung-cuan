@@ -39,7 +39,7 @@ export function Faq() {
         <>
           Toko dipilih sekali di bar atas dan berlaku untuk semua halaman. Satu langganan untuk 1 toko; kalau punya
           lebih dari satu,{' '}
-          <WaLink message={multiStoreMessage}>chat kami lewat WhatsApp</WaLink>.
+          <WaLink message={multiStoreMessage}>tanyakan ke admin lewat WhatsApp</WaLink>.
         </>
       ),
     },

@@ -16,4 +16,4 @@ export const PRICE_YEARLY = 499000
 export const TRIAL_DAYS = 30
 
 /** Janji waktu balas. Tulis hanya yang bisa ditepati. */
-export const REPLY_PROMISE = 'Dibalas dalam 1x24 jam'
+export const REPLY_PROMISE = 'Admin membalas maksimal 1×24 jam'

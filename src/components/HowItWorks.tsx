@@ -5,9 +5,10 @@ import { prefersReducedMotion, useAnimatedNumber, useInViewOnce } from '../lib/h
 import { CheckIcon, ExampleTag, FileIcon, H2, ReplayIcon, Section, Sticker, vars } from './ui'
 
 const STEPS = [
-  { t: 'Download 3 file dari Seller Centre', d: 'Pesanan (.xlsx), penghasilan (.pdf), dan iklan (.csv).' },
-  { t: 'Upload ke HitungCuan', d: 'File dibaca di browser. Data pembeli diabaikan.' },
-  { t: 'Baca ceritanya', d: 'Untung atau rugi, iklan yang harus dimatikan, dan harga yang aman.' },
+  { t: 'Chat admin lewat WhatsApp', d: 'Minta uji coba gratis 30 hari. Admin membalas maksimal 1×24 jam.' },
+  { t: 'Akun dibuatkan admin', d: 'Pendaftaran belum mandiri, jadi akun tokomu dibuat manual.' },
+  { t: 'Unduh 3 laporan dari Seller Centre', d: 'Pesanan (.xlsx), penghasilan (.pdf), dan iklan (.csv).' },
+  { t: 'Upload, lalu baca hasilnya', d: 'Untung atau rugi bulan itu, iklan yang sebaiknya dimatikan, dan harga yang aman.' },
 ]
 
 /*
@@ -36,7 +37,7 @@ export function HowItWorks() {
     <Section tone="deep" id="cara-kerja" labelledby="cara-kerja-judul">
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
-          <H2 id="cara-kerja-judul">3 file jadi 1 jawaban.</H2>
+          <H2 id="cara-kerja-judul">Dari chat sampai hasil pertama</H2>
           <ol className="mt-8 grid gap-6">
             {STEPS.map((s, i) => (
               <li key={s.t} data-reveal className="flex gap-4" style={vars({ transitionDelay: `${i * 100}ms` })}>
@@ -57,7 +58,7 @@ export function HowItWorks() {
             ))}
           </ol>
           <p className="mt-8 border-l-4 border-lime pl-4 text-on-field-muted">
-            Paling nyaman dipakai di laptop karena file diunduh dari Seller Centre. Hasilnya bisa dilihat dari HP.
+            Upload paling nyaman lewat laptop. Hasilnya bisa dilihat dari HP.
           </p>
         </div>
 

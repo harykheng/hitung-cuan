@@ -57,7 +57,7 @@ export function Simulator() {
       <H2 id="simulator-judul">Iklan kamu rugi atau untung?</H2>
       <p className="mt-4 max-w-2xl text-lg text-on-field-muted">
         Isi tiga angka produkmu. Hitungannya memakai rumus yang sama dengan aplikasi, dijalankan di browser ini: tidak
-        ada yang dikirim atau disimpan.
+        ada yang dikirim atau disimpan. Belum perlu chat.
       </p>
 
       <div className="on-paper mt-10 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-[0_6px_0_0_#12145c] sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
@@ -347,10 +347,10 @@ function Result({
             )
           }
         >
-          Cek semua produk tokomu
+          Minta uji coba untuk semua produkmu
         </Cta>
         <p className="mt-3 text-sm text-ink/70">
-          Angkamu hanya ikut terkirim kalau kamu sendiri menekan tombol ini dan mengirim pesannya di WhatsApp.
+          Membuka WhatsApp dengan hasil simulasimu sudah terisi di pesan. Angkamu hanya terkirim kalau kamu menekan kirim.
         </p>
       </div>
     </div>
