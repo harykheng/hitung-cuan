@@ -34,7 +34,7 @@ const SCHEDULE: [number, number][] = [
 
 export function HowItWorks() {
   return (
-    <Section tone="deep" id="cara-kerja" labelledby="cara-kerja-judul">
+    <Section tone="paper" id="cara-kerja" labelledby="cara-kerja-judul">
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
           <H2 id="cara-kerja-judul">Dari chat sampai hasil pertama</H2>
@@ -43,7 +43,7 @@ export function HowItWorks() {
               <li key={s.t} data-reveal className="flex gap-4" style={vars({ transitionDelay: `${i * 100}ms` })}>
                 <span
                   aria-hidden="true"
-                  className="grid size-11 shrink-0 place-items-center rounded-full bg-lime font-display text-xl font-extrabold text-field-deep"
+                  className="grid size-11 shrink-0 place-items-center rounded-full bg-field font-display text-xl font-extrabold text-white"
                 >
                   {i + 1}
                 </span>
@@ -52,12 +52,12 @@ export function HowItWorks() {
                     <span className="sr-only">Langkah {i + 1}: </span>
                     {s.t}
                   </h3>
-                  <p className="mt-1 text-on-field-muted">{s.d}</p>
+                  <p className="mt-1 max-w-[46ch] text-fg-2">{s.d}</p>
                 </div>
               </li>
             ))}
           </ol>
-          <p className="mt-8 border-l-4 border-lime pl-4 text-on-field-muted">
+          <p className="mt-8 border-l-4 border-accent pl-4 text-fg-2">
             Upload paling nyaman lewat laptop. Hasilnya bisa dilihat dari HP.
           </p>
         </div>
@@ -104,7 +104,7 @@ function FlowDemo() {
   const rows = stage >= 5
 
   return (
-    <div ref={boxRef} className="rounded-3xl bg-field p-5 shadow-[0_6px_0_0_#12145c] sm:p-8">
+    <div ref={boxRef} className="tone-dark rounded-3xl bg-field-deep p-5 text-fg shadow-[0_16px_40px_-20px_rgba(29,32,121,0.7)] sm:p-8">
       <div className="flex items-center justify-between gap-3">
         <ExampleTag className="text-on-field-muted" />
         {animated ? (

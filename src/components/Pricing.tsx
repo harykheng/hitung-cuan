@@ -15,19 +15,19 @@ const INCLUDED = [
 export function Pricing() {
   const saving = PRICE_MONTHLY * 12 - PRICE_YEARLY
   return (
-    <Section tone="deep" id="harga" labelledby="harga-judul">
+    <Section tone="tint" id="harga" labelledby="harga-judul">
       <H2 id="harga-judul">Harga dan uji coba gratis</H2>
       <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
         <div data-reveal>
-          <p className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance text-lime sm:text-4xl">
+          <p className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance text-accent sm:text-4xl">
             Uji coba gratis {TRIAL_DAYS} hari, tanpa kartu kredit
           </p>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-on-field-muted">
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
             Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}.
           </p>
         </div>
 
-        <div data-reveal className="on-paper rounded-3xl bg-paper p-6 text-ink shadow-[0_6px_0_0_#12145c] sm:p-8">
+        <div data-reveal className="tone-light rounded-3xl bg-paper p-6 text-ink shadow-[0_16px_40px_-20px_rgba(29,32,121,0.45)] ring-1 ring-line sm:p-8">
           <p className="font-semibold text-ink/70">Harga langganan</p>
           <p className="mt-1 flex items-baseline gap-2">
             <span className="font-display text-5xl font-extrabold tracking-tight tabular-nums">{rp(PRICE_MONTHLY)}</span>
@@ -44,7 +44,7 @@ export function Pricing() {
               </li>
             ))}
           </ul>
-          <Cta lokasi="harga" variant="blue" className="mt-8 w-full" />
+          <Cta lokasi="harga" className="mt-8 w-full" />
           <p className="mt-3 text-center text-sm text-ink/70">
             Akun dibuat manual oleh admin. {REPLY_PROMISE}.
           </p>

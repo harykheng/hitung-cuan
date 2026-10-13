@@ -4,10 +4,10 @@ import { Container, Cta } from './ui'
 /** Bar atas menempel: nama + satu tombol. Tidak ada menu lain. */
 export function TopBar() {
   return (
-    <div className="sticky top-0 z-50 border-b border-on-field/10 bg-field">
+    <div className="tone-dark sticky top-0 z-50 border-b border-rule bg-field-deep">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <a href="/" className="rounded-md font-display text-2xl font-extrabold tracking-tight" aria-label="HitungCuan, ke atas">
-          Hitung<span className="text-lime">Cuan</span>
+        <a href="/" className="rounded-md font-display text-2xl font-extrabold tracking-tight text-fg" aria-label="HitungCuan, ke atas">
+          Hitung<span className="text-accent">Cuan</span>
         </a>
         <Cta lokasi="bar_atas" size="sm">
           Minta uji coba
@@ -32,7 +32,7 @@ export function BottomBar() {
   return (
     <div
       aria-hidden={!show}
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-on-field/10 bg-field-deep px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] transition-[transform,visibility] duration-300 sm:hidden ${
+      className={`tone-dark fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-field-deep px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] transition-[transform,visibility] duration-300 sm:hidden ${
         show ? 'visible translate-y-0' : 'invisible translate-y-full'
       }`}
     >
