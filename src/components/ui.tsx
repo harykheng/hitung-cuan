@@ -10,17 +10,21 @@ export function Container({ children, className = '' }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 ${className}`}>{children}</div>
 }
 
-type Tone = 'field' | 'deep' | 'lime' | 'paper'
+/*
+ * Ritme latar: terang (paper / canvas / tint) untuk bagian isi, gelap (night) hanya untuk penutup.
+ * Hero memakai gradasi indigo sendiri (.hero-bg).
+ */
+type Tone = 'paper' | 'canvas' | 'tint' | 'night'
 const TONE: Record<Tone, string> = {
-  field: 'bg-field text-on-field',
-  deep: 'bg-field-deep text-on-field',
-  lime: 'on-lime bg-lime text-field-deep',
-  paper: 'on-paper bg-paper text-ink',
+  paper: 'tone-light bg-paper text-fg',
+  canvas: 'tone-light bg-canvas text-fg',
+  tint: 'tone-light bg-tint text-fg',
+  night: 'tone-dark bg-field-deep text-fg',
 }
 
 export function Section({
   id,
-  tone = 'field',
+  tone = 'paper',
   labelledby,
   children,
   className = '',
@@ -32,7 +36,7 @@ export function Section({
   className?: string
 }) {
   return (
-    <section id={id} aria-labelledby={labelledby} className={`${TONE[tone]} py-16 sm:py-24 ${className}`}>
+    <section id={id} aria-labelledby={labelledby} className={`${TONE[tone]} py-14 sm:py-20 lg:py-24 ${className}`}>
       <Container>{children}</Container>
     </section>
   )
@@ -42,7 +46,7 @@ export function H2({ id, children, className = '' }: { id?: string; children: Re
   return (
     <h2
       id={id}
-      className={`max-w-3xl font-display text-3xl leading-[1.05] font-extrabold tracking-tight text-balance sm:text-5xl ${className}`}
+      className={`max-w-3xl font-display text-3xl leading-[1.08] font-extrabold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem] ${className}`}
     >
       {children}
     </h2>
@@ -53,7 +57,7 @@ export function H2({ id, children, className = '' }: { id?: string; children: Re
 export function ExampleTag({ className = '' }: { className?: string }) {
   return (
     <span
-      className={`inline-block rounded-full border-2 border-current px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase ${className}`}
+      className={`inline-block rounded-full border-2 border-current px-2.5 py-0.5 text-xs font-semibold tracking-wide text-fg-3 uppercase ${className}`}
     >
       Contoh
     </span>
@@ -69,7 +73,21 @@ const STICKER: Record<StickerKind, string> = {
   hero: 'bg-field text-lime border-field',
 }
 
-/** Stiker miring ala stempel. Selalu bertuliskan teks, bukan hanya warna. */
+/** Ikon kecil per status, supaya status tidak hanya dibedakan lewat warna. */
+const STICKER_ICON: Record<StickerKind, ReactNode> = {
+  final: <path d="m5 12.5 4.5 4.5L19 7" />,
+  aman: <path d="m5 12.5 4.5 4.5L19 7" />,
+  takedown: <path d="M6 6l12 12M18 6 6 18" />,
+  kecil: (
+    <>
+      <path d="M12 4 3.5 19h17L12 4Z" />
+      <path d="M12 10v4.5M12 17v.01" />
+    </>
+  ),
+  hero: <path d="m12 3.5 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7L12 3.5Z" />,
+}
+
+/** Stiker miring ala stempel. Selalu bertuliskan teks, dan memakai ikon, bukan hanya warna. */
 export function Sticker({
   kind,
   children,
@@ -95,6 +113,9 @@ export function Sticker({
       className={`stamp rounded-md border-2 px-2.5 py-1 font-display text-sm font-extrabold tracking-wide uppercase ${STICKER[kind]} ${className}`}
       style={vars(style)}
     >
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+        {STICKER_ICON[kind]}
+      </svg>
       {children}
     </span>
   )
@@ -102,19 +123,19 @@ export function Sticker({
 
 /* ---------- Tombol WhatsApp ---------- */
 
-type CtaVariant = 'lime' | 'blue'
-
+/**
+ * CTA utama WhatsApp. Selalu lime dengan teks gelap dan garis tepi gelap, di latar apa pun,
+ * dan hanya aksi WhatsApp yang boleh terlihat seperti ini. Aksi lain memakai GhostLink atau tautan teks.
+ */
 export function Cta({
   lokasi,
   children = 'Minta uji coba gratis lewat WhatsApp',
-  variant = 'lime',
   size = 'lg',
   messageFor,
   className = '',
 }: {
   lokasi: CtaLocation
   children?: ReactNode
-  variant?: CtaVariant
   size?: 'sm' | 'lg'
   /** Pesan WhatsApp khusus (mis. dari simulator). Bawaan: pesan umum. */
   messageFor?: (source: string) => string
@@ -122,20 +143,28 @@ export function Cta({
 }) {
   const source = useSource()
   const href = waLink((messageFor ?? generalMessage)(source))
-  const look =
-    variant === 'lime'
-      ? 'bg-lime text-field-deep shadow-[0_3px_0_0_#0f1150] hover:bg-[#e3fb7d]'
-      : 'bg-btn text-paper shadow-[0_3px_0_0_#0f1150] hover:bg-[#4a4fcc]'
-  const dims = size === 'sm' ? 'min-h-11 px-5 text-sm' : 'min-h-14 px-7 text-base sm:text-lg'
+  const dims = size === 'sm' ? 'min-h-11 px-5 text-sm' : 'min-h-14 px-6 py-2.5 text-base leading-snug sm:px-7 sm:text-lg'
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta(lokasi)}
-      className={`inline-flex items-center justify-center gap-2.5 rounded-full text-center font-display font-bold transition-transform duration-150 active:scale-[0.97] ${dims} ${look} ${className}`}
+      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-ink bg-lime text-center font-display font-bold text-ink shadow-[0_3px_0_0_#16173d] transition-[transform,background-color] duration-150 hover:bg-[#e3fb7d] active:translate-y-px active:shadow-[0_2px_0_0_#16173d] ${dims} ${className}`}
     >
-      <ChatIcon className={size === 'sm' ? 'size-5' : 'size-6'} />
+      <ChatIcon className={size === 'sm' ? 'size-5 shrink-0' : 'size-6 shrink-0 max-[419px]:hidden'} />
+      {children}
+    </a>
+  )
+}
+
+/** CTA sekunder: outline transparan, jelas kalah menonjol dari tombol lime. Untuk aksi non-WhatsApp. */
+export function GhostLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-fg-2/60 px-5 py-2 text-center font-semibold text-fg transition-colors hover:border-fg hover:bg-fg/10 ${className}`}
+    >
       {children}
     </a>
   )

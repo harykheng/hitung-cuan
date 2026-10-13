@@ -53,14 +53,14 @@ export function Simulator() {
   }
 
   return (
-    <Section id="simulator" labelledby="simulator-judul">
+    <Section tone="tint" id="simulator" labelledby="simulator-judul">
       <H2 id="simulator-judul">Iklan kamu rugi atau untung?</H2>
-      <p className="mt-4 max-w-2xl text-lg text-on-field-muted">
+      <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-fg-2">
         Isi tiga angka produkmu. Hitungannya memakai rumus yang sama dengan aplikasi, dijalankan di browser ini: tidak
         ada yang dikirim atau disimpan. Belum perlu chat.
       </p>
 
-      <div className="on-paper mt-10 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-[0_6px_0_0_#12145c] sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
+      <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-[0_16px_40px_-20px_rgba(29,32,121,0.45)] ring-1 ring-line sm:mt-10 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
         {/* ----- Input ----- */}
         <div>
           <p className="text-sm font-semibold text-ink/70">Coba langsung</p>
@@ -192,7 +192,7 @@ export function Simulator() {
           )}
         </div>
       </div>
-      <p className="mt-4 text-sm text-on-field-muted">
+      <p className="mt-4 text-sm text-fg-3">
         Angka awal hanya contoh. Ganti dengan angka produkmu sendiri.
       </p>
     </Section>
@@ -338,7 +338,6 @@ function Result({
       <div className="mt-6">
         <Cta
           lokasi="simulator"
-          variant="blue"
           className="w-full sm:w-auto"
           messageFor={(source) =>
             simulatorMessage(

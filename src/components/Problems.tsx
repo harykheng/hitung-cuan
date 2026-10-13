@@ -15,20 +15,20 @@ const PROBLEMS = [
   },
 ]
 
-/** Tiga kalimat besar, bukan kotak metrik. Satu per layar HP, masuk saat digulir. */
+/** Tiga kalimat besar, bukan kotak metrik. Latar putih sebagai jeda setelah hero. */
 export function Problems() {
   return (
-    <Section tone="deep" labelledby="masalah">
+    <Section tone="paper" labelledby="masalah">
       <h2 id="masalah" className="sr-only">
         Masalah yang sering dialami seller Shopee
       </h2>
-      <ul className="grid gap-14 sm:gap-20">
+      <ul className="grid gap-10 sm:gap-14">
         {PROBLEMS.map((p) => (
-          <li key={p.title} data-reveal className="max-w-4xl border-l-4 border-lime pl-5 sm:pl-8">
-            <p className="font-display text-3xl leading-[1.08] font-extrabold tracking-tight text-balance sm:text-5xl">
+          <li key={p.title} data-reveal className="max-w-3xl border-l-4 border-accent pl-5 sm:pl-7">
+            <p className="font-display text-2xl leading-[1.15] font-extrabold tracking-tight text-balance sm:text-4xl">
               {p.title}
             </p>
-            <p className="mt-4 max-w-2xl text-lg text-on-field-muted">{p.body}</p>
+            <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-fg-2 sm:text-lg">{p.body}</p>
           </li>
         ))}
       </ul>

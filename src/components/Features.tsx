@@ -5,7 +5,7 @@ import { CheckIcon, ExampleTag, H2, Section, Sticker, vars } from './ui'
 
 export function Features() {
   return (
-    <Section id="fitur" labelledby="fitur-judul">
+    <Section tone="canvas" id="fitur" labelledby="fitur-judul">
       <H2 id="fitur-judul">Hasil yang kamu dapat</H2>
       <div className="mt-14 grid gap-20 lg:gap-28">
         <Row title="Untung bersih bulan ini, lengkap dengan hitungannya." body="Lihat untung bersih dari uang yang benar-benar cair, dengan rincian uang masuk, modal, dan biaya. Tiap angka diberi status: Angka final, atau Belum lengkap beserta data yang masih kurang.">
@@ -37,7 +37,7 @@ function Row({
     <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
       <div className={reverse ? 'lg:order-2' : ''}>
         <h3 className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">{title}</h3>
-        <p className="mt-4 max-w-lg text-lg leading-relaxed text-on-field-muted">{body}</p>
+        <p className="mt-4 max-w-[48ch] text-lg leading-relaxed text-fg-2">{body}</p>
       </div>
       <div className={reverse ? 'lg:order-1' : ''}>{children}</div>
     </article>
@@ -45,7 +45,7 @@ function Row({
 }
 
 /* Satu lembar putih per mock, tanpa lembar di dalam lembar. */
-const sheet = 'on-paper rounded-3xl bg-paper p-5 text-ink shadow-[0_6px_0_0_#12145c] sm:p-7'
+const sheet = 'tone-light rounded-3xl bg-paper p-5 text-ink shadow-[0_16px_40px_-24px_rgba(29,32,121,0.4)] ring-1 ring-line sm:p-7'
 
 /** Nota yang "tercetak" baris demi baris. Angka saling cocok: 14,25 − 8,15 − 2,68 = 3,42 juta. */
 function NotaMock() {
@@ -58,7 +58,7 @@ function NotaMock() {
     <div data-reveal className={sheet} style={vars({ '--step': '150ms' })}>
       <div className="flex items-center justify-between">
         <p className="font-display text-lg font-bold">Agustus 2026</p>
-        <ExampleTag className="text-ink/60" />
+        <ExampleTag />
       </div>
       <div className="mt-4 border-t-2 border-dashed border-ink/25" />
       <dl className="mt-2 grid">
@@ -92,7 +92,7 @@ function AdsMock() {
     <div data-reveal className={sheet}>
       <div className="flex items-center justify-between">
         <p className="font-display text-lg font-bold">Iklan per produk</p>
-        <ExampleTag className="text-ink/60" />
+        <ExampleTag />
       </div>
       <ul className="mt-3 divide-y divide-ink/15">
         {ADS.map((a, i) => (
@@ -120,7 +120,7 @@ function PriceMock() {
     <div data-reveal className={sheet}>
       <div className="flex items-center justify-between">
         <p className="font-display text-lg font-bold">Pilih harga jual</p>
-        <ExampleTag className="text-ink/60" />
+        <ExampleTag />
       </div>
       <p className="mt-1 text-sm text-ink/70">Modal Rp30.000 per unit. Target untung 5% setelah iklan.</p>
       <ul className="mt-3 divide-y divide-ink/15">

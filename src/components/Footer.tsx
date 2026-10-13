@@ -6,15 +6,15 @@ import { Container } from './ui'
 
 export function Footer() {
   const source = useSource()
-  const link = 'font-semibold text-on-field underline decoration-lime decoration-2 underline-offset-4'
+  const link = 'font-semibold text-fg underline decoration-accent decoration-2 underline-offset-4'
   return (
-    <footer className="bg-field-deep pt-12 pb-28 text-sm text-on-field-muted sm:pb-12">
+    <footer className="tone-dark bg-night pt-12 pb-28 text-sm text-fg-2 sm:pb-12">
       <Container className="grid gap-8 md:grid-cols-2">
         <div>
-          <p className="font-display text-2xl font-extrabold tracking-tight text-on-field">
-            Hitung<span className="text-lime">Cuan</span>
+          <p className="font-display text-2xl font-extrabold tracking-tight text-fg">
+            Hitung<span className="text-accent">Cuan</span>
           </p>
-          <p className="mt-3 text-base font-semibold text-on-field">HitungCuan bukan produk resmi Shopee.</p>
+          <p className="mt-3 text-base font-semibold text-fg">HitungCuan bukan produk resmi Shopee.</p>
           <p className="mt-3">
             Kontak:{' '}
             <a
@@ -35,7 +35,7 @@ export function Footer() {
           </p>
         </div>
         <div>
-          <p className="font-semibold text-on-field">Privasi singkat</p>
+          <p className="font-semibold text-fg">Privasi singkat</p>
           <p className="mt-2 leading-relaxed">
             Halaman ini tidak menyimpan data apa pun; simulator dihitung di browser kamu. Di aplikasi, nama, alamat,
             nomor HP, username, dan nomor resi pembeli tidak pernah dibaca atau disimpan. Yang disimpan: nomor pesanan,
@@ -43,7 +43,7 @@ export function Footer() {
           </p>
         </div>
       </Container>
-      <Container className="mt-8 border-t border-on-field/15 pt-6">
+      <Container className="mt-8 border-t border-rule pt-6">
         <p>
           HitungCuan oleh{' '}
           <a href={STUDIO_URL} className={link}>

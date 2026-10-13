@@ -12,7 +12,7 @@ function WaLink({ message, children }: { message: (s: string) => string; childre
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta('faq')}
-      className="font-semibold text-on-field underline decoration-lime decoration-2 underline-offset-4"
+      className="font-semibold text-accent underline decoration-2 underline-offset-4"
     >
       {children}
     </a>
@@ -67,16 +67,16 @@ export function Faq() {
   ]
 
   return (
-    <Section id="faq" labelledby="faq-judul">
+    <Section tone="paper" id="faq" labelledby="faq-judul">
       <H2 id="faq-judul">Pertanyaan yang sering muncul</H2>
-      <div className="mt-10 max-w-3xl border-t border-on-field/20">
+      <div className="mt-10 max-w-3xl border-t border-rule">
         {items.map((it) => (
-          <details key={it.q} name="faq" className="border-b border-on-field/20">
+          <details key={it.q} name="faq" className="border-b border-rule">
             <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 py-4 font-display text-lg font-bold">
               {it.q}
-              <ChevronIcon className="chev size-6 shrink-0 text-lime" />
+              <ChevronIcon className="chev size-6 shrink-0 text-accent" />
             </summary>
-            <p className="pb-5 leading-relaxed text-on-field-muted">{it.a}</p>
+            <p className="max-w-[62ch] pb-5 leading-relaxed text-fg-2">{it.a}</p>
           </details>
         ))}
       </div>
