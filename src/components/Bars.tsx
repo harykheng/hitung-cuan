@@ -10,7 +10,7 @@ export function TopBar() {
           Hitung<span className="text-lime">Cuan</span>
         </a>
         <Cta lokasi="bar_atas" size="sm">
-          Chat WhatsApp
+          Minta uji coba
         </Cta>
       </Container>
     </div>
@@ -37,7 +37,7 @@ export function BottomBar() {
       }`}
     >
       <Cta lokasi="bar_bawah" className="w-full">
-        Chat WhatsApp, tanya cara mulai
+        Minta uji coba gratis
       </Cta>
     </div>
   )

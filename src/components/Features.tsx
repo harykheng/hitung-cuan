@@ -6,15 +6,15 @@ import { CheckIcon, ExampleTag, H2, Section, Sticker, vars } from './ui'
 export function Features() {
   return (
     <Section id="fitur" labelledby="fitur-judul">
-      <H2 id="fitur-judul">Yang kamu dapat</H2>
+      <H2 id="fitur-judul">Hasil yang kamu dapat</H2>
       <div className="mt-14 grid gap-20 lg:gap-28">
-        <Row title="Untung bersih bulan ini, dengan hitungannya." body="Rekap bulanan menunjukkan untung bersih dari uang yang benar-benar cair, lengkap dengan hitungan masuk, modal, dan biaya. Statusnya jelas: Angka final, atau Belum lengkap dengan apa yang masih kurang.">
+        <Row title="Untung bersih bulan ini, lengkap dengan hitungannya." body="Lihat untung bersih dari uang yang benar-benar cair, dengan rincian uang masuk, modal, dan biaya. Tiap angka diberi status: Angka final, atau Belum lengkap beserta data yang masih kurang.">
           <NotaMock />
         </Row>
-        <Row reverse title="Mana iklan yang harus dimatikan." body="Tiap produk dapat putusan sendiri: Hero, Aman, ROAS terlalu kecil, atau Takedown. ROAS yang dipakai sudah tanpa pesanan batal, jadi ROAS nyata.">
+        <Row reverse title="Iklan mana yang sebaiknya dimatikan." body="Tiap produk dapat satu putusan: Hero, Aman, ROAS terlalu kecil, atau Takedown (matikan iklannya). ROAS-nya sudah dihitung tanpa pesanan yang batal.">
           <AdsMock />
         </Row>
-        <Row title="Harga berapa supaya iklan tidak rugi." body="Sebelum mulai jualan, simulasikan harga: harga minimum yang aman dan target ROAS yang diisi di Shopee.">
+        <Row title="Perkiraan harga minimum yang aman." body="Simulasikan harga jual sebelum mulai berjualan. Hasilnya perkiraan dari angka dan persen admin yang kamu isi.">
           <PriceMock />
         </Row>
       </div>

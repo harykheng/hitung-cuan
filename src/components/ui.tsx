@@ -106,7 +106,7 @@ type CtaVariant = 'lime' | 'blue'
 
 export function Cta({
   lokasi,
-  children = 'Chat WhatsApp, tanya cara mulai',
+  children = 'Minta uji coba gratis lewat WhatsApp',
   variant = 'lime',
   size = 'lg',
   messageFor,
