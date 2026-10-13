@@ -1,7 +1,6 @@
 /**
- * Nomor WhatsApp tujuan pendaftaran.
- * Format internasional tanpa "+", spasi, atau tanda hubung. Contoh: 6281234567890
- * Ganti nilai ini sebelum deploy — build akan memberi peringatan selama masih placeholder.
+ * Nomor WhatsApp admin (format internasional tanpa "+", spasi, atau tanda hubung).
+ * Sama dengan VITE_SUPPORT_WA di aplikasi. Build memberi peringatan selama masih placeholder.
  */
 export const WA_NUMBER = '6281292567788'
 
@@ -9,5 +8,12 @@ export const WA_NUMBER = '6281292567788'
 export const DEFAULT_SOURCE = 'WEB'
 
 export const STUDIO_URL = 'https://studioharel.id'
+export const APP_URL = 'https://app.studioharel.id'
 
-export const OMZET_OPTIONS = ['<10 jt', '10–50 jt', '50–200 jt', '>200 jt'] as const
+/** Harga dan uji coba, harus sama dengan yang benar-benar ditagih admin. */
+export const PRICE_MONTHLY = 69000
+export const PRICE_YEARLY = 499000
+export const TRIAL_DAYS = 30
+
+/** Janji waktu balas. Tulis hanya yang bisa ditepati. */
+export const REPLY_PROMISE = 'Dibalas dalam 1x24 jam'

@@ -1,12 +1,5 @@
 import { DEFAULT_SOURCE, WA_NUMBER } from '../config'
 
-export type SignupData = {
-  nama: string
-  toko: string
-  omzet: string
-  iklan: 'Ya' | 'Tidak'
-}
-
 /** Ambil ?src= dari URL: huruf besar, hanya A-Z 0-9 _ -, maks 24 karakter. */
 export function getSourceCode(search: string): string {
   const raw = new URLSearchParams(search).get('src') ?? ''
@@ -18,19 +11,29 @@ export function getSourceCode(search: string): string {
   return clean || DEFAULT_SOURCE
 }
 
-export function buildSignupMessage(data: SignupData, source: string): string {
-  return [
-    'Halo, saya mau coba gratis HitungCuan.',
-    `Nama: ${data.nama}`,
-    `Toko: ${data.toko}`,
-    `Omzet/bulan: ${data.omzet}`,
-    `Pakai iklan Shopee: ${data.iklan}`,
-    `Kode: HC-${source}`,
-  ].join('\n')
+const withCode = (lines: string[], source: string) => [...lines, `Kode: HC-${source}`].join('\n')
+
+export function generalMessage(source: string): string {
+  return withCode(
+    ['Halo, saya seller Shopee dan tertarik mencoba HitungCuan untuk toko saya. Bisa dijelaskan cara mulai dan harganya?'],
+    source,
+  )
 }
 
-export function buildMultiStoreMessage(source: string): string {
-  return ['Halo, saya punya lebih dari satu toko Shopee dan mau tanya soal HitungCuan.', `Kode: HC-${source}`].join('\n')
+export function multiStoreMessage(source: string): string {
+  return withCode(['Halo, saya punya lebih dari satu toko Shopee dan mau tanya soal HitungCuan.'], source)
+}
+
+export function simulatorMessage(
+  p: { hpp: string; harga: string; roas: string; verdict: string },
+  source: string,
+): string {
+  return withCode(
+    [
+      `Halo, saya coba simulasi di HitungCuan: modal Rp${p.hpp}, harga Rp${p.harga}, ROAS Shopee ${p.roas} → hasilnya "${p.verdict}". Saya mau coba HitungCuan untuk toko saya.`,
+    ],
+    source,
+  )
 }
 
 export function waLink(text: string): string {

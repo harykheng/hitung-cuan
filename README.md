@@ -1,7 +1,7 @@
 # HitungCuan — landing page
 
-Landing page `hitungcuan.studioharel.id`. React + Vite + TypeScript + Tailwind CSS v4, statis (tanpa backend/database).
-Pendaftaran "Coba gratis 30 hari" dikirim lewat WhatsApp — halaman ini tidak menyimpan data apa pun.
+Landing page `hitungcuan.studioharel.id`. React + Vite + TypeScript + Tailwind CSS v4, statis (tanpa backend/database),
+di-prerender jadi HTML. Satu aksi: chat WhatsApp. Tidak ada form dan tidak ada data yang disimpan di halaman ini.
 
 ```bash
 npm install
@@ -10,47 +10,56 @@ npm run build    # hasil di dist/ (sudah di-prerender jadi HTML statis)
 npm run preview  # cek hasil build
 ```
 
+## Susunan halaman
+
+Bar atas → Hero (kartu contoh) → Masalah → **Simulator iklan** → Animasi "3 file jadi 1 jawaban" → Yang kamu dapat →
+Kenapa angkanya bisa dipercaya → Siapa di balik ini → Harga dan cara mulai → FAQ → CTA penutup → Footer.
+Di HP ada bar CTA bawah yang muncul setelah hero. Komponen ada di `src/components/`.
+
+## Simulator
+
+`src/lib/adsMath.ts` memakai rumus yang sama dengan aplikasi (`src/lib/adsMath.ts` di repo aplikasi). Jangan diubah di
+sini saja: ubah dua-duanya. Persen admin 8,25% hanya **contoh**; potongan lain tetap (XTRA 4%, proses Rp1.250,
+target untung 5%). Angka bawaan sudah dicek: 30.000/45.000/ROAS 6 → untung tipis Rp738, balik modal 5,46, target 7,52;
+ROAS 5 → Takedown rugi Rp762; harga 59.000 → Aman, 2,87 dan 3,36.
+
 ## Animasi
 
-Animasi memakai `framer-motion` lewat `LazyMotion` (fitur dimuat async, ±6 KB gzip terpisah dari bundle awal). Semua ada di `src/components/motion.tsx`:
+Hanya `transform` dan `opacity`, tidak ada loop, tanpa dependensi animasi (CSS + `IntersectionObserver` +
+`requestAnimationFrame`, lihat `src/index.css` dan `src/lib/hooks.ts`).
 
-- `RollingRupiah` — angka hero berputar dari 0 (HTML prerender dan mode reduced-motion memakai teks biasa).
-- `Reveal` — konten muncul sekali saat masuk layar. Jangan dipakai di hero (menunda LCP).
-- `Underline`, `ConnectorLine` — garis yang "digambar" saat terlihat.
+- Konten disembunyikan untuk animasi **hanya** kalau JavaScript jalan (`<html class="js">` di-set di `<head>`).
+  Tanpa JS dan dengan `prefers-reduced-motion`, semua teks dan angka langsung tampil, tanpa confetti.
+- Confetti sekali per kunjungan (`src/lib/confetti.ts`).
+- Semua angka demo berlabel **Contoh**. Jangan tulis angka hasil, testimonial, atau klaim yang tidak ada datanya.
 
-Pengguna dengan pengaturan "kurangi gerakan" otomatis tidak mendapat animasi transform. Pola geraknya terinspirasi
-[componentry](https://github.com/harshjdhv/componentry) (MIT): split-flap, letter-cascade, sticky-scroll-cards.
+## Ganti nomor WhatsApp, harga, janji balasan
 
-## Ganti nomor WhatsApp
+Semua di `src/config.ts` (`WA_NUMBER`, `PRICE_MONTHLY`, `PRICE_YEARLY`, `TRIAL_DAYS`, `REPLY_PROMISE`).
+Selama nomornya masih placeholder, `npm run build` menampilkan peringatan.
 
-Buka `src/config.ts`, ganti `WA_NUMBER`:
+## Kode sumber (`?src=`) dan pelacakan
 
-```ts
-export const WA_NUMBER = '6281234567890' // format internasional, tanpa +, spasi, atau tanda hubung
-```
+Pesan WhatsApp ditutup dengan `Kode: HC-{SRC}`. `{SRC}` diambil dari `?src=` (huruf besar, A–Z, 0–9, `_`, `-`, maks.
+24 karakter). Tanpa parameter → `HC-WEB`. Contoh: `https://hitungcuan.studioharel.id/?src=tt01` → `Kode: HC-TT01`.
 
-Selama nomornya masih placeholder, `npm run build` menampilkan peringatan ⚠️.
+Tidak ada skrip analitik bawaan. Peristiwa dikirim lewat `src/lib/track.ts`: `cta_click` (properti `lokasi`: `bar_atas`,
+`hero`, `simulator`, `harga`, `faq`, `penutup`, `bar_bawah`, `footer`), `simulator_used`, dan `scroll_depth` (25/50/75/100).
+Mereka otomatis diteruskan ke `window.plausible` / `window.umami` kalau skripnya dipasang, dan selalu dikirim sebagai
+`CustomEvent('hc:track')`. Cloudflare Web Analytics cocok untuk trafik per sumber, tetapi tidak menerima peristiwa kustom;
+untuk `cta_click` per `lokasi`, pasang Plausible atau Umami.
 
-## Kode sumber pendaftar (`?src=`)
+CTA click rate = pengunjung unik yang menekan tombol WhatsApp ÷ pengunjung unik, dibaca **per sumber** (`?src=`).
 
-Pesan WhatsApp ditutup dengan `Kode: HC-{SRC}`. `{SRC}` diambil dari parameter `?src=` (huruf besar, hanya A–Z, 0–9, `_`, `-`, maks. 24 karakter). Tanpa parameter → `HC-WEB`.
+## Gambar share / Open Graph
 
-Contoh link per konten TikTok:
-
-- `https://hitungcuan.studioharel.id/?src=tt01` → `Kode: HC-TT01`
-- `https://hitungcuan.studioharel.id/?src=bio` → `Kode: HC-BIO`
-
-## Screenshot & gambar
-
-- Screenshot aplikasi: taruh di `public/screens/` dengan nama `rekap`, `iklan`, `simulasi`. Halaman mencoba `.webp` dulu, lalu `.png`; kalau dua-duanya belum ada, tampil placeholder abu-abu 16:10. Rasio ideal 16:10, mis. 1600×1000.
-  Konversi ke webp (lebih ringan): `convert rekap.png -quality 82 rekap.webp` (ImageMagick) atau lewat squoosh.app.
-- Gambar share/Open Graph: `public/og.png` (1200×630). File yang ada sekarang placeholder — ganti kapan saja dengan nama yang sama.
+`public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja.
 
 ## Deploy ke Cloudflare
 
 Repo ini punya `wrangler.jsonc` (aset statis dari `dist/`), jadi cocok untuk dua alur:
 
-**Workers Builds (Create → Workers → Import a repository)** — alur yang sekarang dipakai:
+**Workers Builds (Create → Workers → Import a repository)**:
 
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
