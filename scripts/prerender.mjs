@@ -12,7 +12,7 @@ if (!html.includes('<!--app-->')) throw new Error('Placeholder <!--app--> tidak 
 
 // Preload font yang dipakai di layar pertama (judul hero, sub-judul, tombol).
 const assets = await readdir(new URL('assets/', dist))
-const preloads = ['bricolage-grotesque-latin-800-normal', 'public-sans-latin-400-normal', 'public-sans-latin-700-normal']
+const preloads = ['bricolage-grotesque-latin-800-normal', 'public-sans-latin-400-normal', 'public-sans-latin-600-normal']
   .map((prefix) => assets.find((f) => f.startsWith(prefix) && f.endsWith('.woff2')))
   .filter(Boolean)
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
@@ -24,5 +24,5 @@ await rm(ssrDir, { recursive: true, force: true })
 
 console.log(`prerender: dist/index.html (${(html.length / 1024).toFixed(1)} KB)`)
 if (!/^62\d{8,13}$/.test(WA_NUMBER)) {
-  console.warn(`\n⚠️  WA_NUMBER di src/config.ts masih "${WA_NUMBER}". Form pendaftaran belum bisa dipakai.\n`)
+  console.warn(`\n⚠️  WA_NUMBER di src/config.ts masih "${WA_NUMBER}". Semua tombol WhatsApp belum bisa dipakai.\n`)
 }

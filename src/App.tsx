@@ -1,34 +1,41 @@
+import { useEffect } from 'react'
+import { BottomBar, TopBar } from './components/Bars'
+import { Closing } from './components/Closing'
 import { Faq } from './components/Faq'
 import { Features } from './components/Features'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
+import { HowItWorks } from './components/HowItWorks'
 import { Maker } from './components/Maker'
 import { Pricing } from './components/Pricing'
-import { Privacy } from './components/Privacy'
 import { Problems } from './components/Problems'
-import { Punchline } from './components/Punchline'
-import { SignupForm } from './components/SignupForm'
-import { Steps } from './components/Steps'
-import { MotionProvider } from './components/motion'
-import { useSourceCode } from './lib/useSourceCode'
+import { Simulator } from './components/Simulator'
+import { Trust } from './components/Trust'
+import { useRevealOnScroll } from './lib/hooks'
+import { SourceProvider } from './lib/source'
+import { watchScrollDepth } from './lib/track'
 
 export default function App() {
-  const source = useSourceCode()
+  useRevealOnScroll()
+  useEffect(() => watchScrollDepth(), [])
+
   return (
-    <MotionProvider>
+    <SourceProvider>
+      <TopBar />
       <Hero />
       <main>
         <Problems />
-        <Punchline />
-        <Steps />
+        <Simulator />
+        <HowItWorks />
         <Features />
+        <Trust />
         <Maker />
-        <Privacy />
         <Pricing />
-        <Faq source={source} />
-        <SignupForm source={source} />
+        <Faq />
+        <Closing />
       </main>
       <Footer />
-    </MotionProvider>
+      <BottomBar />
+    </SourceProvider>
   )
 }

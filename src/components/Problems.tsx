@@ -1,41 +1,37 @@
-import { Reveal } from './motion'
-import { Container, SectionHeading } from './ui'
+import { Section } from './ui'
 
 const PROBLEMS = [
   {
-    title: 'ROAS di Shopee masih menghitung pesanan batal.',
-    body: 'Iklan yang kelihatan untung bisa ternyata rugi.',
+    title: 'ROAS di Shopee kelihatan bagus, tapi saldo tidak bertambah.',
+    body: 'Shopee menghitung juga pesanan yang kemudian batal, dan ROAS "bagus" tergantung untung per barang.',
   },
   {
-    title: 'Omzet bukan uang cair.',
-    body: 'Untung dihitung dari uang yang benar-benar masuk ke saldo.',
+    title: 'Penghasilan di Seller Centre belum mengurangi modal, iklan, dan packaging-mu.',
+    body: 'Itu angka kotor. Untung sebenarnya baru ketemu setelah semuanya dikurangkan.',
   },
   {
-    title: 'Potongan admin & XTRA makan margin diam-diam.',
-    body: 'Harga jual terasa aman padahal tipis.',
+    title: 'Tiap awal bulan, sore habis untuk spreadsheet.',
+    body: 'Dan ujungnya tetap tidak yakin angkanya cocok dengan saldo.',
   },
 ]
 
+/** Tiga kalimat besar, bukan kotak metrik. Satu per layar HP, masuk saat digulir. */
 export function Problems() {
   return (
-    <section aria-labelledby="masalah" className="bg-paper py-16 sm:py-24">
-      <Container>
-        <SectionHeading id="masalah">Masalahnya</SectionHeading>
-        <ul className="mt-10 grid gap-4 md:grid-cols-3">
-          {PROBLEMS.map((p, i) => (
-            <Reveal as="li" key={p.title} delay={i * 0.1} className="flex flex-col rounded-2xl bg-counter p-6">
-              <span
-                aria-hidden="true"
-                className="grid size-10 place-items-center rounded-lg bg-loss font-display text-lg font-extrabold text-paper"
-              >
-                {i + 1}
-              </span>
-              <h3 className="mt-5 font-display text-xl leading-snug font-bold">{p.title}</h3>
-              <p className="mt-2 leading-relaxed text-ink/75">{p.body}</p>
-            </Reveal>
-          ))}
-        </ul>
-      </Container>
-    </section>
+    <Section tone="deep" labelledby="masalah">
+      <h2 id="masalah" className="sr-only">
+        Masalah yang sering dialami seller Shopee
+      </h2>
+      <ul className="grid gap-14 sm:gap-20">
+        {PROBLEMS.map((p) => (
+          <li key={p.title} data-reveal className="max-w-4xl border-l-4 border-lime pl-5 sm:pl-8">
+            <p className="font-display text-3xl leading-[1.08] font-extrabold tracking-tight text-balance sm:text-5xl">
+              {p.title}
+            </p>
+            <p className="mt-4 max-w-2xl text-lg text-on-field-muted">{p.body}</p>
+          </li>
+        ))}
+      </ul>
+    </Section>
   )
 }

@@ -1,69 +1,69 @@
-import { m } from 'framer-motion'
-import { Reveal } from './motion'
-import { Container, CtaLink, SectionHeading } from './ui'
+import { PRICE_MONTHLY, PRICE_YEARLY, REPLY_PROMISE, TRIAL_DAYS } from '../config'
+import { rp } from '../lib/format'
+import { CheckIcon, Cta, H2, Section } from './ui'
+
+const STEPS = [
+  { t: 'Chat WhatsApp', d: 'Ceritakan tokomu dan tanya apa saja.' },
+  { t: 'Akun dibuatkan', d: 'Admin membuat akunmu secara manual. Belum ada daftar mandiri.' },
+  { t: 'Upload bulan pertama', d: 'Ikuti panduan di aplikasi, lalu baca hasilnya.' },
+]
 
 const INCLUDED = [
-  'Untuk 1 toko Shopee.',
-  'Mulai dengan coba gratis 30 hari.',
-  'Termasuk update kalau format Shopee berubah.',
+  `Coba gratis ${TRIAL_DAYS} hari, tanpa kartu kredit`,
+  'Untuk 1 toko Shopee',
+  'Update kalau format file Shopee berubah',
+  'Data tiap toko terpisah',
 ]
 
 export function Pricing() {
+  const saving = PRICE_MONTHLY * 12 - PRICE_YEARLY
   return (
-    <section aria-labelledby="harga" className="bg-paper py-16 sm:py-24">
-      <Container>
-        <SectionHeading id="harga">Harga</SectionHeading>
-        <div className="mt-10 grid max-w-4xl gap-5 md:grid-cols-2 md:items-stretch">
-          <Reveal>
-            <PlanCard name="Tahunan" price="Rp499.000" period="/tahun" featured />
-          </Reveal>
-          <Reveal delay={0.12}>
-            <PlanCard name="Bulanan" price="Rp69.000" period="/bulan" />
-          </Reveal>
+    <Section tone="deep" id="harga" labelledby="harga-judul">
+      <H2 id="harga-judul">Harga dan cara mulai</H2>
+      <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
+        <ol className="grid gap-6">
+          {STEPS.map((s, i) => (
+            <li key={s.t} data-reveal className="flex gap-4" style={{ transitionDelay: `${i * 100}ms` }}>
+              <span
+                aria-hidden="true"
+                className="grid size-11 shrink-0 place-items-center rounded-full bg-lime font-display text-xl font-extrabold text-field-deep"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <h3 className="font-display text-xl font-bold">
+                  <span className="sr-only">Langkah {i + 1}: </span>
+                  {s.t}
+                </h3>
+                <p className="mt-1 text-on-field-muted">{s.d}</p>
+              </div>
+            </li>
+          ))}
+          <li className="text-on-field-muted">{REPLY_PROMISE}.</li>
+        </ol>
+
+        <div data-reveal className="on-paper rounded-3xl bg-paper p-6 text-ink shadow-[0_6px_0_0_#12145c] sm:p-8">
+          <p className="font-semibold text-ink/70">Per toko</p>
+          <p className="mt-1 flex items-baseline gap-2">
+            <span className="font-display text-5xl font-extrabold tracking-tight tabular-nums">{rp(PRICE_MONTHLY)}</span>
+            <span className="text-ink/70">/ bulan</span>
+          </p>
+          <p className="mt-2 text-ink/80">
+            Atau {rp(PRICE_YEARLY)} per tahun, hemat {rp(saving)} dibanding 12 bulan.
+          </p>
+          <ul className="mt-6 grid gap-2.5">
+            {INCLUDED.map((x) => (
+              <li key={x} className="flex gap-3">
+                <CheckIcon className="mt-0.5 size-5 shrink-0 text-gain" />
+                {x}
+              </li>
+            ))}
+          </ul>
+          <Cta lokasi="harga" variant="blue" className="mt-8 w-full">
+            Chat WhatsApp, tanya cara mulai
+          </Cta>
         </div>
-      </Container>
-    </section>
-  )
-}
-
-function PlanCard({ name, price, period, featured = false }: { name: string; price: string; period: string; featured?: boolean }) {
-  return (
-    <m.article
-      whileHover={{ y: -4 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      className={
-        featured
-          ? 'dark-surface relative flex h-full flex-col rounded-2xl bg-field p-6 text-paper ring-4 ring-lime sm:p-8'
-          : 'relative flex h-full flex-col rounded-2xl bg-counter p-6 text-ink sm:p-8'
-      }
-    >
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="font-display text-xl font-bold">{name}</h3>
-        {featured ? (
-          <span className="rounded-full bg-lime px-3 py-1 text-sm font-bold text-ink">Paling hemat</span>
-        ) : null}
       </div>
-      <p className="mt-4 flex items-baseline gap-1">
-        <span className="font-display text-5xl font-extrabold tracking-tight tabular-nums">{price}</span>
-        <span className={featured ? 'text-paper/80' : 'text-ink/70'}>{period}</span>
-      </p>
-      <ul className="mt-6 grid gap-2.5">
-        {INCLUDED.map((item) => (
-          <li key={item} className="flex gap-3">
-            <CheckIcon className={featured ? 'text-lime' : 'text-gain'} />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-      <CtaLink variant={featured ? 'lime' : 'outline'} className="mt-8 w-full" />
-    </m.article>
-  )
-}
-
-function CheckIcon({ className }: { className: string }) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className={`mt-0.5 size-5 shrink-0 ${className}`} fill="none" stroke="currentColor" strokeWidth="2.5">
-      <path d="m4.5 10.5 3.5 3.5 7.5-8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    </Section>
   )
 }
