@@ -183,3 +183,32 @@ Regresi: semua tes putaran sebelumnya dijalankan ulang. Lulus, kecuali asersi la
 - **Set ikon tetap bergaya garis seperti Lucide.** Centang dan panah bawah sama persis dengan `icons.tsx` aplikasi, tetapi ikon lain (perisai, berkas, putar ulang, chat) bukan salinan. Alasan tertulis di `ui.tsx` adalah konsistensi dengan aturan aplikasi, bukan klaim bahwa set ini orisinal. Mengganti seluruh set ikon adalah keputusan desain yang belum diminta.
 - **Warna aksen indigo di permukaan terang** (tautan, centang, chevron, judul harga) tidak diubah. `DESIGN.md` menyebutnya sebagai warna Stamp untuk tautan dan pilihan.
 - **Dial ENERGY/RHYTHM/MOTION dan `DESIGN.md` landing (#7)** masih terbuka. `DESIGN.md` aplikasi bisa dipakai sebagai dasar, tetapi menulis dokumen arah untuk landing tetap keputusan pemilik.
+
+---
+
+# Putaran 9: nomor 7 (`DESIGN.md` landing dan dial)
+
+## Kesalahan saya di putaran 8, ditemukan di putaran ini
+
+Saat menulis ulang blok `@theme` di `src/index.css` (putaran 8), saya menghapus token `--color-control` (#7f7f94) dari perbaikan #4 tanpa sengaja. Akibatnya `border-control` tidak menghasilkan warna dan batas input serta tombol diam-diam jatuh ke warna teks yang gelap. Tes #4 tetap lulus karena hanya memeriksa kontras minimal 3:1, dan batas gelap pun lolos. Tes palet putaran 8 ikut lolos karena `#7f7f94` memang tidak muncul sama sekali.
+
+Diperbaiki: token dipulihkan. Tes kini memeriksa nilai persis `#7f7f94` pada lima jenis kontrol, dan `#7f7f94` dimasukkan ke daftar warna yang diizinkan, sehingga kalau token ini hilang lagi tes langsung gagal.
+
+## Perbaikan #7
+
+| Perbaikan | File | Verifikasi |
+|---|---|---|
+| `DESIGN.md` landing dibuat: frontmatter token (warna, tipografi, bentuk, jarak, komponen), lalu Arah, Sumber, Dial, Warna, Tipografi, Tata letak, Kedalaman, Bentuk, Komponen, Gerak, Suara dan isi, Aksesibilitas, Do dan Don't. Tercantum juga Design Read: "halaman penjualan satu aksi untuk seller Shopee yang beriklan, dalam gaya bidang indigo + lembar putih + stiker stempel miring". README menunjuk ke dokumen ini. | `DESIGN.md`, `README.md` | Frontmatter terbaca sebagai YAML. 20 token warna identik dengan `@theme` di `index.css` (dicek otomatis, dua arah). Semua rujukan komponen terselesaikan. Tanpa em dash. `DESIGN.md` tidak ikut ke `dist/` (tidak terbit). |
+| **Dial: ENERGY 3 / RHYTHM 2 / MOTION 2**, ditandai **[diinferensi]**. | `DESIGN.md` | MOTION dan RHYTHM diuji di browser: 0 animasi berulang, 0 paralaks, 3 ukuran jarak antar bagian (128 / 96 / 64px). ENERGY 3 adalah penilaian saya atas tampilan, tidak bisa diukur. |
+
+## Apa yang saya tulis dan apa yang tidak
+
+Aturan skill: arah desain harus berasal dari pemilik, agen hanya memformat. Pemilik meminta "perbaiki 7" tanpa brief baru, jadi dokumen ini hanya mentranskripsikan tiga sumber: `DESIGN.md` dan `PRODUCT.md` aplikasi (dipilih pemilik dari tiga pratinjau), kode landing yang sudah ada, dan perbaikan audit 10 sampai 15 yang disetujui. Bagian "Sumber dan siapa yang menulis" di dalam `DESIGN.md` menyatakan ini terang-terangan, termasuk bahwa menghapus gradasi hero adalah pilihan saya yang belum dikonfirmasi.
+
+Tidak ada nama slogan baru, kepribadian merek, atau aturan visual baru yang saya karang. Arah "Cerita Bulan Ini" dipinjam dari aplikasi karena landing memang sudah menjalankannya.
+
+## Perlu konfirmasi pemilik
+
+1. **Dial.** Ketiga nilainya bacaan saya. ENERGY 3 terutama berlaku untuk hero dan penutup; bagian isi lebih tenang. Kalau pemilik menganggap landing ini seharusnya lebih tenang (ENERGY 2), perubahannya ada di komponen hero dan penutup, bukan di bagian isi.
+2. **Apakah landing memang mengikuti arah aplikasi.** Selama ini begitu secara de facto. Kalau ingin berbeda, ubah `DESIGN.md` dulu.
+3. **Pointer untuk agen.** Skill antislop menyarankan blok pointer di `CLAUDE.md` atau `AGENTS.md` supaya sesi berikutnya membaca `DESIGN.md` otomatis. Tidak saya buat karena tidak diminta.

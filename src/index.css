@@ -3,7 +3,7 @@
 @theme {
   /*
    * PALET (R-29). Mengikuti DESIGN.md aplikasi (shopee-profit-calc), hanya yang dipakai halaman ini:
-   *  - Inti: indigo (field, field-deep, night, field-soft) + netral bernuansa indigo (paper, canvas, tint, line).
+   *  - Inti: indigo (field, field-deep, night, field-soft) + netral bernuansa indigo (paper, canvas, tint, line, control).
    *  - Satu aksen: lime.
    *  - Warna status, satu sistem dengan arti tetap: loss (rugi), gain (untung), sun (perlu perhatian).
    *    Selalu disertai kata atau ikon, tidak pernah hanya warna.
@@ -18,6 +18,8 @@
   --color-canvas: #f6f7fc;
   --color-tint: #e9ecfb;
   --color-line: #d9dcf3;
+  /* Batas kontrol interaktif (input, tombol bergaris) di permukaan terang: 3,9:1 terhadap putih, syarat WCAG 1.4.11 adalah 3:1. */
+  --color-control: #7f7f94;
   --color-ink: #16173d;
   --color-ink-2: #4a4d78;
   --color-ink-3: #5c5f89;
