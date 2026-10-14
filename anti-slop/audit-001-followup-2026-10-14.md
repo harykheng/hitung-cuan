@@ -54,3 +54,41 @@ Sumber fakta: jawaban pemilik toko (14 Okt 2026). Tidak ada isi yang saya karang
 - **Format file** (`.xlsx`, `.pdf`, `.csv`) tidak dikonfirmasi ulang di putaran ini.
 - **Halaman Kebijakan Privasi sengaja belum dibuat.** Isinya harus mengutip klaim privasi yang sama dengan #5 dan belum bisa dibuktikan dari repo ini. Membuatnya sekarang berarti menuliskan klaim yang belum terverifikasi ke dokumen resmi.
 - Halaman `/syarat/` tidak memuat pasal batas tanggung jawab, hukum yang berlaku, atau penyelesaian sengketa, karena itu tidak diberikan pemilik dan tidak boleh saya karang. Sebaiknya dibaca orang yang paham hukum sebelum tayang. Saya bukan penasihat hukum.
+
+---
+
+# Putaran 4: nomor 5 (verifikasi klaim privasi terhadap kode aplikasi)
+
+Sumber: repo `harykheng/shopee-profit-calc` (commit `8b5e041`, dibaca read-only). Yang dicek adalah kode di branch utama repo itu, **bukan** instance yang sedang berjalan di produksi.
+
+## Koreksi #2 (iklan)
+
+Jalur Iklan diperbaiki berdasarkan `PANDUAN.md` dan parser aplikasi: hanya **Data Keseluruhan Iklan** yang wajib. **Rincian Data Iklan Produk Otomatis** hanya kalau memakai iklan produk otomatis, dan **Semua Data Grup Iklan** hanya kalau memakai grup iklan. Periode 1 bulan penuh. Versi sebelumnya (dari jawaban pemilik, "pilih 3 pilihan") terbaca seolah ketiganya wajib. Format file terkonfirmasi: pesanan `.xlsx`, penghasilan `.pdf`, iklan `.csv`.
+Catatan: `PANDUAN.md` aplikasi masih menulis "Keuangan → Penghasilan Saya", sedangkan jawaban pemilik tidak memakai "Keuangan". Landing mengikuti jawaban pemilik (lebih baru); `PANDUAN.md` sebaiknya disamakan.
+
+## Hasil per klaim
+
+| Klaim di landing | Hasil | Bukti | Keyakinan |
+|---|---|---|---|
+| File dibaca di browser, file asli tidak dikirim ke server | **Terbukti** | Tidak ada `storage`, `upload`, `fetch`, atau `FormData` di `src`. Yang dikirim ke database hanya baris hasil parse lewat `supabase.rpc(...)` (`api.ts`). | Certain (kode di commit ini) |
+| Kolom data pembeli (nama, alamat, HP, username, resi) tidak disimpan | **Terbukti** | Parser pesanan hanya membaca kolom yang dipetakan (`shopeeColumns.ts`). Ada test (`tests/orders.test.ts:102-110`) yang memastikan nilai kolom pribadi tidak muncul di hasil parse. | Certain |
+| "tidak pernah **dibaca**" | **Berlebihan** | `XLSX.read` dan `pdf.js` memuat seluruh file ke memori browser. Kolom pribadi tidak diambil, tidak dikirim, tidak disimpan, tapi file-nya tetap terbaca oleh browser. Kalimat yang akurat: "tidak diambil, tidak dikirim, dan tidak disimpan". | Certain |
+| Yang disimpan: nomor pesanan, produk, qty, status, angka penghasilan | **Tidak lengkap** | Tabel juga menyimpan variasi, SKU, status retur, waktu pesanan, subtotal per item, data iklan per produk (biaya, omzet), HPP dan biaya yang diisi pengguna, dan email login (Supabase Auth). | Certain |
+| Upload file yang sama dua kali aman | **Terbukti** | `on conflict (...) do update/nothing` di fungsi upload. | Certain |
+| Akun dibuat manual oleh admin | **Sesuai kode** | Tidak ada `signUp` di `src`, hanya `signInWithPassword`. README menyuruh mematikan pendaftaran publik di dashboard Supabase (setelan itu tidak bisa dicek dari repo). | Likely |
+| **Data tiap toko terpisah dan hanya bisa dilihat akun toko itu** | **SALAH di kode ini** | Semua tabel: `create policy "login: akses penuh" ... for all to authenticated using (true) with check (true)`. Artinya setiap akun yang login membaca dan menulis semua toko. Tabel `stores` hanya berisi dua toko milik pemilik (`insert ... 'Harel Beauty', 'Oraiste Beauty House'`). README: "Semua akun bisa mengakses kedua toko." | Certain |
+| **Setelah langganan/uji coba habis akun jadi mode baca saja** | **Tidak ada di aplikasi** | Tidak ada konsep langganan, uji coba, kedaluwarsa, atau mode baca di `src` maupun `supabase/`. Yang ada: admin bisa menghapus user (README bagian 2). | Certain |
+
+## Dampak pada pekerjaan saya sebelumnya
+
+Halaman `/syarat/`, kalimat akhir uji coba di `Pricing.tsx`, dan FAQ "berhenti berlangganan" yang saya tulis di putaran 3 menjanjikan **mode baca saja**. Rekomendasi itu saya buat sebelum memeriksa kode, dengan asumsi aplikasi sudah mendukungnya (FAQ lama sudah menjanjikannya). Ternyata belum. Kalimat itu tidak boleh tayang sebelum aplikasinya memang melakukannya, atau diganti dengan yang bisa dilakukan hari ini (admin menonaktifkan atau menghapus akun).
+
+## Keputusan yang dibutuhkan
+
+Satu pertanyaan menentukan semuanya: **apakah tiap seller baru mendapat database/instance aplikasi sendiri, atau login ke aplikasi yang sama dengan toko pemilik?**
+
+- Instance terpisah per seller: klaim "data terpisah" benar. Yang perlu diperbaiki hanya "mode baca saja".
+- Instance yang sama: seller baru bisa melihat dan mengubah data Harel Beauty dan Oraiste, dan data seller lain. Aplikasi perlu dibuat multi-toko (tabel keanggotaan dan kebijakan RLS per toko) sebelum dibuka untuk seller lain.
+- Aplikasi belum siap dibuka: landing sebaiknya jadi daftar tunggu sampai siap.
+
+Belum diubah di landing (menunggu keputusan): `Faq.tsx:26` ("Data tiap toko terpisah..."), `Pricing.tsx:8`, klaim "mode baca saja" di `Pricing.tsx`, `Faq.tsx`, `public/syarat/index.html`, serta kalimat "tidak pernah dibaca" dan daftar "Yang disimpan" di `Hero.tsx`, `Trust.tsx`, `Footer.tsx`, `Faq.tsx`.

@@ -13,12 +13,13 @@ const STEPS = [
 
 /*
  * Jalur menu per file, dari pemilik toko (dicek di Seller Centre, 14 Okt 2026).
- * Format file (.xlsx, .pdf, .csv) belum dikonfirmasi ulang di putaran itu. Kalau Shopee mengubah menunya, ubah di sini.
+ * Format file dan syarat tiap file iklan dicocokkan dengan PANDUAN.md dan parser aplikasi (src/lib/shopeeColumns.ts).
+ * Kalau Shopee mengubah menunya, ubah di sini.
  */
 const FILES = [
   { name: 'pesanan.xlsx', path: 'Pesanan Saya → Semua → Export → pilih rentang tanggal' },
   { name: 'penghasilan.pdf', path: 'Penghasilan Saya → Catatan transaksi penghasilan → pilih rentang tanggal bulanan' },
-  { name: 'iklan.csv', path: 'Iklan → Download data → pilih 3 pilihan: Data Keseluruhan Iklan, Rincian data iklan produk otomatis, dan semua data grup iklan' },
+  { name: 'iklan.csv', path: 'Iklan → Download data → pilih periode 1 bulan penuh. Unduh Data Keseluruhan Iklan (wajib). Kalau kamu memakai iklan produk otomatis, unduh juga Rincian data iklan produk otomatis. Kalau memakai grup iklan, unduh juga Semua data grup iklan' },
 ]
 
 const FINAL = 5
