@@ -69,7 +69,7 @@ export function Simulator() {
         ada yang dikirim atau disimpan. Belum perlu chat.
       </p>
 
-      <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-[0_16px_40px_-20px_rgba(29,32,121,0.45)] ring-1 ring-line sm:mt-10 sm:p-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
+      <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-sheet ring-1 ring-line sm:mt-10 sm:p-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
         {/* ----- Input ----- */}
         <div>
           <p className="text-sm font-semibold text-ink/70">Coba langsung</p>

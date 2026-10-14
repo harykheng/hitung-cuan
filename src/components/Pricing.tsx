@@ -14,7 +14,7 @@ export function Pricing() {
     <Section tone="tint" id="harga" labelledby="harga-judul">
       <H2 id="harga-judul">Harga dan uji coba gratis</H2>
       <div className="mt-10 grid items-start gap-10 md:grid-cols-2 md:gap-8 lg:gap-14">
-        <div data-reveal>
+        <div>
           <p className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance text-accent sm:text-4xl">
             Uji coba gratis {TRIAL_DAYS} hari, tanpa kartu kredit
           </p>
@@ -27,7 +27,7 @@ export function Pricing() {
           </p>
         </div>
 
-        <div data-reveal className="tone-light rounded-3xl bg-paper p-6 text-ink shadow-[0_16px_40px_-20px_rgba(29,32,121,0.45)] ring-1 ring-line sm:p-8">
+        <div className="tone-light rounded-3xl bg-paper p-6 text-ink shadow-sheet ring-1 ring-line sm:p-8">
           <p className="font-semibold text-ink/70">Harga langganan</p>
           <p className="mt-1 flex flex-wrap items-baseline gap-x-2">
             <span className="font-display text-5xl font-extrabold tracking-tight tabular-nums">{rp(PRICE_MONTHLY)}</span>

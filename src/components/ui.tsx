@@ -12,7 +12,7 @@ export function Container({ children, className = '' }: { children: ReactNode; c
 
 /*
  * Ritme latar: terang (paper / canvas / tint) untuk bagian isi, gelap (night) hanya untuk penutup.
- * Hero memakai gradasi indigo sendiri (.hero-bg).
+ * Hero memakai bidang indigo penuh (bg-field), satu bidang berwarna tanpa gradasi, sama dengan og.png.
  *
  * Ritme jarak: tiga ukuran, dipilih menurut isi bagian, bukan satu nilai untuk semua.
  *   lg = bagian yang isinya kalimat besar atau baris tinggi (Masalah, Hasil yang kamu dapat): perlu ruang napas.
@@ -83,10 +83,14 @@ const STICKER: Record<StickerKind, string> = {
   takedown: 'bg-loss text-paper border-loss',
   kecil: 'bg-sun text-sun-ink border-sun-ink',
   aman: 'bg-lime text-field-deep border-field-deep',
-  hero: 'bg-field text-lime border-field',
+  hero: 'bg-lime text-field-deep border-field-deep',
 }
 
-/** Ikon kecil per status, supaya status tidak hanya dibedakan lewat warna. */
+/**
+ * Ikon kecil per status, supaya status tidak hanya dibedakan lewat warna.
+ * Hero, Aman, dan Angka final sama-sama bernada positif (seperti Stamp tone "gain" di aplikasi, yang tidak punya ikon
+ * khusus untuk Hero), jadi ketiganya memakai centang dan dibedakan oleh katanya. Tidak ada ikon bintang.
+ */
 const STICKER_ICON: Record<StickerKind, ReactNode> = {
   final: <path d="m5 12.5 4.5 4.5L19 7" />,
   aman: <path d="m5 12.5 4.5 4.5L19 7" />,
@@ -97,7 +101,7 @@ const STICKER_ICON: Record<StickerKind, ReactNode> = {
       <path d="M12 10v4.5M12 17v.01" />
     </>
   ),
-  hero: <path d="m12 3.5 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7L12 3.5Z" />,
+  hero: <path d="m5 12.5 4.5 4.5L19 7" />,
 }
 
 /** Stiker miring ala stempel. Selalu bertuliskan teks, dan memakai ikon, bukan hanya warna. */
@@ -183,7 +187,15 @@ export function GhostLink({ href, children, className = '' }: { href: string; ch
   )
 }
 
-/* ---------- Ikon garis (tanpa emoji atau glyph unicode) ---------- */
+/*
+ * ---------- Ikon garis (tanpa emoji atau glyph unicode) ----------
+ * Satu keluarga garis (viewBox 24, tebal 2 sampai 2,5, ujung bulat) agar semua ikon terbaca sebagai satu set.
+ * Aturannya mengikuti DESIGN.md aplikasi: tidak memakai emoji atau glyph unicode sebagai ikon; centang dan panah bawah
+ * sama bentuknya dengan set aplikasi (icons.tsx). Relevansi tiap ikon:
+ *   Chat = tombol WhatsApp. ArrowDown = tautan yang menggulir ke simulator di bawahnya. Check = status selesai atau
+ *   butir bukti. Shield = klaim privasi. Chevron = bagian yang bisa dibuka. Plus dan Minus = ubah angka per Rp1.000.
+ *   File = berkas laporan Seller Centre. Replay = putar ulang demo.
+ */
 
 type IconProps = { className?: string }
 const base = { 'aria-hidden': true, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2 } as const

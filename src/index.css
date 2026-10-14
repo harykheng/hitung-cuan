@@ -1,36 +1,56 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Identitas: indigo. Dipakai penuh hanya di hero dan penutup; di bagian lain jadi aksen. */
+  /*
+   * PALET (R-29). Mengikuti DESIGN.md aplikasi (shopee-profit-calc), hanya yang dipakai halaman ini:
+   *  - Inti: indigo (field, field-deep, night, field-soft) + netral bernuansa indigo (paper, canvas, tint, line).
+   *  - Satu aksen: lime.
+   *  - Warna status, satu sistem dengan arti tetap: loss (rugi), gain (untung), sun (perlu perhatian).
+   *    Selalu disertai kata atau ikon, tidak pernah hanya warna.
+   * Tidak ada warna lain. Jangan menambah warna baru di luar tiga kelompok ini tanpa menulis alasannya di sini.
+   */
   --color-field: #2b2fa6;
   --color-field-deep: #1d2079;
   --color-night: #14165a;
-  /* Permukaan terang bernuansa indigo (bukan abu-abu netral) */
+  /* Indigo muda untuk bagian "Biaya" pada batang di kartu contoh (satu rona dengan field). */
+  --color-field-soft: #a9adeb;
   --color-paper: #ffffff;
   --color-canvas: #f6f7fc;
   --color-tint: #e9ecfb;
   --color-line: #d9dcf3;
-  /* Batas kontrol interaktif (input, tombol bergaris) di permukaan terang: 3,9:1 terhadap putih, syarat WCAG 1.4.11 adalah 3:1 */
-  --color-control: #7f7f94;
-  /* Teks di permukaan terang */
   --color-ink: #16173d;
   --color-ink-2: #4a4d78;
   --color-ink-3: #5c5f89;
-  /* Teks di permukaan gelap */
   --color-on-field: #f6f4ff;
   --color-on-field-muted: #c3c5f2;
-  /* Lime hanya untuk CTA utama dan sorotan di permukaan gelap */
+  /*
+   * Lime, sama dengan DESIGN.md aplikasi: jawaban utama (baris kedua judul hero, angka hasil di demo), kicker
+   * (baris kecil di atas judul hero), stiker bernada positif (Angka final, Aman, Hero), cincin fokus di permukaan
+   * gelap, dan aksen logo. Di landing ada satu tambahan: tombol WhatsApp, satu-satunya aksi utama halaman ini.
+   * Di luar itu, teks dan garis di permukaan gelap memakai on-field atau on-field-muted.
+   */
   --color-lime: #d7f45a;
   --color-btn: #2b2fa6;
-  --color-coral: #ff9b85;
   --color-loss: #c4361e;
   --color-gain: #146c43;
-  --color-mint: #8ff0b5;
   --color-sun: #f5d547;
   --color-sun-ink: #4a3200;
 
+  /*
+   * Tipografi, sama dengan DESIGN.md aplikasi: Bricolage Grotesque (800/700) untuk kalimat jawaban, judul, angka
+   * besar, dan stiker, karena bobotnya tebal dan angkanya jelas dibaca besar ("Rp3,42 juta"). Public Sans (400/600)
+   * untuk semua teks lain, karena polos, nyaman dibaca panjang, dan punya angka tabular supaya kolom rupiah rata.
+   * Keduanya dimuat dari server sendiri lewat @fontsource (tanpa layanan font luar).
+   */
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /*
+   * Satu bayangan lembut untuk lembar (simulator, mock hasil, kartu harga, demo): kedalaman hanya dua tingkat,
+   * permukaan halaman dan lembar di atasnya (DESIGN.md aplikasi, "Elevation & Depth"). Elemen lain datar.
+   * Bayangan keras pada tombol WhatsApp dan kartu hero adalah gaya "tepi kertas" yang dipakai bersama stiker miring.
+   */
+  --shadow-sheet: 0 16px 40px -20px rgba(29, 32, 121, 0.45);
 }
 
 /* Warna semantik mengikuti "nada" bagian: .tone-light (bawaan) atau .tone-dark. */
@@ -58,10 +78,6 @@
   --accent: #d7f45a;
   --rule: rgb(246 244 255 / 0.22);
   --focus: #d7f45a;
-}
-
-.hero-bg {
-  background: linear-gradient(180deg, #2b2fa6 0%, #262a98 55%, #1f2383 100%);
 }
 
 @layer base {
@@ -124,7 +140,7 @@
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: none; }
 }
-@keyframes flash-mint {
+@keyframes flash-ok {
   0%, 100% { opacity: 0.55; transform: none; }
   40%      { opacity: 1; transform: scale(1.06); }
 }
@@ -164,7 +180,7 @@
   animation-delay: calc(var(--i, 0) * 150ms);
 }
 
-.flash-mint { animation: flash-mint 700ms ease-out 1; }
+.flash-ok { animation: flash-ok 700ms ease-out 1; }
 
 .confetti {
   position: absolute;
@@ -181,7 +197,12 @@
   animation: confetti 700ms cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
 }
 
-/* ---------- Muncul saat digulir (lihat useRevealOnScroll) ---------- */
+/*
+ * ---------- Muncul saat digulir (lihat useRevealOnScroll) ----------
+ * Hanya dua blok yang memakainya, karena gerak harus menandai sesuatu (DESIGN.md aplikasi: "Motion marks an answer
+ * arriving or a state changing"): nota hasil yang "tercetak" baris demi baris, dan stiker iklan yang "tersetempel".
+ * Blok teks tidak ikut bergerak. Tambah data-reveal hanya kalau ada isi bertahap seperti dua itu.
+ */
 [data-reveal] {
   transition: opacity 450ms ease-out, transform 450ms ease-out;
 }

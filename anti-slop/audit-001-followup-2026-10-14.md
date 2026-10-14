@@ -158,3 +158,28 @@ Regresi: semua tes putaran sebelumnya dijalankan ulang terhadap build ini (perba
 - Ukuran jarak per bagian dipilih berdasarkan isi (alasannya tertulis di komentar `ui.tsx`). Kalau mau bagian lain lebih longgar atau rapat, ubah prop `size` di bagian itu.
 - Pada 768 sampai 1023px, hasil simulator berada di kolom kanan yang sempit (±320px). Tetap terbaca, tetapi baris label terpecah dua. Alternatifnya kembali bertumpuk di rentang itu (bukan pilihan saya, karena input jadi melebar ±500px).
 - Penanganan `focusin` memakai `window.scrollBy(..., 'instant')`. Hanya diuji di Chromium, belum di Safari iOS atau perangkat sungguhan.
+
+---
+
+# Putaran 8: nomor 10 sampai 15
+
+**Dasar:** aturan tertulis pemilik di `DESIGN.md` repo aplikasi (`shopee-profit-calc`), yang dipilih pemilik dari tiga pratinjau. Aturan itu sudah memutuskan sebagian besar nomor ini, sehingga alasan di bawah dikutip dari sana, bukan ditebak. Pengecualian ditandai.
+
+| # | Perbaikan | Dasar | Verifikasi (browser, 1280px) |
+|---|---|---|---|
+| 10 | Semua garis kiri dekoratif dihapus: tiga butir Masalah, catatan di Cara Kerja, kutipan Pembuat (yang juga bukan kutipan sungguhan, jadi `<blockquote>` diganti `<div>`), dan garis abu di keterangan hero. | `DESIGN.md`: "Don't nest sheets or add coloured side stripes." | 0 elemen dengan garis kiri saja di seluruh halaman. |
+| 11 | Lime dibatasi pada peran di aturan pemilik: jawaban utama, kicker, stiker bernada positif, cincin fokus gelap, aksen logo, plus tombol WhatsApp (tambahan khusus landing). Dilepas dari: "Toko Contoh", batang progres, tombol file terpilih (kini on-field, seperti tab aktif di aplikasi), label "Di mana dapatnya?", garis putus-putus, cincin stiker Hero, garis bawah tautan footer. **Koreksi atas temuan saya:** stiker "Angka final" dan "Aman" lime di permukaan terang ternyata sesuai `DESIGN.md` (stiker positif = lime). Yang bertentangan adalah komentar `index.css` lama, yang kini ditulis ulang mengikuti `DESIGN.md`. | `DESIGN.md` bagian Colors | Peran lime di halaman: logo, 3 tombol WhatsApp, kicker, baris jawaban judul, angka hasil demo, stiker. Tidak ada di elemen yang dilepas. |
+| 12 | `data-reveal` dari 18 blok menjadi 2: nota hasil yang "tercetak" dan stiker iklan yang "tersetempel". Blok teks (Masalah, langkah, Trust, Harga, Pembuat, simulasi harga) tidak lagi bergerak. | `DESIGN.md` bagian Motion: "Motion marks an answer arriving or a state changing"; "Don't loop animations". **Saya tidak mendeklarasikan dial ENERGY/RHYTHM/MOTION**: itu bagian #7 dan masih butuh keputusan pemilik. | `data-reveal` = 2 (nota, iklan). Bundle diblokir: konten tampil di detik 5. Gulir normal: 2 blok tersembunyi sebelum digulir. |
+| 13 | Stiker "Hero" memakai centang, bukan bintang, dan bernada positif seperti "Aman" dan "Angka final". Ikon lain diberi alasan relevansi tertulis di `ui.tsx`. | Di aplikasi, Hero adalah `Stamp tone="gain"` tanpa ikon khusus. `DESIGN.md`: ikon dari `icons.tsx`, tanpa emoji atau glyph unicode. | Path SVG stiker Hero = centang. |
+| 14 | Alasan tertulis ditambahkan: font (Bricolage untuk jawaban, judul, angka, stiker; Public Sans untuk sisanya, angka tabular), satu bayangan lembut untuk lembar (token `--shadow-sheet`, menggantikan lima nilai berbeda), bayangan keras tombol dan kartu hero. **Gradasi hero dihapus** menjadi satu bidang `bg-field`: tidak ada alasannya di riwayat git maupun di `DESIGN.md` ("one saturated field"), dan `og.png` memakai bidang datar. | `DESIGN.md` bagian Typography, Elevation & Depth, Overview | Hero: `background-image: none`, `#2b2fa6`. Enam lembar memakai satu bayangan jatuh yang sama (bedanya hanya cincin tipis pada lima lembar putih). Hanya dua keluarga font yang dirender. |
+| 15 | Palet didokumentasikan sebagai tiga kelompok (indigo, satu aksen lime, sistem status loss/gain/sun). Token `mint` dan `coral` dihapus, lavender dinamai `field-soft`. Teks "Data pembeli diabaikan" yang tadinya mint kini on-field. `flash-mint` diganti `flash-ok`. | `DESIGN.md` bagian Colors: status Loss, Gain, Warn dengan arti tetap | Semua warna opak yang dipakai di halaman (diukur di DOM) berada dalam daftar palet: tidak ada yang di luar. |
+
+Kontras perubahan di permukaan gelap: tombol file terpilih 12,58:1, label "Di mana dapatnya?" 8,2:1, baris privasi 12,58:1.
+
+Regresi: semua tes putaran sebelumnya dijalankan ulang. Lulus, kecuali asersi lama yang usang: "#9" kini melihat 2 blok reveal (bukan 18), dan dua asersi "#6" yang sudah dicatat di putaran 5.
+
+## Yang tidak diubah dan alasannya
+
+- **Set ikon tetap bergaya garis seperti Lucide.** Centang dan panah bawah sama persis dengan `icons.tsx` aplikasi, tetapi ikon lain (perisai, berkas, putar ulang, chat) bukan salinan. Alasan tertulis di `ui.tsx` adalah konsistensi dengan aturan aplikasi, bukan klaim bahwa set ini orisinal. Mengganti seluruh set ikon adalah keputusan desain yang belum diminta.
+- **Warna aksen indigo di permukaan terang** (tautan, centang, chevron, judul harga) tidak diubah. `DESIGN.md` menyebutnya sebagai warna Stamp untuk tautan dan pilihan.
+- **Dial ENERGY/RHYTHM/MOTION dan `DESIGN.md` landing (#7)** masih terbuka. `DESIGN.md` aplikasi bisa dipakai sebagai dasar, tetapi menulis dokumen arah untuk landing tetap keputusan pemilik.

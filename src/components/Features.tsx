@@ -45,7 +45,7 @@ function Row({
 }
 
 /* Satu lembar putih per mock, tanpa lembar di dalam lembar. */
-const sheet = 'tone-light rounded-3xl bg-paper p-5 text-ink shadow-[0_16px_40px_-24px_rgba(29,32,121,0.4)] ring-1 ring-line sm:p-7'
+const sheet = 'tone-light rounded-3xl bg-paper p-5 text-ink shadow-sheet ring-1 ring-line sm:p-7'
 
 /** Nota yang "tercetak" baris demi baris. Angka saling cocok: 14,25 − 8,15 − 2,68 = 3,42 juta. */
 function NotaMock() {
@@ -117,7 +117,7 @@ const PRICES = [45_000, 52_000, 59_000]
 function PriceMock() {
   const [picked, setPicked] = useState(1)
   return (
-    <div data-reveal className={sheet}>
+    <div className={sheet}>
       <div className="flex items-center justify-between">
         <p className="font-display text-lg font-bold">Pilih harga jual</p>
         <ExampleTag />

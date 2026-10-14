@@ -12,15 +12,15 @@ export function Trust() {
     <Section tone="paper" id="percaya" labelledby="percaya-judul">
       <H2 id="percaya-judul">Kenapa angkanya bisa dipercaya</H2>
       <ul className="mt-10 grid gap-x-12 gap-y-6 md:grid-cols-2">
-        {RULES.map((r, i) => (
-          <li key={r} data-reveal className="flex gap-4" style={{ transitionDelay: `${(i % 2) * 90}ms` }}>
+        {RULES.map((r) => (
+          <li key={r} className="flex gap-4">
             <CheckIcon className="mt-1 size-6 shrink-0 text-accent" />
             <p className="max-w-[44ch] text-lg leading-relaxed">{r}</p>
           </li>
         ))}
       </ul>
 
-      <div data-reveal className="mt-12 flex gap-4 rounded-2xl bg-tint p-5 sm:p-8">
+      <div className="mt-12 flex gap-4 rounded-2xl bg-tint p-5 sm:p-8">
         <ShieldIcon className="mt-1 size-8 shrink-0 text-accent" />
         <div>
           <p className="max-w-[40ch] font-display text-2xl leading-snug font-extrabold text-balance sm:text-3xl">
