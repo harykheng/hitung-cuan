@@ -141,3 +141,20 @@ Setiap kalimat berasal dari salah satu sumber ini, bukan karangan:
 ## Kapan halaman ini menjadi salah
 
 Komentar di bagian atas `public/privasi/index.html` dan README mencatat pemicunya: memasang analitik atau cookie di landing (termasuk mengaktifkan Cloudflare Web Analytics, yang tidak bisa dideteksi dari repo ini), mengganti penyedia database, mengubah kolom yang disimpan aplikasi, atau dua seller berbagi satu database.
+
+---
+
+# Putaran 7: nomor 16 dan 17
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 16 | **Pita tablet (768 sampai 1023px).** Fitur, Simulator, Cara Kerja, dan Harga kini dua kolom mulai 768px (sebelumnya baru di 1024px), dengan jarak lebih rapat daripada di desktop. Tanda minus pada angka di nota Fitur tidak lagi turun ke baris lain (`whitespace-nowrap`). Baris harga boleh membungkus. **Ritme jarak antar bagian:** tiga ukuran (`sm` / `md` / `lg`) menggantikan satu nilai untuk semua. `lg` untuk Masalah dan Hasil yang kamu dapat (kalimat besar dan baris tinggi), `sm` untuk Pembuat (hanya satu kutipan), sisanya `md`. | `ui.tsx`, `Features.tsx`, `Simulator.tsx`, `HowItWorks.tsx`, `Pricing.tsx`, `Problems.tsx`, `Maker.tsx` | Lebar blok di 1000px: lembar mock 952px menjadi 460px (teks 529px menjadi 460px, sejajar), input simulator 728px menjadi 268px, kartu harga 952px menjadi 460px. Sapuan 15 lebar (320 sampai 1440px): 0 overflow, 0 target di bawah 44px, console bersih. Padding desktop: 128 / 96 / 64px sesuai isinya. |
+| 17 | (a) **Skip link** "Lewati ke konten utama" sebagai elemen pertama, tersembunyi di atas layar sampai fokus keyboard (ukuran tetap 44px, bukan lime, cincin fokus lime 11,06:1 di atas bar). (b) **Landmark:** `<h1>` kini di dalam `<main id="utama">` (Hero dipindah masuk dan menjadi `<section>` berlabel), bar atas menjadi `<header>`. (c) **Bar bawah vs fokus keyboard:** `scroll-padding-bottom: 6rem` di HP, ditambah penanganan eksplisit `focusin` di `BottomBar` (hanya untuk `:focus-visible`) karena `scroll-padding` saja tidak cukup. | `Bars.tsx`, `App.tsx`, `Hero.tsx`, `index.css` | Tab pertama memfokuskan skip link di layar (top 8px, 44px), Enter ke `#utama`, Tab berikutnya mendarat di dalam `<main>`. Landmark: 1 `main`, 1 `header`, 1 `h1` di dalam `main`, 1 `footer`. Elemen yang tertutup bar bawah saat difokuskan dekat tepi layar HP: **45 dari 46 (sebelum)**, **37 dari 46 dengan `scroll-padding` saja**, **0 dari 44 (sesudah)**; 2 elemen sisanya ada di `<details>` tertutup dan memang tidak bisa difokuskan. |
+
+Regresi: semua tes putaran sebelumnya dijalankan ulang terhadap build ini (perbaikan #1, #3, #4, #8, #9, jalur menu, teks akhir uji coba, halaman Syarat dan Privasi): lulus. Dua asersi lama yang gagal di `verify3` adalah teks yang memang sengaja diubah di putaran 5 dan artefak akordeon eksklusif.
+
+## Pilihan saya yang bisa kamu ubah
+
+- Ukuran jarak per bagian dipilih berdasarkan isi (alasannya tertulis di komentar `ui.tsx`). Kalau mau bagian lain lebih longgar atau rapat, ubah prop `size` di bagian itu.
+- Pada 768 sampai 1023px, hasil simulator berada di kolom kanan yang sempit (±320px). Tetap terbaca, tetapi baris label terpecah dua. Alternatifnya kembali bertumpuk di rentang itu (bukan pilihan saya, karena input jadi melebar ±500px).
+- Penanganan `focusin` memakai `window.scrollBy(..., 'instant')`. Hanya diuji di Chromium, belum di Safari iOS atau perangkat sungguhan.

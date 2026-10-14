@@ -18,7 +18,7 @@ const PROBLEMS = [
 /** Tiga kalimat besar, bukan kotak metrik. Latar putih sebagai jeda setelah hero. */
 export function Problems() {
   return (
-    <Section tone="paper" labelledby="masalah">
+    <Section tone="paper" size="lg" labelledby="masalah">
       <h2 id="masalah" className="sr-only">
         Masalah yang sering dialami seller Shopee
       </h2>

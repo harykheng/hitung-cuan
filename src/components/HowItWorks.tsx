@@ -36,7 +36,7 @@ const SCHEDULE: [number, number][] = [
 export function HowItWorks() {
   return (
     <Section tone="paper" id="cara-kerja" labelledby="cara-kerja-judul">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+      <div className="grid gap-12 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
           <H2 id="cara-kerja-judul">Dari chat sampai hasil pertama</H2>
           <ol className="mt-8 grid gap-6">

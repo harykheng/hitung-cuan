@@ -13,7 +13,7 @@ export function Pricing() {
   return (
     <Section tone="tint" id="harga" labelledby="harga-judul">
       <H2 id="harga-judul">Harga dan uji coba gratis</H2>
-      <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
+      <div className="mt-10 grid items-start gap-10 md:grid-cols-2 md:gap-8 lg:gap-14">
         <div data-reveal>
           <p className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance text-accent sm:text-4xl">
             Uji coba gratis {TRIAL_DAYS} hari, tanpa kartu kredit
@@ -29,7 +29,7 @@ export function Pricing() {
 
         <div data-reveal className="tone-light rounded-3xl bg-paper p-6 text-ink shadow-[0_16px_40px_-20px_rgba(29,32,121,0.45)] ring-1 ring-line sm:p-8">
           <p className="font-semibold text-ink/70">Harga langganan</p>
-          <p className="mt-1 flex items-baseline gap-2">
+          <p className="mt-1 flex flex-wrap items-baseline gap-x-2">
             <span className="font-display text-5xl font-extrabold tracking-tight tabular-nums">{rp(PRICE_MONTHLY)}</span>
             <span className="text-ink/70">per toko per bulan</span>
           </p>
@@ -48,8 +48,8 @@ export function Pricing() {
           <p className="mt-3 text-center text-sm text-ink/70">
             Akun dibuat manual oleh admin. {REPLY_PROMISE}.
           </p>
-          <p className="mt-2 text-center text-sm text-ink/70">
-            Pembayaran lewat chat admin. Tidak ada refund.{' '}
+          <p className="mt-2 text-center text-sm text-ink/70">Pembayaran lewat chat admin. Tidak ada refund.</p>
+          <p className="text-center text-sm">
             <a
               href="/syarat/"
               className="inline-flex min-h-11 items-center font-semibold text-accent underline decoration-2 underline-offset-4"

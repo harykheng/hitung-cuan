@@ -3,7 +3,7 @@ import { H2, Section } from './ui'
 
 export function Maker() {
   return (
-    <Section tone="canvas" id="pembuat" labelledby="pembuat-judul">
+    <Section tone="canvas" size="sm" id="pembuat" labelledby="pembuat-judul">
       <H2 id="pembuat-judul">Siapa di balik ini</H2>
       <blockquote data-reveal className="mt-8 max-w-3xl border-l-8 border-accent pl-5 sm:pl-8">
         <p className="font-display text-2xl leading-snug font-bold text-balance sm:text-3xl">

@@ -5,7 +5,7 @@ import { CheckIcon, ExampleTag, H2, Section, Sticker, vars } from './ui'
 
 export function Features() {
   return (
-    <Section tone="canvas" id="fitur" labelledby="fitur-judul">
+    <Section tone="canvas" size="lg" id="fitur" labelledby="fitur-judul">
       <H2 id="fitur-judul">Hasil yang kamu dapat</H2>
       <div className="mt-14 grid gap-20 lg:gap-28">
         <Row title="Untung bersih bulan ini, lengkap dengan hitungannya." body="Lihat untung bersih dari uang yang benar-benar cair, dengan rincian uang masuk, modal, dan biaya. Tiap angka diberi status: Angka final, atau Belum lengkap beserta data yang masih kurang.">
@@ -34,12 +34,12 @@ function Row({
   children: ReactNode
 }) {
   return (
-    <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-      <div className={reverse ? 'lg:order-2' : ''}>
+    <article className="grid items-center gap-8 md:grid-cols-2 lg:gap-16">
+      <div className={reverse ? 'md:order-2' : ''}>
         <h3 className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">{title}</h3>
         <p className="mt-4 max-w-[48ch] text-lg leading-relaxed text-fg-2">{body}</p>
       </div>
-      <div className={reverse ? 'lg:order-1' : ''}>{children}</div>
+      <div className={reverse ? 'md:order-1' : ''}>{children}</div>
     </article>
   )
 }
@@ -65,12 +65,12 @@ function NotaMock() {
         {lines.map((x, i) => (
           <div key={x.l} className="stage-item flex justify-between gap-4 py-2 tabular-nums" style={vars({ '--i': i })}>
             <dt className="text-ink/80">{x.l}</dt>
-            <dd className="font-semibold">{rp(x.v)}</dd>
+            <dd className="font-semibold whitespace-nowrap">{rp(x.v)}</dd>
           </div>
         ))}
         <div className="stage-item mt-1 flex items-center justify-between gap-4 border-t-2 border-ink pt-3" style={vars({ '--i': 3 })}>
           <dt className="font-display text-lg font-extrabold">Untung bersih</dt>
-          <dd className="font-display text-2xl font-extrabold text-gain tabular-nums">{rp(3_420_000)}</dd>
+          <dd className="font-display text-2xl font-extrabold whitespace-nowrap text-gain tabular-nums">{rp(3_420_000)}</dd>
         </div>
       </dl>
       <div className="stage-item mt-4" style={vars({ '--i': 4 })}>

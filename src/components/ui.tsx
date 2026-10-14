@@ -13,8 +13,19 @@ export function Container({ children, className = '' }: { children: ReactNode; c
 /*
  * Ritme latar: terang (paper / canvas / tint) untuk bagian isi, gelap (night) hanya untuk penutup.
  * Hero memakai gradasi indigo sendiri (.hero-bg).
+ *
+ * Ritme jarak: tiga ukuran, dipilih menurut isi bagian, bukan satu nilai untuk semua.
+ *   lg = bagian yang isinya kalimat besar atau baris tinggi (Masalah, Hasil yang kamu dapat): perlu ruang napas.
+ *   md = bagian bawaan (alat, langkah, bukti, harga, FAQ).
+ *   sm = bagian pendek yang hanya satu kutipan (Pembuat): tidak perlu ruang sebanyak itu.
  */
 type Tone = 'paper' | 'canvas' | 'tint' | 'night'
+type Size = 'sm' | 'md' | 'lg'
+const SIZE: Record<Size, string> = {
+  sm: 'py-10 sm:py-14 lg:py-16',
+  md: 'py-14 sm:py-20 lg:py-24',
+  lg: 'py-16 sm:py-24 lg:py-32',
+}
 const TONE: Record<Tone, string> = {
   paper: 'tone-light bg-paper text-fg',
   canvas: 'tone-light bg-canvas text-fg',
@@ -25,18 +36,20 @@ const TONE: Record<Tone, string> = {
 export function Section({
   id,
   tone = 'paper',
+  size = 'md',
   labelledby,
   children,
   className = '',
 }: {
   id?: string
   tone?: Tone
+  size?: Size
   labelledby?: string
   children: ReactNode
   className?: string
 }) {
   return (
-    <section id={id} aria-labelledby={labelledby} className={`${TONE[tone]} py-14 sm:py-20 lg:py-24 ${className}`}>
+    <section id={id} aria-labelledby={labelledby} className={`${TONE[tone]} ${SIZE[size]} ${className}`}>
       <Container>{children}</Container>
     </section>
   )

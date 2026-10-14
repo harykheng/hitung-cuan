@@ -20,12 +20,12 @@ const HEADLINE_B = 'Iklan mana yang sebaiknya dimatikan?'
 
 export function Hero() {
   return (
-    <header id="hero" className="hero-bg tone-dark text-fg">
+    <section id="hero" aria-labelledby="judul-utama" className="hero-bg tone-dark text-fg">
       <Container className="pt-10 pb-16 lg:pt-16 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <p className="font-semibold tracking-wide text-accent">Untuk seller Shopee yang beriklan</p>
-            <h1 className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
+            <h1 id="judul-utama" className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
               <Words text={HEADLINE_A} />
               <span className="block text-lime">
                 <Words text={HEADLINE_B} start={HEADLINE_A.split(' ').length} />
@@ -58,7 +58,7 @@ export function Hero() {
           <StoryCard />
         </div>
       </Container>
-    </header>
+    </section>
   )
 }
 

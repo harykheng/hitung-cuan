@@ -71,6 +71,13 @@
     scroll-padding-top: 4.5rem;
   }
 
+  /* Di HP bar CTA bawah (±81px) menutupi elemen yang baru difokuskan dekat tepi layar; sisakan ruang di bawah. */
+  @media (max-width: 639px) {
+    html {
+      scroll-padding-bottom: 6rem;
+    }
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;

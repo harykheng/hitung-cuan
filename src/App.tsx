@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BottomBar, TopBar } from './components/Bars'
+import { BottomBar, SkipLink, TopBar } from './components/Bars'
 import { Closing } from './components/Closing'
 import { Faq } from './components/Faq'
 import { Features } from './components/Features'
@@ -21,9 +21,10 @@ export default function App() {
 
   return (
     <SourceProvider>
+      <SkipLink />
       <TopBar />
-      <Hero />
-      <main>
+      <main id="utama">
+        <Hero />
         <Problems />
         <Simulator />
         <HowItWorks />
