@@ -53,11 +53,15 @@ untuk `cta_click` per `lokasi`, pasang Plausible atau Umami.
 
 CTA click rate = pengunjung unik yang menekan tombol WhatsApp ÷ pengunjung unik, dibaca **per sumber** (`?src=`).
 
-## Halaman Syarat Layanan
+## Halaman Syarat Layanan dan Kebijakan Privasi
 
-`public/syarat/index.html` adalah halaman statis tanpa JavaScript (disalin apa adanya ke `dist/syarat/`), dilayani di `/syarat/`.
-Harga sengaja tidak ditulis di sana; ubah aturan dan tanggal "Terakhir diperbarui" di file itu kalau kebijakannya berubah.
-Halaman Kebijakan Privasi belum ada: isinya harus menunggu klaim privasi diverifikasi terhadap kode aplikasi.
+`public/syarat/index.html` dan `public/privasi/index.html` adalah halaman statis tanpa JavaScript (disalin apa adanya ke
+`dist/`), dilayani di `/syarat/` dan `/privasi/`. Harga sengaja tidak ditulis di sana; ubah aturan dan tanggal
+"Terakhir diperbarui" di file itu kalau kebijakannya berubah.
+
+Isi `/privasi/` dicocokkan dengan kode aplikasi (repo `shopee-profit-calc`) dan landing ini. Perbarui kalau salah satu
+berubah, terutama: memasang analitik atau cookie di landing, mengganti penyedia database, mengubah kolom yang disimpan
+aplikasi, atau dua seller berbagi satu database (saat ini tiap seller memakai database sendiri).
 
 ## Gambar share / Open Graph
 

@@ -41,6 +41,11 @@ export function Footer() {
             nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. Yang disimpan:
             nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat.
           </p>
+          <p className="mt-1">
+            <a href="/privasi/" className={link}>
+              Baca Kebijakan Privasi lengkap
+            </a>
+          </p>
         </div>
       </Container>
       <Container className="mt-8 border-t border-rule pt-6">
@@ -52,6 +57,10 @@ export function Footer() {
           · © <span suppressHydrationWarning>{new Date().getFullYear()}</span> ·{' '}
           <a href="/syarat/" className={link}>
             Syarat Layanan
+          </a>{' '}
+          ·{' '}
+          <a href="/privasi/" className={link}>
+            Kebijakan Privasi
           </a>
         </p>
       </Container>

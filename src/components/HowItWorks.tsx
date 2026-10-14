@@ -127,7 +127,7 @@ function FlowDemo() {
             key={f.name}
             style={vars({ transitionDelay: uploading ? '0ms' : `${i * 120}ms` })}
             className={`transition-[opacity,transform] duration-300 ease-out ${
-              !entered ? '-translate-x-6 opacity-0' : uploading ? 'translate-y-4 opacity-30' : ''
+              !entered ? '-translate-x-6 opacity-0' : uploading ? 'translate-y-4' : ''
             }`}
           >
             <button

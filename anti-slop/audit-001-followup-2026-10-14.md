@@ -116,3 +116,28 @@ Verifikasi di browser (360, 390, 1280px): semua teks baru ada, frasa lama tidak 
 - Penghapusan data 3 bulan juga manual, dan perlu dijalankan sungguhan, karena tertulis di Syarat Layanan.
 - "Salah upload file, nanti dihapus" menggeneralisasi jawaban lama (yang khusus salah toko). Admin memang bisa menghapus baris di database, tetapi pastikan prosedurnya ada.
 - Halaman Kebijakan Privasi terpisah masih belum dibuat. Sekarang klaimnya sudah terverifikasi terhadap kode, jadi bisa dibuat kalau mau.
+
+---
+
+# Putaran 6: nomor 19 dan halaman Kebijakan Privasi
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 19 | Tombol file di demo "Cara Kerja" tidak lagi diredupkan ke 30% setelah tahap unggah (`opacity-30` dihapus, gerak turun tetap). | `HowItWorks.tsx` | Setelah animasi selesai: opasitas 1, teks `#f6f4ff` di atas `#1d2079` = 12,58:1 (sebelumnya 2,39:1), tinggi tombol 44px. |
+| (baru) | Halaman `/privasi/` (statis, tanpa JS), ditautkan dari footer (dua tempat: blok "Privasi singkat" dan baris bawah) dan dari `/syarat/`. README diperbarui. | `public/privasi/index.html`, `Footer.tsx`, `public/syarat/index.html`, `README.md` | Diuji di 360, 390, 1280px: 0 target di bawah 44px, tanpa overflow, console bersih, 0 request ke pihak ketiga, kontras teks 7,48:1 dan tautan 9,53:1, tanpa em dash, semua tautan internal menghasilkan 200. |
+
+## Dasar isi `/privasi/`
+
+Setiap kalimat berasal dari salah satu sumber ini, bukan karangan:
+
+- **Kode aplikasi** (`shopee-profit-calc`, commit `8b5e041`): daftar data yang disimpan diperiksa kolom demi kolom terhadap migrasi SQL (pesanan, penghasilan, penyesuaian, iklan, biaya, HPP, persen admin dan XTRA, `uploaded_by` dan `uploaded_at`). Daftar kolom pembeli yang tidak diambil sama persis dengan `BUYER_PRIVATE_COLUMNS` (sembilan kolom, termasuk Booking SN). Akses hanya untuk akun yang login berasal dari kebijakan RLS `to authenticated`.
+- **Kode landing**: tidak ada cookie, `localStorage`, atau skrip pihak ketiga. Font dari `@fontsource` (satu server). Kode `?src=` ikut tertulis di pesan WhatsApp (`whatsapp.ts`). Halaman dilayani lewat Cloudflare (`wrangler.jsonc`).
+- **Keputusan pemilik**: tiap seller memakai database sendiri, 1 akun = 1 toko, akun dibuat manual, penonaktifan di akhir uji coba, penghapusan 3 bulan setelah berhenti berlangganan, hapus lebih cepat lewat admin.
+
+## Yang sengaja tidak ditulis (tidak diberikan pemilik)
+
+- "Kami tidak menjual datamu", hak akses atau koreksi data secara formal, tenggat waktu menanggapi permintaan, lokasi server, nama penyedia hosting aplikasi (repo aplikasi menyebut Vercel di README tetapi juga punya `wrangler.jsonc` Cloudflare, jadi tidak bisa dipastikan), dan dasar hukum pemrosesan data. Kalau mau ditambahkan, itu keputusan pemilik, dan sebaiknya ditinjau orang yang paham hukum. Saya bukan penasihat hukum.
+
+## Kapan halaman ini menjadi salah
+
+Komentar di bagian atas `public/privasi/index.html` dan README mencatat pemicunya: memasang analitik atau cookie di landing (termasuk mengaktifkan Cloudflare Web Analytics, yang tidak bisa dideteksi dari repo ini), mengganti penyedia database, mengubah kolom yang disimpan aplikasi, atau dua seller berbagi satu database.
