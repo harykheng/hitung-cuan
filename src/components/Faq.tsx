@@ -12,7 +12,7 @@ function WaLink({ message, children }: { message: (s: string) => string; childre
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta('faq')}
-      className="font-semibold text-accent underline decoration-2 underline-offset-4"
+      className="py-3.5 font-semibold text-accent underline decoration-2 underline-offset-4"
     >
       {children}
     </a>

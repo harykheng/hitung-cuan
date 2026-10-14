@@ -83,7 +83,7 @@ export function Simulator() {
                 className={`min-h-11 rounded-full border-2 px-4 text-sm font-semibold transition-colors ${
                   activePreset?.id === p.id
                     ? 'border-btn bg-btn text-paper'
-                    : 'border-ink/25 text-ink hover:border-btn'
+                    : 'border-control text-ink hover:border-btn'
                 }`}
               >
                 {p.label}
@@ -129,7 +129,7 @@ export function Simulator() {
                   aria-invalid={roasError !== null}
                   aria-describedby={roasError ? 'sim-roas-error' : undefined}
                   className={`min-h-12 w-24 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
-                    roasError ? 'border-loss' : 'border-ink/25'
+                    roasError ? 'border-loss' : 'border-control'
                   }`}
                 />
                 <input
@@ -178,7 +178,7 @@ export function Simulator() {
                 aria-invalid={adminError !== null}
                 aria-describedby={adminError ? 'sim-admin-error' : undefined}
                 className={`mt-1 block min-h-12 w-28 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
-                  adminError ? 'border-loss' : 'border-ink/25'
+                  adminError ? 'border-loss' : 'border-control'
                 }`}
               />
               {adminError ? (
@@ -252,8 +252,8 @@ function MoneyField({
         {label}
       </label>
       <div className="mt-1.5 flex items-center gap-2">
-        <div className="flex min-h-12 min-w-0 flex-1 items-center rounded-xl border-2 border-ink/25 bg-paper px-3 focus-within:border-btn">
-          <span className="text-ink/60">Rp</span>
+        <div className="flex min-h-12 min-w-0 flex-1 items-stretch rounded-xl border-2 border-control bg-paper px-3 focus-within:border-btn">
+          <span className="flex items-center text-ink/60">Rp</span>
           <input
             id={id}
             type="text"
@@ -269,7 +269,7 @@ function MoneyField({
           type="button"
           onClick={() => step(-1000)}
           aria-label={`Kurangi ${label} Rp1.000`}
-          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-ink/25 hover:border-btn"
+          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-btn"
         >
           <MinusIcon />
         </button>
@@ -277,7 +277,7 @@ function MoneyField({
           type="button"
           onClick={() => step(1000)}
           aria-label={`Tambah ${label} Rp1.000`}
-          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-ink/25 hover:border-btn"
+          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-btn"
         >
           <PlusIcon />
         </button>

@@ -6,7 +6,7 @@ import { Container } from './ui'
 
 export function Footer() {
   const source = useSource()
-  const link = 'font-semibold text-fg underline decoration-accent decoration-2 underline-offset-4'
+  const link = 'inline-flex min-h-11 items-center font-semibold text-fg underline decoration-accent decoration-2 underline-offset-4'
   return (
     <footer className="tone-dark bg-night pt-12 pb-28 text-sm text-fg-2 sm:pb-12">
       <Container className="grid gap-8 md:grid-cols-2">

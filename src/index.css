@@ -10,6 +10,8 @@
   --color-canvas: #f6f7fc;
   --color-tint: #e9ecfb;
   --color-line: #d9dcf3;
+  /* Batas kontrol interaktif (input, tombol bergaris) di permukaan terang: 3,9:1 terhadap putih, syarat WCAG 1.4.11 adalah 3:1 */
+  --color-control: #7f7f94;
   /* Teks di permukaan terang */
   --color-ink: #16173d;
   --color-ink-2: #4a4d78;

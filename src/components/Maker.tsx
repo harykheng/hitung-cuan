@@ -13,7 +13,7 @@ export function Maker() {
       </blockquote>
       <p className="mt-6 max-w-3xl text-lg text-fg-2">
         Dibangun oleh{' '}
-        <a href={STUDIO_URL} className="font-semibold text-accent underline decoration-2 underline-offset-4">
+        <a href={STUDIO_URL} className="inline-flex min-h-11 items-center font-semibold text-accent underline decoration-2 underline-offset-4">
           Studio Harel
         </a>
         .

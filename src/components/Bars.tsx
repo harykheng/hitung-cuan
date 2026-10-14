@@ -6,7 +6,7 @@ export function TopBar() {
   return (
     <div className="tone-dark sticky top-0 z-50 border-b border-rule bg-field-deep">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <a href="/" className="rounded-md font-display text-2xl font-extrabold tracking-tight text-fg" aria-label="HitungCuan, ke atas">
+        <a href="/" className="inline-flex min-h-11 items-center rounded-md font-display text-2xl font-extrabold tracking-tight text-fg" aria-label="HitungCuan, ke atas">
           Hitung<span className="text-accent">Cuan</span>
         </a>
         <Cta lokasi="bar_atas" size="sm">
