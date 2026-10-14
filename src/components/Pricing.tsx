@@ -3,9 +3,9 @@ import { rp } from '../lib/format'
 import { CheckIcon, Cta, H2, Section } from './ui'
 
 const INCLUDED = [
-  'Untuk 1 toko Shopee. Punya lebih dari satu toko? Tanyakan ke admin.',
+  'Satu akun untuk 1 toko Shopee. Punya lebih dari satu toko? Tanyakan ke admin.',
   'Pembaruan kalau format file Shopee berubah sudah termasuk.',
-  'Data tiap toko terpisah.',
+  'Data tokomu terpisah dari seller lain.',
 ]
 
 export function Pricing() {
@@ -22,8 +22,8 @@ export function Pricing() {
             Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}.
           </p>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
-            Setelah {TRIAL_DAYS} hari, akunmu jadi mode baca saja sampai kamu berlangganan. Datamu tetap ada dan bisa
-            dilihat, dan tidak ada tagihan otomatis.
+            Setelah {TRIAL_DAYS} hari, admin menonaktifkan akunmu sampai kamu berlangganan. Datamu tetap tersimpan, dan
+            tidak ada tagihan otomatis.
           </p>
         </div>
 

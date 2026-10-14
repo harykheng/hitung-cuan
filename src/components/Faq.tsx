@@ -23,7 +23,7 @@ export function Faq() {
   const items: { q: string; a: ReactNode }[] = [
     {
       q: 'Apakah data pembeli saya aman?',
-      a: 'Nama, alamat, nomor HP, username, dan nomor resi pembeli tidak pernah dibaca atau disimpan. File dibaca di browser kamu, dan file aslinya tidak dikirim ke server. Yang disimpan hanya nomor pesanan, produk, qty, status, dan angka penghasilan. Data tiap toko terpisah dan hanya bisa dilihat akun toko itu.',
+      a: 'Nama, alamat, nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. File dibaca di browser kamu, dan file aslinya tidak dikirim ke server. Yang disimpan: nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat. Tiap seller memakai database sendiri, dan datamu hanya bisa dilihat akunmu dan admin HitungCuan.',
     },
     {
       q: 'Saya tidak paham spreadsheet atau istilah ROAS. Apakah bisa?',
@@ -37,8 +37,7 @@ export function Faq() {
       q: 'Bagaimana kalau tokonya lebih dari satu?',
       a: (
         <>
-          Toko dipilih sekali di bar atas dan berlaku untuk semua halaman. Satu langganan untuk 1 toko; kalau punya
-          lebih dari satu,{' '}
+          Satu akun untuk 1 toko. Kalau punya lebih dari satu toko,{' '}
           <WaLink message={multiStoreMessage}>tanyakan ke admin lewat WhatsApp</WaLink>.
         </>
       ),
@@ -54,10 +53,10 @@ export function Faq() {
     },
     {
       q: 'Bagaimana kalau berhenti berlangganan?',
-      a: 'Setelah langganan habis, akunmu jadi mode baca saja: datamu tetap tersimpan dan bisa dilihat. Perpanjang lewat admin kapan pun. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
+      a: 'Setelah langganan habis, admin menonaktifkan akunmu, jadi kamu tidak bisa masuk. Datamu tetap tersimpan, dan akunmu aktif lagi kalau kamu memperpanjang lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
     },
     {
-      q: 'Salah upload ke toko lain, bagaimana?',
+      q: 'Salah upload file, bagaimana?',
       a: 'Hubungi admin lewat WhatsApp, nanti dihapus.',
     },
     {

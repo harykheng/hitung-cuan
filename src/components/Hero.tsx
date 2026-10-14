@@ -50,7 +50,7 @@ export function Hero() {
               </p>
               <p className="text-sm text-fg-2">
                 Saat ini hanya untuk Shopee · Bukan produk resmi Shopee · Nama, alamat, dan nomor HP pembeli tidak
-                pernah dibaca atau disimpan.
+                diambil atau disimpan.
               </p>
             </div>
           </div>

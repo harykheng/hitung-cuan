@@ -92,3 +92,27 @@ Satu pertanyaan menentukan semuanya: **apakah tiap seller baru mendapat database
 - Aplikasi belum siap dibuka: landing sebaiknya jadi daftar tunggu sampai siap.
 
 Belum diubah di landing (menunggu keputusan): `Faq.tsx:26` ("Data tiap toko terpisah..."), `Pricing.tsx:8`, klaim "mode baca saja" di `Pricing.tsx`, `Faq.tsx`, `public/syarat/index.html`, serta kalimat "tidak pernah dibaca" dan daftar "Yang disimpan" di `Hero.tsx`, `Trust.tsx`, `Footer.tsx`, `Faq.tsx`.
+
+---
+
+# Putaran 5: penutupan #5 dan koreksi #6
+
+Keputusan pemilik: **instance terpisah per seller, 1 akun = 1 toko, "mode baca saja" diganti penonaktifan akun oleh admin.**
+
+| Perubahan | File |
+|---|---|
+| "Mode baca saja" diganti "admin menonaktifkan akunmu" (akhir uji coba, FAQ berhenti berlangganan, halaman Syarat). Datamu tetap tersimpan sampai dihapus 3 bulan setelah berhenti berlangganan. | `Pricing.tsx`, `Faq.tsx`, `public/syarat/index.html` |
+| "1 akun = 1 toko": kalimat "Toko dipilih sekali di bar atas" dihapus, diganti "Satu akun untuk 1 toko". FAQ "Salah upload ke toko lain" menjadi "Salah upload file". | `Faq.tsx`, `Pricing.tsx`, `public/syarat/index.html` |
+| "tidak pernah dibaca" diganti "tidak diambil, tidak dikirim, dan tidak disimpan" (akurat: browser tetap memuat file, tapi kolom pembeli tidak diambil). | `Hero.tsx`, `Trust.tsx`, `Footer.tsx`, `Faq.tsx` |
+| Daftar "Yang disimpan" dilengkapi (variasi, waktu pesanan, subtotal, data iklan per produk, HPP dan biaya yang diisi sendiri, email login). | `Trust.tsx`, `Footer.tsx`, `Faq.tsx` |
+| Klaim isolasi dipertahankan, kini dengan dasar "tiap seller memakai database sendiri", dan ditambah "dan admin HitungCuan" karena admin memegang database dan secara teknis dapat mengaksesnya. "Data tiap toko terpisah" menjadi "Data tokomu terpisah dari seller lain". | `Faq.tsx`, `Pricing.tsx` |
+
+Verifikasi di browser (360, 390, 1280px): semua teks baru ada, frasa lama tidak tersisa di halaman utama maupun `/syarat/`, 0 target di bawah 44px, tanpa overflow, console bersih, tanpa em dash.
+
+## Syarat agar klaim tetap benar (di luar kode landing)
+
+- Klaim "tiap seller memakai database sendiri" hanya benar kalau memang tiap seller dibuatkan project Supabase (atau deployment) sendiri. Kalau suatu saat dua seller berbagi satu database, klaim ini langsung salah, karena kebijakan akses aplikasi saat ini `using (true)` untuk semua akun yang login.
+- "Admin menonaktifkan akun" dilakukan manual di dashboard Supabase (bukan otomatis). Perlu ada kebiasaan menandai tanggal akhir uji coba tiap seller; aplikasi tidak melakukannya sendiri.
+- Penghapusan data 3 bulan juga manual, dan perlu dijalankan sungguhan, karena tertulis di Syarat Layanan.
+- "Salah upload file, nanti dihapus" menggeneralisasi jawaban lama (yang khusus salah toko). Admin memang bisa menghapus baris di database, tetapi pastikan prosedurnya ada.
+- Halaman Kebijakan Privasi terpisah masih belum dibuat. Sekarang klaimnya sudah terverifikasi terhadap kode, jadi bisa dibuat kalau mau.

@@ -38,8 +38,8 @@ export function Footer() {
           <p className="font-semibold text-fg">Privasi singkat</p>
           <p className="mt-2 leading-relaxed">
             Halaman ini tidak menyimpan data apa pun; simulator dihitung di browser kamu. Di aplikasi, nama, alamat,
-            nomor HP, username, dan nomor resi pembeli tidak pernah dibaca atau disimpan. Yang disimpan: nomor pesanan,
-            produk, qty, status, dan angka penghasilan.
+            nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. Yang disimpan:
+            nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat.
           </p>
         </div>
       </Container>
