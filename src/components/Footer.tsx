@@ -34,7 +34,7 @@ export function Footer() {
             </a>
           </p>
         </div>
-        <div>
+        <div id="privasi">
           <p className="font-semibold text-fg">Privasi singkat</p>
           <p className="mt-2 leading-relaxed">
             Halaman ini tidak menyimpan data apa pun; simulator dihitung di browser kamu. Di aplikasi, nama, alamat,
@@ -49,7 +49,10 @@ export function Footer() {
           <a href={STUDIO_URL} className={link}>
             Studio Harel
           </a>{' '}
-          · © <span suppressHydrationWarning>{new Date().getFullYear()}</span>
+          · © <span suppressHydrationWarning>{new Date().getFullYear()}</span> ·{' '}
+          <a href="/syarat/" className={link}>
+            Syarat Layanan
+          </a>
         </p>
       </Container>
     </footer>

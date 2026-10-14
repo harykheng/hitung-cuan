@@ -53,6 +53,12 @@ untuk `cta_click` per `lokasi`, pasang Plausible atau Umami.
 
 CTA click rate = pengunjung unik yang menekan tombol WhatsApp ÷ pengunjung unik, dibaca **per sumber** (`?src=`).
 
+## Halaman Syarat Layanan
+
+`public/syarat/index.html` adalah halaman statis tanpa JavaScript (disalin apa adanya ke `dist/syarat/`), dilayani di `/syarat/`.
+Harga sengaja tidak ditulis di sana; ubah aturan dan tanggal "Terakhir diperbarui" di file itu kalau kebijakannya berubah.
+Halaman Kebijakan Privasi belum ada: isinya harus menunggu klaim privasi diverifikasi terhadap kode aplikasi.
+
 ## Gambar share / Open Graph
 
 `public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja.

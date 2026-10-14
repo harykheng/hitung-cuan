@@ -8,10 +8,6 @@ const INCLUDED = [
   'Data tiap toko terpisah.',
 ]
 
-/*
- * TODO (isi sebelum tayang): satu kalimat tentang akhir uji coba, mis. apakah ditagih atau akun
- * diminta diperpanjang lewat admin. Sengaja tidak ditulis di sini karena belum ada keputusannya.
- */
 export function Pricing() {
   const saving = PRICE_MONTHLY * 12 - PRICE_YEARLY
   return (
@@ -24,6 +20,10 @@ export function Pricing() {
           </p>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
             Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}.
+          </p>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
+            Setelah {TRIAL_DAYS} hari, akunmu jadi mode baca saja sampai kamu berlangganan. Datamu tetap ada dan bisa
+            dilihat, dan tidak ada tagihan otomatis.
           </p>
         </div>
 
@@ -47,6 +47,15 @@ export function Pricing() {
           <Cta lokasi="harga" className="mt-8 w-full" />
           <p className="mt-3 text-center text-sm text-ink/70">
             Akun dibuat manual oleh admin. {REPLY_PROMISE}.
+          </p>
+          <p className="mt-2 text-center text-sm text-ink/70">
+            Pembayaran lewat chat admin. Tidak ada refund.{' '}
+            <a
+              href="/syarat/"
+              className="inline-flex min-h-11 items-center font-semibold text-accent underline decoration-2 underline-offset-4"
+            >
+              Baca Syarat Layanan
+            </a>
           </p>
         </div>
       </div>

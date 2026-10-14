@@ -34,3 +34,23 @@ Build (`tsc` + vite + prerender) lulus. Console 0 error dan warning pada muat no
 
 - Toggle "Bulan untung / Bulan rugi" di kartu hero memakai latar `tint` di atas putih (1,18:1). Tombol terpilih berisi penuh dan tombol yang tidak terpilih punya label teks, jadi saya tidak menganggapnya pelanggaran, tapi batas kelompoknya sendiri lemah. Tidak diubah.
 - Link yang berada di dalam kalimat (FAQ) dibesarkan lewat padding supaya aliran kalimat tidak berubah. WCAG 2.5.8 sebenarnya mengecualikan link inline, jadi ini mengikuti aturan skill (R-03) yang lebih ketat, bukan syarat WCAG.
+
+---
+
+# Putaran 3: nomor 2 dan 6
+
+Sumber fakta: jawaban pemilik toko (14 Okt 2026). Tidak ada isi yang saya karang.
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 2 | Jalur menu diganti dengan yang dicek pemilik di Seller Centre: Pesanan Saya → Semua → Export → pilih rentang tanggal; Penghasilan Saya → Catatan transaksi penghasilan → pilih rentang tanggal bulanan; Iklan → Download data → pilih 3 pilihan (Data Keseluruhan Iklan, Rincian data iklan produk otomatis, semua data grup iklan). Komentar "perlu dicocokkan" dihapus. | `HowItWorks.tsx` | Ketiga tombol file diklik di browser, teks jalur baru tampil, jalur lama tidak ada lagi di halaman. |
+| 6 | (a) Kalimat akhir uji coba: setelah 30 hari akun jadi mode baca saja, tanpa tagihan otomatis (menutup TODO di `Pricing.tsx`). (b) Kartu harga: "Pembayaran lewat chat admin. Tidak ada refund." plus tautan Syarat Layanan. (c) FAQ: jawaban "berhenti berlangganan" kini memuat penghapusan data 3 bulan dan hapus lebih cepat lewat admin; FAQ baru "Bagaimana cara bayar? Ada refund?". (d) Halaman baru `/syarat/` (statis, tanpa JS). (e) Footer: tautan Syarat Layanan dan anchor `#privasi`. | `Pricing.tsx`, `Faq.tsx`, `Footer.tsx`, `public/syarat/index.html`, `README.md` | Build lulus. Halaman utama dan `/syarat/` diuji di 360, 390, 1280px: 0 target di bawah 44px, tanpa overflow, console bersih. Kontras `/syarat/`: teks 7,48:1, tautan 9,53:1. Tanpa em dash. Semua tautan internal (`/#harga`, `/#privasi`) ada tujuannya. |
+
+## Batasan dan asumsi
+
+- **Mode baca saja untuk akhir uji coba adalah rekomendasi saya.** Pemilik bertanya "baca saja atau dikunci", dan saya memilih baca saja karena FAQ sudah menjanjikan itu untuk langganan yang habis. Ubah satu kalimat di `Pricing.tsx` dan satu butir di `public/syarat/index.html` kalau diputuskan lain.
+- **Penghapusan 3 bulan** saya baca sebagai "3 bulan setelah uji coba atau langganan berakhir" (jawaban asli: "kalau sudah tidak berlangganan 3 bulan"). Perlu dikonfirmasi untuk pengguna yang hanya mencoba dan tidak pernah berlangganan.
+- **Iklan:** jalurnya ditulis persis seperti jawaban pemilik ("pilih 3 pilihan"). Kalau ketiganya memang diunduh, berarti ada lebih dari satu file iklan, dan teks "3 laporan" / "tiga file" di `HowItWorks.tsx` dan `Faq.tsx` serta nama `iklan.csv` perlu disesuaikan. Belum dikonfirmasi.
+- **Format file** (`.xlsx`, `.pdf`, `.csv`) tidak dikonfirmasi ulang di putaran ini.
+- **Halaman Kebijakan Privasi sengaja belum dibuat.** Isinya harus mengutip klaim privasi yang sama dengan #5 dan belum bisa dibuktikan dari repo ini. Membuatnya sekarang berarti menuliskan klaim yang belum terverifikasi ke dokumen resmi.
+- Halaman `/syarat/` tidak memuat pasal batas tanggung jawab, hukum yang berlaku, atau penyelesaian sengketa, karena itu tidak diberikan pemilik dan tidak boleh saya karang. Sebaiknya dibaca orang yang paham hukum sebelum tayang. Saya bukan penasihat hukum.

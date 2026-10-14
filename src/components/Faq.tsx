@@ -49,8 +49,12 @@ export function Faq() {
     },
     { q: 'Bisa untuk Tokopedia atau TikTok Shop?', a: 'Saat ini hanya Shopee.' },
     {
+      q: 'Bagaimana cara bayar? Ada refund?',
+      a: 'Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis 30 hari untuk memastikan HitungCuan cocok dengan tokomu.',
+    },
+    {
       q: 'Bagaimana kalau berhenti berlangganan?',
-      a: 'Setelah langganan habis, datamu tetap tersimpan dan hanya bisa dilihat (mode baca saja). Perpanjang lewat admin kapan pun.',
+      a: 'Setelah langganan habis, akunmu jadi mode baca saja: datamu tetap tersimpan dan bisa dilihat. Perpanjang lewat admin kapan pun. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
     },
     {
       q: 'Salah upload ke toko lain, bagaimana?',

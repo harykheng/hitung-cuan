@@ -12,13 +12,13 @@ const STEPS = [
 ]
 
 /*
- * Jalur menu per file. Yang pertama dari dokumen kerja; dua lainnya jalur umum Seller Centre
- * dan perlu dicocokkan dengan PANDUAN aplikasi sebelum tayang.
+ * Jalur menu per file, dari pemilik toko (dicek di Seller Centre, 14 Okt 2026).
+ * Format file (.xlsx, .pdf, .csv) belum dikonfirmasi ulang di putaran itu. Kalau Shopee mengubah menunya, ubah di sini.
  */
 const FILES = [
-  { name: 'pesanan.xlsx', path: 'Pesanan Saya → Export → status Semua' },
-  { name: 'penghasilan.pdf', path: 'Keuangan → Penghasilan Saya → unduh laporan penghasilan' },
-  { name: 'iklan.csv', path: 'Iklan Shopee → laporan → unduh data iklan' },
+  { name: 'pesanan.xlsx', path: 'Pesanan Saya → Semua → Export → pilih rentang tanggal' },
+  { name: 'penghasilan.pdf', path: 'Penghasilan Saya → Catatan transaksi penghasilan → pilih rentang tanggal bulanan' },
+  { name: 'iklan.csv', path: 'Iklan → Download data → pilih 3 pilihan: Data Keseluruhan Iklan, Rincian data iklan produk otomatis, dan semua data grup iklan' },
 ]
 
 const FINAL = 5
