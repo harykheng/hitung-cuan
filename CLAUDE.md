@@ -26,7 +26,7 @@ lime, tipografi, gerak, suara, aksesibilitas, dan dial.
   setelah berhenti berlangganan). Ubah teksnya hanya bersama keputusan pemilik.
 - **Angka demo** wajib berlabel "Contoh". Jangan menulis angka hasil, testimoni, atau statistik tanpa sumber.
 - **Harga, masa uji coba, nomor WhatsApp** ada di `src/config.ts`. Halaman statis di `public/` sengaja tidak menyebut harga.
-- Jangan menghapus `wrangler.jsonc` (lihat `README.md`).
+- Jangan menghapus `wrangler.jsonc` atau blok `previews` di dalamnya: tanpa blok itu build branch dan pull request di Cloudflare gagal (lihat `README.md`).
 
 ## Riwayat audit
 

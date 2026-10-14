@@ -90,6 +90,10 @@ Repo ini punya `wrangler.jsonc` (aset statis dari `dist/`), jadi cocok untuk dua
 Jangan hapus `wrangler.jsonc`: tanpanya, `wrangler deploy` menjalankan autoconfig yang menyisipkan
 `@cloudflare/vite-plugin` ke `vite.config.ts` dan merusak langkah prerender. Versi Node dibaca dari `.node-version` (22).
 Setiap push ke branch produksi otomatis deploy ulang. `public/_headers` mengatur cache aset ber-hash selama 1 tahun.
+Blok `"previews": {}` di dalamnya juga jangan dihapus: Workers Builds menjalankan `npx wrangler preview` untuk branch selain
+main (termasuk branch pull request), dan tanpa blok itu build gagal dengan galat "Your Wrangler configuration is missing a
+`previews` block". Blok boleh kosong. Jangan menambah `not_found_handling`: `/syarat/` dan `/privasi/` adalah halaman statis
+sungguhan dan 404 harus tetap 404.
 
 ## Pasang custom domain `hitungcuan.studioharel.id`
 
