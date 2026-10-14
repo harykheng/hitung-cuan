@@ -40,6 +40,15 @@ export function Simulator() {
   if (Number.isFinite(a) && a >= 0 && a < 60) lastAdmin.current = a / 100
   const roas = lastRoas.current
   const admin = lastAdmin.current
+  // Hasil tetap memakai nilai valid terakhir, jadi pengguna perlu diberi tahu nilai mana yang sedang dipakai.
+  const roasError = !(Number.isFinite(r) && r > 0)
+    ? `ROAS harus lebih dari 0. Hasil memakai ROAS ${roasLabel(roas)}.`
+    : r > 99
+      ? `ROAS maksimal 99. Hasil memakai ROAS ${roasLabel(roas)}.`
+      : null
+  const adminError = !(Number.isFinite(a) && a >= 0 && a < 60)
+    ? `Persen admin harus antara 0 dan di bawah 60. Hasil memakai ${dec(admin * 100)}%.`
+    : null
 
   const used = () => trackOnce('simulator_used')
   const res = harga > 0 ? hitung({ hpp, harga, roas, admin }) : null
@@ -117,7 +126,11 @@ export function Simulator() {
                     setRoasText(e.target.value.replace(/[^\d.,]/g, '').slice(0, 5))
                   }}
                   onBlur={() => setRoasText(dec(roas, 1))}
-                  className="min-h-12 w-24 rounded-xl border-2 border-ink/25 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn"
+                  aria-invalid={roasError !== null}
+                  aria-describedby={roasError ? 'sim-roas-error' : undefined}
+                  className={`min-h-12 w-24 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
+                    roasError ? 'border-loss' : 'border-ink/25'
+                  }`}
                 />
                 <input
                   type="range"
@@ -133,6 +146,11 @@ export function Simulator() {
                   className="min-w-0 flex-1"
                 />
               </div>
+              {roasError ? (
+                <p id="sim-roas-error" role="alert" className="mt-1 text-sm font-semibold text-loss">
+                  {roasError}
+                </p>
+              ) : null}
               <p className="mt-1 text-sm text-ink/70">ROAS = omzet ÷ biaya iklan.</p>
             </div>
           </div>
@@ -157,8 +175,17 @@ export function Simulator() {
                   setAdminText(e.target.value.replace(/[^\d.,]/g, '').slice(0, 5))
                 }}
                 onBlur={() => setAdminText(dec(admin * 100))}
-                className="mt-1 block min-h-12 w-28 rounded-xl border-2 border-ink/25 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn"
+                aria-invalid={adminError !== null}
+                aria-describedby={adminError ? 'sim-admin-error' : undefined}
+                className={`mt-1 block min-h-12 w-28 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
+                  adminError ? 'border-loss' : 'border-ink/25'
+                }`}
               />
+              {adminError ? (
+                <p id="sim-admin-error" role="alert" className="mt-2 text-sm font-semibold text-loss">
+                  {adminError}
+                </p>
+              ) : null}
               <p className="mt-2 text-sm leading-relaxed text-ink/75">
                 Contoh: admin {dec(DEFAULT_ADMIN * 100)}%, di aplikasi kamu isi sesuai kategori tokomu. Persen admin
                 berbeda tiap kategori dan bisa berubah, jadi bukan tarif resmi Shopee.

@@ -7,6 +7,9 @@ import '@fontsource/public-sans/latin-600.css'
 import './index.css'
 import App from './App'
 
+// Tanda bagi skrip di index.html bahwa bundle berjalan; tanpa tanda ini konten tidak lagi disembunyikan.
+document.documentElement.setAttribute('data-hc', '')
+
 const root = document.getElementById('root')!
 const app = (
   <StrictMode>
