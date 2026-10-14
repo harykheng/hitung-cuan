@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HitungCuan — Hitung untung bersih toko Shopee-mu</title>
+    <title>HitungCuan: Hitung untung bersih toko Shopee-mu</title>
     <meta
       name="description"
       content="Hitung untung bersih toko Shopee dari laporan Seller Centre. Tahu iklan Shopee mana yang sebaiknya dimatikan dan di ROAS berapa iklan balik modal. Uji coba gratis 30 hari lewat WhatsApp, tanpa kartu kredit."
@@ -16,7 +16,7 @@
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="HitungCuan" />
     <meta property="og:url" content="https://hitungcuan.studioharel.id/" />
-    <meta property="og:title" content="HitungCuan — Hitung untung bersih toko Shopee-mu" />
+    <meta property="og:title" content="HitungCuan: Hitung untung bersih toko Shopee-mu" />
     <meta
       property="og:description"
       content="Hitung untung bersih toko Shopee dari laporan pesanan, penghasilan, dan iklan. Minta uji coba gratis 30 hari lewat WhatsApp."
@@ -26,8 +26,18 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="HitungCuan: Untung bersih tokomu berapa? Iklan mana yang sebaiknya dimatikan?" />
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- Konten disembunyikan untuk animasi hanya kalau JavaScript jalan (lihat index.css). -->
-    <script>document.documentElement.classList.add("js")</script>
+    <!--
+      Konten disembunyikan untuk animasi hanya kalau JavaScript jalan (lihat index.css).
+      Kalau bundle belum jalan setelah 4 detik (gagal muat atau jaringan lambat), kelas "js" dicabut supaya semua
+      konten tampil. main.tsx memasang data-hc begitu bundle berjalan.
+    -->
+    <script>
+      document.documentElement.classList.add("js");
+      setTimeout(function () {
+        var d = document.documentElement;
+        if (!d.hasAttribute("data-hc")) d.classList.remove("js");
+      }, 4000);
+    </script>
   </head>
   <body>
     <div id="root"><!--app--></div>

@@ -1,0 +1,214 @@
+# antislop audit 001, laporan perbaikan (2026-10-14)
+
+Nomor yang disetujui: 1, 3, 9. Nomor lain tidak disentuh dan masih terbuka di `audit-001-2026-10-14.md`.
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 1 | Em dash di `<title>` dan `og:title` diganti titik dua: "HitungCuan: Hitung untung bersih toko Shopee-mu". | `index.html` | `grep` em dash di `index.html` dan `dist/index.html`: 0. Judul tab dan `og:title` dibaca dari browser. |
+| 3 | Input ROAS dan persen admin kini menampilkan pesan teks saat tidak valid (kosong, 0, di atas 99, admin 60 ke atas atau hanya tanda koma). Pesan menyebut nilai yang sedang dipakai hasil. Ditambah `aria-invalid`, `aria-describedby`, `role="alert"`, dan border merah (bukan satu-satunya penanda). Pesan hilang saat nilai valid atau saat blur. | `src/components/Simulator.tsx` | 9 skenario diuji di Chromium: kosong, 0, 150, kembali valid, admin 99, admin ",", admin 8,25, blur. Teks merah `#c4361e` di putih = 5,39:1. |
+| 9 | Skrip di `<head>` mencabut kelas `js` kalau bundle belum berjalan dalam 4 detik, sehingga 18 blok `[data-reveal]` tidak lagi tertahan transparan. `main.tsx` memasang `data-hc` di `<html>` begitu bundle berjalan. README diperbarui. | `index.html`, `src/main.tsx`, `README.md` | Bundle diblokir: 18 dari 18 blok tersembunyi di detik 1,5, 0 tersembunyi di detik 5. Bundle ditunda 7 detik: konten tampil di detik 5, lalu hidrasi, simulator jalan, 0 error. Muat normal: animasi gulir tetap utuh (18 tersembunyi sebelum digulir, 0 setelah). |
+
+Build (`tsc` + vite + prerender) lulus. Console 0 error dan warning pada muat normal.
+
+## Batasan
+
+- Ambang 4 detik adalah tebakan saya, bukan angka dari data jaringan pengunjungmu. Di jaringan yang sangat lambat, konten bisa tampil tanpa animasi gulir sebelum bundle datang. Itu pilihan yang disengaja: konten terbaca lebih penting daripada animasinya.
+- Pesan ROAS di atas 99 hanya muncul untuk nilai yang diketik. Slider tetap dibatasi 1 sampai 15 seperti sebelumnya.
+
+---
+
+# Putaran 2: nomor 4 dan 8
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 4 | Batas semua kontrol interaktif di simulator (input HPP, harga, ROAS, admin, tombol +/-, preset yang belum dipilih) memakai token baru `--color-control` (#7f7f94) menggantikan `border-ink/25` (1,71:1). Kontrasnya kini 3,91:1 terhadap putih, syarat 3:1. Garis putus-putus dekoratif tidak diubah. | `src/index.css`, `src/components/Simulator.tsx` | Warna border dibaca dari browser pada 7 kontrol lalu dihitung dengan `contrast-check.py`: semuanya 3,91:1 (preset terpilih 10,19:1). |
+| 8 | Target sentuh dinaikkan ke minimal 44px: link logo (`min-h-11`), area input uang (input kini setinggi kotaknya, 44px, jadi mengetuk tepi bawah kotak memfokuskan input), link footer dan "Studio Harel" di Maker (`min-h-11`), link WhatsApp di FAQ (`py-3.5`). Tombol file di demo "Cara Kerja" terukur 40px karena `scale-90`, jadi `scale-90` dihapus. | `Bars.tsx`, `Simulator.tsx`, `Footer.tsx`, `Maker.tsx`, `Faq.tsx`, `HowItWorks.tsx` | Semua `a`, `button`, `summary`, `input` (dengan semua `<details>` dibuka) diukur di 360, 390, 1280px: 0 elemen di bawah 44px. Tidak ada overflow horizontal, console bersih. |
+
+## Temuan baru dari putaran ini (belum diperbaiki)
+
+| # | Prioritas (tier) | Aturan | Temuan | Bukti | Keyakinan |
+|---|---|---|---|---|---|
+| 19 | HIGH | R-25 | Setelah animasi demo "Cara Kerja" selesai, tiga tombol file (`pesanan.xlsx`, `penghasilan.pdf`, `iklan.csv`) tetap diredupkan ke `opacity-30` dan masih bisa diklik. Teksnya jadi sekitar #5e60a1 di atas #1d2079 = 2,39:1, di bawah 4,5:1. Audit 001 terlewat karena saya hanya menghitung warna token, bukan opasitas elemen. | `HowItWorks.tsx:129` (`uploading ? 'translate-y-4 opacity-30'`). Opasitas komputasi 0,3 dibaca di browser setelah animasi selesai. | Certain |
+
+## Batasan
+
+- Toggle "Bulan untung / Bulan rugi" di kartu hero memakai latar `tint` di atas putih (1,18:1). Tombol terpilih berisi penuh dan tombol yang tidak terpilih punya label teks, jadi saya tidak menganggapnya pelanggaran, tapi batas kelompoknya sendiri lemah. Tidak diubah.
+- Link yang berada di dalam kalimat (FAQ) dibesarkan lewat padding supaya aliran kalimat tidak berubah. WCAG 2.5.8 sebenarnya mengecualikan link inline, jadi ini mengikuti aturan skill (R-03) yang lebih ketat, bukan syarat WCAG.
+
+---
+
+# Putaran 3: nomor 2 dan 6
+
+Sumber fakta: jawaban pemilik toko (14 Okt 2026). Tidak ada isi yang saya karang.
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 2 | Jalur menu diganti dengan yang dicek pemilik di Seller Centre: Pesanan Saya → Semua → Export → pilih rentang tanggal; Penghasilan Saya → Catatan transaksi penghasilan → pilih rentang tanggal bulanan; Iklan → Download data → pilih 3 pilihan (Data Keseluruhan Iklan, Rincian data iklan produk otomatis, semua data grup iklan). Komentar "perlu dicocokkan" dihapus. | `HowItWorks.tsx` | Ketiga tombol file diklik di browser, teks jalur baru tampil, jalur lama tidak ada lagi di halaman. |
+| 6 | (a) Kalimat akhir uji coba: setelah 30 hari akun jadi mode baca saja, tanpa tagihan otomatis (menutup TODO di `Pricing.tsx`). (b) Kartu harga: "Pembayaran lewat chat admin. Tidak ada refund." plus tautan Syarat Layanan. (c) FAQ: jawaban "berhenti berlangganan" kini memuat penghapusan data 3 bulan dan hapus lebih cepat lewat admin; FAQ baru "Bagaimana cara bayar? Ada refund?". (d) Halaman baru `/syarat/` (statis, tanpa JS). (e) Footer: tautan Syarat Layanan dan anchor `#privasi`. | `Pricing.tsx`, `Faq.tsx`, `Footer.tsx`, `public/syarat/index.html`, `README.md` | Build lulus. Halaman utama dan `/syarat/` diuji di 360, 390, 1280px: 0 target di bawah 44px, tanpa overflow, console bersih. Kontras `/syarat/`: teks 7,48:1, tautan 9,53:1. Tanpa em dash. Semua tautan internal (`/#harga`, `/#privasi`) ada tujuannya. |
+
+## Batasan dan asumsi
+
+- **Mode baca saja untuk akhir uji coba adalah rekomendasi saya.** Pemilik bertanya "baca saja atau dikunci", dan saya memilih baca saja karena FAQ sudah menjanjikan itu untuk langganan yang habis. Ubah satu kalimat di `Pricing.tsx` dan satu butir di `public/syarat/index.html` kalau diputuskan lain.
+- **Penghapusan 3 bulan** saya baca sebagai "3 bulan setelah uji coba atau langganan berakhir" (jawaban asli: "kalau sudah tidak berlangganan 3 bulan"). Perlu dikonfirmasi untuk pengguna yang hanya mencoba dan tidak pernah berlangganan.
+- **Iklan:** jalurnya ditulis persis seperti jawaban pemilik ("pilih 3 pilihan"). Kalau ketiganya memang diunduh, berarti ada lebih dari satu file iklan, dan teks "3 laporan" / "tiga file" di `HowItWorks.tsx` dan `Faq.tsx` serta nama `iklan.csv` perlu disesuaikan. Belum dikonfirmasi.
+- **Format file** (`.xlsx`, `.pdf`, `.csv`) tidak dikonfirmasi ulang di putaran ini.
+- **Halaman Kebijakan Privasi sengaja belum dibuat.** Isinya harus mengutip klaim privasi yang sama dengan #5 dan belum bisa dibuktikan dari repo ini. Membuatnya sekarang berarti menuliskan klaim yang belum terverifikasi ke dokumen resmi.
+- Halaman `/syarat/` tidak memuat pasal batas tanggung jawab, hukum yang berlaku, atau penyelesaian sengketa, karena itu tidak diberikan pemilik dan tidak boleh saya karang. Sebaiknya dibaca orang yang paham hukum sebelum tayang. Saya bukan penasihat hukum.
+
+---
+
+# Putaran 4: nomor 5 (verifikasi klaim privasi terhadap kode aplikasi)
+
+Sumber: repo `harykheng/shopee-profit-calc` (commit `8b5e041`, dibaca read-only). Yang dicek adalah kode di branch utama repo itu, **bukan** instance yang sedang berjalan di produksi.
+
+## Koreksi #2 (iklan)
+
+Jalur Iklan diperbaiki berdasarkan `PANDUAN.md` dan parser aplikasi: hanya **Data Keseluruhan Iklan** yang wajib. **Rincian Data Iklan Produk Otomatis** hanya kalau memakai iklan produk otomatis, dan **Semua Data Grup Iklan** hanya kalau memakai grup iklan. Periode 1 bulan penuh. Versi sebelumnya (dari jawaban pemilik, "pilih 3 pilihan") terbaca seolah ketiganya wajib. Format file terkonfirmasi: pesanan `.xlsx`, penghasilan `.pdf`, iklan `.csv`.
+Catatan: `PANDUAN.md` aplikasi masih menulis "Keuangan → Penghasilan Saya", sedangkan jawaban pemilik tidak memakai "Keuangan". Landing mengikuti jawaban pemilik (lebih baru); `PANDUAN.md` sebaiknya disamakan.
+
+## Hasil per klaim
+
+| Klaim di landing | Hasil | Bukti | Keyakinan |
+|---|---|---|---|
+| File dibaca di browser, file asli tidak dikirim ke server | **Terbukti** | Tidak ada `storage`, `upload`, `fetch`, atau `FormData` di `src`. Yang dikirim ke database hanya baris hasil parse lewat `supabase.rpc(...)` (`api.ts`). | Certain (kode di commit ini) |
+| Kolom data pembeli (nama, alamat, HP, username, resi) tidak disimpan | **Terbukti** | Parser pesanan hanya membaca kolom yang dipetakan (`shopeeColumns.ts`). Ada test (`tests/orders.test.ts:102-110`) yang memastikan nilai kolom pribadi tidak muncul di hasil parse. | Certain |
+| "tidak pernah **dibaca**" | **Berlebihan** | `XLSX.read` dan `pdf.js` memuat seluruh file ke memori browser. Kolom pribadi tidak diambil, tidak dikirim, tidak disimpan, tapi file-nya tetap terbaca oleh browser. Kalimat yang akurat: "tidak diambil, tidak dikirim, dan tidak disimpan". | Certain |
+| Yang disimpan: nomor pesanan, produk, qty, status, angka penghasilan | **Tidak lengkap** | Tabel juga menyimpan variasi, SKU, status retur, waktu pesanan, subtotal per item, data iklan per produk (biaya, omzet), HPP dan biaya yang diisi pengguna, dan email login (Supabase Auth). | Certain |
+| Upload file yang sama dua kali aman | **Terbukti** | `on conflict (...) do update/nothing` di fungsi upload. | Certain |
+| Akun dibuat manual oleh admin | **Sesuai kode** | Tidak ada `signUp` di `src`, hanya `signInWithPassword`. README menyuruh mematikan pendaftaran publik di dashboard Supabase (setelan itu tidak bisa dicek dari repo). | Likely |
+| **Data tiap toko terpisah dan hanya bisa dilihat akun toko itu** | **SALAH di kode ini** | Semua tabel: `create policy "login: akses penuh" ... for all to authenticated using (true) with check (true)`. Artinya setiap akun yang login membaca dan menulis semua toko. Tabel `stores` hanya berisi dua toko milik pemilik (`insert ... 'Harel Beauty', 'Oraiste Beauty House'`). README: "Semua akun bisa mengakses kedua toko." | Certain |
+| **Setelah langganan/uji coba habis akun jadi mode baca saja** | **Tidak ada di aplikasi** | Tidak ada konsep langganan, uji coba, kedaluwarsa, atau mode baca di `src` maupun `supabase/`. Yang ada: admin bisa menghapus user (README bagian 2). | Certain |
+
+## Dampak pada pekerjaan saya sebelumnya
+
+Halaman `/syarat/`, kalimat akhir uji coba di `Pricing.tsx`, dan FAQ "berhenti berlangganan" yang saya tulis di putaran 3 menjanjikan **mode baca saja**. Rekomendasi itu saya buat sebelum memeriksa kode, dengan asumsi aplikasi sudah mendukungnya (FAQ lama sudah menjanjikannya). Ternyata belum. Kalimat itu tidak boleh tayang sebelum aplikasinya memang melakukannya, atau diganti dengan yang bisa dilakukan hari ini (admin menonaktifkan atau menghapus akun).
+
+## Keputusan yang dibutuhkan
+
+Satu pertanyaan menentukan semuanya: **apakah tiap seller baru mendapat database/instance aplikasi sendiri, atau login ke aplikasi yang sama dengan toko pemilik?**
+
+- Instance terpisah per seller: klaim "data terpisah" benar. Yang perlu diperbaiki hanya "mode baca saja".
+- Instance yang sama: seller baru bisa melihat dan mengubah data Harel Beauty dan Oraiste, dan data seller lain. Aplikasi perlu dibuat multi-toko (tabel keanggotaan dan kebijakan RLS per toko) sebelum dibuka untuk seller lain.
+- Aplikasi belum siap dibuka: landing sebaiknya jadi daftar tunggu sampai siap.
+
+Belum diubah di landing (menunggu keputusan): `Faq.tsx:26` ("Data tiap toko terpisah..."), `Pricing.tsx:8`, klaim "mode baca saja" di `Pricing.tsx`, `Faq.tsx`, `public/syarat/index.html`, serta kalimat "tidak pernah dibaca" dan daftar "Yang disimpan" di `Hero.tsx`, `Trust.tsx`, `Footer.tsx`, `Faq.tsx`.
+
+---
+
+# Putaran 5: penutupan #5 dan koreksi #6
+
+Keputusan pemilik: **instance terpisah per seller, 1 akun = 1 toko, "mode baca saja" diganti penonaktifan akun oleh admin.**
+
+| Perubahan | File |
+|---|---|
+| "Mode baca saja" diganti "admin menonaktifkan akunmu" (akhir uji coba, FAQ berhenti berlangganan, halaman Syarat). Datamu tetap tersimpan sampai dihapus 3 bulan setelah berhenti berlangganan. | `Pricing.tsx`, `Faq.tsx`, `public/syarat/index.html` |
+| "1 akun = 1 toko": kalimat "Toko dipilih sekali di bar atas" dihapus, diganti "Satu akun untuk 1 toko". FAQ "Salah upload ke toko lain" menjadi "Salah upload file". | `Faq.tsx`, `Pricing.tsx`, `public/syarat/index.html` |
+| "tidak pernah dibaca" diganti "tidak diambil, tidak dikirim, dan tidak disimpan" (akurat: browser tetap memuat file, tapi kolom pembeli tidak diambil). | `Hero.tsx`, `Trust.tsx`, `Footer.tsx`, `Faq.tsx` |
+| Daftar "Yang disimpan" dilengkapi (variasi, waktu pesanan, subtotal, data iklan per produk, HPP dan biaya yang diisi sendiri, email login). | `Trust.tsx`, `Footer.tsx`, `Faq.tsx` |
+| Klaim isolasi dipertahankan, kini dengan dasar "tiap seller memakai database sendiri", dan ditambah "dan admin HitungCuan" karena admin memegang database dan secara teknis dapat mengaksesnya. "Data tiap toko terpisah" menjadi "Data tokomu terpisah dari seller lain". | `Faq.tsx`, `Pricing.tsx` |
+
+Verifikasi di browser (360, 390, 1280px): semua teks baru ada, frasa lama tidak tersisa di halaman utama maupun `/syarat/`, 0 target di bawah 44px, tanpa overflow, console bersih, tanpa em dash.
+
+## Syarat agar klaim tetap benar (di luar kode landing)
+
+- Klaim "tiap seller memakai database sendiri" hanya benar kalau memang tiap seller dibuatkan project Supabase (atau deployment) sendiri. Kalau suatu saat dua seller berbagi satu database, klaim ini langsung salah, karena kebijakan akses aplikasi saat ini `using (true)` untuk semua akun yang login.
+- "Admin menonaktifkan akun" dilakukan manual di dashboard Supabase (bukan otomatis). Perlu ada kebiasaan menandai tanggal akhir uji coba tiap seller; aplikasi tidak melakukannya sendiri.
+- Penghapusan data 3 bulan juga manual, dan perlu dijalankan sungguhan, karena tertulis di Syarat Layanan.
+- "Salah upload file, nanti dihapus" menggeneralisasi jawaban lama (yang khusus salah toko). Admin memang bisa menghapus baris di database, tetapi pastikan prosedurnya ada.
+- Halaman Kebijakan Privasi terpisah masih belum dibuat. Sekarang klaimnya sudah terverifikasi terhadap kode, jadi bisa dibuat kalau mau.
+
+---
+
+# Putaran 6: nomor 19 dan halaman Kebijakan Privasi
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 19 | Tombol file di demo "Cara Kerja" tidak lagi diredupkan ke 30% setelah tahap unggah (`opacity-30` dihapus, gerak turun tetap). | `HowItWorks.tsx` | Setelah animasi selesai: opasitas 1, teks `#f6f4ff` di atas `#1d2079` = 12,58:1 (sebelumnya 2,39:1), tinggi tombol 44px. |
+| (baru) | Halaman `/privasi/` (statis, tanpa JS), ditautkan dari footer (dua tempat: blok "Privasi singkat" dan baris bawah) dan dari `/syarat/`. README diperbarui. | `public/privasi/index.html`, `Footer.tsx`, `public/syarat/index.html`, `README.md` | Diuji di 360, 390, 1280px: 0 target di bawah 44px, tanpa overflow, console bersih, 0 request ke pihak ketiga, kontras teks 7,48:1 dan tautan 9,53:1, tanpa em dash, semua tautan internal menghasilkan 200. |
+
+## Dasar isi `/privasi/`
+
+Setiap kalimat berasal dari salah satu sumber ini, bukan karangan:
+
+- **Kode aplikasi** (`shopee-profit-calc`, commit `8b5e041`): daftar data yang disimpan diperiksa kolom demi kolom terhadap migrasi SQL (pesanan, penghasilan, penyesuaian, iklan, biaya, HPP, persen admin dan XTRA, `uploaded_by` dan `uploaded_at`). Daftar kolom pembeli yang tidak diambil sama persis dengan `BUYER_PRIVATE_COLUMNS` (sembilan kolom, termasuk Booking SN). Akses hanya untuk akun yang login berasal dari kebijakan RLS `to authenticated`.
+- **Kode landing**: tidak ada cookie, `localStorage`, atau skrip pihak ketiga. Font dari `@fontsource` (satu server). Kode `?src=` ikut tertulis di pesan WhatsApp (`whatsapp.ts`). Halaman dilayani lewat Cloudflare (`wrangler.jsonc`).
+- **Keputusan pemilik**: tiap seller memakai database sendiri, 1 akun = 1 toko, akun dibuat manual, penonaktifan di akhir uji coba, penghapusan 3 bulan setelah berhenti berlangganan, hapus lebih cepat lewat admin.
+
+## Yang sengaja tidak ditulis (tidak diberikan pemilik)
+
+- "Kami tidak menjual datamu", hak akses atau koreksi data secara formal, tenggat waktu menanggapi permintaan, lokasi server, nama penyedia hosting aplikasi (repo aplikasi menyebut Vercel di README tetapi juga punya `wrangler.jsonc` Cloudflare, jadi tidak bisa dipastikan), dan dasar hukum pemrosesan data. Kalau mau ditambahkan, itu keputusan pemilik, dan sebaiknya ditinjau orang yang paham hukum. Saya bukan penasihat hukum.
+
+## Kapan halaman ini menjadi salah
+
+Komentar di bagian atas `public/privasi/index.html` dan README mencatat pemicunya: memasang analitik atau cookie di landing (termasuk mengaktifkan Cloudflare Web Analytics, yang tidak bisa dideteksi dari repo ini), mengganti penyedia database, mengubah kolom yang disimpan aplikasi, atau dua seller berbagi satu database.
+
+---
+
+# Putaran 7: nomor 16 dan 17
+
+| # | Perbaikan | File | Verifikasi |
+|---|---|---|---|
+| 16 | **Pita tablet (768 sampai 1023px).** Fitur, Simulator, Cara Kerja, dan Harga kini dua kolom mulai 768px (sebelumnya baru di 1024px), dengan jarak lebih rapat daripada di desktop. Tanda minus pada angka di nota Fitur tidak lagi turun ke baris lain (`whitespace-nowrap`). Baris harga boleh membungkus. **Ritme jarak antar bagian:** tiga ukuran (`sm` / `md` / `lg`) menggantikan satu nilai untuk semua. `lg` untuk Masalah dan Hasil yang kamu dapat (kalimat besar dan baris tinggi), `sm` untuk Pembuat (hanya satu kutipan), sisanya `md`. | `ui.tsx`, `Features.tsx`, `Simulator.tsx`, `HowItWorks.tsx`, `Pricing.tsx`, `Problems.tsx`, `Maker.tsx` | Lebar blok di 1000px: lembar mock 952px menjadi 460px (teks 529px menjadi 460px, sejajar), input simulator 728px menjadi 268px, kartu harga 952px menjadi 460px. Sapuan 15 lebar (320 sampai 1440px): 0 overflow, 0 target di bawah 44px, console bersih. Padding desktop: 128 / 96 / 64px sesuai isinya. |
+| 17 | (a) **Skip link** "Lewati ke konten utama" sebagai elemen pertama, tersembunyi di atas layar sampai fokus keyboard (ukuran tetap 44px, bukan lime, cincin fokus lime 11,06:1 di atas bar). (b) **Landmark:** `<h1>` kini di dalam `<main id="utama">` (Hero dipindah masuk dan menjadi `<section>` berlabel), bar atas menjadi `<header>`. (c) **Bar bawah vs fokus keyboard:** `scroll-padding-bottom: 6rem` di HP, ditambah penanganan eksplisit `focusin` di `BottomBar` (hanya untuk `:focus-visible`) karena `scroll-padding` saja tidak cukup. | `Bars.tsx`, `App.tsx`, `Hero.tsx`, `index.css` | Tab pertama memfokuskan skip link di layar (top 8px, 44px), Enter ke `#utama`, Tab berikutnya mendarat di dalam `<main>`. Landmark: 1 `main`, 1 `header`, 1 `h1` di dalam `main`, 1 `footer`. Elemen yang tertutup bar bawah saat difokuskan dekat tepi layar HP: **45 dari 46 (sebelum)**, **37 dari 46 dengan `scroll-padding` saja**, **0 dari 44 (sesudah)**; 2 elemen sisanya ada di `<details>` tertutup dan memang tidak bisa difokuskan. |
+
+Regresi: semua tes putaran sebelumnya dijalankan ulang terhadap build ini (perbaikan #1, #3, #4, #8, #9, jalur menu, teks akhir uji coba, halaman Syarat dan Privasi): lulus. Dua asersi lama yang gagal di `verify3` adalah teks yang memang sengaja diubah di putaran 5 dan artefak akordeon eksklusif.
+
+## Pilihan saya yang bisa kamu ubah
+
+- Ukuran jarak per bagian dipilih berdasarkan isi (alasannya tertulis di komentar `ui.tsx`). Kalau mau bagian lain lebih longgar atau rapat, ubah prop `size` di bagian itu.
+- Pada 768 sampai 1023px, hasil simulator berada di kolom kanan yang sempit (±320px). Tetap terbaca, tetapi baris label terpecah dua. Alternatifnya kembali bertumpuk di rentang itu (bukan pilihan saya, karena input jadi melebar ±500px).
+- Penanganan `focusin` memakai `window.scrollBy(..., 'instant')`. Hanya diuji di Chromium, belum di Safari iOS atau perangkat sungguhan.
+
+---
+
+# Putaran 8: nomor 10 sampai 15
+
+**Dasar:** aturan tertulis pemilik di `DESIGN.md` repo aplikasi (`shopee-profit-calc`), yang dipilih pemilik dari tiga pratinjau. Aturan itu sudah memutuskan sebagian besar nomor ini, sehingga alasan di bawah dikutip dari sana, bukan ditebak. Pengecualian ditandai.
+
+| # | Perbaikan | Dasar | Verifikasi (browser, 1280px) |
+|---|---|---|---|
+| 10 | Semua garis kiri dekoratif dihapus: tiga butir Masalah, catatan di Cara Kerja, kutipan Pembuat (yang juga bukan kutipan sungguhan, jadi `<blockquote>` diganti `<div>`), dan garis abu di keterangan hero. | `DESIGN.md`: "Don't nest sheets or add coloured side stripes." | 0 elemen dengan garis kiri saja di seluruh halaman. |
+| 11 | Lime dibatasi pada peran di aturan pemilik: jawaban utama, kicker, stiker bernada positif, cincin fokus gelap, aksen logo, plus tombol WhatsApp (tambahan khusus landing). Dilepas dari: "Toko Contoh", batang progres, tombol file terpilih (kini on-field, seperti tab aktif di aplikasi), label "Di mana dapatnya?", garis putus-putus, cincin stiker Hero, garis bawah tautan footer. **Koreksi atas temuan saya:** stiker "Angka final" dan "Aman" lime di permukaan terang ternyata sesuai `DESIGN.md` (stiker positif = lime). Yang bertentangan adalah komentar `index.css` lama, yang kini ditulis ulang mengikuti `DESIGN.md`. | `DESIGN.md` bagian Colors | Peran lime di halaman: logo, 3 tombol WhatsApp, kicker, baris jawaban judul, angka hasil demo, stiker. Tidak ada di elemen yang dilepas. |
+| 12 | `data-reveal` dari 18 blok menjadi 2: nota hasil yang "tercetak" dan stiker iklan yang "tersetempel". Blok teks (Masalah, langkah, Trust, Harga, Pembuat, simulasi harga) tidak lagi bergerak. | `DESIGN.md` bagian Motion: "Motion marks an answer arriving or a state changing"; "Don't loop animations". **Saya tidak mendeklarasikan dial ENERGY/RHYTHM/MOTION**: itu bagian #7 dan masih butuh keputusan pemilik. | `data-reveal` = 2 (nota, iklan). Bundle diblokir: konten tampil di detik 5. Gulir normal: 2 blok tersembunyi sebelum digulir. |
+| 13 | Stiker "Hero" memakai centang, bukan bintang, dan bernada positif seperti "Aman" dan "Angka final". Ikon lain diberi alasan relevansi tertulis di `ui.tsx`. | Di aplikasi, Hero adalah `Stamp tone="gain"` tanpa ikon khusus. `DESIGN.md`: ikon dari `icons.tsx`, tanpa emoji atau glyph unicode. | Path SVG stiker Hero = centang. |
+| 14 | Alasan tertulis ditambahkan: font (Bricolage untuk jawaban, judul, angka, stiker; Public Sans untuk sisanya, angka tabular), satu bayangan lembut untuk lembar (token `--shadow-sheet`, menggantikan lima nilai berbeda), bayangan keras tombol dan kartu hero. **Gradasi hero dihapus** menjadi satu bidang `bg-field`: tidak ada alasannya di riwayat git maupun di `DESIGN.md` ("one saturated field"), dan `og.png` memakai bidang datar. | `DESIGN.md` bagian Typography, Elevation & Depth, Overview | Hero: `background-image: none`, `#2b2fa6`. Enam lembar memakai satu bayangan jatuh yang sama (bedanya hanya cincin tipis pada lima lembar putih). Hanya dua keluarga font yang dirender. |
+| 15 | Palet didokumentasikan sebagai tiga kelompok (indigo, satu aksen lime, sistem status loss/gain/sun). Token `mint` dan `coral` dihapus, lavender dinamai `field-soft`. Teks "Data pembeli diabaikan" yang tadinya mint kini on-field. `flash-mint` diganti `flash-ok`. | `DESIGN.md` bagian Colors: status Loss, Gain, Warn dengan arti tetap | Semua warna opak yang dipakai di halaman (diukur di DOM) berada dalam daftar palet: tidak ada yang di luar. |
+
+Kontras perubahan di permukaan gelap: tombol file terpilih 12,58:1, label "Di mana dapatnya?" 8,2:1, baris privasi 12,58:1.
+
+Regresi: semua tes putaran sebelumnya dijalankan ulang. Lulus, kecuali asersi lama yang usang: "#9" kini melihat 2 blok reveal (bukan 18), dan dua asersi "#6" yang sudah dicatat di putaran 5.
+
+## Yang tidak diubah dan alasannya
+
+- **Set ikon tetap bergaya garis seperti Lucide.** Centang dan panah bawah sama persis dengan `icons.tsx` aplikasi, tetapi ikon lain (perisai, berkas, putar ulang, chat) bukan salinan. Alasan tertulis di `ui.tsx` adalah konsistensi dengan aturan aplikasi, bukan klaim bahwa set ini orisinal. Mengganti seluruh set ikon adalah keputusan desain yang belum diminta.
+- **Warna aksen indigo di permukaan terang** (tautan, centang, chevron, judul harga) tidak diubah. `DESIGN.md` menyebutnya sebagai warna Stamp untuk tautan dan pilihan.
+- **Dial ENERGY/RHYTHM/MOTION dan `DESIGN.md` landing (#7)** masih terbuka. `DESIGN.md` aplikasi bisa dipakai sebagai dasar, tetapi menulis dokumen arah untuk landing tetap keputusan pemilik.
+
+---
+
+# Putaran 9: nomor 7 (`DESIGN.md` landing dan dial)
+
+## Kesalahan saya di putaran 8, ditemukan di putaran ini
+
+Saat menulis ulang blok `@theme` di `src/index.css` (putaran 8), saya menghapus token `--color-control` (#7f7f94) dari perbaikan #4 tanpa sengaja. Akibatnya `border-control` tidak menghasilkan warna dan batas input serta tombol diam-diam jatuh ke warna teks yang gelap. Tes #4 tetap lulus karena hanya memeriksa kontras minimal 3:1, dan batas gelap pun lolos. Tes palet putaran 8 ikut lolos karena `#7f7f94` memang tidak muncul sama sekali.
+
+Diperbaiki: token dipulihkan. Tes kini memeriksa nilai persis `#7f7f94` pada lima jenis kontrol, dan `#7f7f94` dimasukkan ke daftar warna yang diizinkan, sehingga kalau token ini hilang lagi tes langsung gagal.
+
+## Perbaikan #7
+
+| Perbaikan | File | Verifikasi |
+|---|---|---|
+| `DESIGN.md` landing dibuat: frontmatter token (warna, tipografi, bentuk, jarak, komponen), lalu Arah, Sumber, Dial, Warna, Tipografi, Tata letak, Kedalaman, Bentuk, Komponen, Gerak, Suara dan isi, Aksesibilitas, Do dan Don't. Tercantum juga Design Read: "halaman penjualan satu aksi untuk seller Shopee yang beriklan, dalam gaya bidang indigo + lembar putih + stiker stempel miring". README menunjuk ke dokumen ini. | `DESIGN.md`, `README.md` | Frontmatter terbaca sebagai YAML. 20 token warna identik dengan `@theme` di `index.css` (dicek otomatis, dua arah). Semua rujukan komponen terselesaikan. Tanpa em dash. `DESIGN.md` tidak ikut ke `dist/` (tidak terbit). |
+| **Dial: ENERGY 3 / RHYTHM 2 / MOTION 2**, ditandai **[diinferensi]**. | `DESIGN.md` | MOTION dan RHYTHM diuji di browser: 0 animasi berulang, 0 paralaks, 3 ukuran jarak antar bagian (128 / 96 / 64px). ENERGY 3 adalah penilaian saya atas tampilan, tidak bisa diukur. |
+
+## Apa yang saya tulis dan apa yang tidak
+
+Aturan skill: arah desain harus berasal dari pemilik, agen hanya memformat. Pemilik meminta "perbaiki 7" tanpa brief baru, jadi dokumen ini hanya mentranskripsikan tiga sumber: `DESIGN.md` dan `PRODUCT.md` aplikasi (dipilih pemilik dari tiga pratinjau), kode landing yang sudah ada, dan perbaikan audit 10 sampai 15 yang disetujui. Bagian "Sumber dan siapa yang menulis" di dalam `DESIGN.md` menyatakan ini terang-terangan, termasuk bahwa menghapus gradasi hero adalah pilihan saya yang belum dikonfirmasi.
+
+Tidak ada nama slogan baru, kepribadian merek, atau aturan visual baru yang saya karang. Arah "Cerita Bulan Ini" dipinjam dari aplikasi karena landing memang sudah menjalankannya.
+
+## Perlu konfirmasi pemilik
+
+1. **Dial.** Ketiga nilainya bacaan saya. ENERGY 3 terutama berlaku untuk hero dan penutup; bagian isi lebih tenang. Kalau pemilik menganggap landing ini seharusnya lebih tenang (ENERGY 2), perubahannya ada di komponen hero dan penutup, bukan di bagian isi.
+2. **Apakah landing memang mengikuti arah aplikasi.** Selama ini begitu secara de facto. Kalau ingin berbeda, ubah `DESIGN.md` dulu.
+3. **Pointer untuk agen.** Skill antislop menyarankan blok pointer di `CLAUDE.md` atau `AGENTS.md` supaya sesi berikutnya membaca `DESIGN.md` otomatis. Tidak saya buat karena tidak diminta.

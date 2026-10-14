@@ -1,8 +1,12 @@
+// Cloudflare Workers: landing ini hanya file statis hasil `npm run build` (folder dist).
+// Blok `previews` wajib ada supaya build branch selain main (`npx wrangler preview`) tidak gagal. Boleh kosong.
+// Sengaja tanpa `not_found_handling`: /syarat/ dan /privasi/ adalah halaman statis sungguhan, dan 404 harus tetap 404.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hitung-cuan",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist"
-  }
+  },
+  "previews": {}
 }

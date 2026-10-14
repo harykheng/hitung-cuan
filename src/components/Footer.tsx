@@ -6,7 +6,7 @@ import { Container } from './ui'
 
 export function Footer() {
   const source = useSource()
-  const link = 'font-semibold text-fg underline decoration-accent decoration-2 underline-offset-4'
+  const link = 'inline-flex min-h-11 items-center font-semibold text-fg underline decoration-fg-2 decoration-2 underline-offset-4'
   return (
     <footer className="tone-dark bg-night pt-12 pb-28 text-sm text-fg-2 sm:pb-12">
       <Container className="grid gap-8 md:grid-cols-2">
@@ -34,12 +34,17 @@ export function Footer() {
             </a>
           </p>
         </div>
-        <div>
+        <div id="privasi">
           <p className="font-semibold text-fg">Privasi singkat</p>
           <p className="mt-2 leading-relaxed">
             Halaman ini tidak menyimpan data apa pun; simulator dihitung di browser kamu. Di aplikasi, nama, alamat,
-            nomor HP, username, dan nomor resi pembeli tidak pernah dibaca atau disimpan. Yang disimpan: nomor pesanan,
-            produk, qty, status, dan angka penghasilan.
+            nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. Yang disimpan:
+            nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat.
+          </p>
+          <p className="mt-1">
+            <a href="/privasi/" className={link}>
+              Baca Kebijakan Privasi lengkap
+            </a>
           </p>
         </div>
       </Container>
@@ -49,7 +54,14 @@ export function Footer() {
           <a href={STUDIO_URL} className={link}>
             Studio Harel
           </a>{' '}
-          · © <span suppressHydrationWarning>{new Date().getFullYear()}</span>
+          · © <span suppressHydrationWarning>{new Date().getFullYear()}</span> ·{' '}
+          <a href="/syarat/" className={link}>
+            Syarat Layanan
+          </a>{' '}
+          ·{' '}
+          <a href="/privasi/" className={link}>
+            Kebijakan Privasi
+          </a>
         </p>
       </Container>
     </footer>

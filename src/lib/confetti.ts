@@ -1,6 +1,7 @@
 /** Confetti kertas satu kali per kunjungan, murni transform + opacity (CSS keyframes `confetti`). */
 let fired = false
 
+// Warna dari palet yang sama (lime, putih, sun, on-field-muted) ditambah coral-soft dari DESIGN.md aplikasi.
 const COLORS = ['#d7f45a', '#ffffff', '#f5d547', '#ff9b85', '#c3c5f2']
 // Sudut dan jarak tetap (bukan acak) supaya hasilnya konsisten dan bisa dites.
 const PIECES = Array.from({ length: 22 }, (_, i) => {

@@ -18,13 +18,13 @@ const PROBLEMS = [
 /** Tiga kalimat besar, bukan kotak metrik. Latar putih sebagai jeda setelah hero. */
 export function Problems() {
   return (
-    <Section tone="paper" labelledby="masalah">
+    <Section tone="paper" size="lg" labelledby="masalah">
       <h2 id="masalah" className="sr-only">
         Masalah yang sering dialami seller Shopee
       </h2>
       <ul className="grid gap-10 sm:gap-14">
         {PROBLEMS.map((p) => (
-          <li key={p.title} data-reveal className="max-w-3xl border-l-4 border-accent pl-5 sm:pl-7">
+          <li key={p.title} className="max-w-3xl">
             <p className="font-display text-2xl leading-[1.15] font-extrabold tracking-tight text-balance sm:text-4xl">
               {p.title}
             </p>

@@ -10,6 +10,12 @@ npm run build    # hasil di dist/ (sudah di-prerender jadi HTML statis)
 npm run preview  # cek hasil build
 ```
 
+## Arah desain
+
+`DESIGN.md` (token, tipografi, aturan lime, gerak, suara, aksesibilitas, dial) adalah sumber arah desain landing ini. Isinya
+mengikuti `DESIGN.md` aplikasi (`shopee-profit-calc`). Bagian dial masih **inferensi** dan menunggu konfirmasi pemilik.
+Kalau token di `src/index.css` berubah, ubah juga frontmatter `DESIGN.md` (nilainya harus sama).
+
 ## Susunan halaman
 
 Bar atas → Hero (kartu contoh) → Masalah → **Simulator iklan** → Animasi "3 file jadi 1 jawaban" → Yang kamu dapat →
@@ -30,6 +36,10 @@ Hanya `transform` dan `opacity`, tidak ada loop, tanpa dependensi animasi (CSS +
 
 - Konten disembunyikan untuk animasi **hanya** kalau JavaScript jalan (`<html class="js">` di-set di `<head>`).
   Tanpa JS dan dengan `prefers-reduced-motion`, semua teks dan angka langsung tampil, tanpa confetti.
+  Kalau JS aktif tetapi bundle belum berjalan setelah 4 detik (gagal muat atau jaringan lambat), skrip di `<head>`
+  mencabut kelas `js` supaya semua konten tampil; `src/main.tsx` memasang `data-hc` di `<html>` begitu bundle berjalan.
+- Gerak harus menandai sesuatu (jawaban datang, status berubah). Muncul saat digulir (`data-reveal`) hanya dipakai di dua blok:
+  nota hasil yang "tercetak" baris demi baris dan stiker iklan yang "tersetempel". Blok teks tidak ikut bergerak.
 - Confetti sekali per kunjungan (`src/lib/confetti.ts`).
 - Semua angka demo berlabel **Contoh**. Jangan tulis angka hasil, testimonial, atau klaim yang tidak ada datanya.
 
@@ -51,6 +61,16 @@ untuk `cta_click` per `lokasi`, pasang Plausible atau Umami.
 
 CTA click rate = pengunjung unik yang menekan tombol WhatsApp ÷ pengunjung unik, dibaca **per sumber** (`?src=`).
 
+## Halaman Syarat Layanan dan Kebijakan Privasi
+
+`public/syarat/index.html` dan `public/privasi/index.html` adalah halaman statis tanpa JavaScript (disalin apa adanya ke
+`dist/`), dilayani di `/syarat/` dan `/privasi/`. Harga sengaja tidak ditulis di sana; ubah aturan dan tanggal
+"Terakhir diperbarui" di file itu kalau kebijakannya berubah.
+
+Isi `/privasi/` dicocokkan dengan kode aplikasi (repo `shopee-profit-calc`) dan landing ini. Perbarui kalau salah satu
+berubah, terutama: memasang analitik atau cookie di landing, mengganti penyedia database, mengubah kolom yang disimpan
+aplikasi, atau dua seller berbagi satu database (saat ini tiap seller memakai database sendiri).
+
 ## Gambar share / Open Graph
 
 `public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja.
@@ -70,6 +90,10 @@ Repo ini punya `wrangler.jsonc` (aset statis dari `dist/`), jadi cocok untuk dua
 Jangan hapus `wrangler.jsonc`: tanpanya, `wrangler deploy` menjalankan autoconfig yang menyisipkan
 `@cloudflare/vite-plugin` ke `vite.config.ts` dan merusak langkah prerender. Versi Node dibaca dari `.node-version` (22).
 Setiap push ke branch produksi otomatis deploy ulang. `public/_headers` mengatur cache aset ber-hash selama 1 tahun.
+Blok `"previews": {}` di dalamnya juga jangan dihapus: Workers Builds menjalankan `npx wrangler preview` untuk branch selain
+main (termasuk branch pull request), dan tanpa blok itu build gagal dengan galat "Your Wrangler configuration is missing a
+`previews` block". Blok boleh kosong. Jangan menambah `not_found_handling`: `/syarat/` dan `/privasi/` adalah halaman statis
+sungguhan dan 404 harus tetap 404.
 
 ## Pasang custom domain `hitungcuan.studioharel.id`
 

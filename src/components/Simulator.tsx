@@ -40,6 +40,15 @@ export function Simulator() {
   if (Number.isFinite(a) && a >= 0 && a < 60) lastAdmin.current = a / 100
   const roas = lastRoas.current
   const admin = lastAdmin.current
+  // Hasil tetap memakai nilai valid terakhir, jadi pengguna perlu diberi tahu nilai mana yang sedang dipakai.
+  const roasError = !(Number.isFinite(r) && r > 0)
+    ? `ROAS harus lebih dari 0. Hasil memakai ROAS ${roasLabel(roas)}.`
+    : r > 99
+      ? `ROAS maksimal 99. Hasil memakai ROAS ${roasLabel(roas)}.`
+      : null
+  const adminError = !(Number.isFinite(a) && a >= 0 && a < 60)
+    ? `Persen admin harus antara 0 dan di bawah 60. Hasil memakai ${dec(admin * 100)}%.`
+    : null
 
   const used = () => trackOnce('simulator_used')
   const res = harga > 0 ? hitung({ hpp, harga, roas, admin }) : null
@@ -60,7 +69,7 @@ export function Simulator() {
         ada yang dikirim atau disimpan. Belum perlu chat.
       </p>
 
-      <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-[0_16px_40px_-20px_rgba(29,32,121,0.45)] ring-1 ring-line sm:mt-10 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
+      <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-sheet ring-1 ring-line sm:mt-10 sm:p-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
         {/* ----- Input ----- */}
         <div>
           <p className="text-sm font-semibold text-ink/70">Coba langsung</p>
@@ -74,7 +83,7 @@ export function Simulator() {
                 className={`min-h-11 rounded-full border-2 px-4 text-sm font-semibold transition-colors ${
                   activePreset?.id === p.id
                     ? 'border-btn bg-btn text-paper'
-                    : 'border-ink/25 text-ink hover:border-btn'
+                    : 'border-control text-ink hover:border-btn'
                 }`}
               >
                 {p.label}
@@ -117,7 +126,11 @@ export function Simulator() {
                     setRoasText(e.target.value.replace(/[^\d.,]/g, '').slice(0, 5))
                   }}
                   onBlur={() => setRoasText(dec(roas, 1))}
-                  className="min-h-12 w-24 rounded-xl border-2 border-ink/25 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn"
+                  aria-invalid={roasError !== null}
+                  aria-describedby={roasError ? 'sim-roas-error' : undefined}
+                  className={`min-h-12 w-24 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
+                    roasError ? 'border-loss' : 'border-control'
+                  }`}
                 />
                 <input
                   type="range"
@@ -133,6 +146,11 @@ export function Simulator() {
                   className="min-w-0 flex-1"
                 />
               </div>
+              {roasError ? (
+                <p id="sim-roas-error" role="alert" className="mt-1 text-sm font-semibold text-loss">
+                  {roasError}
+                </p>
+              ) : null}
               <p className="mt-1 text-sm text-ink/70">ROAS = omzet ÷ biaya iklan.</p>
             </div>
           </div>
@@ -157,8 +175,17 @@ export function Simulator() {
                   setAdminText(e.target.value.replace(/[^\d.,]/g, '').slice(0, 5))
                 }}
                 onBlur={() => setAdminText(dec(admin * 100))}
-                className="mt-1 block min-h-12 w-28 rounded-xl border-2 border-ink/25 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn"
+                aria-invalid={adminError !== null}
+                aria-describedby={adminError ? 'sim-admin-error' : undefined}
+                className={`mt-1 block min-h-12 w-28 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
+                  adminError ? 'border-loss' : 'border-control'
+                }`}
               />
+              {adminError ? (
+                <p id="sim-admin-error" role="alert" className="mt-2 text-sm font-semibold text-loss">
+                  {adminError}
+                </p>
+              ) : null}
               <p className="mt-2 text-sm leading-relaxed text-ink/75">
                 Contoh: admin {dec(DEFAULT_ADMIN * 100)}%, di aplikasi kamu isi sesuai kategori tokomu. Persen admin
                 berbeda tiap kategori dan bisa berubah, jadi bukan tarif resmi Shopee.
@@ -186,7 +213,7 @@ export function Simulator() {
         </div>
 
         {/* ----- Hasil ----- */}
-        <div className="lg:border-l lg:border-ink/15 lg:pl-12">
+        <div className="md:border-l md:border-ink/15 md:pl-8 lg:pl-12">
           {res ? <Result res={res} roas={roas} hpp={hpp} harga={harga} nota={nota} setNota={setNota} admin={admin} /> : (
             <p className="text-lg text-ink/75">Isi harga jual untuk melihat hasilnya.</p>
           )}
@@ -225,8 +252,8 @@ function MoneyField({
         {label}
       </label>
       <div className="mt-1.5 flex items-center gap-2">
-        <div className="flex min-h-12 min-w-0 flex-1 items-center rounded-xl border-2 border-ink/25 bg-paper px-3 focus-within:border-btn">
-          <span className="text-ink/60">Rp</span>
+        <div className="flex min-h-12 min-w-0 flex-1 items-stretch rounded-xl border-2 border-control bg-paper px-3 focus-within:border-btn">
+          <span className="flex items-center text-ink/60">Rp</span>
           <input
             id={id}
             type="text"
@@ -242,7 +269,7 @@ function MoneyField({
           type="button"
           onClick={() => step(-1000)}
           aria-label={`Kurangi ${label} Rp1.000`}
-          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-ink/25 hover:border-btn"
+          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-btn"
         >
           <MinusIcon />
         </button>
@@ -250,7 +277,7 @@ function MoneyField({
           type="button"
           onClick={() => step(1000)}
           aria-label={`Tambah ${label} Rp1.000`}
-          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-ink/25 hover:border-btn"
+          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-btn"
         >
           <PlusIcon />
         </button>

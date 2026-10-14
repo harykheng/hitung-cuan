@@ -20,12 +20,12 @@ const HEADLINE_B = 'Iklan mana yang sebaiknya dimatikan?'
 
 export function Hero() {
   return (
-    <header id="hero" className="hero-bg tone-dark text-fg">
+    <section id="hero" aria-labelledby="judul-utama" className="tone-dark bg-field text-fg">
       <Container className="pt-10 pb-16 lg:pt-16 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <p className="font-semibold tracking-wide text-accent">Untuk seller Shopee yang beriklan</p>
-            <h1 className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
+            <h1 id="judul-utama" className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
               <Words text={HEADLINE_A} />
               <span className="block text-lime">
                 <Words text={HEADLINE_B} start={HEADLINE_A.split(' ').length} />
@@ -43,14 +43,14 @@ export function Hero() {
                 <ArrowDownIcon />
               </GhostLink>
             </div>
-            <div className="mt-5 grid max-w-xl gap-1.5 border-l-2 border-rule pl-4">
+            <div className="mt-5 grid max-w-xl gap-1.5">
               <p className="text-sm font-semibold text-fg">Uji coba gratis 30 hari, tanpa kartu kredit.</p>
               <p className="text-sm text-fg">
                 Akun dibuatkan admin secara manual setelah kamu chat. Admin membalas maksimal 1×24 jam.
               </p>
               <p className="text-sm text-fg-2">
                 Saat ini hanya untuk Shopee · Bukan produk resmi Shopee · Nama, alamat, dan nomor HP pembeli tidak
-                pernah dibaca atau disimpan.
+                diambil atau disimpan.
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export function Hero() {
           <StoryCard />
         </div>
       </Container>
-    </header>
+    </section>
   )
 }
 
@@ -70,7 +70,7 @@ const CASES = {
 
 const SEGMENTS = [
   { key: 'modal', pct: 57, label: 'Modal', cls: 'bg-field', num: 'text-white', text: 'Rp57 dari tiap Rp100 untuk modal barang (HPP).' },
-  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-[#a9adeb]', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
+  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-field-soft', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
   { key: 'untung', pct: 24, label: 'Untung', cls: 'bg-gain', num: 'text-white', text: 'Rp24 sisa untung bersihmu.' },
 ] as const
 

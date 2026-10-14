@@ -12,13 +12,14 @@ const STEPS = [
 ]
 
 /*
- * Jalur menu per file. Yang pertama dari dokumen kerja; dua lainnya jalur umum Seller Centre
- * dan perlu dicocokkan dengan PANDUAN aplikasi sebelum tayang.
+ * Jalur menu per file, dari pemilik toko (dicek di Seller Centre, 14 Okt 2026).
+ * Format file dan syarat tiap file iklan dicocokkan dengan PANDUAN.md dan parser aplikasi (src/lib/shopeeColumns.ts).
+ * Kalau Shopee mengubah menunya, ubah di sini.
  */
 const FILES = [
-  { name: 'pesanan.xlsx', path: 'Pesanan Saya → Export → status Semua' },
-  { name: 'penghasilan.pdf', path: 'Keuangan → Penghasilan Saya → unduh laporan penghasilan' },
-  { name: 'iklan.csv', path: 'Iklan Shopee → laporan → unduh data iklan' },
+  { name: 'pesanan.xlsx', path: 'Pesanan Saya → Semua → Export → pilih rentang tanggal' },
+  { name: 'penghasilan.pdf', path: 'Penghasilan Saya → Catatan transaksi penghasilan → pilih rentang tanggal bulanan' },
+  { name: 'iklan.csv', path: 'Iklan → Download data → pilih periode 1 bulan penuh. Unduh Data Keseluruhan Iklan (wajib). Kalau kamu memakai iklan produk otomatis, unduh juga Rincian data iklan produk otomatis. Kalau memakai grup iklan, unduh juga Semua data grup iklan' },
 ]
 
 const FINAL = 5
@@ -35,12 +36,12 @@ const SCHEDULE: [number, number][] = [
 export function HowItWorks() {
   return (
     <Section tone="paper" id="cara-kerja" labelledby="cara-kerja-judul">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+      <div className="grid gap-12 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
           <H2 id="cara-kerja-judul">Dari chat sampai hasil pertama</H2>
           <ol className="mt-8 grid gap-6">
             {STEPS.map((s, i) => (
-              <li key={s.t} data-reveal className="flex gap-4" style={vars({ transitionDelay: `${i * 100}ms` })}>
+              <li key={s.t} className="flex gap-4">
                 <span
                   aria-hidden="true"
                   className="grid size-11 shrink-0 place-items-center rounded-full bg-field font-display text-xl font-extrabold text-white"
@@ -57,7 +58,7 @@ export function HowItWorks() {
               </li>
             ))}
           </ol>
-          <p className="mt-8 border-l-4 border-accent pl-4 text-fg-2">
+          <p className="mt-8 text-fg-2">
             Upload paling nyaman lewat laptop. Hasilnya bisa dilihat dari HP.
           </p>
         </div>
@@ -104,7 +105,7 @@ function FlowDemo() {
   const rows = stage >= 5
 
   return (
-    <div ref={boxRef} className="tone-dark rounded-3xl bg-field-deep p-5 text-fg shadow-[0_16px_40px_-20px_rgba(29,32,121,0.7)] sm:p-8">
+    <div ref={boxRef} className="tone-dark rounded-3xl bg-field-deep p-5 text-fg shadow-sheet sm:p-8">
       <div className="flex items-center justify-between gap-3">
         <ExampleTag className="text-on-field-muted" />
         {animated ? (
@@ -126,7 +127,7 @@ function FlowDemo() {
             key={f.name}
             style={vars({ transitionDelay: uploading ? '0ms' : `${i * 120}ms` })}
             className={`transition-[opacity,transform] duration-300 ease-out ${
-              !entered ? '-translate-x-6 opacity-0' : uploading ? 'translate-y-4 scale-90 opacity-30' : ''
+              !entered ? '-translate-x-6 opacity-0' : uploading ? 'translate-y-4' : ''
             }`}
           >
             <button
@@ -134,7 +135,7 @@ function FlowDemo() {
               aria-expanded={openFile === i}
               onClick={() => setOpenFile(openFile === i ? null : i)}
               className={`inline-flex min-h-11 items-center gap-2 rounded-lg border-2 px-3 text-sm font-semibold ${
-                openFile === i ? 'border-lime bg-lime text-field-deep' : 'border-on-field-muted/50 text-on-field'
+                openFile === i ? 'border-on-field bg-on-field text-field-deep' : 'border-on-field-muted/50 text-on-field'
               }`}
             >
               <FileIcon className="size-4" />
@@ -144,8 +145,8 @@ function FlowDemo() {
         ))}
       </ul>
       {openFile !== null ? (
-        <div className="mt-3 rounded-xl border-2 border-dashed border-lime/70 p-4" role="region" aria-label="Di mana dapatnya?">
-          <p className="text-sm font-semibold text-lime">Di mana dapatnya?</p>
+        <div className="mt-3 rounded-xl border-2 border-dashed border-on-field-muted/60 p-4" role="region" aria-label="Di mana dapatnya?">
+          <p className="text-sm font-semibold text-on-field-muted">Di mana dapatnya?</p>
           <p className="mt-1">
             <span className="font-semibold">{FILES[openFile].name}</span>: Seller Centre → {FILES[openFile].path}
           </p>
@@ -155,18 +156,18 @@ function FlowDemo() {
       {/* Tahap 2-3: kotak upload */}
       <div className="mt-5 rounded-xl border-2 border-on-field-muted/40 p-4">
         <p className="font-semibold">
-          Upload ke toko: <span className="text-lime">Toko Contoh</span>
+          Upload ke toko: <span className="font-extrabold">Toko Contoh</span>
         </p>
         <div className="mt-3 h-2 overflow-hidden rounded-full bg-on-field/15" aria-hidden="true">
           <div
-            className="h-full origin-left rounded-full bg-lime transition-transform ease-linear"
+            className="h-full origin-left rounded-full bg-on-field transition-transform ease-linear"
             style={{ transform: uploading ? 'scaleX(1)' : 'scaleX(0)', transitionDuration: '600ms' }}
           />
         </div>
         <p
-          className={`mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-mint transition-opacity duration-300 ${
+          className={`mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-on-field transition-opacity duration-300 ${
             privacy ? 'opacity-100' : 'opacity-0'
-          } ${stage === 3 ? 'flash-mint' : ''}`}
+          } ${stage === 3 ? 'flash-ok' : ''}`}
         >
           <CheckIcon className="size-4" />
           Data pembeli diabaikan
@@ -220,7 +221,7 @@ function Answer({ showRows }: { showRows: boolean }) {
         </li>
         <li className="flex flex-wrap items-center gap-3">
           <span className="font-semibold">1 produk Hero</span>
-          {showRows ? <Sticker kind="hero" delay={60} rot={-3} className="ring-2 ring-lime">Hero</Sticker> : null}
+          {showRows ? <Sticker kind="hero" delay={60} rot={-3}>Hero</Sticker> : null}
         </li>
       </ul>
     </div>
