@@ -187,9 +187,7 @@ Semua pasangan teks harus lulus 4,5:1 (3:1 untuk teks 18px ke atas). Hitung deng
 
 ## Kedalaman
 
-Dua tingkat: permukaan halaman, dan lembar di atasnya dengan **satu bayangan lembut** (`--shadow-sheet`, nilainya dari varian C). Dipakai di simulator, ketiga mock hasil, kartu harga, dan kartu demo. Elemen lain datar. Tanpa lembar di dalam lembar.
-
-Pengecualian yang disengaja: tombol WhatsApp dan kartu hero memakai bayangan keras setebal 3px dan 8px berwarna tinta ("tepi kertas"), selaras dengan stiker yang miring.
+Dua tingkat: permukaan halaman, dan lembar di atasnya dengan **satu bayangan lembut** (`--shadow-sheet`, nilainya dari varian C). Dipakai di simulator, ketiga mock hasil, kartu harga, kartu hero, dan kartu demo. Elemen lain datar, termasuk tombol WhatsApp (hanya garis tepi 2px). Tanpa lembar di dalam lembar. Bayangan keras berwarna tinta ("tepi kertas") sudah dibuang (commit terpisah, boleh dibatalkan): menurut pemilik gaya itu ikut membuat halaman terasa seperti templat.
 
 ## Bentuk
 
@@ -197,7 +195,7 @@ Pil (9999px) untuk tombol, tautan sekunder, penanda "Contoh", dan sakelar. 24px 
 
 ## Komponen
 
-- **CTA WhatsApp:** pil indigo (`ember`) dengan teks putih (9,54:1), tinggi 56px (44px untuk bar atas), bayangan keras tinta 3px yang menekan saat ditekan. Garis tepi 2px mengikuti nada bagian: `ink` di permukaan terang, `on-night` di permukaan gelap (indigo hanya 1,57:1 terhadap `night`, garis `on-night` 14,56:1, jadi batas tombol tetap terlihat di penutup dan bar CTA bawah). Hover memakai indigo sedikit lebih terang (`#3546b5`, putih di atasnya 7,79:1). Teks tinta di atas indigo gagal kontras (1,83:1), jangan dipakai. Hanya aksi WhatsApp yang boleh tampak seperti ini. Tautan lain memakai **ghost link** (garis tepi `ink-2`, tinggi 48px) atau tautan teks.
+- **CTA WhatsApp:** pil indigo (`ember`) dengan teks putih (9,54:1), tinggi 56px (44px untuk bar atas), turun 1px saat ditekan, tanpa bayangan. Garis tepi 2px mengikuti nada bagian: `ink` di permukaan terang, `on-night` di permukaan gelap (indigo hanya 1,57:1 terhadap `night`, garis `on-night` 14,56:1, jadi batas tombol tetap terlihat di penutup dan bar CTA bawah). Hover memakai indigo sedikit lebih terang (`#3546b5`, putih di atasnya 7,79:1). Teks tinta di atas indigo gagal kontras (1,83:1), jangan dipakai. Hanya aksi WhatsApp yang boleh tampak seperti ini. Tautan lain memakai **ghost link** (garis tepi `ink-2`, tinggi 48px) atau tautan teks.
 - **Stiker:** huruf tampilan 800, kapital, miring sekitar 3 sampai 4 derajat, selalu memuat kata dan ikon. Positif = `mintbg` dengan teks dan garis `gain` dan centang (Angka final, Aman, Hero). Rugi = `loss` dengan teks putih dan tanda silang (Takedown). Perhatian = `sun` dengan teks `sun-ink` dan segitiga (ROAS terlalu kecil).
 - **Penanda "Contoh":** pil bergaris kapital. Wajib ada di setiap angka demo.
 - **Lembar:** `paper`, 24px, `--shadow-sheet`. Lembar di permukaan terang memakai cincin 1px `line`, kartu demo gelap tidak.

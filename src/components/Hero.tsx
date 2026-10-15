@@ -104,7 +104,7 @@ function StoryCard() {
   return (
     <figure
       aria-label="Contoh tampilan rekap bulanan"
-      className={`hero-card tone-light relative mx-auto w-full max-w-md rounded-3xl bg-paper p-6 text-fg shadow-[0_8px_0_0_#1c1917] sm:p-8 ${go ? 'go' : ''}`}
+      className={`hero-card tone-light relative mx-auto w-full max-w-md rounded-3xl bg-paper p-6 text-fg shadow-sheet ring-1 ring-line sm:p-8 ${go ? 'go' : ''}`}
     >
       <figcaption className="flex items-center justify-between gap-3">
         <ExampleTag />

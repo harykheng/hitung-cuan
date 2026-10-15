@@ -170,7 +170,7 @@ export function Cta({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta(lokasi)}
-      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-fg bg-ember text-center font-display font-bold text-white shadow-[0_3px_0_0_#1c1917] transition-[transform,background-color] duration-150 hover:bg-[#3546b5] active:translate-y-px active:shadow-[0_2px_0_0_#1c1917] ${dims} ${className}`}
+      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-fg bg-ember text-center font-display font-bold text-white transition-[transform,background-color] duration-150 hover:bg-[#3546b5] active:translate-y-px ${dims} ${className}`}
     >
       <ChatIcon className={size === 'sm' ? 'size-5 shrink-0' : 'size-6 shrink-0 max-[419px]:hidden'} />
       {children}
