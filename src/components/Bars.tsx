@@ -49,12 +49,15 @@ export function BottomBar() {
 
   // Fokus keyboard tidak boleh berakhir di balik bar ini. scroll-padding saja tidak cukup: browser tidak menggulir
   // elemen yang sebagian sudah terlihat. Hanya untuk fokus keyboard (:focus-visible), supaya ketukan jari tidak
-  // menggeser halaman di antara tekan dan lepas.
+  // menggeser halaman di antara tekan dan lepas (catatan: input teks selalu cocok dengan :focus-visible, juga saat diklik).
+  // Dari 640px bar ini display:none (sm:hidden) dan tidak punya kotak; tanpa cek itu posisi atasnya terbaca 0, sehingga
+  // mengklik input simulator di tablet/desktop melompatkan halaman ratusan piksel.
   useEffect(() => {
     const onFocus = (e: FocusEvent) => {
       const b = bar.current
       const t = e.target
-      if (!b || !(t instanceof HTMLElement) || b.contains(t) || getComputedStyle(b).visibility === 'hidden') return
+      if (!b || !(t instanceof HTMLElement) || b.contains(t)) return
+      if (!b.getClientRects().length || getComputedStyle(b).visibility === 'hidden') return
       if (!t.matches(':focus-visible')) return
       const overlap = t.getBoundingClientRect().bottom - b.getBoundingClientRect().top
       if (overlap > 0) window.scrollBy({ top: overlap + 16, behavior: 'instant' })
