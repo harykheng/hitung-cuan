@@ -1,61 +1,59 @@
 ---
 name: HitungCuan (landing)
-description: Halaman landing satu aksi untuk seller Shopee yang beriklan. Jawaban dulu sebagai kalimat besar di bidang indigo, hitungan di lembar putih, satu tombol WhatsApp.
+description: Halaman landing satu aksi untuk seller Shopee yang beriklan. Jawaban dulu sebagai kalimat besar di bidang terang hangat, hitungan di lembar putih, satu tombol WhatsApp.
 colors:
-  field: "#2b2fa6"
-  field-deep: "#1d2079"
-  night: "#14165a"
-  field-soft: "#a9adeb"
+  canvas: "#fffbf6"
   paper: "#ffffff"
-  canvas: "#f6f7fc"
-  tint: "#e9ecfb"
-  line: "#d9dcf3"
-  control: "#7f7f94"
-  ink: "#16173d"
-  ink-2: "#4a4d78"
-  ink-3: "#5c5f89"
-  on-field: "#f6f4ff"
-  on-field-muted: "#c3c5f2"
-  lime: "#d7f45a"
-  btn: "#2b2fa6"
+  tint: "#f7f1e8"
+  line: "#ece2d4"
+  control: "#8a8178"
+  ink: "#1c1917"
+  ink-2: "#57534e"
+  ink-3: "#6f6860"
+  night: "#2a2623"
+  night-deep: "#1c1917"
+  on-night: "#fffbf6"
+  on-night-muted: "#d6cfc4"
+  ember: "#ff7a2f"
+  ember-text: "#b34d12"
+  peach: "#ffe3d0"
+  mintbg: "#ddf3e9"
   loss: "#c4361e"
   gain: "#146c43"
   sun: "#f5d547"
   sun-ink: "#4a3200"
 typography:
   h1:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Parkinsans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "3.6rem"
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.025em"
-    fontFeature: "tnum"
   h2:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Parkinsans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "2.75rem"
     fontWeight: 800
     lineHeight: 1.08
     letterSpacing: "-0.025em"
-    fontFeature: "tnum"
   h3:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Parkinsans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "2.25rem"
     fontWeight: 800
     lineHeight: 1.25
     letterSpacing: "-0.025em"
   lead:
-    fontFamily: "Public Sans, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.25rem"
     fontWeight: 400
     lineHeight: 1.625
   body:
-    fontFamily: "Public Sans, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.625
     fontFeature: "tnum"
   small:
-    fontFamily: "Public Sans, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.43
@@ -75,23 +73,23 @@ spacing:
   section-lg: "64px"
 components:
   cta:
-    backgroundColor: "{colors.lime}"
+    backgroundColor: "{colors.ember}"
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
     height: "56px"
   cta-small:
-    backgroundColor: "{colors.lime}"
+    backgroundColor: "{colors.ember}"
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
     height: "44px"
   ghost-link:
     backgroundColor: "transparent"
-    textColor: "{colors.on-field}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
     height: "48px"
   sticker-positive:
-    backgroundColor: "{colors.lime}"
-    textColor: "{colors.field-deep}"
+    backgroundColor: "{colors.mintbg}"
+    textColor: "{colors.gain}"
     rounded: "{rounded.tag}"
   sticker-loss:
     backgroundColor: "{colors.loss}"
@@ -117,48 +115,58 @@ components:
 
 ## Arah
 
-Landing ini mengikuti arah "Cerita Bulan Ini" dari `DESIGN.md` aplikasi (repo `shopee-profit-calc`): jawaban datang lebih dulu sebagai kalimat besar di satu bidang indigo yang penuh, lalu hitungannya muncul di lembar putih. Contohnya di halaman ini: judul hero berupa dua pertanyaan, kartu "Agustus 2026, toko kamu untung Rp3,42 juta" di atas lembar putih, dan nota hasil yang "tercetak" baris demi baris.
+Struktur arahnya tetap "Cerita Bulan Ini" dari `DESIGN.md` aplikasi (repo `shopee-profit-calc`): jawaban datang lebih dulu sebagai kalimat besar, lalu hitungannya muncul di lembar putih. Contohnya di halaman ini: judul hero berupa dua pertanyaan, kartu "Agustus 2026, toko kamu untung Rp3,42 juta" di atas lembar putih, dan nota hasil yang "tercetak" baris demi baris.
+
+**Yang berubah dari versi sebelumnya adalah kulitnya.** Indigo jenuh dan lime diganti "Dapur Terang": krem hangat, tinta, satu aksen oranye ember, dengan Parkinsans dan Plus Jakarta Sans. Alasannya dari pemilik: tampilan indigo, lime, dan Bricolage Grotesque terasa terlalu AI.
 
 Halaman ini hanya punya satu aksi utama, yaitu chat WhatsApp (README). Semua yang lain (simulator, FAQ, tautan Syarat dan Privasi) mendukung keputusan itu.
 
-**Design Read:** halaman penjualan satu aksi untuk seller Shopee yang beriklan, dalam gaya bidang indigo + lembar putih + stiker stempel miring, dial ENERGY 3 / RHYTHM 2 / MOTION 2.
+**Design Read:** halaman penjualan satu aksi untuk seller Shopee yang beriklan, dalam gaya dapur terang (krem hangat + tinta + ember + stiker stempel miring), dial ENERGY 2 / RHYTHM 2 / MOTION 2.
 
 ## Sumber dan siapa yang menulis
 
-Dokumen ini ditulis oleh Claude pada 14 Oktober 2026 sebagai bagian dari audit antislop, **bukan dari brief baru dari pemilik**. Isinya hanya mentranskripsikan tiga sumber:
+Dokumen ini ditulis oleh Claude sebagai bagian dari audit antislop dan pengerjaan arah baru, **bukan dari brief tertulis pemilik**. Isinya mentranskripsikan empat sumber:
 
-1. `DESIGN.md` dan `PRODUCT.md` aplikasi. Arah di dokumen itu dipilih pemilik dari tiga pratinjau (Resi & Kardus, Cerita Bulan Ini, Papan Toko).
-2. Kode landing yang sudah ada: `src/index.css` (token), `src/components/*` (komponen), `README.md`.
-3. Perbaikan audit nomor 10 sampai 15 yang disetujui pemilik (lime hanya untuk peran tertentu, tanpa garis samping, bidang hero datar). Pilihan teknis di dalamnya, seperti menghapus gradasi hero, saya putuskan berdasarkan aturan `DESIGN.md` aplikasi dan `og.png`, dan belum dikonfirmasi satu per satu.
+1. `DESIGN.md` dan `PRODUCT.md` aplikasi (struktur "jawaban dulu, hitungan di lembar", aturan gerak, aturan tanpa garis samping).
+2. Kode landing yang sudah ada (`src/index.css`, `src/components/*`, `README.md`).
+3. Perbaikan audit nomor 10 sampai 15 yang disetujui pemilik.
+4. **Varian C "Dapur Terang" dari proposal "Ordi Tiga Arah"** (berkas yang diberikan pemilik pada 15 Okt 2026).
 
-Bagian bertanda **[diinferensi]** adalah bacaan saya atas kode yang ada, bukan keputusan pemilik: hanya dial di bawah. Pemilik perlu mengonfirmasi atau mengubahnya. Kalau arah desain landing berbeda dari aplikasi, dokumen inilah yang diubah lebih dulu, baru kodenya.
+**Yang diambil dari varian C:** palet (krem `#fffbf6`, tinta `#1c1917`, ember `#ff7a2f`, peach, mint), pasangan font (Parkinsans untuk judul, Plus Jakarta Sans untuk isi), bayangan lembut, dan sorotan peach di baris jawaban.
+
+**Yang sengaja tidak diambil**, karena bertentangan dengan aturan antislop dan dengan Don't di bawah: blob radial yang melayang, cahaya yang mengikuti kursor, kartu yang bergoyang tanpa henti dan miring mengikuti kursor, lencana berbentuk pil bertitik di atas judul, kartu pastel (peach, mint, butter, lilac) sebagai hiasan, dan nama serta isi produk Ordi. Proposal itu sendiri menilai varian C "paling dekat dengan gaya aplikasi pada umumnya".
+
+Tiga koreksi dari hitungan kontras (`contrast-check.py`) atas nilai di proposal: teks di atas ember wajib tinta (6,73:1; putih hanya 2,6:1), teks ember di atas terang wajib `ember-text` (5,11:1), dan hijau status memakai `gain` (5,55:1 di atas `mintbg`; mint `#1f8a62` bawaan proposal hanya 3,71:1).
+
+Bagian bertanda **[diinferensi]** adalah bacaan saya, bukan keputusan pemilik: hanya dial di bawah. Landing kini **berbeda dari aplikasi** (yang masih indigo dan lime). Pemilik perlu memutuskan apakah aplikasi ikut berubah atau perbedaan ini disengaja. Kalau arah berubah lagi, dokumen inilah yang diubah lebih dulu, baru kodenya.
 
 ## Dial [diinferensi]
 
-Dial: ENERGY 3 / RHYTHM 2 / MOTION 2
+Dial: ENERGY 2 / RHYTHM 2 / MOTION 2
 
-- **ENERGY 3.** Hero dan penutup berupa bidang indigo jenuh, judul tampilan 800 setinggi 3,6 rem, baris jawaban berwarna lime, stiker stempel miring, dan satu ledakan confetti. Bagian isi di antaranya tenang (lembar putih, teks polos), jadi nilai 3 terutama berlaku untuk hero dan penutup.
+- **ENERGY 2.** Hero kini terang dan tenang. Yang paling keras tinggal judul Parkinsans 800 setinggi 3,6 rem, baris jawaban ember dengan sorotan peach, tombol ember bergaris tinta, dan satu ledakan confetti. Sebelumnya (bidang indigo jenuh) nilainya 3.
 - **RHYTHM 2.** Grid, container, dan tangga jarak konsisten. Komposisi bagian berbeda-beda secara sengaja: kalimat besar (Masalah), alat (Simulator), langkah + demo (Cara Kerja), baris bergantian (Hasil), dua kolom (Trust, Harga), satu pernyataan (Pembuat), akordeon (FAQ). Ukuran jarak ada tiga (`sm`, `md`, `lg`) dan nada latar bergantian paper, tint, canvas.
-- **MOTION 2.** Gerak menandai jawaban yang datang atau status yang berubah (lihat bagian Gerak). Tidak ada paralaks, tidak ada koreografi gulir, tidak ada gerak yang berulang tanpa henti.
+- **MOTION 2.** Gerak menandai jawaban yang datang atau status yang berubah (lihat bagian Gerak). Tidak ada paralaks, koreografi gulir, atau gerak yang berulang tanpa henti.
 
 ## Warna
 
-**Aturan bidang dan lembar.** Teks langsung di atas bidang indigo memakai `on-field` atau `on-field-muted`. Teks di lembar terang memakai skala `ink`. Jangan menaruh teks `ink` di bidang indigo, dan jangan menaruh `on-field` di lembar putih. Token nada (`.tone-light`, `.tone-dark`) mengatur ini per bagian.
+**Aturan permukaan.** Teks di permukaan terang memakai skala `ink`. Teks di permukaan gelap (`night`, `night-deep`) memakai `on-night` atau `on-night-muted`. Jangan menaruh `ink` di permukaan gelap atau `on-night` di permukaan terang. Token nada (`.tone-light`, `.tone-dark`) mengatur ini per bagian.
 
 **Tiga kelompok, tidak lebih** (batas R-29; alasan lengkap ada di komentar `src/index.css`):
 
-- **Inti: indigo.** `field` (hero dan aksen di permukaan terang), `field-deep` (bar atas, penutup, kartu demo), `night` (footer), `field-soft` (bagian "Biaya" pada batang di kartu contoh). Netral bernuansa indigo: `paper`, `canvas`, `tint`, `line`, `control`.
-- **Satu aksen: `lime`.** Hanya untuk: baris jawaban di judul hero dan angka hasil di demo, kicker (baris kecil di atas judul hero), stiker bernada positif (Angka final, Aman, Hero), cincin fokus di permukaan gelap, aksen logo ("Cuan"), dan tombol WhatsApp. Peran terakhir adalah tambahan khusus landing karena ini satu-satunya aksi utama halaman. Di luar peran itu, teks dan garis di permukaan gelap memakai `on-field` atau `on-field-muted`.
-- **Status, satu sistem dengan arti tetap:** `loss` (rugi, Takedown), `gain` (untung), `sun` (perlu perhatian, "ROAS terlalu kecil"). Status selalu disertai kata atau ikon, tidak pernah hanya warna.
+- **Inti: netral hangat.** `canvas` (halaman dan hero), `paper` (lembar), `tint` (bagian bergantian), `line`, `control`, dan skala `ink`, `ink-2`, `ink-3`. Dua permukaan gelap: `night` (kartu demo, penutup, bar CTA bawah) dan `night-deep` (footer).
+- **Satu aksen: `ember`**, dengan turunannya: `ember-text` (teks dan ikon aksen di permukaan terang), `peach` (sorotan di bawah baris jawaban), `mintbg` (latar stiker positif). Peran ember: tombol WhatsApp, angka hasil di permukaan gelap, aksen logo ("Cuan"), dan cincin fokus di permukaan gelap. `ember-text` dipakai untuk baris jawaban judul hero, kicker, tautan, dan ikon aksen.
+- **Status, satu sistem dengan arti tetap:** `loss` (rugi, Takedown), `gain` (untung, stiker positif), `sun` (perlu perhatian, "ROAS terlalu kecil"). Status selalu disertai kata atau ikon, tidak pernah hanya warna. **Ember tidak pernah dipakai sebagai warna status**: rona ember hanya berjarak 13 derajat dari `loss`, jadi keduanya mudah tertukar.
 
-**Batas kontrol** (`control`, #7f7f94) dipakai untuk border input dan tombol bergaris di permukaan terang. Kontrasnya 3,9:1 terhadap putih (syarat WCAG 1.4.11 adalah 3:1). Jangan memakai `ink` dengan opasitas rendah untuk batas kontrol.
+**Batas kontrol** (`control`, #8a8178) dipakai untuk border input dan tombol bergaris di permukaan terang. Kontrasnya 3,8:1 terhadap putih (syarat WCAG 1.4.11 adalah 3:1).
 
 Semua pasangan teks harus lulus 4,5:1 (3:1 untuk teks 18px ke atas). Hitung dengan `skills/antislop-human/contrast-check.py` dari repo antislop, jangan dikira-kira.
 
 ## Tipografi
 
-- **Tampilan: Bricolage Grotesque** (800, 700) untuk judul, kalimat jawaban, angka besar, nama merek, dan stiker. Alasannya sama dengan aplikasi: bobotnya tebal dan angkanya jelas dibaca besar ("Rp3,42 juta").
-- **Isi: Public Sans** (400, 600) untuk semua teks lain. Polos, nyaman dibaca panjang, dan punya angka tabular (`tnum` aktif di seluruh halaman) supaya kolom rupiah rata.
+- **Tampilan: Parkinsans** (700, 800) untuk judul, kalimat jawaban, angka besar tunggal, nama merek, dan stiker. Bersih tapi ramah, dan tidak dikenali sebagai font bawaan halaman buatan AI seperti Bricolage Grotesque 800 (alasan yang sama ditulis proposal).
+- **Isi: Plus Jakarta Sans** (400, 600, 700) untuk semua teks lain. Huruf buatan Indonesia, tidak terasa templat di ukuran kecil, dan punya angka tabular.
+- **Angka di kolom memakai Plus Jakarta Sans.** Angka Parkinsans proporsional (lebar "1111111111" 180px, "0000000000" 210px), jadi hanya dipakai untuk angka tunggal besar (hero, harga, total nota).
 - Keduanya dimuat dari server sendiri lewat `@fontsource`, tanpa layanan font luar.
 - Ukuran judul turun di layar kecil: h1 2,6 rem, 3,75 rem (sm), 3,6 rem (lg); h2 1,875 rem, 2,25 rem (sm), 2,75 rem (lg). Tabel di frontmatter menyimpan ukuran desktop.
 - Stiker memakai huruf kapital dengan jarak huruf `tracking-wide` (sedang, bukan lebar ekstrem).
@@ -166,16 +174,16 @@ Semua pasangan teks harus lulus 4,5:1 (3:1 untuk teks 18px ke atas). Hitung deng
 ## Tata letak
 
 - Container maksimal `72rem`, gutter 16px (sm ke atas 24px).
-- **Urutan bagian** (mengikuti `src/App.tsx`): bar atas, hero (indigo), Masalah (paper, `lg`), Simulator (tint, `md`), Cara Kerja (paper), Hasil yang kamu dapat (canvas, `lg`), Kenapa angkanya bisa dipercaya (paper), Siapa di balik ini (canvas, `sm`), Harga (tint), FAQ (paper), penutup (field-deep), footer (night).
+- **Urutan bagian** (mengikuti `src/App.tsx`): bar atas (terang), hero (canvas), Masalah (paper, `lg`), Simulator (tint, `md`), Cara Kerja (paper), Hasil yang kamu dapat (canvas, `lg`), Kenapa angkanya bisa dipercaya (paper), Siapa di balik ini (canvas, `sm`), Harga (tint), FAQ (paper), penutup (night), footer (night-deep).
 - **Ritme jarak** (`size` pada komponen `Section`): `sm` 40/56/64px, `md` 56/80/96px, `lg` 64/96/128px (mobile / sm / lg). `lg` untuk bagian berisi kalimat besar atau baris tinggi, `sm` untuk bagian yang hanya satu pernyataan, `md` untuk sisanya.
 - **Titik patah:** satu kolom di bawah 768px. Bagian Hasil, Simulator, Cara Kerja, Harga, dan Trust menjadi dua kolom dengan jarak rapat dari 768px (`md`), lalu proporsi desktop dari 1024px (`lg`). Hero baru dua kolom dari 1024px. Halaman harus utuh dari 320px sampai 1440px tanpa gulir horizontal.
 - Navigasi hanya logo dan satu tombol. Tidak ada menu. Di HP muncul bar CTA bawah setelah hero lewat, dan fokus keyboard tidak boleh berakhir di balik bar itu.
 
 ## Kedalaman
 
-Dua tingkat: permukaan halaman, dan lembar di atasnya dengan **satu bayangan lembut** (`--shadow-sheet`). Dipakai di simulator, ketiga mock hasil, kartu harga, dan kartu demo. Elemen lain datar. Tanpa lembar di dalam lembar.
+Dua tingkat: permukaan halaman, dan lembar di atasnya dengan **satu bayangan lembut** (`--shadow-sheet`, nilainya dari varian C). Dipakai di simulator, ketiga mock hasil, kartu harga, dan kartu demo. Elemen lain datar. Tanpa lembar di dalam lembar.
 
-Pengecualian yang disengaja: tombol WhatsApp dan kartu hero memakai bayangan keras setebal 3px dan 8px ("tepi kertas"), selaras dengan stiker yang miring.
+Pengecualian yang disengaja: tombol WhatsApp dan kartu hero memakai bayangan keras setebal 3px dan 8px berwarna tinta ("tepi kertas"), selaras dengan stiker yang miring.
 
 ## Bentuk
 
@@ -183,11 +191,11 @@ Pil (9999px) untuk tombol, tautan sekunder, penanda "Contoh", dan sakelar. 24px 
 
 ## Komponen
 
-- **CTA WhatsApp:** pil lime, teks dan garis tepi `ink`, tinggi 56px (44px untuk bar atas), bayangan keras 3px yang menekan saat ditekan. Hanya aksi WhatsApp yang boleh tampak seperti ini. Tautan lain memakai **ghost link** (garis tepi transparan, tinggi 48px) atau tautan teks.
-- **Stiker:** huruf tampilan 800, kapital, miring sekitar 3 sampai 4 derajat, selalu memuat kata dan ikon. Positif = lime di atas teks `field-deep` dengan centang (Angka final, Aman, Hero). Rugi = `loss` dengan teks putih dan tanda silang (Takedown). Perhatian = `sun` dengan teks `sun-ink` dan segitiga (ROAS terlalu kecil).
+- **CTA WhatsApp:** pil `ember`, teks dan garis tepi `ink`, tinggi 56px (44px untuk bar atas), bayangan keras tinta 3px yang menekan saat ditekan. Hanya aksi WhatsApp yang boleh tampak seperti ini. Tautan lain memakai **ghost link** (garis tepi `ink-2`, tinggi 48px) atau tautan teks.
+- **Stiker:** huruf tampilan 800, kapital, miring sekitar 3 sampai 4 derajat, selalu memuat kata dan ikon. Positif = `mintbg` dengan teks dan garis `gain` dan centang (Angka final, Aman, Hero). Rugi = `loss` dengan teks putih dan tanda silang (Takedown). Perhatian = `sun` dengan teks `sun-ink` dan segitiga (ROAS terlalu kecil).
 - **Penanda "Contoh":** pil bergaris kapital. Wajib ada di setiap angka demo.
 - **Lembar:** `paper`, 24px, `--shadow-sheet`. Lembar di permukaan terang memakai cincin 1px `line`, kartu demo gelap tidak.
-- **Kontrol:** input dan tombol bergaris memakai batas `control`, tinggi minimal 44px (input 48px), cincin fokus 3px (lime di permukaan gelap, indigo di permukaan terang).
+- **Kontrol:** input dan tombol bergaris memakai batas `control`, tinggi minimal 44px (input 48px). Tombol terpilih berisi penuh `ink`. Cincin fokus 3px: `ember-text` di permukaan terang, `ember` di permukaan gelap.
 - **Ikon:** satu keluarga garis (viewBox 24, tebal 2 sampai 2,5, ujung bulat) di `src/components/ui.tsx`. Tanpa emoji atau glyph unicode sebagai ikon. Relevansi tiap ikon tertulis di komentar file itu.
 
 ## Gerak
@@ -220,14 +228,16 @@ Gerak menandai jawaban yang datang atau status yang berubah. Semuanya hanya `tra
 ## Do dan Don't
 
 ### Do
-- **Do** menjawab dengan kalimat di bidang indigo sebelum menunjukkan hitungannya, dan memberi angka pasti tepat setelah angka bulat.
-- **Do** menaruh isi kerja di lembar putih dan membungkus teks di bidang indigo dengan nada `tone-dark`.
+- **Do** menjawab dengan kalimat sebelum menunjukkan hitungannya, dan memberi angka pasti tepat setelah angka bulat.
+- **Do** menaruh isi kerja di lembar putih dan membungkus teks di permukaan gelap dengan nada `tone-dark`.
 - **Do** mengikat gerak baru pada perubahan status, dan menambahkannya ke blok `prefers-reduced-motion`.
+- **Do** memakai Plus Jakarta Sans untuk angka yang berderet di kolom.
 - **Do** memperbarui `public/syarat/index.html` dan `public/privasi/index.html` (beserta tanggal "Terakhir diperbarui") kalau kebijakan atau data yang disimpan berubah.
 
 ### Don't
 - **Don't** menambah garis samping berwarna, lembar di dalam lembar, atau gradasi.
-- **Don't** memakai lime di luar peran di bagian Warna, atau menambah warna di luar tiga kelompok.
+- **Don't** memakai ember di luar peran di bagian Warna, memakainya sebagai warna status, atau menambah warna di luar tiga kelompok.
+- **Don't** membawa blob, cahaya kursor, kartu melayang, atau lencana pil bertitik dari proposal Ordi.
 - **Don't** memasang cookie, penyimpanan lokal, analitik, atau skrip pihak ketiga tanpa memperbarui `/privasi/` terlebih dulu.
 - **Don't** memakai emoji atau glyph unicode sebagai ikon atau penanda status.
 - **Don't** membuat gerak yang berulang tanpa henti, atau confetti untuk hal selain hasil yang benar-benar muncul.

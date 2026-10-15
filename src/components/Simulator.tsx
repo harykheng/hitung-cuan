@@ -82,8 +82,8 @@ export function Simulator() {
                 onClick={() => applyPreset(p)}
                 className={`min-h-11 rounded-full border-2 px-4 text-sm font-semibold transition-colors ${
                   activePreset?.id === p.id
-                    ? 'border-btn bg-btn text-paper'
-                    : 'border-control text-ink hover:border-btn'
+                    ? 'border-ink bg-ink text-paper'
+                    : 'border-control text-ink hover:border-ink'
                 }`}
               >
                 {p.label}
@@ -128,7 +128,7 @@ export function Simulator() {
                   onBlur={() => setRoasText(dec(roas, 1))}
                   aria-invalid={roasError !== null}
                   aria-describedby={roasError ? 'sim-roas-error' : undefined}
-                  className={`min-h-12 w-24 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
+                  className={`min-h-12 w-24 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-ink ${
                     roasError ? 'border-loss' : 'border-control'
                   }`}
                 />
@@ -177,7 +177,7 @@ export function Simulator() {
                 onBlur={() => setAdminText(dec(admin * 100))}
                 aria-invalid={adminError !== null}
                 aria-describedby={adminError ? 'sim-admin-error' : undefined}
-                className={`mt-1 block min-h-12 w-28 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-btn ${
+                className={`mt-1 block min-h-12 w-28 rounded-xl border-2 bg-paper px-3 text-lg font-semibold tabular-nums focus:border-ink ${
                   adminError ? 'border-loss' : 'border-control'
                 }`}
               />
@@ -252,7 +252,7 @@ function MoneyField({
         {label}
       </label>
       <div className="mt-1.5 flex items-center gap-2">
-        <div className="flex min-h-12 min-w-0 flex-1 items-stretch rounded-xl border-2 border-control bg-paper px-3 focus-within:border-btn">
+        <div className="flex min-h-12 min-w-0 flex-1 items-stretch rounded-xl border-2 border-control bg-paper px-3 focus-within:border-ink">
           <span className="flex items-center text-ink/60">Rp</span>
           <input
             id={id}
@@ -269,7 +269,7 @@ function MoneyField({
           type="button"
           onClick={() => step(-1000)}
           aria-label={`Kurangi ${label} Rp1.000`}
-          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-btn"
+          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-ink"
         >
           <MinusIcon />
         </button>
@@ -277,7 +277,7 @@ function MoneyField({
           type="button"
           onClick={() => step(1000)}
           aria-label={`Tambah ${label} Rp1.000`}
-          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-btn"
+          className="grid size-12 shrink-0 place-items-center rounded-xl border-2 border-control hover:border-ink"
         >
           <PlusIcon />
         </button>
@@ -354,7 +354,7 @@ function Result({
         type="button"
         aria-expanded={nota}
         onClick={() => setNota(!nota)}
-        className="mt-3 inline-flex min-h-11 items-center gap-1.5 font-semibold text-btn underline decoration-2 underline-offset-4"
+        className="mt-3 inline-flex min-h-11 items-center gap-1.5 font-semibold text-accent underline decoration-2 underline-offset-4"
       >
         {nota ? 'Sembunyikan hitungannya' : 'Lihat hitungannya'}
         <ChevronIcon className={`size-5 transition-transform ${nota ? 'rotate-180' : ''}`} />
@@ -387,7 +387,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex items-baseline justify-between gap-4 py-3">
       <dt className="text-ink/80">{label}</dt>
-      <dd className="text-right font-display text-lg font-extrabold tabular-nums">{children}</dd>
+      <dd className="text-right text-lg font-bold tabular-nums">{children}</dd>
     </div>
   )
 }
