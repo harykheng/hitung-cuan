@@ -16,7 +16,7 @@ ember, tipografi, gerak, suara, aksesibilitas, dan dial.
 
 - Bagian **Dial** di `DESIGN.md` masih **inferensi** dan belum dikonfirmasi pemilik. Jangan menganggapnya final.
 - Kalau token di `src/index.css` berubah, ubah frontmatter `DESIGN.md` juga. Nilainya harus identik.
-- Struktur arah desain ("jawaban dulu, hitungan di lembar") mengikuti `DESIGN.md` aplikasi di repo `harykheng/shopee-profit-calc`, tetapi palet dan font landing kini berbeda dari aplikasi (varian "Dapur Terang"). Kalau perlu menyamakan keduanya, tanyakan ke pemilik.
+- Struktur arah desain ("jawaban dulu, hitungan di lembar") mengikuti `DESIGN.md` aplikasi di repo `harykheng/shopee-profit-calc`, tetapi latar krem dan font landing berbeda dari aplikasi (varian "Dapur Terang"). Sejak 15 Okt 2026 aksen indigo sudah sejalan dengan aplikasi (token `ember`, `ember-text`, `peach` namanya lama tetapi nilainya indigo); lime di aplikasi belum dibersihkan. Kalau perlu menyamakan keduanya, tanyakan ke pemilik.
 
 ## Isi yang tidak boleh diubah sendiri
 
