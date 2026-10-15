@@ -2,13 +2,21 @@
 
 @theme {
   /*
-   * PALET "Dapur Terang" (R-29). Nilainya diambil dari varian C proposal "Ordi Tiga Arah", dengan tiga koreksi yang
-   * dihitung (contrast-check.py): teks di atas oranye wajib tinta (6,73:1, putih hanya 2,6:1), teks oranye di atas
-   * terang wajib ember-text (5,11:1), dan hijau status memakai gain (5,55:1 di atas mintbg; mint bawaan proposal hanya 3,71:1).
+   * PALET "Dapur Terang" (R-29), aksen indigo sejak keputusan pemilik 15 Okt 2026. Oranye ember dibuang
+   * sebagai warna merek: oranye terbaca sebagai bagian dari Shopee, padahal halaman ini menyatakan "Bukan produk resmi
+   * Shopee" dan menjual alat yang mengaudit iklan seller di Shopee. Indigo juga sudah dipakai aplikasi shopee-profit-calc.
+   * Semua rasio kontras di bawah dihitung dengan skrip (WCAG 2.x), bukan dikira-kira.
    *  - Inti: netral hangat (canvas, paper, tint, line, control, ink, ink-2, ink-3) dan dua permukaan gelap (night, night-deep).
-   *  - Satu aksen: ember (oranye) dengan turunannya ember-text (untuk teks), peach (sorotan), mintbg (latar stiker positif).
+   *  - Satu aksen: indigo. NAMA TOKEN BELUM DIGANTI demi diff kecil: ember, ember-text, dan peach sekarang berisi indigo.
+   *      ember       #2b3a9e  indigo merek: latar tombol WhatsApp (putih di atasnya 9,54:1).
+   *      ember-text  #2b3a9e  teks dan ikon aksen di permukaan terang: canvas 9,26:1, paper 9,54:1, tint 8,49:1,
+   *                           di atas sorotan peach 7,42:1.
+   *      peach       #dde2fa  tint indigo: sorotan baris jawaban (.hl). Bukan lagi hangat, jangan dipakai sebagai latar kategori.
+   *    Aksen di permukaan gelap ada di .tone-dark: #b7c0ff, 8,57:1 di atas night dan 9,99:1 di atas night-deep.
+   *    mintbg tetap sebagai latar stiker positif.
    *  - Status, satu sistem dengan arti tetap: loss (rugi), gain (untung), sun (perlu perhatian). Selalu disertai kata atau ikon.
-   * Ember hanya berjarak 13 derajat dari loss, jadi ember tidak pernah dipakai sebagai warna status.
+   * Indigo (rona 232 derajat) jauh dari semua warna status (loss 9, sun 49, gain 152), tetapi aksen tetap tidak pernah dipakai
+   * sebagai warna status.
    */
   --color-canvas: #fffbf6;
   --color-paper: #ffffff;
@@ -23,9 +31,9 @@
   --color-night-deep: #1c1917;
   --color-on-night: #fffbf6;
   --color-on-night-muted: #d6cfc4;
-  --color-ember: #ff7a2f;
-  --color-ember-text: #b34d12;
-  --color-peach: #ffe3d0;
+  --color-ember: #2b3a9e;
+  --color-ember-text: #2b3a9e;
+  --color-peach: #dde2fa;
   --color-mintbg: #ddf3e9;
   --color-loss: #c4361e;
   --color-gain: #146c43;
@@ -63,22 +71,26 @@
   --fg: #1c1917;
   --fg-2: #57534e;
   --fg-3: #6f6860;
-  --accent: #b34d12;
+  --accent: #2b3a9e;
   --rule: #ece2d4;
-  --focus: #b34d12;
+  --focus: #2b3a9e;
 }
 .tone-dark {
   --fg: #fffbf6;
   --fg-2: #d6cfc4;
   --fg-3: #c4bcb0;
-  --accent: #ff7a2f;
+  --accent: #b7c0ff;
   --rule: rgb(255 251 246 / 0.22);
-  --focus: #ff7a2f;
+  --focus: #b7c0ff;
 }
 
-/* Sorotan jawaban: garis peach di bawah baris, bukan latar penuh (diambil dari varian C). */
+/*
+ * Sorotan jawaban: pita tint indigo (token peach) di separuh bawah huruf, bukan latar penuh. Teks aksen indigo di atasnya
+ * 7,42:1. Tebalnya sengaja 0,52em, bukan garis tipis di bawah baris: indigo + garis di bawah huruf terbaca sebagai tautan
+ * (tautan di halaman ini indigo bergaris bawah), sedangkan pita yang menutupi huruf terbaca sebagai penanda.
+ */
 .hl {
-  background: linear-gradient(var(--color-peach), var(--color-peach)) no-repeat 0 92% / 100% 0.3em;
+  background: linear-gradient(var(--color-peach), var(--color-peach)) no-repeat 0 85% / 100% 0.52em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }

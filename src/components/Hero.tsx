@@ -72,7 +72,7 @@ const CASES = {
 
 const SEGMENTS = [
   { key: 'modal', pct: 57, label: 'Modal', cls: 'bg-ink', num: 'text-white', text: 'Rp57 dari tiap Rp100 untuk modal barang (HPP).' },
-  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-peach', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
+  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-line', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
   { key: 'untung', pct: 24, label: 'Untung', cls: 'bg-gain', num: 'text-white', text: 'Rp24 sisa untung bersihmu.' },
 ] as const
 
