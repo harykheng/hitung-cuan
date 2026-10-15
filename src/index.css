@@ -84,9 +84,10 @@
 }
 
 /*
- * Sorotan jawaban: pita tint indigo (token peach) di separuh bawah huruf, bukan latar penuh. Teks aksen indigo di atasnya
- * 7,42:1. Tebalnya sengaja 0,52em, bukan garis tipis di bawah baris: indigo + garis di bawah huruf terbaca sebagai tautan
- * (tautan di halaman ini indigo bergaris bawah), sedangkan pita yang menutupi huruf terbaca sebagai penanda.
+ * Sorotan jawaban: pita tint indigo (token peach) di separuh bawah huruf, bukan latar penuh. Judul hero memakai teks
+ * tinta di atasnya (13,6:1), bukan indigo, supaya bidang indigo terbesar di layar pertama adalah tombol WhatsApp.
+ * Tebalnya sengaja 0,52em, bukan garis tipis di bawah baris: garis di bawah huruf terbaca sebagai tautan, sedangkan pita
+ * yang menutupi huruf terbaca sebagai penanda.
  */
 .hl {
   background: linear-gradient(var(--color-peach), var(--color-peach)) no-repeat 0 85% / 100% 0.52em;
@@ -101,10 +102,13 @@
     scroll-padding-top: 4.5rem;
   }
 
-  /* Di HP bar CTA bawah (±81px) menutupi elemen yang baru difokuskan dekat tepi layar; sisakan ruang di bawah. */
+  /*
+   * Di HP bar CTA bawah (±81px, ±129px dengan bantuan WhatsApp di browser bawaan aplikasi) menutupi elemen yang baru
+   * difokuskan dekat tepi layar; sisakan ruang di bawah.
+   */
   @media (max-width: 639px) {
     html {
-      scroll-padding-bottom: 6rem;
+      scroll-padding-bottom: 8.5rem;
     }
   }
 

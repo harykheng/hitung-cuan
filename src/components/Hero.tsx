@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { burstConfetti } from '../lib/confetti'
 import { juta } from '../lib/format'
 import { useAnimatedNumber } from '../lib/hooks'
-import { ArrowDownIcon, Container, Cta, ExampleTag, GhostLink, Sticker, vars } from './ui'
+import { ArrowDownIcon, Container, Cta, ExampleTag, InAppWaHelp, Sticker, vars } from './ui'
 
 /** Kata naik satu-satu, jeda 55 ms, tiap kata 520 ms. Murni CSS, tidak menunggu JavaScript. */
 function Words({ text, start = 0 }: { text: string; start?: number }) {
@@ -15,8 +15,13 @@ function Words({ text, start = 0 }: { text: string; start?: number }) {
   ))
 }
 
-const HEADLINE_A = 'Untung bersih tokomu berapa?'
-const HEADLINE_B = 'Iklan mana yang sebaiknya dimatikan?'
+/*
+ * Judul memakai kata yang dipakai seller sendiri (cuan, boncos). Pertanyaannya sengaja tentang toko, bukan hanya iklan,
+ * supaya kartu contoh di sebelahnya (bulan untung / bulan rugi) langsung menjawabnya. Sub-judul menyebut apa produknya
+ * dan apa yang perlu disiapkan, karena judul saja tidak menjelaskan bahwa ini aplikasi.
+ */
+const HEADLINE_A = 'Tokomu sebenarnya'
+const HEADLINE_B = 'cuan atau boncos?'
 
 export function Hero() {
   return (
@@ -24,35 +29,34 @@ export function Hero() {
       <Container className="pt-10 pb-16 lg:pt-16 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
-            <p className="font-semibold tracking-wide text-accent">Untuk seller Shopee yang beriklan</p>
-            <h1 id="judul-utama" className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
+            <p className="font-semibold tracking-wide text-accent">Aplikasi untuk seller Shopee yang beriklan</p>
+            <h1 id="judul-utama" className="mt-3 font-display text-[2.6rem] leading-[1.05] font-extrabold tracking-tight sm:text-6xl lg:text-[3.6rem]">
               <Words text={HEADLINE_A} />
-              <span className="block text-accent">
+              <span className="block">
                 <span className="hl">
                   <Words text={HEADLINE_B} start={HEADLINE_A.split(' ').length} />
                 </span>
               </span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-2 sm:text-xl">
-              HitungCuan menghitung untung bersih toko Shopee dari laporan pesanan, penghasilan, dan iklan milikmu.
-              Hasilnya menunjukkan iklan yang sebaiknya dimatikan dan perkiraan harga minimum yang aman.
+              Upload 3 laporan dari Seller Centre. HitungCuan menghitung untung bersih tokomu bulan itu dan menunjukkan
+              iklan mana yang bikin rugi.
             </p>
 
-            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
+            <div className="mt-8 flex flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
               <Cta lokasi="hero" />
-              <GhostLink href="#simulator">
-                Hitung satu iklanmu dulu di sini, belum perlu chat
-                <ArrowDownIcon />
-              </GhostLink>
+              <a
+                href="#simulator"
+                className="min-h-11 self-center py-2.5 text-center font-semibold text-fg underline decoration-fg-2 decoration-2 underline-offset-4 hover:decoration-fg"
+              >
+                Atau cek 1 iklanmu dulu, tanpa chat <ArrowDownIcon className="inline size-4 align-[-0.15em]" />
+              </a>
             </div>
-            <div className="mt-5 grid max-w-xl gap-1.5">
-              <p className="text-sm font-semibold text-fg">Uji coba gratis 30 hari, tanpa kartu kredit.</p>
-              <p className="text-sm text-fg">
-                Akun dibuatkan admin secara manual setelah kamu chat. Admin membalas maksimal 1×24 jam.
-              </p>
+            <InAppWaHelp lokasi="hero" className="mt-4" />
+            <div className="mt-5 grid max-w-xl gap-1">
+              <p className="text-sm font-semibold text-fg">Lewat chat WhatsApp · Tanpa kartu kredit</p>
               <p className="text-sm text-fg-2">
-                Saat ini hanya untuk Shopee · Bukan produk resmi Shopee · Nama, alamat, dan nomor HP pembeli tidak
-                diambil atau disimpan.
+                Nama, alamat, dan nomor HP pembeli tidak disimpan · Bukan produk resmi Shopee
               </p>
             </div>
           </div>

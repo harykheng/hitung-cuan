@@ -45,5 +45,11 @@
   <body>
     <div id="root"><!--app--></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!--
+      Statistik kunjungan: Umami Cloud, tanpa cookie (lihat /privasi/ dan README). Ditaruh setelah bundle supaya
+      hidrasi tidak menunggu skrip pihak ketiga; track.ts menahan peristiwa sampai skrip ini siap.
+      data-domains: hanya mencatat di domain produksi, jadi localhost dan preview Cloudflare tidak ikut terhitung.
+    -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="d672037b-49cb-4bcb-8aa6-fc19c68183b7" data-domains="hitungcuan.studioharel.id"></script>
   </body>
 </html>

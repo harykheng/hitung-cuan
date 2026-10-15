@@ -12,7 +12,10 @@
       Halaman statis tanpa JavaScript, disalin apa adanya dari public/. Setiap kalimat di bawah sudah dicocokkan dengan
       kode aplikasi (repo shopee-profit-calc, commit 8b5e041) dan kode landing ini, atau berasal dari keputusan pemilik
       (14 Okt 2026). Perbarui teks dan tanggal "Terakhir diperbarui" kalau salah satunya berubah, terutama:
-      pasang analitik atau cookie di landing, ganti penyedia database, atau dua seller berbagi satu database.
+      ganti atau tambah analitik, pasang cookie di landing, ganti penyedia database, atau dua seller berbagi satu database.
+      Bagian Umami (15 Okt 2026) dicocokkan dengan index.html, src/lib/track.ts, dan sumber skrip pelacak Umami
+      (umami-software/umami, src/tracker/index.ts): payload berisi website, ukuran layar, bahasa, judul, hostname,
+      URL, referrer; tidak ada document.cookie atau localStorage.setItem.
     -->
     <style>
       :root {
@@ -87,7 +90,7 @@
     </header>
     <main>
       <h1>Kebijakan Privasi HitungCuan</h1>
-      <p class="meta">Terakhir diperbarui: 14 Oktober 2026</p>
+      <p class="meta">Terakhir diperbarui: 15 Oktober 2026</p>
 
       <p>
         HitungCuan dikelola oleh <a href="https://studioharel.id">Studio Harel</a>. Halaman ini menjelaskan data apa
@@ -97,9 +100,18 @@
 
       <h2>1. Halaman web ini</h2>
       <ul>
-        <li>Halaman ini tidak menyimpan data apa pun tentangmu. Simulator dihitung di browser kamu, dan angka yang kamu isi tidak dikirim atau disimpan.</li>
-        <li>Halaman ini tidak memasang cookie, penyimpanan lokal, atau skrip pelacakan pihak ketiga. Font dimuat dari server yang sama, bukan dari layanan font luar.</li>
+        <li>Simulator dihitung di browser kamu. Angka yang kamu isi tidak dikirim atau disimpan.</li>
+        <li>Halaman ini tidak memasang cookie dan tidak memakai penyimpanan lokal browser. Font dimuat dari server yang sama, bukan dari layanan font luar.</li>
         <li>Halaman dilayani lewat Cloudflare. Seperti semua server web, penyedia hosting memproses permintaan koneksi (misalnya alamat IP) supaya halaman bisa sampai ke perangkatmu.</li>
+      </ul>
+
+      <h3>Statistik kunjungan (Umami)</h3>
+      <ul>
+        <li>Untuk menghitung jumlah kunjungan dan klik tombol, halaman ini memuat skrip statistik Umami Cloud (layanan dari Umami Software). Skrip ini tidak memasang cookie dan tidak menulis ke penyimpanan lokal browser.</li>
+        <li>Yang dikirim ke Umami: alamat halaman yang dibuka (termasuk kode sumber seperti <code>?src=</code>), halaman asal kamu datang, judul halaman, ukuran layar, dan bahasa browser.</li>
+        <li>Juga dicatat: halaman dibuka, tombol WhatsApp ditekan beserta letak tombolnya, tombol salin nomor ditekan, simulator dipakai (tanpa angkanya), dan seberapa jauh halaman digulir.</li>
+        <li>Seperti layanan web lain, Umami menerima koneksi dari perangkatmu, sehingga dapat membaca jenis browser, sistem operasi, jenis perangkat, dan perkiraan lokasi dari alamat IP. Data ini diproses oleh Umami sesuai kebijakan privasi mereka.</li>
+        <li>Nama, nomor WhatsApp, dan isi pesanmu tidak dikirim ke Umami.</li>
       </ul>
 
       <h3>Tombol WhatsApp</h3>
