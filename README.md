@@ -36,12 +36,12 @@ Hanya `transform` dan `opacity`, tidak ada loop, tanpa dependensi animasi (CSS +
 `requestAnimationFrame`, lihat `src/index.css` dan `src/lib/hooks.ts`).
 
 - Konten disembunyikan untuk animasi **hanya** kalau JavaScript jalan (`<html class="js">` di-set di `<head>`).
-  Tanpa JS dan dengan `prefers-reduced-motion`, semua teks dan angka langsung tampil, tanpa confetti.
+  Tanpa JS dan dengan `prefers-reduced-motion`, semua teks dan angka langsung tampil.
   Kalau JS aktif tetapi bundle belum berjalan setelah 4 detik (gagal muat atau jaringan lambat), skrip di `<head>`
   mencabut kelas `js` supaya semua konten tampil; `src/main.tsx` memasang `data-hc` di `<html>` begitu bundle berjalan.
 - Gerak harus menandai sesuatu (jawaban datang, status berubah). Muncul saat digulir (`data-reveal`) hanya dipakai di dua blok:
   nota hasil yang "tercetak" baris demi baris dan stiker iklan yang "tersetempel". Blok teks tidak ikut bergerak.
-- Confetti sekali per kunjungan (`src/lib/confetti.ts`).
+- Tidak ada confetti dan judul tidak dianimasikan per kata (dibuang karena terbaca sebagai pola templat).
 - Semua angka demo berlabel **Contoh**. Jangan tulis angka hasil, testimonial, atau klaim yang tidak ada datanya.
 
 ## Ganti nomor WhatsApp, harga, janji balasan

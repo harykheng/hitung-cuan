@@ -75,7 +75,7 @@ export function Faq() {
       <div className="mt-10 max-w-3xl border-t border-rule">
         {items.map((it) => (
           <details key={it.q} name="faq" className="border-b border-rule">
-            <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 py-4 font-display text-lg font-bold">
+            <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 py-4 text-lg font-bold">
               {it.q}
               <ChevronIcon className="chev size-6 shrink-0 text-accent" />
             </summary>
