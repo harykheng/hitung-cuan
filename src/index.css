@@ -158,10 +158,6 @@
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: none; }
 }
-@keyframes flash-ok {
-  0%, 100% { opacity: 0.55; transform: none; }
-  40%      { opacity: 1; transform: scale(1.06); }
-}
 @keyframes confetti {
   0%   { opacity: 1; transform: translate(0, 0) rotate(0deg); }
   100% { opacity: 0; transform: translate(var(--dx), calc(var(--dy) + 46px)) rotate(var(--r)); }
@@ -197,8 +193,6 @@
   animation: print-row 300ms ease-out both;
   animation-delay: calc(var(--i, 0) * 150ms);
 }
-
-.flash-ok { animation: flash-ok 700ms ease-out 1; }
 
 .confetti {
   position: absolute;

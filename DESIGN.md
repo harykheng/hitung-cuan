@@ -144,7 +144,7 @@ Bagian bertanda **[diinferensi]** adalah bacaan saya, bukan keputusan pemilik: h
 Dial: ENERGY 2 / RHYTHM 2 / MOTION 2
 
 - **ENERGY 2.** Hero kini terang dan tenang. Yang paling keras tinggal judul Parkinsans 800 setinggi 3,6 rem, frasa jawaban bertinta dengan sorotan peach, tombol ember bergaris tinta, dan satu ledakan confetti. Sebelumnya (bidang indigo jenuh) nilainya 3.
-- **RHYTHM 2.** Grid, container, dan tangga jarak konsisten. Komposisi bagian berbeda-beda secara sengaja: kalimat besar (Masalah), alat (Simulator), langkah + demo (Cara Kerja), baris bergantian (Hasil), dua kolom (Trust, Harga), satu pernyataan (Pembuat), akordeon (FAQ). Ukuran jarak ada tiga (`sm`, `md`, `lg`) dan nada latar bergantian paper, tint, canvas.
+- **RHYTHM 2.** Grid, container, dan tangga jarak konsisten. Komposisi bagian berbeda-beda secara sengaja: kalimat besar (Masalah), alat (Simulator), baris bergantian (Hasil), cerita pembuat + daftar bukti (Tentang), langkah bernomor (Cara Kerja), dua kolom (Harga), akordeon (FAQ). Ukuran jarak ada tiga (`sm`, `md`, `lg`) dan nada latar bergantian paper, tint, canvas.
 - **MOTION 2.** Gerak menandai jawaban yang datang atau status yang berubah (lihat bagian Gerak). Tidak ada paralaks, koreografi gulir, atau gerak yang berulang tanpa henti.
 
 ## Warna
@@ -153,7 +153,7 @@ Dial: ENERGY 2 / RHYTHM 2 / MOTION 2
 
 **Tiga kelompok, tidak lebih** (batas R-29; alasan lengkap ada di komentar `src/index.css`):
 
-- **Inti: netral hangat.** `canvas` (halaman dan hero), `paper` (lembar), `tint` (bagian bergantian), `line` (garis, dan isian batang "Biaya" di kartu hero), `control`, dan skala `ink`, `ink-2`, `ink-3`. Dua permukaan gelap: `night` (kartu demo, penutup, bar CTA bawah) dan `night-deep` (footer).
+- **Inti: netral hangat.** `canvas` (halaman dan hero), `paper` (lembar), `tint` (bagian bergantian), `line` (garis, dan isian batang "Biaya" di kartu hero), `control`, dan skala `ink`, `ink-2`, `ink-3`. Dua permukaan gelap: `night` (penutup, bar CTA bawah) dan `night-deep` (footer).
 - **Satu aksen: indigo**, bernama token `ember` (nama lama, nilainya `#2b3a9e`), dengan turunannya: `ember-text` (`#2b3a9e`, teks dan ikon aksen di permukaan terang), `peach` (`#dde2fa`, tint indigo untuk sorotan di baris jawaban; bukan warna hangat lagi, jangan dipakai sebagai latar kategori), dan `mintbg` (latar stiker positif, bukan indigo). Di permukaan gelap aksen memakai `#b7c0ff` (`--accent` dan `--focus` di `.tone-dark`, belum menjadi token). Peran aksen: latar tombol WhatsApp (teks putih), angka hasil di permukaan gelap, aksen logo ("Cuan"), dan cincin fokus. `ember-text` dipakai untuk kicker, tautan, dan ikon aksen di permukaan terang. Jangan menaruh `ember-text` di permukaan gelap: indigo hanya 1,57:1 terhadap `night`.
 - **Status, satu sistem dengan arti tetap:** `loss` (rugi, Takedown), `gain` (untung, stiker positif), `sun` (perlu perhatian, "ROAS terlalu kecil"). Status selalu disertai kata atau ikon, tidak pernah hanya warna. **Aksen tidak pernah dipakai sebagai warna status.** Indigo (rona 232 derajat) jauh dari semua warna status: 80 derajat dari `gain` (152), 137 dari `loss` (9), 177 dari `sun` (49), jadi tidak ada risiko tertukar. Aturannya tetap berlaku supaya arti status tidak kabur: indigo tidak pernah berarti rugi, untung, atau perlu perhatian. Kuning (`sun`) hanya berarti "perlu perhatian", bukan hiasan. Satu pengecualian yang tercatat: tanda merek buatan pemilik (ikon, favicon, logo di `assets/`) memakai kuning `#fbe38a`, dan `#e0b422` di versi untuk latar gelap. Itu bukan token dan bukan status, melainkan bagian dari logo, bukan hiasan halaman. Berkas logo untuk latar gelap juga memakai `#b7c0ff` untuk kata "Cuan", sama dengan aksen `.tone-dark`.
 
@@ -175,14 +175,14 @@ Semua pasangan teks harus lulus 4,5:1 (3:1 untuk teks 18px ke atas). Hitung deng
 ## Tata letak
 
 - Container maksimal `72rem`, gutter 16px (sm ke atas 24px).
-- **Urutan bagian** (mengikuti `src/App.tsx`): bar atas (terang), hero (canvas), Masalah (paper, `lg`), Simulator (tint, `md`), Cara Kerja (paper), Hasil yang kamu dapat (canvas, `lg`), Kenapa angkanya bisa dipercaya (paper), Siapa di balik ini (canvas, `sm`), Harga (tint), FAQ (paper), penutup (night), footer (night-deep).
-- **Ritme jarak** (`size` pada komponen `Section`): `sm` 40/56/64px, `md` 56/80/96px, `lg` 64/96/128px (mobile / sm / lg). `lg` untuk bagian berisi kalimat besar atau baris tinggi, `sm` untuk bagian yang hanya satu pernyataan, `md` untuk sisanya.
-- **Titik patah:** satu kolom di bawah 768px. Bagian Hasil, Simulator, Cara Kerja, Harga, dan Trust menjadi dua kolom dengan jarak rapat dari 768px (`md`), lalu proporsi desktop dari 1024px (`lg`). Hero baru dua kolom dari 1024px. Halaman harus utuh dari 320px sampai 1440px tanpa gulir horizontal.
+- **Urutan bagian** (mengikuti `src/App.tsx`): bar atas (terang), hero (canvas), Masalah (paper, `lg`), Simulator (tint, `md`), Hasil yang kamu dapat (canvas, `lg`), Tentang: siapa pembuatnya dan kenapa angkanya bisa dipercaya (paper), Cara Kerja (canvas), Harga (tint), FAQ (paper), penutup (night), footer (night-deep). Urutannya: masalah, coba sendiri, lihat hasilnya, siapa pembuatnya, baru cara mulai dan harga. Orang tidak perlu membaca cara daftar sebelum tahu apa yang didapat.
+- **Ritme jarak** (`size` pada komponen `Section`): `sm` 40/56/64px, `md` 56/80/96px, `lg` 64/96/128px (mobile / sm / lg). `lg` untuk bagian berisi kalimat besar atau baris tinggi, `md` untuk sisanya. `sm` tersedia untuk bagian yang hanya satu pernyataan (saat ini tidak dipakai, sejak bagian Pembuat digabung ke Tentang).
+- **Titik patah:** satu kolom di bawah 768px. Bagian Hasil, Simulator, Cara Kerja, Harga, dan Tentang menjadi dua kolom dengan jarak rapat dari 768px (`md`), lalu proporsi desktop dari 1024px (`lg`). Hero baru dua kolom dari 1024px. Halaman harus utuh dari 320px sampai 1440px tanpa gulir horizontal.
 - Navigasi hanya logo dan satu tombol. Tidak ada menu. Di HP muncul bar CTA bawah setelah hero lewat, dan fokus keyboard tidak boleh berakhir di balik bar itu.
 
 ## Kedalaman
 
-Dua tingkat: permukaan halaman, dan lembar di atasnya dengan **satu bayangan lembut** (`--shadow-sheet`, nilainya dari varian C). Dipakai di simulator, ketiga mock hasil, kartu harga, kartu hero, dan kartu demo. Elemen lain datar, termasuk tombol WhatsApp (hanya garis tepi 2px). Tanpa lembar di dalam lembar. Bayangan keras berwarna tinta ("tepi kertas") sudah dibuang (commit terpisah, boleh dibatalkan): menurut pemilik gaya itu ikut membuat halaman terasa seperti templat.
+Dua tingkat: permukaan halaman, dan lembar di atasnya dengan **satu bayangan lembut** (`--shadow-sheet`, nilainya dari varian C). Dipakai di simulator, ketiga mock hasil, kartu harga, dan kartu hero. Elemen lain datar, termasuk tombol WhatsApp (hanya garis tepi 2px). Tanpa lembar di dalam lembar. Bayangan keras berwarna tinta ("tepi kertas") sudah dibuang (commit terpisah, boleh dibatalkan): menurut pemilik gaya itu ikut membuat halaman terasa seperti templat.
 
 ## Bentuk
 
@@ -194,7 +194,7 @@ Pil (9999px) untuk tombol, tautan sekunder, penanda "Contoh", dan sakelar. 24px 
 - **Bantuan WhatsApp di browser bawaan aplikasi** (`InAppWaHelp`): hanya muncul di browser bawaan TikTok, Threads/Instagram, Facebook, LINE, dan WebView, karena browser itu sering menahan tautan `wa.me`. Isinya petunjuk membuka halaman di browser dan tombol "Salin nomor admin". Ada di hero, penutup, dan (versi ringkas) bar CTA bawah.
 - **Stiker:** huruf tampilan 800, kapital, miring sekitar 3 sampai 4 derajat, selalu memuat kata dan ikon. Positif = `mintbg` dengan teks dan garis `gain` dan centang (Angka final, Aman, Hero). Rugi = `loss` dengan teks putih dan tanda silang (Takedown). Perhatian = `sun` dengan teks `sun-ink` dan segitiga (ROAS terlalu kecil).
 - **Penanda "Contoh":** pil bergaris kapital. Wajib ada di setiap angka demo.
-- **Lembar:** `paper`, 24px, `--shadow-sheet`. Lembar di permukaan terang memakai cincin 1px `line`, kartu demo gelap tidak.
+- **Lembar:** `paper`, 24px, `--shadow-sheet`. Lembar di permukaan terang memakai cincin 1px `line`.
 - **Kontrol:** input dan tombol bergaris memakai batas `control`, tinggi minimal 44px (input 48px). Tombol terpilih berisi penuh `ink`. Cincin fokus 3px: `ember-text` di permukaan terang, `#b7c0ff` (aksen `.tone-dark`) di permukaan gelap.
 - **Logo, ikon, dan favicon:** berkas sumber dari pemilik ada di `assets/` (termasuk `head-snippet.html`). Yang dilayani situs disalin ke `public/`: `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `site.webmanifest`, dan `public/logo/` untuk header (`logo-horizontal.svg`, permukaan terang) dan footer (`logo-horizontal-on-dark.svg`, permukaan gelap). Logo di header setinggi 24px di HP dan 28px dari 640px, supaya tombol di sebelahnya tetap satu baris di 375px. Jangan menaruh berkas tanpa hash di `public/assets/`: `_headers` menyimpan semua yang di bawah `/assets/` selama satu tahun. Header gelap `/syarat/` dan `/privasi/` memakai berkas yang sama (`logo-horizontal-on-dark.svg`), dengan ukuran yang sama.
 - **Ikon:** satu keluarga garis (viewBox 24, tebal 2 sampai 2,5, ujung bulat) di `src/components/ui.tsx`. Tanpa emoji atau glyph unicode sebagai ikon. Relevansi tiap ikon tertulis di komentar file itu. Satu pengecualian: logo WhatsApp (isian penuh, dari Simple Icons, CC0) di tombol WhatsApp. Itu tanda merek pihak ketiga yang menunjukkan tujuan tombol, bukan bagian dari keluarga ikon garis.
@@ -219,6 +219,7 @@ Gerak menandai jawaban yang datang atau status yang berubah. Semuanya hanya `tra
 - Pakai kata yang dipakai seller sendiri secukupnya (cuan, boncos, untung bersih), bukan bahasa laporan. Slang yang dipaksakan sama buruknya dengan bahasa kaku.
 - CTA spesifik pada aksinya ("Coba gratis 30 hari" dengan logo WhatsApp, bukan "Mulai" atau "Pelajari").
 - Janji operasional (akun dibuat manual, admin membalas maksimal 1×24 jam) cukup disebut di Cara Kerja dan kolom kiri Harga, tidak di bawah setiap tombol.
+- Satu fakta, satu tempat yang terlihat. Daftar lengkap data yang disimpan ada di FAQ (tertutup) dan `/privasi/`; bagian Tentang dan footer hanya memuat kalimat ringkas dan tautan.
 - FAQ hanya memuat pertanyaan yang spesifik untuk produk ini. Jangan menambah pertanyaan templat.
 
 ## Aksesibilitas

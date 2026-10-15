@@ -7,14 +7,14 @@ export function Features() {
   return (
     <Section tone="canvas" size="lg" id="fitur" labelledby="fitur-judul">
       <H2 id="fitur-judul">Hasil yang kamu dapat</H2>
-      <div className="mt-14 grid gap-20 lg:gap-28">
-        <Row title="Untung bersih bulan ini, lengkap dengan hitungannya." body="Lihat untung bersih dari uang yang benar-benar cair, dengan rincian uang masuk, modal, dan biaya. Tiap angka diberi status: Angka final, atau Belum lengkap beserta data yang masih kurang.">
+      <div className="mt-10 grid gap-14 sm:mt-14 sm:gap-20 lg:gap-28">
+        <Row title="Untung bersih bulan ini, lengkap dengan hitungannya." body="Dihitung dari uang yang benar-benar cair, dikurangi modal dan semua biaya. Kalau datanya belum lengkap, aplikasi bilang apa yang kurang, jadi kamu tahu kapan angkanya sudah final.">
           <NotaMock />
         </Row>
-        <Row reverse title="Iklan mana yang sebaiknya dimatikan." body="Tiap produk dapat satu putusan: Hero, Aman, ROAS terlalu kecil, atau Takedown (matikan iklannya). ROAS-nya sudah dihitung tanpa pesanan yang batal.">
+        <Row reverse title="Iklan mana yang bikin rugi." body="Tiap produk dapat satu putusan: Hero, Aman, ROAS terlalu kecil, atau Takedown (matikan iklannya). ROAS-nya dihitung tanpa pesanan yang batal.">
           <AdsMock />
         </Row>
-        <Row title="Perkiraan harga minimum yang aman." body="Simulasikan harga jual sebelum mulai berjualan. Hasilnya perkiraan dari angka dan persen admin yang kamu isi.">
+        <Row title="Harga jual minimum yang masih untung." body="Coba beberapa harga jual sebelum mulai jualan, lengkap dengan target ROAS yang perlu kamu isi di Shopee. Hasilnya perkiraan dari angka dan persen admin yang kamu isi.">
           <PriceMock />
         </Row>
       </div>
@@ -34,10 +34,10 @@ function Row({
   children: ReactNode
 }) {
   return (
-    <article className="grid items-center gap-8 md:grid-cols-2 lg:gap-16">
+    <article className="grid items-center gap-6 sm:gap-8 md:grid-cols-2 lg:gap-16">
       <div className={reverse ? 'md:order-2' : ''}>
-        <h3 className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">{title}</h3>
-        <p className="mt-4 max-w-[48ch] text-lg leading-relaxed text-fg-2">{body}</p>
+        <h3 className="font-display text-2xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">{title}</h3>
+        <p className="mt-3 max-w-[48ch] leading-relaxed text-fg-2 sm:mt-4 sm:text-lg">{body}</p>
       </div>
       <div className={reverse ? 'md:order-1' : ''}>{children}</div>
     </article>

@@ -6,7 +6,6 @@ import { Features } from './components/Features'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { HowItWorks } from './components/HowItWorks'
-import { Maker } from './components/Maker'
 import { Pricing } from './components/Pricing'
 import { Problems } from './components/Problems'
 import { Simulator } from './components/Simulator'
@@ -30,10 +29,9 @@ export default function App() {
         <Hero />
         <Problems />
         <Simulator />
-        <HowItWorks />
         <Features />
         <Trust />
-        <Maker />
+        <HowItWorks />
         <Pricing />
         <Faq />
         <Closing />
