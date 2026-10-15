@@ -73,6 +73,7 @@ export function Simulator() {
       <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-sheet ring-1 ring-line sm:mt-10 sm:p-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
         {/* ----- Input ----- */}
         <div>
+          {res ? <StickySummary res={res} /> : null}
           <p className="text-sm font-semibold text-ink/70">Coba langsung</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {PRESETS.map((p) => (
@@ -283,6 +284,29 @@ function MoneyField({
           <PlusIcon />
         </button>
       </div>
+    </div>
+  )
+}
+
+/**
+ * Di HP hasil ada di bawah input, jadi saat angka diubah hasilnya tidak terlihat. Ringkasan ini menempel di bawah bar
+ * atas selama kolom input digulir, lalu ikut hilang di akhir kolom itu (sticky di dalam kolomnya sendiri, tanpa
+ * JavaScript). Hanya tampilan: pembaca layar sudah mendapat hasil lewat role="status" di blok hasil.
+ */
+function StickySummary({ res }: { res: ReturnType<typeof hitung> }) {
+  const amount = Math.abs(Math.round(res.setelahIklan))
+  return (
+    <div
+      aria-hidden="true"
+      className="sticky top-[4.25rem] z-10 -mx-2 mb-5 flex items-center justify-between gap-3 rounded-xl bg-tint px-3 py-2.5 md:hidden"
+    >
+      <Sticker key={res.verdict} kind={res.verdict} delay={0} rot={0}>
+        {VERDICT_LABEL[res.verdict]}
+      </Sticker>
+      <span className={`text-right font-display text-lg leading-tight font-extrabold tabular-nums ${VERDICT_TEXT_COLOR[res.verdict]}`}>
+        {res.verdict === 'takedown' ? 'Rugi' : 'Untung'} {rp(amount)}
+        <span className="block text-xs font-semibold text-ink/70 sm:inline"> per order</span>
+      </span>
     </div>
   )
 }

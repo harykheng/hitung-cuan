@@ -144,8 +144,9 @@ export function Sticker({
 /**
  * CTA utama WhatsApp. Selalu latar indigo (token ember) dengan teks putih (9,54:1), di latar apa pun, dan hanya aksi
  * WhatsApp yang boleh terlihat seperti ini. Teks tinta di atas indigo gagal kontras (1,83:1).
- * Garis tepi mengikuti nada bagian (border-fg): tinta di permukaan terang, on-night di permukaan gelap. Indigo hanya
- * 1,57:1 terhadap night, jadi tanpa garis terang batas tombol hilang di penutup dan bar bawah HP; garis on-night 14,56:1.
+ * Garis tepi hanya di permukaan gelap (on-night, 14,56:1): indigo hanya 1,57:1 terhadap night, jadi tanpa garis batas
+ * tombol hilang di penutup dan bar bawah HP. Di permukaan terang garisnya transparan (tetap 2px supaya ukuran sama):
+ * indigo sendiri sudah 9,26:1 terhadap canvas, dan garis tinta di sana memberi kesan templat.
  * Hover: indigo sedikit lebih terang, putih di atasnya 7,79:1. Aksi lain memakai tautan teks.
  * Label pendek supaya satu baris di HP; logo WhatsApp menunjukkan tujuannya, dan pembaca layar mendengar "lewat WhatsApp".
  */
@@ -172,7 +173,7 @@ export function Cta({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta(lokasi)}
-      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-fg bg-ember text-center font-display font-bold text-white transition-[transform,background-color] duration-150 hover:bg-[#3546b5] active:translate-y-px ${dims} ${className}`}
+      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-transparent bg-ember text-center [.tone-dark_&]:border-fg font-display font-bold text-white transition-[transform,background-color] duration-150 hover:bg-[#3546b5] active:translate-y-px ${dims} ${className}`}
     >
       <WhatsAppIcon className={size === 'sm' ? 'size-4 shrink-0' : 'size-5 shrink-0 sm:size-6'} />
       {children}

@@ -16,17 +16,21 @@ const PROBLEMS = [
   },
 ]
 
-/** Tiga kalimat besar, bukan kotak metrik. Latar putih sebagai jeda setelah hero. */
+/**
+ * Tiga kalimat besar, bukan kotak metrik. Latar putih sebagai jeda setelah hero.
+ * Di HP bertumpuk; dari 1024px tiga kolom, supaya separuh kanan layar tidak kosong. Garis tinta di atas tiap kolom
+ * mengikuti garis total di nota (bagian Hasil), bukan kartu.
+ */
 export function Problems() {
   return (
     <Section tone="paper" size="lg" labelledby="masalah">
       <h2 id="masalah" className="sr-only">
         Masalah yang sering dialami seller Shopee
       </h2>
-      <ul className="grid gap-8 sm:gap-12">
+      <ul className="grid gap-8 sm:gap-12 lg:grid-cols-3 lg:gap-10">
         {PROBLEMS.map((p) => (
-          <li key={p.title} className="max-w-3xl">
-            <p className="font-display text-2xl leading-[1.15] font-extrabold tracking-tight text-balance sm:text-4xl">
+          <li key={p.title} className="max-w-3xl lg:border-t-2 lg:border-ink lg:pt-6">
+            <p className="font-display text-2xl leading-[1.15] font-extrabold tracking-tight text-balance sm:text-4xl lg:text-3xl">
               {p.title}
             </p>
             <p className="mt-2 max-w-[60ch] text-base leading-relaxed text-fg-2 sm:mt-3 sm:text-lg">{p.body}</p>

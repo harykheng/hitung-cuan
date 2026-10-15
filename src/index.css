@@ -141,35 +141,17 @@
 
 /* ---------- Animasi: hanya transform + opacity, tidak ada loop ---------- */
 
-@keyframes word-rise {
-  from { opacity: 0; transform: translateY(0.45em); }
-  to   { opacity: 1; transform: none; }
-}
 @keyframes stamp {
   0%   { opacity: 0; transform: scale(0.3) rotate(var(--rot-from, -14deg)); }
   60%  { opacity: 1; transform: scale(1.14) rotate(var(--rot, -4deg)); }
   100% { opacity: 1; transform: scale(1) rotate(var(--rot, -4deg)); }
 }
-@keyframes grow-x {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
 @keyframes print-row {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: none; }
 }
-@keyframes confetti {
-  0%   { opacity: 1; transform: translate(0, 0) rotate(0deg); }
-  100% { opacity: 0; transform: translate(var(--dx), calc(var(--dy) + 46px)) rotate(var(--r)); }
-}
 @keyframes gate-fallback {
   to { opacity: 1; transform: none; visibility: visible; }
-}
-
-.word {
-  display: inline-block;
-  animation: word-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: calc(var(--i, 0) * 55ms);
 }
 
 .stamp {
@@ -183,30 +165,9 @@
 /* Stiker verdict simulator: muncul lagi hanya saat verdict berganti (key berubah). */
 .stamp-now { --delay: 0ms; }
 
-.grow {
-  transform-origin: left center;
-  animation: grow-x 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: var(--delay, 0ms);
-}
-
 .print-row {
   animation: print-row 300ms ease-out both;
   animation-delay: calc(var(--i, 0) * 150ms);
-}
-
-.confetti {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-}
-.confetti > span {
-  position: absolute;
-  display: block;
-  border-radius: 1px;
-  animation: confetti 700ms cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
 }
 
 /*
@@ -231,19 +192,16 @@
   opacity: 0;
   transform: translateY(6px);
 }
-.js [data-reveal]:not(.is-in) .stamp,
-.js [data-reveal]:not(.is-in) .grow {
+.js [data-reveal]:not(.is-in) .stamp {
   animation: none;
   opacity: 0;
 }
-.js [data-reveal]:not(.is-in) .grow { transform: scaleX(0); }
 [data-reveal].is-in .stamp { --delay: calc(var(--i, 0) * 60ms); }
 
-/* Kartu hero: elemen "digerbangkan" sampai hidrasi selesai supaya angka dan stiker kompak. */
+/* Kartu hero: angka dan stiker "digerbangkan" sampai hidrasi selesai, supaya stiker muncul setelah angkanya. */
 .js .hero-card:not(.go) .gated {
   animation: none;
   opacity: 0;
-  transform: scaleX(0);
 }
 .js .hero-card:not(.go) .count-pending {
   visibility: hidden;
@@ -275,7 +233,6 @@ input[type='range'] {
   .js [data-reveal]:not(.is-in),
   .js [data-reveal]:not(.is-in) .stage-item,
   .js [data-reveal]:not(.is-in) .stamp,
-  .js [data-reveal]:not(.is-in) .grow,
   .js .hero-card:not(.go) .gated,
   .js .hero-card:not(.go) .count-pending {
     opacity: 1 !important;

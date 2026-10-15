@@ -110,7 +110,7 @@ components:
 
 ## Arah
 
-Struktur arahnya tetap "Cerita Bulan Ini" dari `DESIGN.md` aplikasi (repo `shopee-profit-calc`): jawaban datang lebih dulu sebagai kalimat besar, lalu hitungannya muncul di lembar putih. Contohnya di halaman ini: judul hero berupa satu pertanyaan dengan kata seller ("Tokomu sebenarnya cuan atau boncos?"), kartu "Agustus 2026, toko kamu untung Rp3,42 juta" di atas lembar putih, dan nota hasil yang "tercetak" baris demi baris.
+Struktur arahnya tetap "Cerita Bulan Ini" dari `DESIGN.md` aplikasi (repo `shopee-profit-calc`): jawaban datang lebih dulu sebagai kalimat besar, lalu hitungannya muncul di lembar putih. Contohnya di halaman ini: judul hero berupa satu pertanyaan dengan kata seller ("Tokomu sebenarnya cuan atau boncos?"), kartu "Toko kamu untung bersih Rp3,42 juta" dengan dua baris iklan (Takedown, Hero) di atas lembar putih, dan nota hasil yang "tercetak" baris demi baris.
 
 **Kulitnya berubah dua kali.** Versi pertama memakai indigo jenuh, lime, dan Bricolage Grotesque, yang menurut pemilik terasa terlalu AI. Versi kedua, "Dapur Terang", menggantinya dengan krem hangat, tinta, satu aksen oranye, Parkinsans, dan Plus Jakarta Sans.
 
@@ -143,7 +143,7 @@ Bagian bertanda **[diinferensi]** adalah bacaan saya, bukan keputusan pemilik: h
 
 Dial: ENERGY 2 / RHYTHM 2 / MOTION 2
 
-- **ENERGY 2.** Hero kini terang dan tenang. Yang paling keras tinggal judul Parkinsans 800 setinggi 3,6 rem, frasa jawaban bertinta dengan sorotan peach, tombol ember bergaris tinta, dan satu ledakan confetti. Sebelumnya (bidang indigo jenuh) nilainya 3.
+- **ENERGY 2.** Hero kini terang dan tenang. Yang paling keras tinggal judul Parkinsans 800 setinggi 3,6 rem, frasa jawaban bertinta dengan sorotan peach, dan tombol ember. Confetti dan judul yang naik per kata sudah dibuang. Sebelumnya (bidang indigo jenuh) nilainya 3.
 - **RHYTHM 2.** Grid, container, dan tangga jarak konsisten. Komposisi bagian berbeda-beda secara sengaja: kalimat besar (Masalah), alat (Simulator), baris bergantian (Hasil), cerita pembuat + daftar bukti (Tentang), langkah bernomor (Cara Kerja), dua kolom (Harga), akordeon (FAQ). Ukuran jarak ada tiga (`sm`, `md`, `lg`) dan nada latar bergantian paper, tint, canvas.
 - **MOTION 2.** Gerak menandai jawaban yang datang atau status yang berubah (lihat bagian Gerak). Tidak ada paralaks, koreografi gulir, atau gerak yang berulang tanpa henti.
 
@@ -153,7 +153,7 @@ Dial: ENERGY 2 / RHYTHM 2 / MOTION 2
 
 **Tiga kelompok, tidak lebih** (batas R-29; alasan lengkap ada di komentar `src/index.css`):
 
-- **Inti: netral hangat.** `canvas` (halaman dan hero), `paper` (lembar), `tint` (bagian bergantian), `line` (garis, dan isian batang "Biaya" di kartu hero), `control`, dan skala `ink`, `ink-2`, `ink-3`. Dua permukaan gelap: `night` (penutup, bar CTA bawah) dan `night-deep` (footer).
+- **Inti: netral hangat.** `canvas` (halaman dan hero), `paper` (lembar), `tint` (bagian bergantian), `line` (garis), `control`, dan skala `ink`, `ink-2`, `ink-3`. Dua permukaan gelap: `night` (penutup, bar CTA bawah) dan `night-deep` (footer).
 - **Satu aksen: indigo**, bernama token `ember` (nama lama, nilainya `#2b3a9e`), dengan turunannya: `ember-text` (`#2b3a9e`, teks dan ikon aksen di permukaan terang), `peach` (`#dde2fa`, tint indigo untuk sorotan di baris jawaban; bukan warna hangat lagi, jangan dipakai sebagai latar kategori), dan `mintbg` (latar stiker positif, bukan indigo). Di permukaan gelap aksen memakai `#b7c0ff` (`--accent` dan `--focus` di `.tone-dark`, belum menjadi token). Peran aksen: latar tombol WhatsApp (teks putih), angka hasil di permukaan gelap, aksen logo ("Cuan"), dan cincin fokus. `ember-text` dipakai untuk kicker, tautan, dan ikon aksen di permukaan terang. Jangan menaruh `ember-text` di permukaan gelap: indigo hanya 1,57:1 terhadap `night`.
 - **Status, satu sistem dengan arti tetap:** `loss` (rugi, Takedown), `gain` (untung, stiker positif), `sun` (perlu perhatian, "ROAS terlalu kecil"). Status selalu disertai kata atau ikon, tidak pernah hanya warna. **Aksen tidak pernah dipakai sebagai warna status.** Indigo (rona 232 derajat) jauh dari semua warna status: 80 derajat dari `gain` (152), 137 dari `loss` (9), 177 dari `sun` (49), jadi tidak ada risiko tertukar. Aturannya tetap berlaku supaya arti status tidak kabur: indigo tidak pernah berarti rugi, untung, atau perlu perhatian. Kuning (`sun`) hanya berarti "perlu perhatian", bukan hiasan. Satu pengecualian yang tercatat: tanda merek buatan pemilik (ikon, favicon, logo di `assets/`) memakai kuning `#fbe38a`, dan `#e0b422` di versi untuk latar gelap. Itu bukan token dan bukan status, melainkan bagian dari logo, bukan hiasan halaman. Berkas logo untuk latar gelap juga memakai `#b7c0ff` untuk kata "Cuan", sama dengan aksen `.tone-dark`.
 
@@ -165,7 +165,7 @@ Semua pasangan teks harus lulus 4,5:1 (3:1 untuk teks 18px ke atas). Hitung deng
 
 ## Tipografi
 
-- **Tampilan: Parkinsans** (700, 800) untuk judul, kalimat jawaban, angka besar tunggal, nama merek, dan stiker. Bersih tapi ramah, dan tidak dikenali sebagai font bawaan halaman buatan AI seperti Bricolage Grotesque 800 (alasan yang sama ditulis proposal).
+- **Tampilan: Parkinsans** (700, 800) untuk judul, kalimat jawaban, angka besar tunggal, nama merek, dan stiker. Kalimat panjang (cerita pembuat, pernyataan privasi) dan pertanyaan FAQ memakai font isi: deretan baris tebal 800 membuat semuanya berteriak. Bersih tapi ramah, dan tidak dikenali sebagai font bawaan halaman buatan AI seperti Bricolage Grotesque 800 (alasan yang sama ditulis proposal).
 - **Isi: Plus Jakarta Sans** (400, 600, 700) untuk semua teks lain. Huruf buatan Indonesia, tidak terasa templat di ukuran kecil, dan punya angka tabular.
 - **Angka di kolom memakai Plus Jakarta Sans.** Angka Parkinsans proporsional (lebar "1111111111" 180px, "0000000000" 210px), jadi hanya dipakai untuk angka tunggal besar (hero, harga, total nota).
 - Keduanya dimuat dari server sendiri lewat `@fontsource`, tanpa layanan font luar.
@@ -177,7 +177,7 @@ Semua pasangan teks harus lulus 4,5:1 (3:1 untuk teks 18px ke atas). Hitung deng
 - Container maksimal `72rem`, gutter 16px (sm ke atas 24px).
 - **Urutan bagian** (mengikuti `src/App.tsx`): bar atas (terang), hero (canvas), Masalah (paper, `lg`), Simulator (tint, `md`), Hasil yang kamu dapat (canvas, `lg`), Tentang: siapa pembuatnya dan kenapa angkanya bisa dipercaya (paper), Cara Kerja (canvas), Harga (tint), FAQ (paper), penutup (night), footer (night-deep). Urutannya: masalah, coba sendiri, lihat hasilnya, siapa pembuatnya, baru cara mulai dan harga. Orang tidak perlu membaca cara daftar sebelum tahu apa yang didapat.
 - **Ritme jarak** (`size` pada komponen `Section`): `sm` 40/56/64px, `md` 56/80/96px, `lg` 64/96/128px (mobile / sm / lg). `lg` untuk bagian berisi kalimat besar atau baris tinggi, `md` untuk sisanya. `sm` tersedia untuk bagian yang hanya satu pernyataan (saat ini tidak dipakai, sejak bagian Pembuat digabung ke Tentang).
-- **Titik patah:** satu kolom di bawah 768px. Bagian Hasil, Simulator, Cara Kerja, Harga, dan Tentang menjadi dua kolom dengan jarak rapat dari 768px (`md`), lalu proporsi desktop dari 1024px (`lg`). Hero baru dua kolom dari 1024px. Halaman harus utuh dari 320px sampai 1440px tanpa gulir horizontal.
+- **Titik patah:** satu kolom di bawah 768px. Masalah menjadi tiga kolom dari 1024px (garis tinta di atas tiap kolom), supaya separuh kanan layar desktop tidak kosong. Bagian Hasil, Simulator, Cara Kerja, Harga, dan Tentang menjadi dua kolom dengan jarak rapat dari 768px (`md`), lalu proporsi desktop dari 1024px (`lg`). Hero baru dua kolom dari 1024px. Halaman harus utuh dari 320px sampai 1440px tanpa gulir horizontal.
 - Navigasi hanya logo dan satu tombol. Tidak ada menu. Di HP muncul bar CTA bawah setelah hero lewat, dan fokus keyboard tidak boleh berakhir di balik bar itu.
 
 ## Kedalaman
@@ -190,7 +190,8 @@ Pil (9999px) untuk tombol, tautan sekunder, penanda "Contoh", dan sakelar. 24px 
 
 ## Komponen
 
-- **CTA WhatsApp:** pil indigo (`ember`) dengan teks putih (9,54:1), tinggi 56px (44px untuk bar atas), turun 1px saat ditekan, tanpa bayangan. Garis tepi 2px mengikuti nada bagian: `ink` di permukaan terang, `on-night` di permukaan gelap (indigo hanya 1,57:1 terhadap `night`, garis `on-night` 14,56:1, jadi batas tombol tetap terlihat di penutup dan bar CTA bawah). Hover memakai indigo sedikit lebih terang (`#3546b5`, putih di atasnya 7,79:1). Teks tinta di atas indigo gagal kontras (1,83:1), jangan dipakai. Hanya aksi WhatsApp yang boleh tampak seperti ini. Label pendek supaya satu baris di HP ("Coba gratis 30 hari", "Coba gratis" di bar atas), dengan logo WhatsApp di semua lebar layar dan teks tersembunyi "lewat WhatsApp" untuk pembaca layar. Tautan lain memakai tautan teks (garis bawah, tinggi minimal 44px), termasuk "Atau cek 1 iklanmu dulu, tanpa chat" di hero.
+- **CTA WhatsApp:** pil indigo (`ember`) dengan teks putih (9,54:1), tinggi 56px (44px untuk bar atas), turun 1px saat ditekan, tanpa bayangan. Garis tepi 2px hanya di permukaan gelap: `on-night` (indigo hanya 1,57:1 terhadap `night`, garis `on-night` 14,56:1, jadi batas tombol tetap terlihat di penutup dan bar CTA bawah). Di permukaan terang garisnya transparan, karena indigo sendiri sudah 9,26:1 terhadap `canvas` dan garis tinta memberi kesan templat. Hover memakai indigo sedikit lebih terang (`#3546b5`, putih di atasnya 7,79:1). Teks tinta di atas indigo gagal kontras (1,83:1), jangan dipakai. Hanya aksi WhatsApp yang boleh tampak seperti ini. Label pendek supaya satu baris di HP ("Coba gratis 30 hari", "Coba gratis" di bar atas), dengan logo WhatsApp di semua lebar layar dan teks tersembunyi "lewat WhatsApp" untuk pembaca layar. Tautan lain memakai tautan teks (garis bawah, tinggi minimal 44px), termasuk "Atau cek 1 iklanmu dulu, tanpa chat" di hero.
+- **Ringkasan simulator (HP):** di bawah 768px, hasil simulator berada di bawah input. Ringkasan putusan (stiker dan untung/rugi per order) menempel di bawah bar atas selama kolom input digulir. Latar `tint` tanpa bayangan supaya tidak menjadi lembar di dalam lembar. Hanya tampilan (`aria-hidden`); hasil untuk pembaca layar ada di `role="status"`.
 - **Bantuan WhatsApp di browser bawaan aplikasi** (`InAppWaHelp`): hanya muncul di browser bawaan TikTok, Threads/Instagram, Facebook, LINE, dan WebView, karena browser itu sering menahan tautan `wa.me`. Isinya petunjuk membuka halaman di browser dan tombol "Salin nomor admin". Ada di hero, penutup, dan (versi ringkas) bar CTA bawah.
 - **Stiker:** huruf tampilan 800, kapital, miring sekitar 3 sampai 4 derajat, selalu memuat kata dan ikon. Positif = `mintbg` dengan teks dan garis `gain` dan centang (Angka final, Aman, Hero). Rugi = `loss` dengan teks putih dan tanda silang (Takedown). Perhatian = `sun` dengan teks `sun-ink` dan segitiga (ROAS terlalu kecil).
 - **Penanda "Contoh":** pil bergaris kapital. Wajib ada di setiap angka demo.
@@ -203,11 +204,9 @@ Pil (9999px) untuk tombol, tautan sekunder, penanda "Contoh", dan sakelar. 24px 
 
 Gerak menandai jawaban yang datang atau status yang berubah. Semuanya hanya `transform` dan `opacity`, tanpa pustaka animasi, dan mati total di bawah `prefers-reduced-motion`.
 
-- Kata di judul hero naik satu per satu, jeda 55ms.
 - Angka hasil menghitung naik ke nilainya (700ms).
-- Batang "Dari setiap Rp100" tumbuh dari kiri, dan stiker "tersetempel" saat muncul.
+- Stiker "tersetempel" saat muncul. Di kartu hero, stiker Takedown dan Hero muncul setelah angka untung selesai menghitung.
 - Nota hasil "tercetak" baris demi baris saat digulir ke layar (`data-reveal`, dipakai hanya di nota hasil dan stiker iklan).
-- Confetti satu kali per kunjungan, dari stiker "Angka final".
 - Konten hanya disembunyikan untuk animasi kalau JavaScript benar-benar jalan. Kalau bundle belum berjalan setelah 4 detik, semua konten ditampilkan.
 
 ## Suara dan isi
@@ -245,5 +244,5 @@ Gerak menandai jawaban yang datang atau status yang berubah. Semuanya hanya `tra
 - **Don't** membawa blob, cahaya kursor, kartu melayang, atau lencana pil bertitik dari proposal Ordi.
 - **Don't** memasang cookie, penyimpanan lokal, analitik, atau skrip pihak ketiga tanpa memperbarui `/privasi/` terlebih dulu.
 - **Don't** memakai emoji atau glyph unicode sebagai ikon atau penanda status.
-- **Don't** membuat gerak yang berulang tanpa henti, atau confetti untuk hal selain hasil yang benar-benar muncul.
+- **Don't** membuat gerak yang berulang tanpa henti, menambah confetti, atau menganimasikan judul per kata. Confetti dan judul per kata dibuang karena terbaca sebagai pola templat.
 - **Don't** menganggap bagian "Dial" sudah final sebelum pemilik mengonfirmasinya.
