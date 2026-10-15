@@ -12,7 +12,7 @@ export function Container({ children, className = '' }: { children: ReactNode; c
 
 /*
  * Ritme latar: terang (paper / canvas / tint) untuk bagian isi, gelap (night) hanya untuk penutup.
- * Hero memakai bidang indigo penuh (bg-field), satu bidang berwarna tanpa gradasi, sama dengan og.png.
+ * Hero memakai bidang indigo penuh (bg-ink), satu bidang berwarna tanpa gradasi, sama dengan og.png.
  *
  * Ritme jarak: tiga ukuran, dipilih menurut isi bagian, bukan satu nilai untuk semua.
  *   lg = bagian yang isinya kalimat besar atau baris tinggi (Masalah, Hasil yang kamu dapat): perlu ruang napas.
@@ -30,7 +30,7 @@ const TONE: Record<Tone, string> = {
   paper: 'tone-light bg-paper text-fg',
   canvas: 'tone-light bg-canvas text-fg',
   tint: 'tone-light bg-tint text-fg',
-  night: 'tone-dark bg-field-deep text-fg',
+  night: 'tone-dark bg-night text-fg',
 }
 
 export function Section({
@@ -79,11 +79,11 @@ export function ExampleTag({ className = '' }: { className?: string }) {
 
 type StickerKind = 'final' | 'takedown' | 'kecil' | 'aman' | 'hero'
 const STICKER: Record<StickerKind, string> = {
-  final: 'bg-lime text-field-deep border-field-deep',
+  final: 'bg-mintbg text-gain border-gain',
   takedown: 'bg-loss text-paper border-loss',
   kecil: 'bg-sun text-sun-ink border-sun-ink',
-  aman: 'bg-lime text-field-deep border-field-deep',
-  hero: 'bg-lime text-field-deep border-field-deep',
+  aman: 'bg-mintbg text-gain border-gain',
+  hero: 'bg-mintbg text-gain border-gain',
 }
 
 /**
@@ -141,7 +141,7 @@ export function Sticker({
 /* ---------- Tombol WhatsApp ---------- */
 
 /**
- * CTA utama WhatsApp. Selalu lime dengan teks gelap dan garis tepi gelap, di latar apa pun,
+ * CTA utama WhatsApp. Selalu ember dengan teks tinta dan garis tepi tinta, di latar apa pun,
  * dan hanya aksi WhatsApp yang boleh terlihat seperti ini. Aksi lain memakai GhostLink atau tautan teks.
  */
 export function Cta({
@@ -167,7 +167,7 @@ export function Cta({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta(lokasi)}
-      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-ink bg-lime text-center font-display font-bold text-ink shadow-[0_3px_0_0_#16173d] transition-[transform,background-color] duration-150 hover:bg-[#e3fb7d] active:translate-y-px active:shadow-[0_2px_0_0_#16173d] ${dims} ${className}`}
+      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-ink bg-ember text-center font-display font-bold text-ink shadow-[0_3px_0_0_#1c1917] transition-[transform,background-color] duration-150 hover:bg-[#ff8f4d] active:translate-y-px active:shadow-[0_2px_0_0_#1c1917] ${dims} ${className}`}
     >
       <ChatIcon className={size === 'sm' ? 'size-5 shrink-0' : 'size-6 shrink-0 max-[419px]:hidden'} />
       {children}
@@ -175,12 +175,12 @@ export function Cta({
   )
 }
 
-/** CTA sekunder: outline transparan, jelas kalah menonjol dari tombol lime. Untuk aksi non-WhatsApp. */
+/** CTA sekunder: outline transparan, jelas kalah menonjol dari tombol ember. Untuk aksi non-WhatsApp. */
 export function GhostLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   return (
     <a
       href={href}
-      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-fg-2/60 px-5 py-2 text-center font-semibold text-fg transition-colors hover:border-fg hover:bg-fg/10 ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-fg-2/80 px-5 py-2 text-center font-semibold text-fg transition-colors hover:border-fg hover:bg-fg/10 ${className}`}
     >
       {children}
     </a>

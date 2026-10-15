@@ -44,7 +44,7 @@ export function HowItWorks() {
               <li key={s.t} className="flex gap-4">
                 <span
                   aria-hidden="true"
-                  className="grid size-11 shrink-0 place-items-center rounded-full bg-field font-display text-xl font-extrabold text-white"
+                  className="grid size-11 shrink-0 place-items-center rounded-full bg-ink font-display text-xl font-extrabold text-white"
                 >
                   {i + 1}
                 </span>
@@ -105,14 +105,14 @@ function FlowDemo() {
   const rows = stage >= 5
 
   return (
-    <div ref={boxRef} className="tone-dark rounded-3xl bg-field-deep p-5 text-fg shadow-sheet sm:p-8">
+    <div ref={boxRef} className="tone-dark rounded-3xl bg-night p-5 text-fg shadow-sheet sm:p-8">
       <div className="flex items-center justify-between gap-3">
-        <ExampleTag className="text-on-field-muted" />
+        <ExampleTag className="text-on-night-muted" />
         {animated ? (
           <button
             type="button"
             onClick={replay}
-            className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-semibold text-on-field-muted hover:text-on-field"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-semibold text-on-night-muted hover:text-on-night"
           >
             <ReplayIcon className="size-4" />
             Putar ulang
@@ -135,7 +135,7 @@ function FlowDemo() {
               aria-expanded={openFile === i}
               onClick={() => setOpenFile(openFile === i ? null : i)}
               className={`inline-flex min-h-11 items-center gap-2 rounded-lg border-2 px-3 text-sm font-semibold ${
-                openFile === i ? 'border-on-field bg-on-field text-field-deep' : 'border-on-field-muted/50 text-on-field'
+                openFile === i ? 'border-on-night bg-on-night text-ink' : 'border-on-night-muted/50 text-on-night'
               }`}
             >
               <FileIcon className="size-4" />
@@ -145,8 +145,8 @@ function FlowDemo() {
         ))}
       </ul>
       {openFile !== null ? (
-        <div className="mt-3 rounded-xl border-2 border-dashed border-on-field-muted/60 p-4" role="region" aria-label="Di mana dapatnya?">
-          <p className="text-sm font-semibold text-on-field-muted">Di mana dapatnya?</p>
+        <div className="mt-3 rounded-xl border-2 border-dashed border-on-night-muted/60 p-4" role="region" aria-label="Di mana dapatnya?">
+          <p className="text-sm font-semibold text-on-night-muted">Di mana dapatnya?</p>
           <p className="mt-1">
             <span className="font-semibold">{FILES[openFile].name}</span>: Seller Centre → {FILES[openFile].path}
           </p>
@@ -154,18 +154,18 @@ function FlowDemo() {
       ) : null}
 
       {/* Tahap 2-3: kotak upload */}
-      <div className="mt-5 rounded-xl border-2 border-on-field-muted/40 p-4">
+      <div className="mt-5 rounded-xl border-2 border-on-night-muted/40 p-4">
         <p className="font-semibold">
           Upload ke toko: <span className="font-extrabold">Toko Contoh</span>
         </p>
-        <div className="mt-3 h-2 overflow-hidden rounded-full bg-on-field/15" aria-hidden="true">
+        <div className="mt-3 h-2 overflow-hidden rounded-full bg-on-night/15" aria-hidden="true">
           <div
-            className="h-full origin-left rounded-full bg-on-field transition-transform ease-linear"
+            className="h-full origin-left rounded-full bg-on-night transition-transform ease-linear"
             style={{ transform: uploading ? 'scaleX(1)' : 'scaleX(0)', transitionDuration: '600ms' }}
           />
         </div>
         <p
-          className={`mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-on-field transition-opacity duration-300 ${
+          className={`mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-on-night transition-opacity duration-300 ${
             privacy ? 'opacity-100' : 'opacity-0'
           } ${stage === 3 ? 'flash-ok' : ''}`}
         >
@@ -203,7 +203,7 @@ function Answer({ showRows }: { showRows: boolean }) {
               </span>{' '}
             </Fragment>
           ))}
-          <span className="word text-lime" style={vars({ '--i': words.length })}>
+          <span className="word text-accent" style={vars({ '--i': words.length })}>
             {juta(value)}.
           </span>
         </span>

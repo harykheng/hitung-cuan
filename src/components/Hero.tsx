@@ -20,15 +20,17 @@ const HEADLINE_B = 'Iklan mana yang sebaiknya dimatikan?'
 
 export function Hero() {
   return (
-    <section id="hero" aria-labelledby="judul-utama" className="tone-dark bg-field text-fg">
+    <section id="hero" aria-labelledby="judul-utama" className="tone-light bg-canvas text-fg">
       <Container className="pt-10 pb-16 lg:pt-16 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <p className="font-semibold tracking-wide text-accent">Untuk seller Shopee yang beriklan</p>
             <h1 id="judul-utama" className="mt-3 font-display text-[2.6rem] leading-[1] font-extrabold tracking-tight text-balance sm:text-6xl lg:text-[3.6rem]">
               <Words text={HEADLINE_A} />
-              <span className="block text-lime">
-                <Words text={HEADLINE_B} start={HEADLINE_A.split(' ').length} />
+              <span className="block text-accent">
+                <span className="hl">
+                  <Words text={HEADLINE_B} start={HEADLINE_A.split(' ').length} />
+                </span>
               </span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-2 sm:text-xl">
@@ -69,8 +71,8 @@ const CASES = {
 } as const
 
 const SEGMENTS = [
-  { key: 'modal', pct: 57, label: 'Modal', cls: 'bg-field', num: 'text-white', text: 'Rp57 dari tiap Rp100 untuk modal barang (HPP).' },
-  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-field-soft', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
+  { key: 'modal', pct: 57, label: 'Modal', cls: 'bg-ink', num: 'text-white', text: 'Rp57 dari tiap Rp100 untuk modal barang (HPP).' },
+  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-peach', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
   { key: 'untung', pct: 24, label: 'Untung', cls: 'bg-gain', num: 'text-white', text: 'Rp24 sisa untung bersihmu.' },
 ] as const
 
@@ -102,7 +104,7 @@ function StoryCard() {
   return (
     <figure
       aria-label="Contoh tampilan rekap bulanan"
-      className={`hero-card tone-light relative mx-auto w-full max-w-md rounded-3xl bg-paper p-6 text-fg shadow-[0_8px_0_0_#12145c] sm:p-8 ${go ? 'go' : ''}`}
+      className={`hero-card tone-light relative mx-auto w-full max-w-md rounded-3xl bg-paper p-6 text-fg shadow-[0_8px_0_0_#1c1917] sm:p-8 ${go ? 'go' : ''}`}
     >
       <figcaption className="flex items-center justify-between gap-3">
         <ExampleTag />
@@ -182,7 +184,7 @@ function StoryCard() {
                 setSeg(null)
               }}
               className={`min-h-11 rounded-full px-4 text-sm font-semibold transition-colors ${
-                mode === k ? 'bg-field text-white' : 'text-fg'
+                mode === k ? 'bg-ink text-white' : 'text-fg'
               }`}
             >
               Bulan {k}

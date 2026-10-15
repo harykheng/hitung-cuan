@@ -3,14 +3,14 @@ import { Container, Cta } from './ui'
 
 /**
  * Tautan lewati navigasi: tersembunyi di luar layar sampai mendapat fokus keyboard (Tab pertama).
- * Memakai translate, bukan sr-only, supaya ukurannya tetap 44px. Sengaja tidak berwarna lime:
- * lime hanya untuk aksi WhatsApp.
+ * Memakai translate, bukan sr-only, supaya ukurannya tetap 44px. Sengaja tidak berwarna ember:
+ * ember hanya untuk aksi WhatsApp.
  */
 export function SkipLink() {
   return (
     <a
       href="#utama"
-      className="fixed top-2 left-2 z-[60] inline-flex min-h-11 -translate-y-[200%] items-center rounded-full border-2 border-field bg-paper px-5 font-semibold text-ink underline decoration-2 underline-offset-4 focus:translate-y-0 focus-visible:outline-lime"
+      className="fixed top-2 left-2 z-[60] inline-flex min-h-11 -translate-y-[200%] items-center rounded-full border-2 border-ink bg-paper px-5 font-semibold text-ink underline decoration-2 underline-offset-4 focus:translate-y-0"
     >
       Lewati ke konten utama
     </a>
@@ -20,7 +20,7 @@ export function SkipLink() {
 /** Bar atas menempel: nama + satu tombol. Tidak ada menu lain. */
 export function TopBar() {
   return (
-    <header className="tone-dark sticky top-0 z-50 border-b border-rule bg-field-deep">
+    <header className="tone-light sticky top-0 z-50 border-b border-rule bg-canvas">
       <Container className="flex h-16 items-center justify-between gap-4">
         <a href="/" className="inline-flex min-h-11 items-center rounded-md font-display text-2xl font-extrabold tracking-tight text-fg" aria-label="HitungCuan, ke atas">
           Hitung<span className="text-accent">Cuan</span>
@@ -66,7 +66,7 @@ export function BottomBar() {
     <div
       ref={bar}
       aria-hidden={!show}
-      className={`tone-dark fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-field-deep px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] transition-[transform,visibility] duration-300 sm:hidden ${
+      className={`tone-dark fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-night px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] transition-[transform,visibility] duration-300 sm:hidden ${
         show ? 'visible translate-y-0' : 'invisible translate-y-full'
       }`}
     >

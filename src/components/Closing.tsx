@@ -1,10 +1,10 @@
 import { REPLY_PROMISE } from '../config'
 import { Container, Cta } from './ui'
 
-/** CTA penutup: satu-satunya blok gelap penuh selain hero. Tombol lime paling menonjol di sini. */
+/** CTA penutup: satu-satunya blok gelap penuh selain footer. Tombol ember paling menonjol di sini. */
 export function Closing() {
   return (
-    <section aria-labelledby="penutup" className="tone-dark bg-field-deep py-16 text-fg sm:py-24">
+    <section aria-labelledby="penutup" className="tone-dark bg-night py-16 text-fg sm:py-24">
       <Container>
         <h2
           id="penutup"

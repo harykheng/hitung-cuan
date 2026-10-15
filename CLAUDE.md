@@ -12,11 +12,11 @@ Satu aksi utama: chat WhatsApp. Detail pemakaian dan deploy ada di `README.md`.
 ## Arah desain
 
 Untuk pekerjaan UI, teks, atau tata letak, baca **`DESIGN.md`** lebih dulu. Itu sumber arah desain landing ini: token, aturan
-lime, tipografi, gerak, suara, aksesibilitas, dan dial.
+ember, tipografi, gerak, suara, aksesibilitas, dan dial.
 
 - Bagian **Dial** di `DESIGN.md` masih **inferensi** dan belum dikonfirmasi pemilik. Jangan menganggapnya final.
 - Kalau token di `src/index.css` berubah, ubah frontmatter `DESIGN.md` juga. Nilainya harus identik.
-- Arah desain mengikuti `DESIGN.md` aplikasi di repo `harykheng/shopee-profit-calc`. Kalau keduanya berbeda, tanyakan ke pemilik.
+- Struktur arah desain ("jawaban dulu, hitungan di lembar") mengikuti `DESIGN.md` aplikasi di repo `harykheng/shopee-profit-calc`, tetapi palet dan font landing kini berbeda dari aplikasi (varian "Dapur Terang"). Kalau perlu menyamakan keduanya, tanyakan ke pemilik.
 
 ## Isi yang tidak boleh diubah sendiri
 

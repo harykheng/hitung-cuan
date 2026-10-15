@@ -12,7 +12,7 @@ npm run preview  # cek hasil build
 
 ## Arah desain
 
-`DESIGN.md` (token, tipografi, aturan lime, gerak, suara, aksesibilitas, dial) adalah sumber arah desain landing ini. Isinya
+`DESIGN.md` (token, tipografi, aturan ember, gerak, suara, aksesibilitas, dial) adalah sumber arah desain landing ini. Isinya
 mengikuti `DESIGN.md` aplikasi (`shopee-profit-calc`). Bagian dial masih **inferensi** dan menunggu konfirmasi pemilik.
 Kalau token di `src/index.css` berubah, ubah juga frontmatter `DESIGN.md` (nilainya harus sama).
 

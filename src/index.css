@@ -2,57 +2,51 @@
 
 @theme {
   /*
-   * PALET (R-29). Mengikuti DESIGN.md aplikasi (shopee-profit-calc), hanya yang dipakai halaman ini:
-   *  - Inti: indigo (field, field-deep, night, field-soft) + netral bernuansa indigo (paper, canvas, tint, line, control).
-   *  - Satu aksen: lime.
-   *  - Warna status, satu sistem dengan arti tetap: loss (rugi), gain (untung), sun (perlu perhatian).
-   *    Selalu disertai kata atau ikon, tidak pernah hanya warna.
-   * Tidak ada warna lain. Jangan menambah warna baru di luar tiga kelompok ini tanpa menulis alasannya di sini.
+   * PALET "Dapur Terang" (R-29). Nilainya diambil dari varian C proposal "Ordi Tiga Arah", dengan tiga koreksi yang
+   * dihitung (contrast-check.py): teks di atas oranye wajib tinta (6,73:1, putih hanya 2,6:1), teks oranye di atas
+   * terang wajib ember-text (5,11:1), dan hijau status memakai gain (5,55:1 di atas mintbg; mint bawaan proposal hanya 3,71:1).
+   *  - Inti: netral hangat (canvas, paper, tint, line, control, ink, ink-2, ink-3) dan dua permukaan gelap (night, night-deep).
+   *  - Satu aksen: ember (oranye) dengan turunannya ember-text (untuk teks), peach (sorotan), mintbg (latar stiker positif).
+   *  - Status, satu sistem dengan arti tetap: loss (rugi), gain (untung), sun (perlu perhatian). Selalu disertai kata atau ikon.
+   * Ember hanya berjarak 13 derajat dari loss, jadi ember tidak pernah dipakai sebagai warna status.
    */
-  --color-field: #2b2fa6;
-  --color-field-deep: #1d2079;
-  --color-night: #14165a;
-  /* Indigo muda untuk bagian "Biaya" pada batang di kartu contoh (satu rona dengan field). */
-  --color-field-soft: #a9adeb;
+  --color-canvas: #fffbf6;
   --color-paper: #ffffff;
-  --color-canvas: #f6f7fc;
-  --color-tint: #e9ecfb;
-  --color-line: #d9dcf3;
-  /* Batas kontrol interaktif (input, tombol bergaris) di permukaan terang: 3,9:1 terhadap putih, syarat WCAG 1.4.11 adalah 3:1. */
-  --color-control: #7f7f94;
-  --color-ink: #16173d;
-  --color-ink-2: #4a4d78;
-  --color-ink-3: #5c5f89;
-  --color-on-field: #f6f4ff;
-  --color-on-field-muted: #c3c5f2;
-  /*
-   * Lime, sama dengan DESIGN.md aplikasi: jawaban utama (baris kedua judul hero, angka hasil di demo), kicker
-   * (baris kecil di atas judul hero), stiker bernada positif (Angka final, Aman, Hero), cincin fokus di permukaan
-   * gelap, dan aksen logo. Di landing ada satu tambahan: tombol WhatsApp, satu-satunya aksi utama halaman ini.
-   * Di luar itu, teks dan garis di permukaan gelap memakai on-field atau on-field-muted.
-   */
-  --color-lime: #d7f45a;
-  --color-btn: #2b2fa6;
+  --color-tint: #f7f1e8;
+  --color-line: #ece2d4;
+  /* Batas kontrol interaktif di permukaan terang: 3,8:1 terhadap putih, syarat WCAG 1.4.11 adalah 3:1. */
+  --color-control: #8a8178;
+  --color-ink: #1c1917;
+  --color-ink-2: #57534e;
+  --color-ink-3: #6f6860;
+  --color-night: #2a2623;
+  --color-night-deep: #1c1917;
+  --color-on-night: #fffbf6;
+  --color-on-night-muted: #d6cfc4;
+  --color-ember: #ff7a2f;
+  --color-ember-text: #b34d12;
+  --color-peach: #ffe3d0;
+  --color-mintbg: #ddf3e9;
   --color-loss: #c4361e;
   --color-gain: #146c43;
   --color-sun: #f5d547;
   --color-sun-ink: #4a3200;
 
   /*
-   * Tipografi, sama dengan DESIGN.md aplikasi: Bricolage Grotesque (800/700) untuk kalimat jawaban, judul, angka
-   * besar, dan stiker, karena bobotnya tebal dan angkanya jelas dibaca besar ("Rp3,42 juta"). Public Sans (400/600)
-   * untuk semua teks lain, karena polos, nyaman dibaca panjang, dan punya angka tabular supaya kolom rupiah rata.
-   * Keduanya dimuat dari server sendiri lewat @fontsource (tanpa layanan font luar).
+   * Tipografi: Parkinsans (700/800) untuk judul, kalimat jawaban, angka besar, dan stiker: bersih tapi ramah, dan tidak
+   * dikenali sebagai font bawaan halaman buatan AI seperti Bricolage Grotesque 800 (alasan yang sama ditulis proposal).
+   * Plus Jakarta Sans (400/600) untuk semua teks lain: huruf buatan Indonesia, tidak terasa templat di ukuran kecil, dan
+   * punya angka tabular. Keduanya dimuat dari server sendiri lewat @fontsource.
    */
-  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Parkinsans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
   /*
-   * Satu bayangan lembut untuk lembar (simulator, mock hasil, kartu harga, demo): kedalaman hanya dua tingkat,
-   * permukaan halaman dan lembar di atasnya (DESIGN.md aplikasi, "Elevation & Depth"). Elemen lain datar.
-   * Bayangan keras pada tombol WhatsApp dan kartu hero adalah gaya "tepi kertas" yang dipakai bersama stiker miring.
+   * Satu bayangan lembut untuk lembar (simulator, mock hasil, kartu harga, demo): kedalaman hanya dua tingkat, permukaan
+   * halaman dan lembar di atasnya. Nilainya dari varian C. Bayangan keras pada tombol WhatsApp dan kartu hero adalah gaya
+   * "tepi kertas" yang dipakai bersama stiker miring.
    */
-  --shadow-sheet: 0 16px 40px -20px rgba(29, 32, 121, 0.45);
+  --shadow-sheet: 0 1px 2px rgba(28, 25, 23, 0.06), 0 14px 34px -14px rgba(28, 25, 23, 0.28);
 }
 
 /* Warna semantik mengikuti "nada" bagian: .tone-light (bawaan) atau .tone-dark. */
@@ -66,20 +60,27 @@
 
 :root,
 .tone-light {
-  --fg: #16173d;
-  --fg-2: #4a4d78;
-  --fg-3: #5c5f89;
-  --accent: #2b2fa6;
-  --rule: #d9dcf3;
-  --focus: #2b2fa6;
+  --fg: #1c1917;
+  --fg-2: #57534e;
+  --fg-3: #6f6860;
+  --accent: #b34d12;
+  --rule: #ece2d4;
+  --focus: #b34d12;
 }
 .tone-dark {
-  --fg: #f6f4ff;
-  --fg-2: #c3c5f2;
-  --fg-3: #b8bbf0;
-  --accent: #d7f45a;
-  --rule: rgb(246 244 255 / 0.22);
-  --focus: #d7f45a;
+  --fg: #fffbf6;
+  --fg-2: #d6cfc4;
+  --fg-3: #c4bcb0;
+  --accent: #ff7a2f;
+  --rule: rgb(255 251 246 / 0.22);
+  --focus: #ff7a2f;
+}
+
+/* Sorotan jawaban: garis peach di bawah baris, bukan latar penuh (diambil dari varian C). */
+.hl {
+  background: linear-gradient(var(--color-peach), var(--color-peach)) no-repeat 0 92% / 100% 0.3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 @layer base {
@@ -251,7 +252,7 @@ details[open] .chev { transform: rotate(180deg); }
 
 /* ---------- Kontrol form ---------- */
 input[type='range'] {
-  accent-color: var(--color-btn);
+  accent-color: var(--color-ember-text);
   min-height: 44px;
 }
 

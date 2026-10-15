@@ -8,7 +8,7 @@ export function Footer() {
   const source = useSource()
   const link = 'inline-flex min-h-11 items-center font-semibold text-fg underline decoration-fg-2 decoration-2 underline-offset-4'
   return (
-    <footer className="tone-dark bg-night pt-12 pb-28 text-sm text-fg-2 sm:pb-12">
+    <footer className="tone-dark bg-night-deep pt-12 pb-28 text-sm text-fg-2 sm:pb-12">
       <Container className="grid gap-8 md:grid-cols-2">
         <div>
           <p className="font-display text-2xl font-extrabold tracking-tight text-fg">

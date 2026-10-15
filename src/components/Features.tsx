@@ -140,7 +140,7 @@ function PriceMock() {
                 aria-pressed={on}
                 onClick={() => setPicked(i)}
                 className={`inline-flex min-h-11 min-w-24 items-center justify-center gap-1.5 rounded-full px-5 font-semibold transition-colors ${
-                  on ? 'bg-btn text-paper' : 'border-2 border-btn text-btn'
+                  on ? 'bg-ink text-paper' : 'border-2 border-ink text-accent'
                 }`}
               >
                 {on ? <CheckIcon className="size-4" /> : null}

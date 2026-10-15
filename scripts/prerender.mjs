@@ -12,7 +12,7 @@ if (!html.includes('<!--app-->')) throw new Error('Placeholder <!--app--> tidak 
 
 // Preload font yang dipakai di layar pertama (judul hero, sub-judul, tombol).
 const assets = await readdir(new URL('assets/', dist))
-const preloads = ['bricolage-grotesque-latin-800-normal', 'public-sans-latin-400-normal', 'public-sans-latin-600-normal']
+const preloads = ['parkinsans-latin-800-normal', 'plus-jakarta-sans-latin-400-normal', 'plus-jakarta-sans-latin-600-normal']
   .map((prefix) => assets.find((f) => f.startsWith(prefix) && f.endsWith('.woff2')))
   .filter(Boolean)
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
