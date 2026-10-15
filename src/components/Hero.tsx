@@ -72,7 +72,7 @@ const CASES = {
 
 const SEGMENTS = [
   { key: 'modal', pct: 57, label: 'Modal', cls: 'bg-ink', num: 'text-white', text: 'Rp57 dari tiap Rp100 untuk modal barang (HPP).' },
-  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-peach', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
+  { key: 'biaya', pct: 19, label: 'Biaya', cls: 'bg-line', num: 'text-ink', text: 'Rp19 untuk potongan Shopee, iklan, dan packaging.' },
   { key: 'untung', pct: 24, label: 'Untung', cls: 'bg-gain', num: 'text-white', text: 'Rp24 sisa untung bersihmu.' },
 ] as const
 
@@ -104,7 +104,7 @@ function StoryCard() {
   return (
     <figure
       aria-label="Contoh tampilan rekap bulanan"
-      className={`hero-card tone-light relative mx-auto w-full max-w-md rounded-3xl bg-paper p-6 text-fg shadow-[0_8px_0_0_#1c1917] sm:p-8 ${go ? 'go' : ''}`}
+      className={`hero-card tone-light relative mx-auto w-full max-w-md rounded-3xl bg-paper p-6 text-fg shadow-sheet ring-1 ring-line sm:p-8 ${go ? 'go' : ''}`}
     >
       <figcaption className="flex items-center justify-between gap-3">
         <ExampleTag />

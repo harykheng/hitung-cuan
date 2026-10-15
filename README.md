@@ -71,9 +71,19 @@ Isi `/privasi/` dicocokkan dengan kode aplikasi (repo `shopee-profit-calc`) dan 
 berubah, terutama: memasang analitik atau cookie di landing, mengganti penyedia database, mengubah kolom yang disimpan
 aplikasi, atau dua seller berbagi satu database (saat ini tiap seller memakai database sendiri).
 
+## Ikon, favicon, dan logo
+
+Berkas sumber dari pemilik ada di `assets/` (logo, ikon, favicon, dan `head-snippet.html`). Yang dilayani situs disalin ke
+`public/`: `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`,
+`site.webmanifest`, dan `public/logo/` (dipakai header dan footer). Tag `<head>` di `index.html` mengikuti
+`assets/head-snippet.html`. Kalau berkas di `assets/` diganti, salin ulang ke `public/`. Jangan menaruh berkas tanpa hash di
+`public/assets/`: `public/_headers` menyimpan semuanya di bawah `/assets/` selama satu tahun.
+
 ## Gambar share / Open Graph
 
-`public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja.
+`public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja. Versi sekarang dirender dari logo di `assets/logo/`,
+dengan teks yang sama seperti sebelumnya. WhatsApp dan Facebook menyimpan gambar share lama berdasarkan URL-nya, jadi tautan
+yang sudah pernah dibagikan bisa masih menampilkan gambar lama sampai cache mereka habis.
 
 ## Deploy ke Cloudflare
 

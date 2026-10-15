@@ -22,8 +22,9 @@ export function TopBar() {
   return (
     <header className="tone-light sticky top-0 z-50 border-b border-rule bg-canvas">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <a href="/" className="inline-flex min-h-11 items-center rounded-md font-display text-2xl font-extrabold tracking-tight text-fg" aria-label="HitungCuan, ke atas">
-          Hitung<span className="text-accent">Cuan</span>
+        <a href="/" className="inline-flex min-h-11 min-w-0 items-center rounded-md" aria-label="HitungCuan, ke atas">
+          {/* h-6 di HP supaya tombol di sebelahnya tetap satu baris di 375px; di lebar sempit logo boleh menyusut, object-contain menjaga proporsinya. */}
+          <img src="/logo/logo-horizontal.svg" alt="" width={173} height={28} className="h-6 w-auto max-w-full object-contain object-left sm:h-7" />
         </a>
         <Cta lokasi="bar_atas" size="sm">
           Minta uji coba

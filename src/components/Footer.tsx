@@ -11,9 +11,7 @@ export function Footer() {
     <footer className="tone-dark bg-night-deep pt-12 pb-28 text-sm text-fg-2 sm:pb-12">
       <Container className="grid gap-8 md:grid-cols-2">
         <div>
-          <p className="font-display text-2xl font-extrabold tracking-tight text-fg">
-            Hitung<span className="text-accent">Cuan</span>
-          </p>
+          <img src="/logo/logo-horizontal-on-dark.svg" alt="HitungCuan" width={173} height={28} className="h-7 w-auto max-w-full object-contain object-left" />
           <p className="mt-3 text-base font-semibold text-fg">HitungCuan bukan produk resmi Shopee.</p>
           <p className="mt-3">
             Kontak:{' '}

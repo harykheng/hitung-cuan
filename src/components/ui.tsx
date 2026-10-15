@@ -141,8 +141,11 @@ export function Sticker({
 /* ---------- Tombol WhatsApp ---------- */
 
 /**
- * CTA utama WhatsApp. Selalu ember dengan teks tinta dan garis tepi tinta, di latar apa pun,
- * dan hanya aksi WhatsApp yang boleh terlihat seperti ini. Aksi lain memakai GhostLink atau tautan teks.
+ * CTA utama WhatsApp. Selalu latar indigo (token ember) dengan teks putih (9,54:1), di latar apa pun, dan hanya aksi
+ * WhatsApp yang boleh terlihat seperti ini. Teks tinta di atas indigo gagal kontras (1,83:1).
+ * Garis tepi mengikuti nada bagian (border-fg): tinta di permukaan terang, on-night di permukaan gelap. Indigo hanya
+ * 1,57:1 terhadap night, jadi tanpa garis terang batas tombol hilang di penutup dan bar bawah HP; garis on-night 14,56:1.
+ * Hover: indigo sedikit lebih terang, putih di atasnya 7,79:1. Aksi lain memakai GhostLink atau tautan teks.
  */
 export function Cta({
   lokasi,
@@ -167,7 +170,7 @@ export function Cta({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta(lokasi)}
-      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-ink bg-ember text-center font-display font-bold text-ink shadow-[0_3px_0_0_#1c1917] transition-[transform,background-color] duration-150 hover:bg-[#ff8f4d] active:translate-y-px active:shadow-[0_2px_0_0_#1c1917] ${dims} ${className}`}
+      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-fg bg-ember text-center font-display font-bold text-white transition-[transform,background-color] duration-150 hover:bg-[#3546b5] active:translate-y-px ${dims} ${className}`}
     >
       <ChatIcon className={size === 'sm' ? 'size-5 shrink-0' : 'size-6 shrink-0 max-[419px]:hidden'} />
       {children}
