@@ -12,18 +12,12 @@ export function Pricing() {
   const saving = PRICE_MONTHLY * 12 - PRICE_YEARLY
   return (
     <Section tone="tint" id="harga" labelledby="harga-judul">
-      <H2 id="harga-judul">Harga dan uji coba gratis</H2>
-      <div className="mt-10 grid items-start gap-10 md:grid-cols-2 md:gap-8 lg:gap-14">
+      <div className="grid items-start gap-8 md:grid-cols-2 md:gap-8 lg:gap-14">
         <div>
-          <p className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance text-accent sm:text-4xl">
-            Uji coba gratis {TRIAL_DAYS} hari, tanpa kartu kredit
-          </p>
+          <H2 id="harga-judul">Uji coba gratis {TRIAL_DAYS} hari, tanpa kartu kredit</H2>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
-            Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}.
-          </p>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
-            Setelah {TRIAL_DAYS} hari, admin menonaktifkan akunmu sampai kamu berlangganan. Datamu tetap tersimpan, dan
-            tidak ada tagihan otomatis.
+            Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}. Setelah {TRIAL_DAYS} hari, admin
+            menonaktifkan akunmu sampai kamu berlangganan. Datamu tetap tersimpan, dan tidak ada tagihan otomatis.
           </p>
         </div>
 
@@ -34,7 +28,8 @@ export function Pricing() {
             <span className="text-ink/70">per toko per bulan</span>
           </p>
           <p className="mt-2 text-ink/80">
-            Atau {rp(PRICE_YEARLY)} per toko per tahun. Hemat {rp(saving)} dibanding membayar bulanan selama 12 bulan.
+            Atau {rp(PRICE_YEARLY)} per toko per tahun, setara {rp(Math.round(PRICE_YEARLY / 12))} per bulan. Hemat{' '}
+            {rp(saving)} dibanding bayar bulanan.
           </p>
           <ul className="mt-6 grid gap-2.5">
             {INCLUDED.map((x) => (

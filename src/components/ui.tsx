@@ -13,12 +13,12 @@ export function Container({ children, className = '' }: { children: ReactNode; c
 
 /*
  * Ritme latar: terang (paper / canvas / tint) untuk bagian isi, gelap (night) hanya untuk penutup.
- * Hero memakai bidang indigo penuh (bg-ink), satu bidang berwarna tanpa gradasi, sama dengan og.png.
+ * Hero memakai canvas (krem), sama dengan latar og.png.
  *
  * Ritme jarak: tiga ukuran, dipilih menurut isi bagian, bukan satu nilai untuk semua.
  *   lg = bagian yang isinya kalimat besar atau baris tinggi (Masalah, Hasil yang kamu dapat): perlu ruang napas.
  *   md = bagian bawaan (alat, langkah, bukti, harga, FAQ).
- *   sm = bagian pendek yang hanya satu kutipan (Pembuat): tidak perlu ruang sebanyak itu.
+ *   sm = bagian pendek yang hanya satu kutipan: tidak perlu ruang sebanyak itu (saat ini tidak dipakai).
  */
 type Tone = 'paper' | 'canvas' | 'tint' | 'night'
 type Size = 'sm' | 'md' | 'lg'
@@ -271,7 +271,6 @@ export function InAppWaHelp({ lokasi, compact = false, className = '' }: { lokas
  * sama bentuknya dengan set aplikasi (icons.tsx). Relevansi tiap ikon:
  *   ArrowDown = tautan yang menggulir ke simulator di bawahnya. Check = status selesai atau
  *   butir bukti. Shield = klaim privasi. Chevron = bagian yang bisa dibuka. Plus dan Minus = ubah angka per Rp1.000.
- *   File = berkas laporan Seller Centre. Replay = putar ulang demo.
  * Satu pengecualian: logo WhatsApp di tombol WhatsApp. Itu tanda merek pihak ketiga (isian penuh, bukan garis), dipakai
  * supaya pengunjung langsung tahu tombolnya membuka WhatsApp. Path dari Simple Icons (CC0), warnanya mengikuti teks.
  */
@@ -313,17 +312,5 @@ export const PlusIcon = ({ className = 'size-5' }: IconProps) => (
 export const MinusIcon = ({ className = 'size-5' }: IconProps) => (
   <svg {...base} className={className} strokeWidth={2.25}>
     <path d="M5 12h14" strokeLinecap="round" />
-  </svg>
-)
-export const FileIcon = ({ className = 'size-5' }: IconProps) => (
-  <svg {...base} className={className}>
-    <path d="M7 3h7l5 5v13H7V3Z" strokeLinejoin="round" />
-    <path d="M14 3v5h5" strokeLinejoin="round" />
-  </svg>
-)
-export const ReplayIcon = ({ className = 'size-5' }: IconProps) => (
-  <svg {...base} className={className}>
-    <path d="M4 12a8 8 0 1 0 2.6-5.9L4 8.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M4 4v4.5h4.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )

@@ -36,9 +36,7 @@ export function Footer() {
           <p className="font-semibold text-fg">Privasi singkat</p>
           <p className="mt-2 leading-relaxed">
             Halaman ini mencatat statistik kunjungan lewat Umami, tanpa cookie. Angka yang kamu isi di simulator tidak
-            dikirim. Di aplikasi, nama, alamat,
-            nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. Yang disimpan:
-            nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat.
+            dikirim. Di aplikasi, nama, alamat, dan nomor HP pembeli tidak diambil, tidak dikirim, dan tidak disimpan.
           </p>
           <p className="mt-1">
             <a href="/privasi/" className={link}>

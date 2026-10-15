@@ -1,4 +1,5 @@
 import { useRef, useState, type ReactNode } from 'react'
+import { TRIAL_DAYS } from '../config'
 import { hitung, VERDICT_LABEL, XTRA, PROSES, TARGET, DEFAULT_ADMIN, type Verdict } from '../lib/adsMath'
 import { dec, num, rp } from '../lib/format'
 import { useAnimatedNumber } from '../lib/hooks'
@@ -63,10 +64,10 @@ export function Simulator() {
 
   return (
     <Section tone="tint" id="simulator" labelledby="simulator-judul">
-      <H2 id="simulator-judul">Iklan kamu rugi atau untung?</H2>
+      <H2 id="simulator-judul">Cek 1 iklanmu: untung atau rugi?</H2>
       <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-fg-2">
-        Isi tiga angka produkmu. Hitungannya memakai rumus yang sama dengan aplikasi, dijalankan di browser ini: angka
-        yang kamu isi tidak dikirim atau disimpan. Belum perlu chat.
+        Isi 3 angka dari salah satu produkmu. Rumusnya sama dengan aplikasi, dan angka yang kamu isi tidak dikirim atau
+        disimpan.
       </p>
 
       <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-sheet ring-1 ring-line sm:mt-10 sm:p-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
@@ -373,10 +374,11 @@ function Result({
             )
           }
         >
-          Minta uji coba untuk semua produkmu
+          Cek semua produkmu
         </Cta>
         <p className="mt-3 text-sm text-ink/70">
-          Membuka WhatsApp dengan hasil simulasimu sudah terisi di pesan. Angkamu hanya terkirim kalau kamu menekan kirim.
+          Gratis {TRIAL_DAYS} hari. WhatsApp terbuka dengan hasil simulasimu sudah terisi, dan angkamu baru terkirim kalau
+          kamu menekan kirim.
         </p>
       </div>
     </div>

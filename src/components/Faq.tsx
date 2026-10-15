@@ -26,12 +26,21 @@ export function Faq() {
       a: 'Nama, alamat, nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. File dibaca di browser kamu, dan file aslinya tidak dikirim ke server. Yang disimpan: nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat. Tiap seller memakai database sendiri, dan datamu hanya bisa dilihat akunmu dan admin HitungCuan.',
     },
     {
+      q: 'Apakah harus punya laptop?',
+      a: 'Melihat hasil bisa dari HP atau iPad. Upload file paling nyaman di laptop, karena ketiga file diunduh dari Seller Centre.',
+    },
+    { q: 'Bisa untuk Tokopedia atau TikTok Shop?', a: 'Saat ini hanya Shopee.' },
+    {
       q: 'Saya tidak paham spreadsheet atau istilah ROAS. Apakah bisa?',
       a: 'Bisa. Tiap angka punya penjelasan pendek di sebelahnya, dan ada kamus istilah di aplikasi. Kamu tidak perlu membuat rumus apa pun.',
     },
     {
-      q: 'Apakah harus punya laptop?',
-      a: 'Melihat hasil bisa dari HP atau iPad. Upload file paling nyaman di laptop, karena ketiga file diunduh dari Seller Centre.',
+      q: 'Bagaimana cara bayar? Ada refund?',
+      a: 'Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis 30 hari untuk memastikan HitungCuan cocok dengan tokomu.',
+    },
+    {
+      q: 'Bagaimana kalau berhenti berlangganan?',
+      a: 'Setelah langganan habis, admin menonaktifkan akunmu, jadi kamu tidak bisa masuk. Datamu tetap tersimpan, dan akunmu aktif lagi kalau kamu memperpanjang lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
     },
     {
       q: 'Bagaimana kalau tokonya lebih dari satu?',
@@ -46,19 +55,6 @@ export function Faq() {
       q: 'Kalau Shopee mengganti format file?',
       a: 'Aplikasi menolak file dengan pesan yang jelas, bukan diam-diam salah hitung. Format diperbarui oleh pengelola, dan sudah termasuk dalam harga langganan.',
     },
-    { q: 'Bisa untuk Tokopedia atau TikTok Shop?', a: 'Saat ini hanya Shopee.' },
-    {
-      q: 'Bagaimana cara bayar? Ada refund?',
-      a: 'Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis 30 hari untuk memastikan HitungCuan cocok dengan tokomu.',
-    },
-    {
-      q: 'Bagaimana kalau berhenti berlangganan?',
-      a: 'Setelah langganan habis, admin menonaktifkan akunmu, jadi kamu tidak bisa masuk. Datamu tetap tersimpan, dan akunmu aktif lagi kalau kamu memperpanjang lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
-    },
-    {
-      q: 'Salah upload file, bagaimana?',
-      a: 'Hubungi admin lewat WhatsApp, nanti dihapus.',
-    },
     {
       q: 'Persen admin tokonya berapa?',
       a: 'Berbeda tiap kategori dan bisa berubah. Kamu isi sekali dari Seller Centre, jadi tidak ada tarif bawaan yang bisa salah.',
@@ -66,6 +62,10 @@ export function Faq() {
     {
       q: 'Barang retur dihitung rugi?',
       a: 'Bawaannya barang retur kembali ke stok. Bisa diatur per toko kalau returmu biasanya rusak.',
+    },
+    {
+      q: 'Salah upload file, bagaimana?',
+      a: 'Hubungi admin lewat WhatsApp, nanti dihapus.',
     },
   ]
 

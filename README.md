@@ -18,8 +18,9 @@ Kalau token di `src/index.css` berubah, ubah juga frontmatter `DESIGN.md` (nilai
 
 ## Susunan halaman
 
-Bar atas → Hero (kartu contoh) → Masalah → **Simulator iklan** → Animasi "3 file jadi 1 jawaban" → Yang kamu dapat →
-Kenapa angkanya bisa dipercaya → Siapa di balik ini → Harga dan cara mulai → FAQ → CTA penutup → Footer.
+Bar atas → Hero (kartu contoh) → Masalah → **Simulator iklan** → Hasil yang kamu dapat → Tentang (siapa pembuatnya dan
+kenapa angkanya bisa dipercaya) → Cara kerja (4 langkah, jalur menu Seller Centre di "Di mana dapatnya?") → Harga → FAQ →
+CTA penutup → Footer.
 Di HP ada bar CTA bawah yang muncul setelah hero. Komponen ada di `src/components/`.
 
 ## Simulator
@@ -111,9 +112,11 @@ satu tahun.
 
 ## Gambar share / Open Graph
 
-`public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja. Versi sekarang dirender dari logo di `assets/logo/`,
-dengan teks yang sama seperti sebelumnya. WhatsApp dan Facebook menyimpan gambar share lama berdasarkan URL-nya, jadi tautan
-yang sudah pernah dibagikan bisa masih menampilkan gambar lama sampai cache mereka habis.
+`public/og.png` (1200×630). Versi sekarang (Okt 2026) memakai judul hero "Tokomu sebenarnya cuan atau boncos?" dan
+tombol "Coba gratis 30 hari", dirender dari HTML dengan font dan logo yang sama dengan halaman. Kalau judul hero berubah,
+ganti gambar ini juga. WhatsApp, Threads, dan Facebook menyimpan gambar share berdasarkan URL lengkapnya, jadi setiap kali
+`og.png` diganti, naikkan `?v=` di `og:image` (`index.html`). Tautan yang sudah pernah dibagikan bisa tetap menampilkan
+gambar lama sampai cache mereka habis.
 
 ## Deploy ke Cloudflare
 
