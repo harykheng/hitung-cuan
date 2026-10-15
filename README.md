@@ -76,8 +76,17 @@ aplikasi, atau dua seller berbagi satu database (saat ini tiap seller memakai da
 Berkas sumber dari pemilik ada di `assets/` (logo, ikon, favicon, dan `head-snippet.html`). Yang dilayani situs disalin ke
 `public/`: `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`,
 `site.webmanifest`, dan `public/logo/` (dipakai header dan footer). Tag `<head>` di `index.html` mengikuti
-`assets/head-snippet.html`. Kalau berkas di `assets/` diganti, salin ulang ke `public/`. Jangan menaruh berkas tanpa hash di
-`public/assets/`: `public/_headers` menyimpan semuanya di bawah `/assets/` selama satu tahun.
+`assets/head-snippet.html`.
+
+**Mengunggah atau mengganti berkas di `assets/` tidak mengubah situs.** Hanya isi `public/` yang ikut ke `dist/` dan
+di-deploy; `assets/` cuma arsip sumber. Setelah mengganti berkas di `assets/`, salin ulang ke `public/`:
+`assets/favicon/favicon.ico` dan `favicon.svg` ke `public/`; `assets/icons/apple-touch-icon.png`, `icon-192.png`,
+`icon-512.png`, `icon-maskable-512.png`, dan `site.webmanifest` ke `public/`; `assets/logo/logo-horizontal.svg` dan
+`logo-horizontal-on-dark.svg` ke `public/logo/`. Kalau proporsi logo berubah (viewBox), sesuaikan juga atribut `width` dan
+`height` pada `<img>` logo di `Bars.tsx`, `Footer.tsx`, dan header `public/syarat/` serta `public/privasi/`.
+
+Jangan menaruh berkas tanpa hash di `public/assets/`: `public/_headers` menyimpan semuanya di bawah `/assets/` selama
+satu tahun.
 
 ## Gambar share / Open Graph
 
