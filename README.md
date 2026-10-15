@@ -81,7 +81,9 @@ Berkas sumber dari pemilik ada di `assets/` (logo, ikon, favicon, dan `head-snip
 
 ## Gambar share / Open Graph
 
-`public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja.
+`public/og.png` (1200×630). Ganti dengan nama yang sama kapan saja. Versi sekarang dirender dari logo di `assets/logo/`,
+dengan teks yang sama seperti sebelumnya. WhatsApp dan Facebook menyimpan gambar share lama berdasarkan URL-nya, jadi tautan
+yang sudah pernah dibagikan bisa masih menampilkan gambar lama sampai cache mereka habis.
 
 ## Deploy ke Cloudflare
 
