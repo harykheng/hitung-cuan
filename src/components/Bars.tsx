@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Container, Cta } from './ui'
+import { Container, Cta, InAppWaHelp } from './ui'
 
 /**
  * Tautan lewati navigasi: tersembunyi di luar layar sampai mendapat fokus keyboard (Tab pertama).
@@ -27,7 +27,7 @@ export function TopBar() {
           <img src="/logo/logo-horizontal.svg" alt="" width={165} height={28} className="h-6 w-auto max-w-full object-contain object-left sm:h-7" />
         </a>
         <Cta lokasi="bar_atas" size="sm">
-          Minta uji coba
+          Coba gratis
         </Cta>
       </Container>
     </header>
@@ -71,9 +71,8 @@ export function BottomBar() {
         show ? 'visible translate-y-0' : 'invisible translate-y-full'
       }`}
     >
-      <Cta lokasi="bar_bawah" className="w-full">
-        Minta uji coba gratis
-      </Cta>
+      <Cta lokasi="bar_bawah" className="w-full" />
+      <InAppWaHelp lokasi="bar_bawah" compact className="mt-1" />
     </div>
   )
 }

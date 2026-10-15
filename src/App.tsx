@@ -13,11 +13,14 @@ import { Simulator } from './components/Simulator'
 import { Trust } from './components/Trust'
 import { useRevealOnScroll } from './lib/hooks'
 import { SourceProvider } from './lib/source'
-import { watchScrollDepth } from './lib/track'
+import { trackVisit, watchScrollDepth } from './lib/track'
 
 export default function App() {
   useRevealOnScroll()
-  useEffect(() => watchScrollDepth(), [])
+  useEffect(() => {
+    trackVisit()
+    return watchScrollDepth()
+  }, [])
 
   return (
     <SourceProvider>

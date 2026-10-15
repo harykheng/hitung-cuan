@@ -45,10 +45,10 @@ export function Pricing() {
             ))}
           </ul>
           <Cta lokasi="harga" className="mt-8 w-full" />
+          {/* Kebijakan bayar dan refund tetap di FAQ dan /syarat/; di sini cukup yang relevan saat menekan tombol. */}
           <p className="mt-3 text-center text-sm text-ink/70">
-            Akun dibuat manual oleh admin. {REPLY_PROMISE}.
+            Bayar hanya kalau mau lanjut setelah {TRIAL_DAYS} hari. Tidak ada tagihan otomatis.
           </p>
-          <p className="mt-2 text-center text-sm text-ink/70">Pembayaran lewat chat admin. Tidak ada refund.</p>
           <p className="text-center text-sm">
             <a
               href="/syarat/"

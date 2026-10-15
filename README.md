@@ -1,7 +1,7 @@
 # HitungCuan — landing page
 
 Landing page `hitungcuan.studioharel.id`. React + Vite + TypeScript + Tailwind CSS v4, statis (tanpa backend/database),
-di-prerender jadi HTML. Satu aksi: chat WhatsApp. Tidak ada form dan tidak ada data yang disimpan di halaman ini.
+di-prerender jadi HTML. Satu aksi: chat WhatsApp. Tidak ada form dan tidak ada cookie; statistik kunjungan lewat Umami.
 
 ```bash
 npm install
@@ -53,13 +53,34 @@ Selama nomornya masih placeholder, `npm run build` menampilkan peringatan.
 Pesan WhatsApp ditutup dengan `Kode: HC-{SRC}`. `{SRC}` diambil dari `?src=` (huruf besar, A–Z, 0–9, `_`, `-`, maks.
 24 karakter). Tanpa parameter → `HC-WEB`. Contoh: `https://hitungcuan.studioharel.id/?src=tt01` → `Kode: HC-TT01`.
 
-Tidak ada skrip analitik bawaan. Peristiwa dikirim lewat `src/lib/track.ts`: `cta_click` (properti `lokasi`: `bar_atas`,
-`hero`, `simulator`, `harga`, `faq`, `penutup`, `bar_bawah`, `footer`), `simulator_used`, dan `scroll_depth` (25/50/75/100).
-Mereka otomatis diteruskan ke `window.plausible` / `window.umami` kalau skripnya dipasang, dan selalu dikirim sebagai
-`CustomEvent('hc:track')`. Cloudflare Web Analytics cocok untuk trafik per sumber, tetapi tidak menerima peristiwa kustom;
-untuk `cta_click` per `lokasi`, pasang Plausible atau Umami.
+Statistik memakai **Umami Cloud** (skrip di akhir `<body>` di `index.html`, tanpa cookie). `data-domains` membatasi
+pencatatan ke `hitungcuan.studioharel.id`, jadi `npm run dev`, `npm run preview`, dan URL preview Cloudflare tidak ikut
+terhitung. Skripnya dimuat setelah bundle; `src/lib/track.ts` menahan peristiwa sampai skrip siap. Kalau mengganti atau
+menambah analitik, perbarui `/privasi/` dulu.
 
-CTA click rate = pengunjung unik yang menekan tombol WhatsApp ÷ pengunjung unik, dibaca **per sumber** (`?src=`).
+Peristiwa (semua juga dikirim sebagai `CustomEvent('hc:track')`):
+
+| Peristiwa | Kapan | Properti |
+|---|---|---|
+| `kunjungan` | sekali per pemuatan halaman | `sumber` |
+| `cta_click` | klik WhatsApp **pertama** per pemuatan halaman | `lokasi` (`bar_atas`, `hero`, `simulator`, `harga`, `faq`, `penutup`, `bar_bawah`, `footer`), `sumber` |
+| `salin_nomor` | tombol "Salin nomor admin" (hanya muncul di browser bawaan TikTok, Threads, dsb.) | `lokasi`, `sumber` |
+| `simulator_used` | pertama kali simulator diubah | `sumber` |
+| `scroll_depth` | 25/50/75/100% | `persen` |
+
+`sumber` = kode `?src=` dalam huruf besar (sama dengan `Kode: HC-...` di pesan WhatsApp), atau `WEB` tanpa parameter.
+
+**CTR per sumber = jumlah `cta_click` ÷ jumlah `kunjungan`**, dengan `sumber` yang sama. Di dashboard Umami, buka
+peristiwa `kunjungan` dan `cta_click` lalu lihat rincian properti `sumber`. Karena `cta_click` hanya dihitung sekali per
+pemuatan halaman, angka ini setara "pengunjung yang menekan tombol WhatsApp ÷ pengunjung". Klik bukan chat: chat yang
+benar-benar masuk dihitung dari `Kode: HC-...` di pesan WhatsApp.
+
+Kuota: Umami menghitung setiap peristiwa dan setiap properti sebagai satu event. Satu kunjungan memakai kira-kira 3
+sampai 16 event (tampilan halaman, `kunjungan`, gulir, klik).
+
+**Tautan per platform:** pakai kode berbeda per platform atau per video, misalnya `/?src=tt01` (TikTok) dan `/?src=th01`
+(Threads). Browser bawaan TikTok dan Threads sering tidak mengirim halaman asal, jadi tanpa kode kunjungan tercatat
+sebagai langsung. Untuk video tentang simulator: `/?src=tt02#simulator`.
 
 ## Halaman Syarat Layanan dan Kebijakan Privasi
 

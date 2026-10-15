@@ -3,7 +3,7 @@ import { hitung, VERDICT_LABEL, XTRA, PROSES, TARGET, DEFAULT_ADMIN, type Verdic
 import { dec, num, rp } from '../lib/format'
 import { useAnimatedNumber } from '../lib/hooks'
 import { simulatorMessage } from '../lib/whatsapp'
-import { trackOnce } from '../lib/track'
+import { trackSimulator } from '../lib/track'
 import { ChevronIcon, Cta, H2, MinusIcon, PlusIcon, Section, Sticker, vars } from './ui'
 
 const PRESETS = [
@@ -50,7 +50,7 @@ export function Simulator() {
     ? `Persen admin harus antara 0 dan di bawah 60. Hasil memakai ${dec(admin * 100)}%.`
     : null
 
-  const used = () => trackOnce('simulator_used')
+  const used = trackSimulator
   const res = harga > 0 ? hitung({ hpp, harga, roas, admin }) : null
   const activePreset = PRESETS.find((p) => p.hpp === hpp && p.harga === harga && Math.abs(p.roas - roas) < 1e-9)
 
@@ -65,8 +65,8 @@ export function Simulator() {
     <Section tone="tint" id="simulator" labelledby="simulator-judul">
       <H2 id="simulator-judul">Iklan kamu rugi atau untung?</H2>
       <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-fg-2">
-        Isi tiga angka produkmu. Hitungannya memakai rumus yang sama dengan aplikasi, dijalankan di browser ini: tidak
-        ada yang dikirim atau disimpan. Belum perlu chat.
+        Isi tiga angka produkmu. Hitungannya memakai rumus yang sama dengan aplikasi, dijalankan di browser ini: angka
+        yang kamu isi tidak dikirim atau disimpan. Belum perlu chat.
       </p>
 
       <div className="tone-light mt-8 grid gap-10 rounded-3xl bg-paper p-5 text-ink shadow-sheet ring-1 ring-line sm:mt-10 sm:p-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">

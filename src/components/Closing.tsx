@@ -1,5 +1,4 @@
-import { REPLY_PROMISE } from '../config'
-import { Container, Cta } from './ui'
+import { Container, Cta, InAppWaHelp } from './ui'
 
 /** CTA penutup: satu-satunya blok gelap penuh selain footer. Tombol ember paling menonjol di sini. */
 export function Closing() {
@@ -10,14 +9,15 @@ export function Closing() {
           id="penutup"
           className="max-w-3xl font-display text-4xl leading-[1.05] font-extrabold tracking-tight text-balance sm:text-5xl"
         >
-          Coba gratis 30 hari untuk tokomu.
+          Cek tokomu bulan ini: cuan atau boncos.
         </h2>
         <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-fg-2">
-          Chat admin lewat WhatsApp. Akun tokomu dibuatkan secara manual, dan {REPLY_PROMISE.charAt(0).toLowerCase()}
-          {REPLY_PROMISE.slice(1)}.
+          Chat admin lewat WhatsApp. Setelah akunmu siap, upload 3 laporan dari Seller Centre dan lihat untung bersih
+          tokomu bulan itu.
         </p>
         <div className="mt-8">
           <Cta lokasi="penutup" />
+          <InAppWaHelp lokasi="penutup" className="mt-4" />
           <p className="mt-4 text-sm text-fg-2">Tanpa kartu kredit · Saat ini hanya untuk Shopee · Bukan produk resmi Shopee</p>
         </div>
       </Container>
