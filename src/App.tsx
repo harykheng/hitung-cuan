@@ -9,6 +9,7 @@ import { HowItWorks } from './components/HowItWorks'
 import { Pricing } from './components/Pricing'
 import { Problems } from './components/Problems'
 import { Simulator } from './components/Simulator'
+import { Story } from './components/Story'
 import { Trust } from './components/Trust'
 import { useRevealOnScroll } from './lib/hooks'
 import { SourceProvider } from './lib/source'
@@ -28,6 +29,7 @@ export default function App() {
       <main id="utama">
         <Hero />
         <Problems />
+        <Story />
         <Simulator />
         <Features />
         <Trust />

@@ -211,6 +211,54 @@
   animation: gate-fallback 0s 3s forwards;
 }
 
+/*
+ * ---------- Cerita gulir (PROTOTIPE, lihat Story.tsx) ----------
+ * Bawaan = mode statis: semua langkah bertumpuk, kartu di keadaan akhir, tangga disembunyikan.
+ * Mode hidup hanya dengan JavaScript (.js), tanpa reduced motion, dan layar setinggi minimal 600px. Media query ini harus
+ * sama dengan LIVE_QUERY di Story.tsx.
+ */
+.story-stage { padding: 2.5rem 0 4rem; }
+@media (min-width: 640px) { .story-stage { padding: 3.5rem 0 6rem; } }
+.story-steps { display: grid; gap: 2rem; }
+.story-ladder { display: none; }
+.story-ladder-fill { transform: scaleX(var(--p, 1)); }
+.story-row { transition: opacity 250ms ease-out; }
+.story-value { transition: opacity 250ms ease-out; }
+.story-row.is-on .stamp { --delay: calc(var(--i, 0) * 80ms); }
+
+@media (prefers-reduced-motion: no-preference) and (min-height: 600px) {
+  /* Jarak gulir ±4 layar untuk 5 langkah. */
+  .js .story-track { height: 480vh; height: 480svh; }
+  .js .story-stage {
+    position: sticky;
+    top: 4rem; /* tinggi bar atas (h-16) */
+    height: calc(100vh - 4rem);
+    height: calc(100svh - 4rem);
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+  .js .story-steps { gap: 0; }
+  /* Semua langkah di satu sel grid: tinggi = langkah tertinggi, jadi tidak ada lompatan saat berganti. */
+  .js .story-steps > li {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 300ms ease-out, transform 300ms ease-out;
+  }
+  .js .story-steps > li.is-active { opacity: 1; transform: none; }
+  .js .story-row:not(.is-on) { opacity: 0.25; }
+  .js .story-row:not(.is-on) .story-value { opacity: 0; }
+  .js .story-row:not(.is-on) .stamp { animation: none; opacity: 0; }
+}
+/* Di HP bar CTA bawah (±81px) menutupi bagian bawah layar: isi panggung dinaikkan di atasnya. */
+@media (prefers-reduced-motion: no-preference) and (min-height: 600px) and (max-width: 639px) {
+  .js .story-stage { padding-bottom: 5.5rem; }
+}
+@media (prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 640px) {
+  .js .story-ladder { display: block; }
+}
+
 /* ---------- FAQ ---------- */
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }

@@ -208,6 +208,7 @@ Gerak menandai jawaban yang datang atau status yang berubah. Semuanya hanya `tra
 - Stiker "tersetempel" saat muncul. Di kartu hero, stiker Takedown dan Hero muncul setelah angka untung selesai menghitung.
 - Nota hasil "tercetak" baris demi baris saat digulir ke layar (`data-reveal`, dipakai hanya di nota hasil dan stiker iklan).
 - Konten hanya disembunyikan untuk animasi kalau JavaScript benar-benar jalan. Kalau bundle belum berjalan setelah 4 detik, semua konten ditampilkan.
+- **Prototipe, belum diputuskan pemilik (16 Okt 2026):** bagian "Uang masuk banyak belum tentu cuan" (`src/components/Story.tsx`, setelah Masalah) adalah cerita yang tertahan saat digulir. Rekap satu bulan dihitung langkah demi langkah dan angkanya ikut maju-mundur bersama gulir. Ini melanggar "tanpa koreografi gulir" di Dial MOTION 2 [diinferensi], dan sengaja dibuat untuk dicoba pemilik setelah melihat ailene.id. Tetap tanpa pustaka animasi (sticky + satu listener scroll), dan statis tanpa JavaScript, dengan reduced motion, atau di layar di bawah 600px. Kalau diterima, Dial dan bagian ini diperbarui. Kalau ditolak, hapus berkas itu, `<Story />` di `App.tsx`, dan blok "Cerita gulir" di `src/index.css`.
 
 ## Suara dan isi
 
