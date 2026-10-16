@@ -11,7 +11,10 @@
     <!--
       Halaman statis tanpa JavaScript, disalin apa adanya dari public/. Setiap kalimat di bawah sudah dicocokkan dengan
       kode aplikasi (repo shopee-profit-calc, commit 8b5e041) dan kode landing ini, atau berasal dari keputusan pemilik
-      (14 Okt 2026). Perbarui teks dan tanggal "Terakhir diperbarui" kalau salah satunya berubah, terutama:
+      (14 Okt 2026). Bagian 2 dan 3 dicocokkan ulang pada 16 Okt 2026 dengan branch multi-tenant (commit f036fdd):
+      semua seller di satu database, dipisah RLS (supabase/migrations/20261012000000_multi_tenant.sql), laporan error
+      ke tabel client_errors (20261016000000_operations.sql, src/lib/errorReport.ts), kategori biaya admin dan
+      pengaturan hitungan (20261014, 20261015), dan penyimpanan lokal browser (sesi Supabase, toko terpilih, pengingat). Perbarui teks dan tanggal "Terakhir diperbarui" kalau salah satunya berubah, terutama:
       ganti atau tambah analitik, pasang cookie di landing, ganti penyedia database, atau dua seller berbagi satu database.
       Bagian Umami (15 Okt 2026) dicocokkan dengan index.html, src/lib/track.ts, dan sumber skrip pelacak Umami
       (umami-software/umami, src/tracker/index.ts): payload berisi website, ukuran layar, bahasa, judul, hostname,
@@ -90,7 +93,7 @@
     </header>
     <main>
       <h1>Kebijakan Privasi HitungCuan</h1>
-      <p class="meta">Terakhir diperbarui: 15 Oktober 2026</p>
+      <p class="meta">Terakhir diperbarui: 16 Oktober 2026</p>
 
       <p>
         HitungCuan dikelola oleh <a href="https://studioharel.id">Studio Harel</a>. Halaman ini menjelaskan data apa
@@ -123,8 +126,7 @@
 
       <h2>2. Aplikasi HitungCuan (setelah akunmu dibuat)</h2>
       <p>
-        Akun dibuat manual oleh admin setelah kamu chat. Tiap seller memakai database sendiri, dan 1 akun dipakai untuk
-        1 toko.
+        Akun dibuat manual oleh admin setelah kamu chat. 1 akun dipakai untuk 1 toko.
       </p>
 
       <h3>Data yang disimpan</h3>
@@ -133,13 +135,19 @@
         <li><strong>Pesanan (dari file export pesanan):</strong> nomor pesanan, nama produk dan variasi, SKU, jumlah, status pesanan, status pembatalan atau pengembalian, waktu pesanan dibuat dan selesai, dan subtotal per item.</li>
         <li><strong>Penghasilan (dari laporan penghasilan PDF):</strong> angka penghasilan per tanggal dana dilepas, dan keterangan serta jumlah biaya penyesuaian.</li>
         <li><strong>Iklan (dari file data iklan):</strong> nama toko di file, periode, nama iklan atau grup, kode dan nama produk, jumlah dilihat, klik, produk terjual, omzet, dan biaya.</li>
-        <li><strong>Yang kamu isi sendiri:</strong> HPP per produk, biaya bulanan (iklan Shopee, Meta Ads, packaging, lain-lain) beserta catatan yang kamu tulis, dan persen admin serta Gratis Ongkir XTRA per produk.</li>
+        <li><strong>Yang kamu isi sendiri:</strong> HPP per produk, biaya bulanan (iklan Shopee, Meta Ads, packaging, lain-lain) beserta catatan yang kamu tulis, persen admin serta Gratis Ongkir XTRA per produk, kategori biaya admin beserta persennya, dan pengaturan hitungan toko (target untung dan porsi barang retur yang bisa dijual lagi).</li>
         <li><strong>Riwayat unggah:</strong> akun mana yang mengunggah data dan kapan.</li>
+        <li><strong>Laporan error:</strong> kalau aplikasi mengalami gangguan, browsermu mengirim laporan berisi pesan error, bagian kode tempat error terjadi, halaman yang sedang dibuka, versi aplikasi, dan jenis browser, terhubung ke akun dan tokomu. Isi file tidak ikut dikirim, tetapi pesan error kadang menyebut sebagian data yang memicunya, misalnya tanggal atau kode produk. Laporan ini hanya bisa dibaca admin, dan dipakai untuk memperbaiki aplikasi.</li>
       </ul>
       <p>
         Data ini dipakai untuk menghitung dan menampilkan rekap untung, penilaian iklan, dan simulasi harga di
         akunmu. Nomor pesanan memang tersimpan. Nomor itu bukan nama pembeli, tetapi bisa dicocokkan dengan pesanan di
         Seller Centre milikmu.
+      </p>
+      <p>
+        Di browsermu, aplikasi menyimpan sesi login (supaya kamu tidak perlu masuk ulang setiap membuka aplikasi), toko
+        yang terakhir dipilih, dan pengingat yang kamu tunda. Aplikasi tidak memakai cookie iklan dan tidak memuat skrip
+        statistik.
       </p>
 
       <h3>Data pembeli yang tidak diambil</h3>
@@ -165,7 +173,13 @@
         <li>Akunmu sendiri, setelah login. Data tidak bisa dibaca atau ditulis tanpa login.</li>
         <li>Admin HitungCuan, yang mengelola database dan bisa mengaksesnya untuk membantu kamu, misalnya menghapus data atas permintaanmu.</li>
         <li>Supabase, penyedia database dan sistem login yang menyimpan data aplikasi atas nama kami.</li>
-        <li>Seller lain tidak bisa melihat datamu, karena tiap seller memakai database sendiri.</li>
+        <li>
+          Seller lain tidak bisa melihat atau mengubah datamu. Data semua seller HitungCuan disimpan di satu database yang
+          sama, dan setiap baris data ditandai dengan toko pemiliknya. Database hanya mengizinkan akun yang terdaftar di
+          toko itu untuk membaca atau mengubahnya (aturan akses per baris, <em>row level security</em>). Aturan ini
+          dijalankan di dalam database, bukan hanya oleh tampilan aplikasi, jadi tetap berlaku walaupun seseorang
+          mengakses database tanpa lewat aplikasi.
+        </li>
       </ul>
 
       <h2>4. Berapa lama data disimpan</h2>
