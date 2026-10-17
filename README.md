@@ -91,7 +91,8 @@ sebagai langsung. Untuk video tentang simulator: `/?src=tt02#simulator`.
 
 Isi `/privasi/` dicocokkan dengan kode aplikasi (repo `shopee-profit-calc`) dan landing ini. Perbarui kalau salah satu
 berubah, terutama: memasang analitik atau cookie di landing, mengganti penyedia database, mengubah kolom yang disimpan
-aplikasi, atau dua seller berbagi satu database (saat ini tiap seller memakai database sendiri).
+aplikasi, atau cara data antarseller dipisahkan (sejak Okt 2026 semua seller berbagi satu database, dipisah row level
+security; lihat `/privasi/` bagian 3).
 
 ## Ikon, favicon, dan logo
 

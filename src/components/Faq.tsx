@@ -23,7 +23,7 @@ export function Faq() {
   const items: { q: string; a: ReactNode }[] = [
     {
       q: 'Apakah data pembeli saya aman?',
-      a: 'Nama, alamat, nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. File dibaca di browser kamu, dan file aslinya tidak dikirim ke server. Yang disimpan: nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat. Tiap seller memakai database sendiri, dan datamu hanya bisa dilihat akunmu dan admin HitungCuan.',
+      a: 'Nama, alamat, nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. File dibaca di browser kamu, dan file aslinya tidak dikirim ke server. Yang disimpan: nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat. Seller lain tidak bisa melihat atau mengubah datamu: data semua seller ada di satu database, tapi tiap baris dikunci untuk toko pemiliknya, dan aturan itu dijalankan di dalam database. Selain akunmu, admin HitungCuan bisa mengaksesnya untuk membantu kamu. Daftar lengkapnya ada di Kebijakan Privasi.',
     },
     {
       q: 'Apakah harus punya laptop?',
