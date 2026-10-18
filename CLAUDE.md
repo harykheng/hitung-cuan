@@ -18,6 +18,11 @@ ember, tipografi, gerak, suara, aksesibilitas, dan dial.
 - Kalau token di `src/index.css` berubah, ubah frontmatter `DESIGN.md` juga. Nilainya harus identik.
 - Struktur arah desain ("jawaban dulu, hitungan di lembar") mengikuti `DESIGN.md` aplikasi di repo `harykheng/shopee-profit-calc`, tetapi latar krem dan font landing berbeda dari aplikasi (varian "Dapur Terang"). Sejak 15 Okt 2026 aksen indigo sudah sejalan dengan aplikasi (token `ember`, `ember-text`, `peach` namanya lama tetapi nilainya indigo); lime di aplikasi belum dibersihkan. Kalau perlu menyamakan keduanya, tanyakan ke pemilik.
 
+## Konteks produk
+
+Baca **`CONTEXT.md`** untuk alur seller (dari video sampai bayar), hubungan dengan aplikasi `shopee-profit-calc`,
+glosarium istilah, keputusan yang sudah diambil, dan jebakan yang sudah diketahui.
+
 ## Isi yang tidak boleh diubah sendiri
 
 - **Klaim privasi, keamanan, dan hukum** (Hero, Trust, FAQ, footer, `public/privasi/index.html`, `public/syarat/index.html`) harus
