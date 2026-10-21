@@ -6,7 +6,7 @@
     <title>HitungCuan: Hitung untung bersih toko Shopee-mu</title>
     <meta
       name="description"
-      content="Hitung untung bersih toko Shopee dari laporan Seller Centre. Tahu iklan Shopee mana yang sebaiknya dimatikan dan di ROAS berapa iklan balik modal. Uji coba gratis 30 hari lewat WhatsApp, tanpa kartu kredit."
+      content="Ubah file export Shopee jadi untung bersih per bulan dan per produk, cek iklan per produk, dan simulasikan harga jual. Tanya akses HitungCuan lewat WhatsApp."
     />
     <link rel="canonical" href="https://hitungcuan.studioharel.id/" />
     <meta name="theme-color" content="#fffbf6" />
@@ -22,24 +22,40 @@
     <meta property="og:title" content="HitungCuan: Hitung untung bersih toko Shopee-mu" />
     <meta
       property="og:description"
-      content="Hitung untung bersih toko Shopee dari laporan pesanan, penghasilan, dan iklan. Coba gratis 30 hari lewat WhatsApp."
+      content="Jangan cuma lihat omzet. Cari tahu untung bersih toko Shopee-mu dari file export Seller Centre. Tanya akses lewat WhatsApp."
     />
     <!-- ?v= dinaikkan tiap og.png diganti: WhatsApp dan Threads menyimpan gambar share berdasarkan URL lengkapnya. -->
-    <meta property="og:image" content="https://hitungcuan.studioharel.id/og.png?v=3" />
+    <meta property="og:image" content="https://hitungcuan.studioharel.id/og.png?v=5" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="HitungCuan, aplikasi untuk seller Shopee yang beriklan: Tokomu sebenarnya cuan atau boncos? Coba gratis 30 hari." />
+    <meta property="og:image:alt" content="HitungCuan, aplikasi web untuk penjual Shopee: Jangan cuma lihat omzet. Cari tahu untung bersih toko Shopee-mu." />
     <meta name="twitter:card" content="summary_large_image" />
+    <!-- Data terstruktur: hanya fakta yang ada di halaman (tanpa harga, rating, atau ulasan). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "HitungCuan",
+        "url": "https://hitungcuan.studioharel.id/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "id",
+        "description": "Aplikasi web untuk penjual Shopee: untung bersih per bulan dan per produk, analisis iklan, dan simulasi harga dari file export Seller Centre.",
+        "publisher": { "@type": "Organization", "name": "Studio Harel", "url": "https://studioharel.id" }
+      }
+    </script>
     <!--
-      Konten disembunyikan untuk animasi hanya kalau JavaScript jalan (lihat index.css).
+      Konten disembunyikan untuk animasi hanya kalau JavaScript jalan (lihat index.css). Kelas "motion" (landing 3)
+      hanya dipasang tanpa reduced motion.
       Kalau bundle belum jalan setelah 4 detik (gagal muat atau jaringan lambat), kelas "js" dicabut supaya semua
       konten tampil. main.tsx memasang data-hc begitu bundle berjalan.
     -->
     <script>
       document.documentElement.classList.add("js");
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion");
       setTimeout(function () {
         var d = document.documentElement;
-        if (!d.hasAttribute("data-hc")) d.classList.remove("js");
+        if (!d.hasAttribute("data-hc")) d.classList.remove("js", "motion");
       }, 4000);
     </script>
   </head>

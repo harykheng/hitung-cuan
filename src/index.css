@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
-@theme {
+/* static: semua token selalu dikeluarkan sebagai variabel CSS, karena landing 3 (src/landing3/landing3.css) membacanya
+   lewat var(--color-*) tanpa utility Tailwind. */
+@theme static {
   /*
    * PALET "Dapur Terang" (R-29), aksen indigo sejak keputusan pemilik 15 Okt 2026. Oranye ember dibuang
    * sebagai warna merek: oranye terbaca sebagai bagian dari Shopee, padahal halaman ini menyatakan "Bukan produk resmi
@@ -48,6 +50,8 @@
    */
   --font-display: 'Parkinsans', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  /* Landing 3: huruf sel lembar kerja (data export, huruf kolom, bilah rumus). Hanya untuk teks kecil berbentuk data. */
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /*
    * Satu bayangan lembut untuk lembar (simulator, mock hasil, kartu harga, kartu hero, demo): kedalaman hanya dua tingkat,

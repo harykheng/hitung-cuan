@@ -52,6 +52,11 @@ typography:
     fontWeight: 400
     lineHeight: 1.625
     fontFeature: "tnum"
+  mono:
+    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontSize: "0.75rem"
+    fontWeight: 500
+    lineHeight: 1.5
   small:
     fontFamily: "Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
@@ -146,6 +151,82 @@ Dial: ENERGY 2 / RHYTHM 2 / MOTION 2
 - **ENERGY 2.** Hero kini terang dan tenang. Yang paling keras tinggal judul Parkinsans 800 setinggi 3,6 rem, frasa jawaban bertinta dengan sorotan peach, dan tombol ember. Confetti dan judul yang naik per kata sudah dibuang. Sebelumnya (bidang indigo jenuh) nilainya 3.
 - **RHYTHM 2.** Grid, container, dan tangga jarak konsisten. Komposisi bagian berbeda-beda secara sengaja: kalimat besar (Masalah), alat (Simulator), baris bergantian (Hasil), cerita pembuat + daftar bukti (Tentang), langkah bernomor (Cara Kerja), dua kolom (Harga), akordeon (FAQ). Ukuran jarak ada tiga (`sm`, `md`, `lg`) dan nada latar bergantian paper, tint, canvas.
 - **MOTION 2.** Gerak menandai jawaban yang datang atau status yang berubah (lihat bagian Gerak). Tidak ada paralaks, koreografi gulir, atau gerak yang berulang tanpa henti.
+
+## Landing 3 (branch `landing-3`, 21 Okt 2026)
+
+Alternatif ketiga untuk brief pemilik ("Prompt Landing Page HitungCuan", Okt 2026), dikerjakan dengan skill `awwwards`
+dari repo `juliobsz/skills` (dibaca dari salinan sementara di luar repo, tidak dipasang). Permintaan pemilik: UI dan UX
+harus berbeda dari `main` dan `landing-2`, ke arah situs Awwwards. Isi brief, token warna, dan kedua font utama tetap;
+yang berubah adalah konsep, komposisi, tipografi skala besar, dan gerak. Kode ada di `src/landing3/`.
+
+**Kartu konsep**
+
+```
+Idea:        Halaman ini adalah lembar kerja: file export yang ruwet disaring sampai tinggal satu jawaban.
+Metaphor:    Spreadsheet export Seller Centre: huruf kolom, bilah rumus, sel terpilih, kolom beku, tab lembar.
+Signature:   "Saring" (Saring.tsx + saring-driver.ts): lembar contoh tertahan selama lima bab. Kolom data pembeli
+             menyempit dan diarsir ("Tidak diambil"), kolom dari laporan lain masuk, baris dirangkum per produk
+             (Aman, Tipis, Rugi), lalu kursor sel membesar jadi satu angka "Untung bersih". Satu penggerak (--p1..--p4).
+Emotion:     "Oh, jadi file-ku dibaca begitu." Rapi, tenang, terkendali.
+Motion verb: dipilih lalu dirapikan (kursor sel berpindah, kolom menyempit, baris naik ke tempatnya).
+Screenshot:  Judul hero raksasa di atas garis kolom A sampai L, "untung bersih" di dalam kotak sel kuning.
+```
+
+Tiga konsep yang ditimbang (orisinalitas / kecocokan / kelayakan / mudah dipindah ke merek lain, makin kecil makin baik):
+
+| Konsep | Wilayah | Jangkar | O/K/L/P |
+|---|---|---|---|
+| **Saring: halaman sebagai lembar kerja** (dipilih) | bahan kerja | kolom export pesanan Shopee dan kolom pembeli yang tidak dipetakan parser aplikasi | 4 / 5 / 4 / 2 |
+| Sempoa: tiap produk satu baris manik yang bergeser ke untung atau rugi | budaya | sempoa yang dikenal seller Indonesia | 4 / 2 / 3 / 3 |
+| Satu angka raksasa yang berubah sepanjang halaman | sistem formal | angka untung bersih | 3 / 4 / 5 / 4 (terlalu dekat dengan "running balance" dan pita Rp100 landing 2) |
+
+**Beda dari `main` dan `landing-2`.** Tidak ada kartu putih bersudut 24px, stiker miring, nota tercetak, coretan "omzet",
+atau pita Rp100. Gantinya: grid 12 kolom yang terlihat (garis kolom dan huruf A sampai L), judul selebar layar, sudut 0
+untuk semua yang berbentuk sel (pil hanya untuk tombol WhatsApp), bidang indigo penuh untuk Privasi, tangga tiga langkah
+dengan panah "trace precedents", dinding galeri untuk screenshot, dan satu bagian bercerita yang tertahan saat digulir.
+
+**Uji generik.** Model lain dengan brief yang sama kemungkinan besar membuat hero dua kolom dengan mockup dashboard, tiga
+kartu manfaat sama besar, dan langkah 1-2-3 dalam kartu. Yang diubah: hero berupa poster tipografi, manfaat sebagai baris
+indeks selebar halaman (tiap baris tautan ke contoh layarnya), dan proses aplikasi diperlihatkan lewat lembar, bukan
+diceritakan dengan ikon.
+
+**Penyimpangan yang disengaja dari aturan dokumen ini** (hanya berlaku di landing 3; kalau pemilik memilih landing 3,
+bagian Gerak, Komponen, dan Dial di atas perlu ditulis ulang):
+
+- **Pustaka animasi:** GSAP (ScrollTrigger, SplitText) dan Lenis, dimuat terpisah lewat import dinamis setelah hidrasi
+  (±55 KB gzip). Lenis hanya untuk pointer halus tanpa reduced motion; layar sentuh memakai gulir bawaan.
+- **Gerak saat diam:** dua saja, keduanya bermakna. Kursor di bilah rumus hero berkedip, dan garis putus-putus di bingkai
+  screenshot kosong berjalan seperti rentang yang disalin (hanya saat terlihat). Garis putus-putus hilang begitu
+  screenshot asli dipasang. Lembar "Saring" sengaja diam saat tidak digulir. Semuanya mati di reduced motion.
+- **Kuning `sun` sebagai warna seleksi**, bukan hanya status "perlu perhatian": isi kotak sel terpilih (tembus 50%, atau
+  campuran multiply di lembar), bidang hover tombol WhatsApp (tinta di atas sun 12,07:1), dan penanda navigasi. Arti status
+  tetap utuh karena status selalu berupa stiker dengan kata dan ikon (Tipis, Belum lengkap).
+- **Font ketiga: JetBrains Mono** (400, 500, ±21 KB per berat) hanya untuk teks kecil berbentuk data: isi sel, huruf kolom,
+  bilah rumus, token file. Token `--font-mono`.
+- **Garis tipis di mana-mana** (grid lembar) adalah konsepnya, bukan gaya koran. Sudut 0 untuk sel, pil untuk CTA.
+- `@theme static` di `src/index.css`: landing 3 membaca token lewat `var(--color-*)` tanpa utility Tailwind, jadi semua
+  token harus selalu dikeluarkan. Nilai token tidak berubah.
+
+**Susunan:** bar atas (logo, Cara kerja, Yang bisa dicek, FAQ, "Tanya akses"; di HP panel Menu layar penuh) → Hero
+(poster di atas lembar) → Masalah (pernyataan dengan token file) → Saring (tint, momen khas) → Yang bisa dicek (indeks) →
+Cara kerja (paper, tangga) → Preview aplikasi (dinding galeri) → Privasi (bidang indigo) → FAQ → penutup (kursor sel
+berhenti di tombol) → footer (night-deep).
+
+**Isi.** Klaim privasi, FAQ, dan footer memakai kalimat yang sudah dicocokkan dengan aplikasi di landing 2 dan `main`
+("tidak diambil", bukan "tidak dibaca"). Kolom data pembeli di lembar contoh tidak pernah diisi, bahkan dengan data rekaan:
+sejak awal tampil sebagai titik tersamar. Angka lembar adalah toko rekaan berlabel Contoh dan saling cocok (omzet 20,0 jt,
+untung per produk 3,4 jt, biaya lain 0,4 jt, untung bersih 3,0 jt). Ambang "Tipis" di lembar hanya untuk contoh. Pesan
+WhatsApp bawaan menyebut "tanya akses", tanpa uji coba atau harga. `og.png` dibuat ulang dengan judul hero landing 3.
+
+**Placeholder yang harus diganti pemilik** (semua di `src/landing3/content.ts`): empat screenshot aplikasi (hero dan tiga
+di Preview).
+
+**Yang sengaja tidak diambil dari skill:** loader, WebGL, transisi halaman (satu halaman, produk untuk seller dengan HP
+kelas menengah), dan halaman 404 khusus (butuh perubahan `wrangler.jsonc`; audit skill mencatatnya sebagai FAIL).
+
+**QA (build produksi, skrip `shoot.mjs` dan `audit.mjs` skill):** 0 pelanggaran axe, LCP HP 1,0 detik di CPU 4x lebih
+lambat dan 4G lambat, CLS 0, 60 fps, tanpa gulir horizontal di 390 dan 1440px, reduced motion tanpa teks tersembunyi,
+semua target hover utama bereaksi. Nilai kritik adalah **penilaian sendiri**, bukan kritikus terpisah.
 
 ## Warna
 

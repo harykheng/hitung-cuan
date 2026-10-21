@@ -23,6 +23,13 @@ kenapa angkanya bisa dipercaya) → Cara kerja (4 langkah, jalur menu Seller Cen
 CTA penutup → Footer.
 Di HP ada bar CTA bawah yang muncul setelah hero. Komponen ada di `src/components/`.
 
+## Landing 3 (branch `landing-3`)
+
+Alternatif desain "Saring": halaman sebagai lembar kerja. Kode di `src/landing3/` (isi yang sering diganti di
+`src/landing3/content.ts`), arah dan alasannya di `DESIGN.md` bagian "Landing 3". Berbeda dari landing 1 di atas: gerak
+memakai GSAP + Lenis (dimuat setelah hidrasi), tidak ada simulator, harga, atau bar CTA bawah. Komponen landing 1 di
+`src/components/` tetap ada tetapi tidak diimpor.
+
 ## Simulator
 
 `src/lib/adsMath.ts` memakai rumus yang sama dengan aplikasi (`src/lib/adsMath.ts` di repo aplikasi). Jangan diubah di
@@ -64,7 +71,7 @@ Peristiwa (semua juga dikirim sebagai `CustomEvent('hc:track')`):
 | Peristiwa | Kapan | Properti |
 |---|---|---|
 | `kunjungan` | sekali per pemuatan halaman | `sumber` |
-| `cta_click` | klik WhatsApp **pertama** per pemuatan halaman | `lokasi` (`bar_atas`, `hero`, `simulator`, `harga`, `faq`, `penutup`, `bar_bawah`, `footer`), `sumber` |
+| `cta_click` | klik WhatsApp **pertama** per pemuatan halaman | `lokasi` (`bar_atas`, `menu` (landing 3), `hero`, `simulator`, `harga`, `faq`, `penutup`, `bar_bawah`, `footer`), `sumber` |
 | `salin_nomor` | tombol "Salin nomor admin" (hanya muncul di browser bawaan TikTok, Threads, dsb.) | `lokasi`, `sumber` |
 | `simulator_used` | pertama kali simulator diubah | `sumber` |
 | `scroll_depth` | 25/50/75/100% | `persen` |
