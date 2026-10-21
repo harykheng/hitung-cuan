@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react'
 import { useSource } from '../lib/source'
 import { trackCta } from '../lib/track'
-import { multiStoreMessage, waLink } from '../lib/whatsapp'
+import { generalMessage, waLink } from '../lib/whatsapp'
 import { ChevronIcon, H2, Section } from './ui'
 
-function WaLink({ message, children }: { message: (s: string) => string; children: ReactNode }) {
+function WaLink({ children }: { children: ReactNode }) {
   const source = useSource()
   return (
     <a
-      href={waLink(message(source))}
+      href={waLink(generalMessage(source))}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta('faq')}
@@ -19,54 +19,46 @@ function WaLink({ message, children }: { message: (s: string) => string; childre
   )
 }
 
+/*
+ * Pertanyaan dari brief landing 2, ditambah dua yang spesifik produk (HP/laptop, marketplace lain).
+ * Tidak menyebut harga, uji coba, atau janji operasional baru. Klaim privasi mengikuti Privacy.tsx.
+ */
 export function Faq() {
   const items: { q: string; a: ReactNode }[] = [
     {
-      q: 'Apakah data pembeli saya aman?',
-      a: 'Nama, alamat, nomor HP, username, dan nomor resi pembeli tidak diambil, tidak dikirim, dan tidak disimpan. File dibaca di browser kamu, dan file aslinya tidak dikirim ke server. Yang disimpan: nomor pesanan, produk dan variasi, qty, status, waktu pesanan, subtotal, angka penghasilan, data iklan per produk, serta HPP dan biaya yang kamu isi sendiri. Emailmu untuk login juga tercatat. Tiap seller memakai database sendiri, dan datamu hanya bisa dilihat akunmu dan admin HitungCuan.',
+      q: 'HitungCuan menghitung apa?',
+      a: 'Untung bersih per bulan dan per produk, untung atau rugi tiap iklan (ROAS nyata dibanding target ROAS), serta simulasi harga jual dan target ROAS. Semuanya dari data yang kamu unggah dan isi sendiri.',
     },
     {
-      q: 'Apakah harus punya laptop?',
-      a: 'Melihat hasil bisa dari HP atau iPad. Upload file paling nyaman di laptop, karena ketiga file diunduh dari Seller Centre.',
-    },
-    { q: 'Bisa untuk Tokopedia atau TikTok Shop?', a: 'Saat ini hanya Shopee.' },
-    {
-      q: 'Saya tidak paham spreadsheet atau istilah ROAS. Apakah bisa?',
-      a: 'Bisa. Tiap angka punya penjelasan pendek di sebelahnya, dan ada kamus istilah di aplikasi. Kamu tidak perlu membuat rumus apa pun.',
+      q: 'File apa yang perlu disiapkan?',
+      a: 'Export pesanan Shopee (.xlsx, status Semua), laporan penghasilan Excel "Sudah Dilepas" (PDF bulanan masih bisa untuk laporan lama), dan file data iklan (.csv) kalau kamu beriklan. HPP dan biaya diisi langsung di aplikasi.',
     },
     {
-      q: 'Bagaimana cara bayar? Ada refund?',
-      a: 'Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis 30 hari untuk memastikan HitungCuan cocok dengan tokomu.',
+      q: 'Apakah file asli saya diunggah?',
+      a: 'Tidak. File dibaca di browser kamu dan file aslinya tidak diunggah ke server. Yang disimpan adalah hasil olahannya untuk akun tokomu, supaya rekap bisa dibuka lagi. Data pribadi pembeli seperti nama, alamat, dan nomor telepon tidak diambil dan tidak disimpan.',
     },
     {
-      q: 'Bagaimana kalau berhenti berlangganan?',
-      a: 'Setelah langganan habis, admin menonaktifkan akunmu, jadi kamu tidak bisa masuk. Datamu tetap tersimpan, dan akunmu aktif lagi kalau kamu memperpanjang lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
-    },
-    {
-      q: 'Bagaimana kalau tokonya lebih dari satu?',
+      q: 'Apakah saya bisa langsung daftar dan membayar di website?',
       a: (
         <>
-          Satu akun untuk 1 toko. Kalau punya lebih dari satu toko,{' '}
-          <WaLink message={multiStoreMessage}>tanyakan ke admin lewat WhatsApp</WaLink>.
+          Tidak. Akun dan akses toko dikelola oleh pengelola HitungCuan. Kalau tertarik,{' '}
+          <WaLink>tanyakan aksesnya lewat WhatsApp</WaLink>.
         </>
       ),
     },
     {
-      q: 'Kalau Shopee mengganti format file?',
-      a: 'Aplikasi menolak file dengan pesan yang jelas, bukan diam-diam salah hitung. Format diperbarui oleh pengelola, dan sudah termasuk dalam harga langganan.',
+      q: 'Kenapa hasil bulan saya belum lengkap?',
+      a: 'Biasanya karena laporan penghasilan bulan itu belum diunggah, ada uang cair yang belum cocok dengan pesanannya, HPP sebagian produk belum terisi, atau biaya bulan itu belum disimpan. Aplikasi menyebut mana yang kurang.',
     },
     {
-      q: 'Persen admin tokonya berapa?',
-      a: 'Berbeda tiap kategori dan bisa berubah. Kamu isi sekali dari Seller Centre, jadi tidak ada tarif bawaan yang bisa salah.',
+      q: 'Apakah HitungCuan menjamin toko pasti untung?',
+      a: 'Tidak. HitungCuan membantu membaca angka tokomu supaya keputusan soal harga dan iklan punya dasar. Hasil usaha tetap bergantung pada banyak hal di luar aplikasi.',
     },
     {
-      q: 'Barang retur dihitung rugi?',
-      a: 'Bawaannya barang retur kembali ke stok. Bisa diatur per toko kalau returmu biasanya rusak.',
+      q: 'Bisa dipakai dari HP?',
+      a: 'Melihat hasil bisa dari HP atau iPad. Mengunggah file paling nyaman lewat laptop, karena file diunduh dari Seller Centre.',
     },
-    {
-      q: 'Salah upload file, bagaimana?',
-      a: 'Hubungi admin lewat WhatsApp, nanti dihapus.',
-    },
+    { q: 'Bisa untuk Tokopedia atau TikTok Shop?', a: 'Saat ini hanya Shopee.' },
   ]
 
   return (

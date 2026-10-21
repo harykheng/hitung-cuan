@@ -6,15 +6,17 @@ import { Container } from './ui'
 
 export function Footer() {
   const source = useSource()
-  const link = 'inline-flex min-h-11 items-center font-semibold text-fg underline decoration-fg-2 decoration-2 underline-offset-4'
+  const link = 'inline-flex min-h-11 items-center font-semibold text-fg underline decoration-fg-2 decoration-2 underline-offset-4 hover:decoration-fg'
   return (
-    <footer className="tone-dark bg-night-deep pt-12 pb-[calc(9rem+env(safe-area-inset-bottom))] text-sm text-fg-2 sm:pb-12">
+    <footer className="tone-dark bg-night-deep pt-12 pb-[calc(3rem+env(safe-area-inset-bottom))] text-sm text-fg-2">
       <Container className="grid gap-8 md:grid-cols-2">
         <div>
           <img src="/logo/logo-horizontal-on-dark.svg" alt="HitungCuan" width={165} height={28} className="h-7 w-auto max-w-full object-contain object-left" />
-          <p className="mt-3 text-base font-semibold text-fg">HitungCuan bukan produk resmi Shopee.</p>
+          <p className="mt-3 max-w-[44ch] text-base leading-relaxed text-fg">
+            Aplikasi untuk membantu penjual Shopee membaca untung bersih, kinerja iklan, dan simulasi harga.
+          </p>
           <p className="mt-3">
-            Kontak:{' '}
+            WhatsApp:{' '}
             <a
               href={waLink(generalMessage(source))}
               target="_blank"
@@ -22,21 +24,21 @@ export function Footer() {
               onClick={() => trackCta('footer')}
               className={link}
             >
-              WhatsApp +{WA_NUMBER}
+              +{WA_NUMBER}
             </a>
           </p>
-          <p className="mt-2">
-            Sudah berlangganan?{' '}
+          <p className="mt-1">
+            Sudah punya akun?{' '}
             <a href={APP_URL} className={link}>
               Masuk ke aplikasi
             </a>
           </p>
         </div>
-        <div id="privasi">
+        <div>
           <p className="font-semibold text-fg">Privasi singkat</p>
-          <p className="mt-2 leading-relaxed">
-            Halaman ini mencatat statistik kunjungan lewat Umami, tanpa cookie. Angka yang kamu isi di simulator tidak
-            dikirim. Di aplikasi, nama, alamat, dan nomor HP pembeli tidak diambil, tidak dikirim, dan tidak disimpan.
+          <p className="mt-2 max-w-[56ch] leading-relaxed">
+            Halaman ini mencatat statistik kunjungan lewat Umami, tanpa cookie. Di aplikasi, nama, alamat, dan nomor HP
+            pembeli tidak diambil, tidak dikirim, dan tidak disimpan.
           </p>
           <p className="mt-1">
             <a href="/privasi/" className={link}>
@@ -51,7 +53,7 @@ export function Footer() {
           <a href={STUDIO_URL} className={link}>
             Studio Harel
           </a>{' '}
-          · © <span suppressHydrationWarning>{new Date().getFullYear()}</span> ·{' '}
+          · © <span suppressHydrationWarning>{new Date().getFullYear()}</span> · Bukan produk resmi Shopee ·{' '}
           <a href="/syarat/" className={link}>
             Syarat Layanan
           </a>{' '}

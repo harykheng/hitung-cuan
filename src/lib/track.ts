@@ -6,7 +6,18 @@ import { getSourceCode } from './whatsapp'
  * sama dengan "Kode: HC-..." di pesan WhatsApp), kecuali scroll_depth: tiap properti dihitung sebagai satu event di
  * kuota Umami, jadi properti hanya ditambahkan di peristiwa yang dibaca per sumber.
  */
-export type CtaLocation = 'bar_atas' | 'hero' | 'simulator' | 'harga' | 'faq' | 'penutup' | 'bar_bawah' | 'footer'
+export type CtaLocation =
+  | 'bar_atas'
+  | 'menu'
+  | 'hero'
+  | 'manfaat'
+  | 'faq'
+  | 'penutup'
+  | 'footer'
+  // Lokasi lama (simulator, harga, bar bawah HP): tidak ada lagi di halaman, tetap di tipe untuk komponen lama.
+  | 'simulator'
+  | 'harga'
+  | 'bar_bawah'
 
 type Props = Record<string, string | number>
 

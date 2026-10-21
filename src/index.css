@@ -102,16 +102,6 @@
     scroll-padding-top: 4.5rem;
   }
 
-  /*
-   * Di HP bar CTA bawah (±81px, ±129px dengan bantuan WhatsApp di browser bawaan aplikasi) menutupi elemen yang baru
-   * difokuskan dekat tepi layar; sisakan ruang di bawah.
-   */
-  @media (max-width: 639px) {
-    html {
-      scroll-padding-bottom: 8.5rem;
-    }
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -126,6 +116,14 @@
 
   h1, h2, h3, .font-display {
     font-feature-settings: 'tnum';
+  }
+
+  /*
+   * Di judul Parkinsans dengan 'tnum', tanda hubung terbaca renggang ("Shopee - mu"). Tanda hubung judul dibungkus
+   * komponen Hy (ui.tsx) dan memakai fitur bawaan font. Dicek di tangkapan layar, bukan dihitung.
+   */
+  .hy {
+    font-feature-settings: normal;
   }
 
   /* Grid tanpa kolom eksplisit = satu kolom yang boleh menyusut (cegah gulir horizontal di HP). */
@@ -212,51 +210,74 @@
 }
 
 /*
- * ---------- Cerita gulir (PROTOTIPE, lihat Story.tsx) ----------
- * Bawaan = mode statis: semua langkah bertumpuk, kartu di keadaan akhir, tangga disembunyikan.
- * Mode hidup hanya dengan JavaScript (.js), tanpa reduced motion, dan layar setinggi minimal 600px. Media query ini harus
- * sama dengan LIVE_QUERY di Story.tsx.
+ * ---------- Landing 2: konsep "Dari omzet sampai untung" ----------
+ * Kata kerja gerak: "dipotong lalu distempel". Coretan omzet di judul, pita Rp100 yang terpotong, stiker yang
+ * tersetempel. Semua hanya transform dan opacity, sekali jalan, mati di bawah reduced motion.
  */
-.story-stage { padding: 2.5rem 0 4rem; }
-@media (min-width: 640px) { .story-stage { padding: 3.5rem 0 6rem; } }
-.story-steps { display: grid; gap: 2rem; }
-.story-ladder { display: none; }
-.story-ladder-fill { transform: scaleX(var(--p, 1)); }
-.story-row { transition: opacity 250ms ease-out; }
-.story-value { transition: opacity 250ms ease-out; }
-.story-row.is-on .stamp { --delay: calc(var(--i, 0) * 80ms); }
 
-@media (prefers-reduced-motion: no-preference) and (min-height: 600px) {
-  /* Jarak gulir ±4 layar untuk 5 langkah. */
-  .js .story-track { height: 480vh; height: 480svh; }
-  .js .story-stage {
-    position: sticky;
-    top: 4rem; /* tinggi bar atas (h-16) */
-    height: calc(100vh - 4rem);
-    height: calc(100svh - 4rem);
-    display: flex;
-    align-items: center;
-    padding: 0;
-  }
-  .js .story-steps { gap: 0; }
-  /* Semua langkah di satu sel grid: tinggi = langkah tertinggi, jadi tidak ada lompatan saat berganti. */
-  .js .story-steps > li {
-    grid-area: 1 / 1;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 300ms ease-out, transform 300ms ease-out;
-  }
-  .js .story-steps > li.is-active { opacity: 1; transform: none; }
-  .js .story-row:not(.is-on) { opacity: 0.25; }
-  .js .story-row:not(.is-on) .story-value { opacity: 0; }
-  .js .story-row:not(.is-on) .stamp { animation: none; opacity: 0; }
+/* Coretan di kata "omzet" (judul hero). Garis tinta, bukan merah: merah berarti rugi. Tanpa JS langsung tercoret. */
+.coret {
+  position: relative;
+  white-space: nowrap;
 }
-/* Di HP bar CTA bawah (±81px) menutupi bagian bawah layar: isi panggung dinaikkan di atasnya. */
-@media (prefers-reduced-motion: no-preference) and (min-height: 600px) and (max-width: 639px) {
-  .js .story-stage { padding-bottom: 5.5rem; }
+.coret::after {
+  content: '';
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  top: 54%;
+  height: 0.09em;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+  animation: coret 520ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both;
 }
-@media (prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 640px) {
-  .js .story-ladder { display: block; }
+@keyframes coret {
+  from { transform: rotate(-3deg) scaleX(0); }
+  to   { transform: rotate(-3deg) scaleX(1); }
+}
+
+/* Pita Rp100: tiap potongan tumbuh dari kiri saat blok masuk layar (pakai jeda stage-item). */
+.cut { transform-origin: left center; }
+.js [data-reveal]:not(.is-in) .cut {
+  opacity: 1;
+  transform: scaleX(0);
+}
+
+/*
+ * Umpan balik tombol WhatsApp: tombol terangkat 2px dan logo memiring seperti stempel yang siap ditekan; saat ditekan
+ * turun 1px. Hover warna tetap ada (lihat Cta), tetapi bukan satu-satunya tanda.
+ */
+.cta { transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease-out; }
+.cta-icon { transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+@media (hover: hover) {
+  .cta:hover { transform: translateY(-2px); }
+  .cta:hover .cta-icon { transform: rotate(-12deg) scale(1.08); }
+}
+.cta:active { transform: translateY(1px); }
+
+/* Tautan navigasi: garis bawah tergambar dari kiri saat hover, dan menetap untuk bagian yang sedang dibaca. */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.25rem;
+  right: 0.25rem;
+  bottom: 0.55rem;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link[aria-current]::after { transform: scaleX(1); }
+
+/* "Lihat cara kerjanya": panahnya turun sedikit, searah tujuannya. */
+.link-arrow .arrow { transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+@media (hover: hover) {
+  .link-arrow:hover .arrow { transform: translateY(3px); }
 }
 
 /* ---------- FAQ ---------- */

@@ -18,12 +18,21 @@ Kalau token di `src/index.css` berubah, ubah juga frontmatter `DESIGN.md` (nilai
 
 ## Susunan halaman
 
-Bar atas → Hero (kartu contoh) → Masalah → **Simulator iklan** → Hasil yang kamu dapat → Tentang (siapa pembuatnya dan
-kenapa angkanya bisa dipercaya) → Cara kerja (4 langkah, jalur menu Seller Centre di "Di mana dapatnya?") → Harga → FAQ →
-CTA penutup → Footer.
-Di HP ada bar CTA bawah yang muncul setelah hero. Komponen ada di `src/components/`.
+**Landing 2** (branch `landing-2`, mengikuti brief pemilik Okt 2026): Bar atas (logo, Cara kerja, Yang bisa dicek, FAQ,
+"Tanya akses") → Hero (kartu "Preview aplikasi") → Masalah (pita "dari setiap Rp100 omzet") → Yang bisa dicek → Cara kerja
+→ Preview aplikasi (placeholder screenshot) → Privasi → FAQ → CTA penutup → Footer. Tidak ada harga, uji coba, atau bar
+CTA bawah di HP. Konsep, alasan, dan placeholder ada di `DESIGN.md` bagian "Landing 2".
 
-## Simulator
+Komponen ada di `src/components/`. Simulator, Story, Pricing, Features, Problems, dan Trust adalah sisa landing 1: tidak
+diimpor `App.tsx` dan tidak ikut bundel, tetapi masih dikompilasi `tsc`.
+
+### Mengganti screenshot dan label CTA
+
+Semua di `src/content.ts`: `HERO_SCREEN` (hero) dan `PREVIEW_SCREENS` (satu besar, dua kecil). Taruh gambar di
+`public/screens/`, isi `src`, `width`, dan `height`. Selama `src: null`, bingkai menampilkan placeholder bertanda.
+Label tombol ada di `CTA_LABEL` dan `CTA_LABEL_SHORT`.
+
+## Simulator (landing 1, tidak dipakai di landing 2)
 
 `src/lib/adsMath.ts` memakai rumus yang sama dengan aplikasi (`src/lib/adsMath.ts` di repo aplikasi). Jangan diubah di
 sini saja: ubah dua-duanya. Persen admin 8,25% hanya **contoh**; potongan lain tetap (XTRA 4%, proses Rp1.250,
@@ -39,8 +48,9 @@ Hanya `transform` dan `opacity`, tidak ada loop, tanpa dependensi animasi (CSS +
   Tanpa JS dan dengan `prefers-reduced-motion`, semua teks dan angka langsung tampil.
   Kalau JS aktif tetapi bundle belum berjalan setelah 4 detik (gagal muat atau jaringan lambat), skrip di `<head>`
   mencabut kelas `js` supaya semua konten tampil; `src/main.tsx` memasang `data-hc` di `<html>` begitu bundle berjalan.
-- Gerak harus menandai sesuatu (jawaban datang, status berubah). Muncul saat digulir (`data-reveal`) hanya dipakai di dua blok:
-  nota hasil yang "tercetak" baris demi baris dan stiker iklan yang "tersetempel". Blok teks tidak ikut bergerak.
+- Gerak harus menandai sesuatu (jawaban datang, status berubah). Di landing 2, muncul saat digulir (`data-reveal`) hanya
+  dipakai di pita "dari setiap Rp100 omzet" (bagian Masalah). Coretan kata "omzet" di judul hero berjalan sekali saat
+  halaman terbuka. Blok teks tidak ikut bergerak.
 - Tidak ada confetti dan judul tidak dianimasikan per kata (dibuang karena terbaca sebagai pola templat).
 - Semua angka demo berlabel **Contoh**. Jangan tulis angka hasil, testimonial, atau klaim yang tidak ada datanya.
 
@@ -64,9 +74,9 @@ Peristiwa (semua juga dikirim sebagai `CustomEvent('hc:track')`):
 | Peristiwa | Kapan | Properti |
 |---|---|---|
 | `kunjungan` | sekali per pemuatan halaman | `sumber` |
-| `cta_click` | klik WhatsApp **pertama** per pemuatan halaman | `lokasi` (`bar_atas`, `hero`, `simulator`, `harga`, `faq`, `penutup`, `bar_bawah`, `footer`), `sumber` |
+| `cta_click` | klik WhatsApp **pertama** per pemuatan halaman | `lokasi` (landing 2: `bar_atas`, `hero`, `manfaat`, `faq`, `penutup`, `footer`; landing 1 juga `simulator`, `harga`, `bar_bawah`), `sumber` |
 | `salin_nomor` | tombol "Salin nomor admin" (hanya muncul di browser bawaan TikTok, Threads, dsb.) | `lokasi`, `sumber` |
-| `simulator_used` | pertama kali simulator diubah | `sumber` |
+| `simulator_used` | pertama kali simulator diubah (landing 1 saja) | `sumber` |
 | `scroll_depth` | 25/50/75/100% | `persen` |
 
 `sumber` = kode `?src=` dalam huruf besar (sama dengan `Kode: HC-...` di pesan WhatsApp), atau `WEB` tanpa parameter.
@@ -112,8 +122,9 @@ satu tahun.
 
 ## Gambar share / Open Graph
 
-`public/og.png` (1200×630). Versi sekarang (Okt 2026) memakai judul hero "Tokomu sebenarnya cuan atau boncos?" dan
-tombol "Coba gratis 30 hari", dirender dari HTML dengan font dan logo yang sama dengan halaman. Kalau judul hero berubah,
+`public/og.png` (1200×630). Versi landing 2 (21 Okt 2026, `?v=4`) memakai judul hero "Jangan cuma lihat omzet. Cari tahu
+untung bersih toko Shopee-mu." dan tombol "Tanya akses HitungCuan", dirender dari HTML dengan font dan logo yang sama
+dengan halaman. Kalau judul hero berubah,
 ganti gambar ini juga. WhatsApp, Threads, dan Facebook menyimpan gambar share berdasarkan URL lengkapnya, jadi setiap kali
 `og.png` diganti, naikkan `?v=` di `og:image` (`index.html`). Tautan yang sudah pernah dibagikan bisa tetap menampilkan
 gambar lama sampai cache mereka habis.

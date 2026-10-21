@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
-import { TRIAL_DAYS, WA_NUMBER } from '../config'
+import { WA_NUMBER } from '../config'
+import { CTA_LABEL } from '../content'
 import { useSource } from '../lib/source'
 import { trackCopyNumber, trackCta, type CtaLocation } from '../lib/track'
 import { generalMessage, waLink } from '../lib/whatsapp'
@@ -67,6 +68,9 @@ export function H2({ id, children, className = '' }: { id?: string; children: Re
   )
 }
 
+/** Tanda hubung yang dirapatkan untuk judul Parkinsans ("Shopee-mu"). Tetap karakter "-" biasa untuk pembaca layar. */
+export const Hy = () => <span className="hy">-</span>
+
 /** Penanda angka rekaan. Semua angka demo wajib berlabel ini. */
 export function ExampleTag({ className = '' }: { className?: string }) {
   return (
@@ -78,13 +82,16 @@ export function ExampleTag({ className = '' }: { className?: string }) {
   )
 }
 
-type StickerKind = 'final' | 'takedown' | 'kecil' | 'aman' | 'hero'
+type StickerKind = 'final' | 'takedown' | 'kecil' | 'aman' | 'hero' | 'belum' | 'rugi' | 'tipis'
 const STICKER: Record<StickerKind, string> = {
   final: 'bg-mintbg text-gain border-gain',
   takedown: 'bg-loss text-paper border-loss',
   kecil: 'bg-sun text-sun-ink border-sun-ink',
   aman: 'bg-mintbg text-gain border-gain',
   hero: 'bg-mintbg text-gain border-gain',
+  belum: 'bg-sun text-sun-ink border-sun-ink',
+  rugi: 'bg-loss text-paper border-loss',
+  tipis: 'bg-sun text-sun-ink border-sun-ink',
 }
 
 /**
@@ -92,6 +99,13 @@ const STICKER: Record<StickerKind, string> = {
  * Hero, Aman, dan Angka final sama-sama bernada positif (seperti Stamp tone "gain" di aplikasi, yang tidak punya ikon
  * khusus untuk Hero), jadi ketiganya memakai centang dan dibedakan oleh katanya. Tidak ada ikon bintang.
  */
+const WARN_ICON = (
+  <>
+    <path d="M12 4 3.5 19h17L12 4Z" />
+    <path d="M12 10v4.5M12 17v.01" />
+  </>
+)
+
 const STICKER_ICON: Record<StickerKind, ReactNode> = {
   final: <path d="m5 12.5 4.5 4.5L19 7" />,
   aman: <path d="m5 12.5 4.5 4.5L19 7" />,
@@ -103,6 +117,9 @@ const STICKER_ICON: Record<StickerKind, ReactNode> = {
     </>
   ),
   hero: <path d="m5 12.5 4.5 4.5L19 7" />,
+  belum: WARN_ICON,
+  rugi: <path d="M6 6l12 12M18 6 6 18" />,
+  tipis: WARN_ICON,
 }
 
 /** Stiker miring ala stempel. Selalu bertuliskan teks, dan memakai ikon, bukan hanya warna. */
@@ -152,7 +169,7 @@ export function Sticker({
  */
 export function Cta({
   lokasi,
-  children = `Coba gratis ${TRIAL_DAYS} hari`,
+  children = CTA_LABEL,
   size = 'lg',
   messageFor,
   className = '',
@@ -173,9 +190,9 @@ export function Cta({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackCta(lokasi)}
-      className={`inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-transparent bg-ember text-center [.tone-dark_&]:border-fg font-display font-bold text-white transition-[transform,background-color] duration-150 hover:bg-[#3546b5] active:translate-y-px ${dims} ${className}`}
+      className={`cta inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-transparent bg-ember text-center [.tone-dark_&]:border-fg font-display font-bold text-white hover:bg-[#3546b5] ${dims} ${className}`}
     >
-      <WhatsAppIcon className={size === 'sm' ? 'size-4 shrink-0' : 'size-5 shrink-0 sm:size-6'} />
+      <WhatsAppIcon className={`cta-icon ${size === 'sm' ? 'size-4 shrink-0' : 'size-5 shrink-0 sm:size-6'}`} />
       {children}
       <span className="sr-only"> lewat WhatsApp</span>
     </a>
@@ -313,5 +330,48 @@ export const PlusIcon = ({ className = 'size-5' }: IconProps) => (
 export const MinusIcon = ({ className = 'size-5' }: IconProps) => (
   <svg {...base} className={className} strokeWidth={2.25}>
     <path d="M5 12h14" strokeLinecap="round" />
+  </svg>
+)
+
+/*
+ * Ikon tambahan landing 2 (keluarga garis yang sama). Relevansi:
+ *   Browser = file dibaca di browser. UserOff = data pembeli yang tidak diambil. Database = yang disimpan.
+ *   File = berkas export Shopee di Cara kerja. Menu dan Close = tombol navigasi di HP.
+ */
+export const BrowserIcon = ({ className = 'size-7' }: IconProps) => (
+  <svg {...base} className={className}>
+    <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+    <path d="M3 9h18" />
+    <path d="m9.5 14 2 2 3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+export const UserOffIcon = ({ className = 'size-7' }: IconProps) => (
+  <svg {...base} className={className}>
+    <circle cx="10" cy="8" r="3.5" />
+    <path d="M3.5 20c.6-3.6 3.2-5.5 6.5-5.5 1.3 0 2.5.3 3.5.8" strokeLinecap="round" />
+    <path d="m16 15 5 5M21 15l-5 5" strokeLinecap="round" />
+  </svg>
+)
+export const DatabaseIcon = ({ className = 'size-7' }: IconProps) => (
+  <svg {...base} className={className}>
+    <ellipse cx="12" cy="6" rx="7.5" ry="2.75" />
+    <path d="M4.5 6v12c0 1.5 3.4 2.75 7.5 2.75s7.5-1.25 7.5-2.75V6" />
+    <path d="M4.5 12c0 1.5 3.4 2.75 7.5 2.75s7.5-1.25 7.5-2.75" />
+  </svg>
+)
+export const FileIcon = ({ className = 'size-5' }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8L14 3.5Z" strokeLinejoin="round" />
+    <path d="M14 3.5V8h4.5" strokeLinejoin="round" />
+  </svg>
+)
+export const MenuIcon = ({ className = 'size-5' }: IconProps) => (
+  <svg {...base} className={className} strokeWidth={2.25}>
+    <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+  </svg>
+)
+export const CloseIcon = ({ className = 'size-5' }: IconProps) => (
+  <svg {...base} className={className} strokeWidth={2.25}>
+    <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
   </svg>
 )
