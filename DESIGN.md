@@ -219,7 +219,10 @@ untung per produk 3,4 jt, biaya lain 0,4 jt, untung bersih 3,0 jt). Ambang "Tipi
 WhatsApp bawaan menyebut "tanya akses", tanpa uji coba atau harga. `og.png` dibuat ulang dengan judul hero landing 3.
 
 **Placeholder yang harus diganti pemilik** (semua di `src/landing3/content.ts`): empat screenshot aplikasi (hero dan tiga
-di Preview).
+di Preview). Rasio 16:10: hero 2240×1400, preview besar 1776×1110, dua preview kecil 1280×800 (bagian layar yang
+dizoom). Tiap slot boleh punya potongan khusus HP (`srcMobile`, dipakai di bawah 768px lewat `<picture>`), disarankan
+1170×1100, karena screenshot desktop di HP mengecil sekitar 4 kali. Screenshot harus dari toko contoh. Begitu gambar
+dipasang, bingkai otomatis memberi label "Contoh" di bilah alamat dan keterangan "Data toko contoh, bukan hasil pengguna".
 
 **Yang sengaja tidak diambil dari skill:** loader, WebGL, transisi halaman (satu halaman, produk untuk seller dengan HP
 kelas menengah), dan halaman 404 khusus (butuh perubahan `wrangler.jsonc`; audit skill mencatatnya sebagai FAIL).

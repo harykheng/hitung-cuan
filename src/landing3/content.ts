@@ -3,7 +3,14 @@
  *
  * Asumsi dan placeholder yang masih harus diganti (juga dicatat di DESIGN.md, bagian "Landing 3"):
  *  - Empat screenshot aplikasi belum ada (`src: null`). Bingkainya tampil sebagai "rentang yang menunggu ditempel"
- *    (garis putus-putus bergerak). Untuk mengganti: taruh gambar di public/screens/, isi `src`, `width`, `height`.
+ *    (garis putus-putus bergerak). Untuk mengganti: taruh gambar di public/screens/, isi `src`, `width`, `height`
+ *    (ukuran asli file, supaya tata letak tidak melompat).
+ *    Ukuran yang disarankan (rasio 16:10, WebP kualitas ±80, di bawah ±250 KB):
+ *      hero 2240×1400, preview besar 1776×1110, dua preview kecil 1280×800 (bagian layar yang dizoom).
+ *    Potongan khusus HP (opsional, dipakai di bawah 768px): `srcMobile`, `widthMobile`, `heightMobile`.
+ *      Disarankan 1170×1100 (atau setinggi isinya), hanya bagian terpenting supaya tulisannya terbaca di HP.
+ *    Pakai toko contoh: jangan ada angka toko asli, nama toko, username, atau data pembeli. Label "Contoh" dan
+ *    keterangan "Data toko contoh" tampil otomatis begitu `src` diisi.
  *  - Semua angka dan nama produk di lembar contoh (bagian "Saring") adalah toko rekaan, selalu berlabel Contoh.
  *    Kolom data pembeli tidak pernah diisi, bahkan dengan data rekaan: sejak awal tampil sebagai titik tersamar.
  *  - Nomor WhatsApp dari src/config.ts (WA_NUMBER, sama dengan VITE_SUPPORT_WA di aplikasi).
@@ -27,6 +34,10 @@ export type ScreenSlot = {
   src: string | null
   width?: number
   height?: number
+  /** Potongan khusus HP (di bawah 768px). Tanpa ini, HP memakai `src`. */
+  srcMobile?: string
+  widthMobile?: number
+  heightMobile?: number
 }
 
 export const HERO_SCREEN: ScreenSlot = {

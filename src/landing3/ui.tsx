@@ -56,24 +56,38 @@ export function Contoh({ className = '' }: { className?: string }) {
  * Bingkai screenshot. Tanpa gambar, bingkainya adalah "rentang yang disalin dan menunggu ditempel": garis putus-putus
  * yang berjalan pelan (satu-satunya gerak saat diam selain kursor rumus di hero, mati di reduced motion). Judul layar dan
  * kode placeholder tertulis jelas supaya tidak dikira tampilan asli.
+ *
+ * Dengan gambar: label "Contoh" selalu tampil di bilah alamat, karena screenshot memuat angka toko (aturan repo: setiap
+ * angka demo berlabel Contoh). Kalau `srcMobile` diisi, layar di bawah 768px memakai potongan khusus HP lewat <picture>,
+ * supaya tulisan di screenshot tetap terbaca (screenshot desktop di HP mengecil sekitar 4 kali).
  */
+export const SHOT_MOBILE_QUERY = '(max-width: 767px)'
+
 export function Shot({ slot, priority = false, className = '' }: { slot: ScreenSlot; priority?: boolean; className?: string }) {
   return (
     <figure id={slot.id} className={`shot ${slot.src ? 'has-img' : 'is-empty'} ${className}`}>
-      <div className="shot-bar" aria-hidden="true">
-        <span className="shot-url">app.studioharel.id</span>
+      <div className="shot-bar">
+        <span className="shot-url" aria-hidden="true">
+          app.studioharel.id
+        </span>
+        {slot.src && <Contoh className="shot-contoh" />}
       </div>
       {slot.src ? (
-        <img
-          src={slot.src}
-          alt={slot.alt}
-          width={slot.width}
-          height={slot.height}
-          loading={priority ? 'eager' : 'lazy'}
-          fetchPriority={priority ? 'high' : 'auto'}
-          decoding="async"
-          className="shot-img"
-        />
+        <picture>
+          {slot.srcMobile && (
+            <source media={SHOT_MOBILE_QUERY} srcSet={slot.srcMobile} width={slot.widthMobile} height={slot.heightMobile} />
+          )}
+          <img
+            src={slot.src}
+            alt={slot.alt}
+            width={slot.width}
+            height={slot.height}
+            loading={priority ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : 'auto'}
+            decoding="async"
+            className="shot-img"
+          />
+        </picture>
       ) : (
         <div className="shot-empty" role="img" aria-label={`Placeholder screenshot: ${slot.alt}`}>
           <span className="shot-title">{slot.title}</span>
@@ -81,7 +95,10 @@ export function Shot({ slot, priority = false, className = '' }: { slot: ScreenS
           <code className="shot-code">[{slot.placeholder}]</code>
         </div>
       )}
-      <figcaption className="shot-cap">{slot.title}</figcaption>
+      <figcaption className="shot-cap">
+        {slot.title}
+        {slot.src && <span className="shot-cap-note">. Data toko contoh, bukan hasil pengguna.</span>}
+      </figcaption>
     </figure>
   )
 }
