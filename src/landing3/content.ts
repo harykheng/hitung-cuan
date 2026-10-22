@@ -2,8 +2,10 @@
  * Landing 3: semua isi yang sering diganti pemilik ada di file ini.
  *
  * Asumsi dan placeholder yang masih harus diganti (juga dicatat di DESIGN.md, bagian "Landing 3"):
- *  - Empat screenshot aplikasi belum ada (`src: null`). Bingkainya tampil sebagai "rentang yang menunggu ditempel"
- *    (garis putus-putus bergerak). Untuk mengganti: taruh gambar di public/screens/, isi `src`, `width`, `height`
+ *  - Empat screenshot sudah terpasang (toko uji "Uji 1", 22 Okt 2026). Rekap dan Iklan masih dari salinan beresolusi
+ *    rendah dan terlihat agak kabur di hero desktop; ganti dengan potongan beresolusi penuh, nama file sama.
+ *    Kalau `src` dikosongkan (`null`), bingkai kembali menjadi placeholder bergaris putus-putus.
+ *    Untuk mengganti: taruh gambar di public/screens/, isi `src`, `width`, `height`
  *    (ukuran asli file, supaya tata letak tidak melompat).
  *    Ukuran yang disarankan (rasio 16:10, WebP kualitas ±80, di bawah ±250 KB):
  *      hero 2240×1400, preview besar 1776×1110, dua preview kecil 1280×800 (bagian layar yang dizoom).
@@ -40,12 +42,22 @@ export type ScreenSlot = {
   heightMobile?: number
 }
 
+/*
+ * Screenshot dari toko uji "Uji 1" (data contoh, kiriman pemilik 22 Okt 2026), dipotong 16:10 di public/screens/.
+ * Rekap dan Iklan masih dari salinan beresolusi rendah (lebar sumber 649 dan 758px): ganti dengan potongan beresolusi
+ * penuh begitu tersedia, dengan nama file yang sama, lalu perbarui width/height.
+ */
 export const HERO_SCREEN: ScreenSlot = {
   id: 'layar-utama',
   placeholder: 'PLACEHOLDER SCREENSHOT APLIKASI: Rekap bulanan HitungCuan',
   title: 'Rekap bulanan',
-  alt: 'Contoh tampilan rekap untung bersih bulanan HitungCuan',
-  src: null,
+  alt: 'Contoh rekap bulanan HitungCuan untuk toko uji: September 2026 untung bersih Rp1,85 juta, status Angka final, dan kotak "Kenapa untungnya segini?" dengan dua alasan utama.',
+  src: '/screens/rekap.webp',
+  width: 649,
+  height: 406,
+  srcMobile: '/screens/rekap-hp.webp',
+  widthMobile: 420,
+  heightMobile: 298,
 }
 
 export const PREVIEW_SCREENS: ScreenSlot[] = [
@@ -53,22 +65,37 @@ export const PREVIEW_SCREENS: ScreenSlot[] = [
     id: 'layar-rekap',
     placeholder: 'PLACEHOLDER SCREENSHOT: Rekap dan alasan untung',
     title: 'Rekap dan alasan untung',
-    alt: 'Halaman Rekap HitungCuan: untung bersih bulan itu dan penjelasan faktor yang memengaruhinya',
-    src: null,
+    alt: 'Contoh bagian "Dari omzet sampai untung" di Rekap: pita pembagian omzet dan rincian omzet, voucher, potongan Shopee, kompensasi, sampai uang masuk dari Shopee.',
+    src: '/screens/rekap-alasan.webp',
+    width: 649,
+    height: 497,
+    srcMobile: '/screens/rekap-alasan-hp.webp',
+    widthMobile: 420,
+    heightMobile: 395,
   },
   {
     id: 'layar-iklan',
     placeholder: 'PLACEHOLDER SCREENSHOT: Analisis iklan per produk',
     title: 'Analisis iklan per produk',
-    alt: 'Halaman Iklan HitungCuan: ROAS nyata tiap produk dibandingkan target ROAS',
-    src: null,
+    alt: 'Contoh halaman Iklan: kartu per produk dengan biaya iklan, ROAS nyata, saran target ROAS, untung setelah iklan, dan label Takedown untuk iklan yang rugi.',
+    src: '/screens/iklan.webp',
+    width: 646,
+    height: 404,
+    srcMobile: '/screens/iklan-hp.webp',
+    widthMobile: 318,
+    heightMobile: 299,
   },
   {
     id: 'layar-simulasi',
     placeholder: 'PLACEHOLDER SCREENSHOT: Simulasi harga',
     title: 'Simulasi harga',
-    alt: 'Halaman Simulasi Harga HitungCuan: modal, harga jual, potongan, dan target ROAS untuk satu produk',
-    src: null,
+    alt: 'Contoh Simulasi Harga: dengan modal Rp15.000, harga jual minimal Rp26.000 dan target ROAS 4,94, beserta pilihan harga jual lain yang disarankan.',
+    src: '/screens/simulasi.webp',
+    width: 800,
+    height: 500,
+    srcMobile: '/screens/simulasi-hp.webp',
+    widthMobile: 740,
+    heightMobile: 560,
   },
 ]
 

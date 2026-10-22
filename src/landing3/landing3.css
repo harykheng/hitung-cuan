@@ -1081,6 +1081,9 @@ html.js .sheet { --p1: 0; --p2: 0; --p3: 0; }
   .wall-big .shot-empty { aspect-ratio: auto; height: calc(100% - 2rem); min-height: 22rem; }
   .wall-big { display: flex; flex-direction: column; }
   .wall-big .shot-empty { flex: 1; }
+  /* Dengan gambar: isi tinggi dua preview kecil, potong dari atas kalau rasio gambarnya sedikit berbeda. */
+  .wall-big.has-img picture { flex: 1; min-height: 0; display: block; }
+  .wall-big.has-img .shot-img { height: 100%; object-fit: cover; object-position: top left; }
 }
 
 /* ---------- Privasi (bidang indigo) ---------- */
