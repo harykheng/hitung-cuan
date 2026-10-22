@@ -2,8 +2,8 @@
  * Landing 3: semua isi yang sering diganti pemilik ada di file ini.
  *
  * Asumsi dan placeholder yang masih harus diganti (juga dicatat di DESIGN.md, bagian "Landing 3"):
- *  - Empat screenshot sudah terpasang (toko uji "Uji 1", 22 Okt 2026). Rekap masih dari salinan beresolusi rendah
- *    dan terlihat agak kabur di hero desktop; ganti dengan potongan beresolusi penuh, nama file sama.
+ *  - Empat screenshot sudah terpasang (toko uji "Uji 1", 22 Okt 2026). Rasio bebas: tiap bingkai mengikuti rasio
+ *    gambarnya. Screenshot 2x (lebar ±2000px ke atas) akan lebih tajam di hero desktop.
  *    Kalau `src` dikosongkan (`null`), bingkai kembali menjadi placeholder bergaris putus-putus.
  *    Untuk mengganti: taruh gambar di public/screens/, isi `src`, `width`, `height`
  *    (ukuran asli file, supaya tata letak tidak melompat).
@@ -44,9 +44,8 @@ export type ScreenSlot = {
 
 /*
  * Screenshot dari toko uji "Uji 1" (data contoh, kiriman pemilik 22 Okt 2026), dipotong 16:10 di public/screens/.
- * Iklan desktop = ringkasan halaman Iklan (resolusi penuh); Iklan HP = satu kartu produk Takedown (salinan beresolusi
- * rendah). Rekap masih dari salinan beresolusi rendah (lebar sumber 649px): ganti dengan potongan beresolusi penuh
- * begitu tersedia, dengan nama file yang sama, lalu perbarui width/height.
+ * Rekap dari screenshot selebar 896px. Iklan desktop = ringkasan halaman Iklan (resolusi penuh); Iklan HP = satu kartu
+ * produk Takedown (dari salinan beresolusi rendah). Ganti file dengan nama yang sama, lalu perbarui width/height.
  */
 export const HERO_SCREEN: ScreenSlot = {
   id: 'layar-utama',
@@ -54,11 +53,11 @@ export const HERO_SCREEN: ScreenSlot = {
   title: 'Rekap bulanan',
   alt: 'Contoh rekap bulanan HitungCuan untuk toko uji: September 2026 untung bersih Rp1,85 juta, status Angka final, dan kotak "Kenapa untungnya segini?" dengan dua alasan utama.',
   src: '/screens/rekap.webp',
-  width: 649,
-  height: 406,
+  width: 800,
+  height: 340,
   srcMobile: '/screens/rekap-hp.webp',
-  widthMobile: 420,
-  heightMobile: 298,
+  widthMobile: 492,
+  heightMobile: 320,
 }
 
 export const PREVIEW_SCREENS: ScreenSlot[] = [
@@ -66,13 +65,13 @@ export const PREVIEW_SCREENS: ScreenSlot[] = [
     id: 'layar-rekap',
     placeholder: 'PLACEHOLDER SCREENSHOT: Rekap dan alasan untung',
     title: 'Rekap dan alasan untung',
-    alt: 'Contoh bagian "Dari omzet sampai untung" di Rekap: pita pembagian omzet dan rincian omzet, voucher, potongan Shopee, kompensasi, sampai uang masuk dari Shopee.',
+    alt: 'Contoh bagian "Dari omzet sampai untung" di Rekap: pita pembagian omzet, lalu rincian omzet, voucher, potongan Shopee, uang masuk, modal, dan biaya sampai untung bersih Rp1.857.457.',
     src: '/screens/rekap-alasan.webp',
-    width: 649,
-    height: 497,
+    width: 800,
+    height: 660,
     srcMobile: '/screens/rekap-alasan-hp.webp',
-    widthMobile: 420,
-    heightMobile: 395,
+    widthMobile: 800,
+    heightMobile: 286,
   },
   {
     id: 'layar-iklan',
