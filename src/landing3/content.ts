@@ -2,8 +2,8 @@
  * Landing 3: semua isi yang sering diganti pemilik ada di file ini.
  *
  * Asumsi dan placeholder yang masih harus diganti (juga dicatat di DESIGN.md, bagian "Landing 3"):
- *  - Empat screenshot sudah terpasang (toko uji "Uji 1", 22 Okt 2026). Rekap dan Iklan masih dari salinan beresolusi
- *    rendah dan terlihat agak kabur di hero desktop; ganti dengan potongan beresolusi penuh, nama file sama.
+ *  - Empat screenshot sudah terpasang (toko uji "Uji 1", 22 Okt 2026). Rekap masih dari salinan beresolusi rendah
+ *    dan terlihat agak kabur di hero desktop; ganti dengan potongan beresolusi penuh, nama file sama.
  *    Kalau `src` dikosongkan (`null`), bingkai kembali menjadi placeholder bergaris putus-putus.
  *    Untuk mengganti: taruh gambar di public/screens/, isi `src`, `width`, `height`
  *    (ukuran asli file, supaya tata letak tidak melompat).
@@ -44,8 +44,9 @@ export type ScreenSlot = {
 
 /*
  * Screenshot dari toko uji "Uji 1" (data contoh, kiriman pemilik 22 Okt 2026), dipotong 16:10 di public/screens/.
- * Rekap dan Iklan masih dari salinan beresolusi rendah (lebar sumber 649 dan 758px): ganti dengan potongan beresolusi
- * penuh begitu tersedia, dengan nama file yang sama, lalu perbarui width/height.
+ * Iklan desktop = ringkasan halaman Iklan (resolusi penuh); Iklan HP = satu kartu produk Takedown (salinan beresolusi
+ * rendah). Rekap masih dari salinan beresolusi rendah (lebar sumber 649px): ganti dengan potongan beresolusi penuh
+ * begitu tersedia, dengan nama file yang sama, lalu perbarui width/height.
  */
 export const HERO_SCREEN: ScreenSlot = {
   id: 'layar-utama',
@@ -77,10 +78,10 @@ export const PREVIEW_SCREENS: ScreenSlot[] = [
     id: 'layar-iklan',
     placeholder: 'PLACEHOLDER SCREENSHOT: Analisis iklan per produk',
     title: 'Analisis iklan per produk',
-    alt: 'Contoh halaman Iklan: kartu per produk dengan biaya iklan, ROAS nyata, saran target ROAS, untung setelah iklan, dan label Takedown untuk iklan yang rugi.',
+    alt: 'Contoh halaman Iklan: September 2026 iklan rugi Rp243 ribu, 6 iklan sebaiknya dimatikan, dengan rincian biaya iklan, omzet dari iklan, dan untung setelah iklan.',
     src: '/screens/iklan.webp',
-    width: 646,
-    height: 404,
+    width: 1104,
+    height: 690,
     srcMobile: '/screens/iklan-hp.webp',
     widthMobile: 318,
     heightMobile: 299,
