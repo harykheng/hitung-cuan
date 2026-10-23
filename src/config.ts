@@ -12,7 +12,7 @@ export const APP_URL = 'https://app.studioharel.id'
 
 /** Harga dan uji coba, harus sama dengan yang benar-benar ditagih admin. */
 export const PRICE_MONTHLY = 69000
-export const PRICE_YEARLY = 499000
+export const PRICE_YEARLY = 599000
 export const TRIAL_DAYS = 30
 
 /** Janji waktu balas. Tulis hanya yang bisa ditepati. */
