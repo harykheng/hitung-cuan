@@ -16,8 +16,9 @@ export function Pricing() {
         <div>
           <H2 id="harga-judul">Uji coba gratis {TRIAL_DAYS} hari, tanpa kartu kredit</H2>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
-            Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}. Setelah {TRIAL_DAYS} hari, admin
-            menonaktifkan akunmu sampai kamu berlangganan. Datamu tetap tersimpan, dan tidak ada tagihan otomatis.
+            Akun dibuat manual oleh admin setelah kamu chat. {REPLY_PROMISE}. Setelah {TRIAL_DAYS} hari, akunmu
+            menjadi mode baca saja sampai kamu berlangganan: Rekap tetap bisa dilihat. Datamu tetap tersimpan, dan tidak
+            ada tagihan otomatis.
           </p>
         </div>
 
