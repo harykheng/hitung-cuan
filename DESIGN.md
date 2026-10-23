@@ -218,7 +218,9 @@ di navigasi) berbentuk lembar kecil: Uji coba Gratis 30 hari (kursor sel), Bulan
 Rp49.917 per bulan, hemat Rp229.000), semua dari `src/config.ts`. Kalimat uji coba, tagihan, pembayaran ("untuk saat ini
 lewat chat admin di WhatsApp"), dan "tidak ada refund" sama dengan bagian Harga, FAQ, dan `/syarat/` di `main`; tidak ada
 janji baru. Uji coba juga disebut di hero (baris kepercayaan), Cara kerja, FAQ, pesan WhatsApp bawaan, dan meta
-description. Pembayaran lewat Lynk.id masih dibahas dan belum ada di halaman.
+description. Setelah uji coba atau langganan habis, akun otomatis menjadi **mode baca saja** (dikonfirmasi pemilik dan kode aplikasi,
+23 Okt 2026), bukan dinonaktifkan; FAQ, `/syarat/`, dan `/privasi/` sudah mengikuti. Pembayaran lewat Lynk.id masih
+dibahas dan belum ada di halaman.
 
 **Isi.** Klaim privasi, FAQ, dan footer memakai kalimat yang sudah dicocokkan dengan aplikasi di landing 2 dan `main`
 ("tidak diambil", bukan "tidak dibaca"). Kolom data pembeli di lembar contoh tidak pernah diisi, bahkan dengan data rekaan:

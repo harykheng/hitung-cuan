@@ -347,6 +347,10 @@ export function Faq() {
       a: `Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis ${TRIAL_DAYS} hari untuk memastikan HitungCuan cocok dengan tokomu.`,
     },
     {
+      q: 'Apa yang terjadi setelah uji coba habis?',
+      a: 'Akunmu otomatis menjadi mode baca saja: Rekap tetap bisa dilihat, tapi kamu tidak bisa mengunggah file atau mengubah data. Datamu tetap tersimpan, dan akses penuh kembali kalau kamu berlangganan lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus.',
+    },
+    {
       q: 'Kenapa hasil bulan saya belum lengkap?',
       a: 'Biasanya karena laporan penghasilan bulan itu belum diunggah, ada uang cair yang belum cocok dengan pesanannya, HPP sebagian produk belum terisi, atau biaya bulan itu belum disimpan. Aplikasi menyebut mana yang kurang.',
     },
