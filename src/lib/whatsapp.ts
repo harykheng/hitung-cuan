@@ -13,10 +13,10 @@ export function getSourceCode(search: string): string {
 
 const withCode = (lines: string[], source: string) => [...lines, `Kode: HC-${source}`].join('\n')
 
-/** Pesan bawaan semua tombol "Tanya akses". Tidak menyebut harga atau uji coba (brief landing 2 dan 3). */
+/** Pesan bawaan semua tombol "Tanya akses". Sejak 23 Okt 2026 landing 3 menampilkan uji coba, jadi pesannya memintanya. */
 export function generalMessage(source: string): string {
   return withCode(
-    ['Halo admin HitungCuan, saya seller Shopee dan mau tanya akses HitungCuan untuk toko saya. Mohon info langkah selanjutnya.'],
+    ['Halo admin HitungCuan, saya seller Shopee dan mau tanya akses dan uji coba gratis 30 hari HitungCuan untuk toko saya. Mohon info langkah selanjutnya.'],
     source,
   )
 }

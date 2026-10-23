@@ -1,4 +1,5 @@
 import { InAppWaHelp } from '../components/ui'
+import { TRIAL_DAYS } from '../config'
 import { HERO_SCREEN } from './content'
 import { ArrowDown, Cta, Shot, Wrap } from './ui'
 
@@ -58,7 +59,9 @@ export function Hero() {
           <InAppWaHelp lokasi="hero" className="hero-inapp" />
           <p className="hero-trust">
             <span className="hero-trust-main">File export dibaca di browser; file asli tidak diunggah.</span>
-            <span className="hero-trust-sub">Akses dibuat oleh pengelola lewat WhatsApp. Bukan produk resmi Shopee.</span>
+            <span className="hero-trust-sub">
+              Uji coba gratis {TRIAL_DAYS} hari, akun dibuat oleh pengelola lewat WhatsApp. Bukan produk resmi Shopee.
+            </span>
           </p>
         </div>
 

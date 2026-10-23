@@ -4,7 +4,7 @@ import { Header } from './landing3/Header'
 import { Hero } from './landing3/Hero'
 import { Problem } from './landing3/Problem'
 import { Saring } from './landing3/Saring'
-import { Checks, Closing, Faq, Footer, Preview, Privacy, Steps } from './landing3/Sections'
+import { Checks, Closing, Faq, Footer, Preview, Pricing, Privacy, Steps } from './landing3/Sections'
 import './landing3/landing3.css'
 import { SourceProvider } from './lib/source'
 import { trackVisit, watchScrollDepth } from './lib/track'
@@ -45,6 +45,7 @@ export default function App() {
           <Steps />
           <Preview />
           <Privacy />
+          <Pricing />
           <Faq />
           <Closing />
         </main>

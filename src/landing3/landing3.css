@@ -1128,9 +1128,92 @@ html.js .sheet { --p1: 0; --p2: 0; --p3: 0; }
   .privacy-item:nth-child(3) { margin-top: 6rem; }
 }
 
+/* ---------- Harga (lembar kecil, kursor sel di baris uji coba) ---------- */
+
+.pricing { padding-block: clamp(5rem, 10vw, 9rem); }
+.pricing-grid { display: grid; gap: 2.5rem; }
+.pricing-lead { margin-top: 1.25rem; max-width: 44ch; font-size: 1.125rem; line-height: 1.6; color: var(--color-ink-2); }
+.price-sheet {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-line);
+  background: var(--color-paper);
+  font-variant-numeric: tabular-nums;
+}
+.price-sheet thead th {
+  padding: 0.6rem 1rem;
+  border-bottom: 1.5px solid var(--color-control);
+  background: var(--color-tint);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+  color: var(--color-ink-2);
+}
+.price-sheet tbody th,
+.price-sheet tbody td {
+  padding: 1.1rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: middle;
+}
+.price-sheet tbody th {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+.price-sheet .is-num { text-align: right; }
+.price-sheet tbody td {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.price-note {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-ink-2);
+}
+.price-sel { position: relative; isolation: isolate; color: var(--color-gain); }
+.price-sel::before {
+  content: '';
+  position: absolute;
+  inset: -0.12em -0.3em -0.08em;
+  z-index: -1;
+  background: var(--sel-fill);
+  border: 2px solid var(--color-ember);
+}
+.price-sel::after {
+  content: '';
+  position: absolute;
+  right: calc(-0.3em - 5px);
+  bottom: calc(-0.08em - 5px);
+  width: 8px;
+  height: 8px;
+  background: var(--color-ember);
+  border: 2px solid var(--color-paper);
+}
+.pricing-incl { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.pricing-incl li { display: flex; gap: 0.75rem; line-height: 1.5; }
+.pricing-check { flex: none; width: 1.25rem; height: 1.25rem; margin-top: 0.1rem; color: var(--color-gain); }
+.pricing-cta { margin-top: 2rem; width: 100%; }
+.pricing-small { margin-top: 0.85rem; font-size: 0.875rem; line-height: 1.6; color: var(--color-ink-2); }
+@media (min-width: 1024px) {
+  .pricing-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
+  .pricing-side { grid-column: 1 / span 5; }
+  .pricing-main { grid-column: 7 / -1; }
+  .pricing-cta { width: auto; }
+}
+
 /* ---------- FAQ ---------- */
 
-.faq { padding-block: clamp(5rem, 10vw, 9rem); }
+.faq { padding-block: clamp(5rem, 10vw, 9rem); border-top: 1px solid var(--color-line); }
 .faq-grid { display: grid; gap: 2rem; }
 .faq-list { border-top: 2px solid var(--color-ink); }
 .faq-item { border-bottom: 1px solid var(--color-control); }

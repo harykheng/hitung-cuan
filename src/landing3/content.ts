@@ -24,6 +24,7 @@ export const CTA_LABEL_SHORT = 'Tanya akses'
 export const NAV = [
   { id: 'cara-kerja', label: 'Cara kerja' },
   { id: 'yang-bisa-dicek', label: 'Yang bisa dicek' },
+  { id: 'harga', label: 'Harga' },
   { id: 'faq', label: 'FAQ' },
 ] as const
 

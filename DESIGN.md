@@ -207,16 +207,24 @@ bagian Gerak, Komponen, dan Dial di atas perlu ditulis ulang):
 - `@theme static` di `src/index.css`: landing 3 membaca token lewat `var(--color-*)` tanpa utility Tailwind, jadi semua
   token harus selalu dikeluarkan. Nilai token tidak berubah.
 
-**Susunan:** bar atas (logo, Cara kerja, Yang bisa dicek, FAQ, "Tanya akses"; di HP panel Menu layar penuh) → Hero
+**Susunan:** bar atas (logo, Cara kerja, Yang bisa dicek, Harga, FAQ, "Tanya akses"; di HP panel Menu layar penuh) → Hero
 (poster di atas lembar) → Masalah (pernyataan dengan token file) → Saring (tint, momen khas) → Yang bisa dicek (indeks) →
-Cara kerja (paper, tangga) → Preview aplikasi (dinding galeri) → Privasi (bidang indigo) → FAQ → penutup (kursor sel
+Cara kerja (paper, tangga) → Preview aplikasi (dinding galeri) → Privasi (bidang indigo) → Harga (lembar kecil) → FAQ → penutup (kursor sel
 berhenti di tombol) → footer (night-deep).
+
+**Keputusan pemilik, 23 Okt 2026: harga dan uji coba ditampilkan.** Menggantikan larangan harga di brief landing 2 dan 3,
+sesuai `LANDINGPAGE.md` di `shopee-profit-calc` (keputusan #1 dan #2). Bagian **Harga** (`#harga`, setelah Privasi, juga
+di navigasi) berbentuk lembar kecil: Uji coba Gratis 30 hari (kursor sel), Bulanan Rp69.000, Tahunan Rp599.000 (setara
+Rp49.917 per bulan, hemat Rp229.000), semua dari `src/config.ts`. Kalimat uji coba, tagihan, pembayaran ("untuk saat ini
+lewat chat admin di WhatsApp"), dan "tidak ada refund" sama dengan bagian Harga, FAQ, dan `/syarat/` di `main`; tidak ada
+janji baru. Uji coba juga disebut di hero (baris kepercayaan), Cara kerja, FAQ, pesan WhatsApp bawaan, dan meta
+description. Pembayaran lewat Lynk.id masih dibahas dan belum ada di halaman.
 
 **Isi.** Klaim privasi, FAQ, dan footer memakai kalimat yang sudah dicocokkan dengan aplikasi di landing 2 dan `main`
 ("tidak diambil", bukan "tidak dibaca"). Kolom data pembeli di lembar contoh tidak pernah diisi, bahkan dengan data rekaan:
 sejak awal tampil sebagai titik tersamar. Angka lembar adalah toko rekaan berlabel Contoh dan saling cocok (omzet 20,0 jt,
 untung per produk 3,4 jt, biaya lain 0,4 jt, untung bersih 3,0 jt). Ambang "Tipis" di lembar hanya untuk contoh. Pesan
-WhatsApp bawaan menyebut "tanya akses", tanpa uji coba atau harga. `og.png` dibuat ulang dengan judul hero landing 3.
+WhatsApp bawaan meminta akses dan uji coba gratis 30 hari (sejak 23 Okt 2026). `og.png` dibuat ulang dengan judul hero landing 3.
 
 **Screenshot** (semua di `src/landing3/content.ts`, file di `public/screens/`): terpasang sejak 22 Okt 2026 dari toko uji
 "Uji 1" (data contoh). Hero = Bab 1 Rekap, preview besar = Bab 2 "Dari omzet sampai untung", kecil = ringkasan halaman Iklan

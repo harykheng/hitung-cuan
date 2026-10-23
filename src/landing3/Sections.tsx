@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
-import { InAppWaHelp } from '../components/ui'
-import { APP_URL, STUDIO_URL } from '../config'
+import { CheckIcon, InAppWaHelp } from '../components/ui'
+import { APP_URL, PRICE_MONTHLY, PRICE_YEARLY, REPLY_PROMISE, STUDIO_URL, TRIAL_DAYS } from '../config'
+import { rp } from '../lib/format'
 import { useSource } from '../lib/source'
 import { trackCta } from '../lib/track'
 import { generalMessage, waLink } from '../lib/whatsapp'
@@ -97,7 +98,9 @@ export function Steps() {
         <h2 id="cara-judul" className="h2" data-split>
           Cara kerjanya tiga langkah.
         </h2>
-        <p className="steps-pre">Sebelum mulai: akun dan akses tokomu dibuat oleh pengelola, lewat WhatsApp.</p>
+        <p className="steps-pre">
+          Sebelum mulai: akun dan akses tokomu dibuat oleh pengelola lewat WhatsApp, dengan uji coba gratis {TRIAL_DAYS} hari.
+        </p>
       </Wrap>
       <Wrap>
         <ol className="stair">
@@ -207,6 +210,98 @@ export function Privacy() {
   )
 }
 
+/* ---------- Harga dan uji coba ---------- */
+
+/*
+ * Ditambahkan atas keputusan pemilik (23 Okt 2026), menggantikan larangan harga di brief landing 2 dan 3, sesuai
+ * LANDINGPAGE.md di shopee-profit-calc (keputusan #1 dan #2). Semua angka dari src/config.ts. Kalimat uji coba, tagihan,
+ * pembayaran, dan refund sama dengan bagian Harga dan /syarat/ di main; jangan menambah janji baru di sini.
+ * Harga ditulis sebagai lembar kecil: satu baris per pilihan, kursor sel di baris uji coba (langkah pertama).
+ */
+const INCLUDED = [
+  'Satu akun untuk 1 toko Shopee. Punya lebih dari satu toko? Tanyakan ke admin.',
+  'Pembaruan kalau format file Shopee berubah sudah termasuk.',
+  'Data tokomu terpisah dari seller lain.',
+]
+
+export function Pricing() {
+  const saving = PRICE_MONTHLY * 12 - PRICE_YEARLY
+  const perMonth = Math.round(PRICE_YEARLY / 12)
+  return (
+    <section id="harga" aria-labelledby="harga-judul" className="pricing">
+      <Wrap className="pricing-grid">
+        <div className="pricing-side">
+          <h2 id="harga-judul" className="h2" data-split>
+            Coba gratis {TRIAL_DAYS} hari dulu.
+          </h2>
+          <p className="pricing-lead">
+            Akun dibuat oleh pengelola setelah kamu chat lewat WhatsApp. {REPLY_PROMISE}. Upload data bulan lalu dan lihat
+            untung aslimu sebelum memutuskan berlangganan.
+          </p>
+        </div>
+
+        <div className="pricing-main">
+          <table className="price-sheet">
+            <caption className="sr-only">Harga HitungCuan per toko</caption>
+            <thead>
+              <tr>
+                <th scope="col">Pilihan</th>
+                <th scope="col" className="is-num">
+                  Harga per toko
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="is-trial">
+                <th scope="row">
+                  Uji coba
+                  <span className="price-note">{TRIAL_DAYS} hari, semua fitur, tanpa kartu kredit</span>
+                </th>
+                <td className="is-num">
+                  <span className="price-sel">Gratis</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Bulanan
+                  <span className="price-note">per toko per bulan</span>
+                </th>
+                <td className="is-num">{rp(PRICE_MONTHLY)}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Tahunan
+                  <span className="price-note">
+                    setara {rp(perMonth)} per bulan, hemat {rp(saving)}
+                  </span>
+                </th>
+                <td className="is-num">{rp(PRICE_YEARLY)}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul className="pricing-incl">
+            {INCLUDED.map((x) => (
+              <li key={x}>
+                <CheckIcon className="pricing-check" />
+                {x}
+              </li>
+            ))}
+          </ul>
+
+          <Cta lokasi="harga" className="pricing-cta" />
+          <p className="pricing-small">
+            Bayar hanya kalau mau lanjut setelah {TRIAL_DAYS} hari. Tidak ada tagihan otomatis.{' '}
+            <a href="/syarat/" className="inline-link">
+              Baca Syarat Layanan
+            </a>
+          </p>
+        </div>
+      </Wrap>
+    </section>
+  )
+}
+
 /* ---------- FAQ ---------- */
 
 function WaText({ children }: { children: ReactNode }) {
@@ -242,10 +337,14 @@ export function Faq() {
       q: 'Apakah saya bisa langsung daftar dan membayar di website?',
       a: (
         <>
-          Tidak. Akun dan akses toko dikelola oleh pengelola HitungCuan. Kalau tertarik,{' '}
-          <WaText>tanyakan aksesnya lewat WhatsApp</WaText>.
+          Tidak. Akun dan akses toko dibuat oleh pengelola HitungCuan, dimulai dengan uji coba gratis {TRIAL_DAYS} hari.
+          Kalau tertarik, <WaText>tanyakan aksesnya lewat WhatsApp</WaText>.
         </>
       ),
+    },
+    {
+      q: 'Bagaimana cara bayar? Ada refund?',
+      a: `Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis ${TRIAL_DAYS} hari untuk memastikan HitungCuan cocok dengan tokomu.`,
     },
     {
       q: 'Kenapa hasil bulan saya belum lengkap?',
