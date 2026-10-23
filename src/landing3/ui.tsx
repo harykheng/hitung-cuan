@@ -60,12 +60,17 @@ export function Contoh({ className = '' }: { className?: string }) {
  * Dengan gambar: label "Contoh" selalu tampil di bilah alamat, karena screenshot memuat angka toko (aturan repo: setiap
  * angka demo berlabel Contoh). Kalau `srcMobile` diisi, layar di bawah 768px memakai potongan khusus HP lewat <picture>,
  * supaya tulisan di screenshot tetap terbaca (screenshot desktop di HP mengecil sekitar 4 kali).
+ * Dari 768px, bingkai tidak pernah lebih lebar dari ukuran asli gambar (--nat): screenshot yang diperbesar terlihat pecah.
  */
 export const SHOT_MOBILE_QUERY = '(max-width: 767px)'
 
 export function Shot({ slot, priority = false, className = '' }: { slot: ScreenSlot; priority?: boolean; className?: string }) {
   return (
-    <figure id={slot.id} className={`shot ${slot.src ? 'has-img' : 'is-empty'} ${className}`}>
+    <figure
+      id={slot.id}
+      className={`shot ${slot.src ? 'has-img' : 'is-empty'} ${className}`}
+      style={slot.src && slot.width ? vars({ '--nat': `${slot.width}px` }) : undefined}
+    >
       <div className="shot-bar">
         <span className="shot-url" aria-hidden="true">
           app.studioharel.id

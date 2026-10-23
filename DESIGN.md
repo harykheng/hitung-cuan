@@ -221,8 +221,10 @@ WhatsApp bawaan menyebut "tanya akses", tanpa uji coba atau harga. `og.png` dibu
 **Screenshot** (semua di `src/landing3/content.ts`, file di `public/screens/`): terpasang sejak 22 Okt 2026 dari toko uji
 "Uji 1" (data contoh). Hero = Bab 1 Rekap, preview besar = Bab 2 "Dari omzet sampai untung", kecil = ringkasan halaman Iklan
 ("iklan rugi Rp243 ribu"; di HP diganti satu kartu produk berlabel Takedown) dan Simulasi Harga saat harga jual belum
-diisi (rekomendasi harga). Rekap dari screenshot selebar 896px: cukup tajam di HP, sedikit diperbesar di hero desktop; screenshot 2x akan lebih
-tajam. Rasio bebas, karena bingkai mengikuti rasio gambar.
+diisi (rekomendasi harga). Rekap dari screenshot selebar 896px. Rasio bebas, karena bingkai mengikuti rasio gambar. Dari 768px bingkai tidak
+pernah lebih lebar dari ukuran asli gambar (`--nat`), karena screenshot yang diperbesar terlihat pecah; potongan dari
+sumber PNG disimpan sebagai WebP lossless. Screenshot 2x (DevTools DPR 2) akan membuat bingkai bisa lebih lebar dan
+tetap tajam di layar retina.
 Angka di screenshot (Rp1,85 juta, produk kosmetik) berbeda dengan lembar contoh di bagian Saring (Rp3 juta, produk
 pakaian); keduanya berlabel Contoh. Rasio 16:10: hero 2240×1400, preview besar 1776×1110, dua preview kecil 1280×800 (bagian layar yang
 dizoom). Tiap slot boleh punya potongan khusus HP (`srcMobile`, dipakai di bawah 768px lewat `<picture>`), disarankan

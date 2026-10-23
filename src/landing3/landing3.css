@@ -482,6 +482,10 @@ html.menu-open .hdr-menu-bars { display: none; }
 .shot-url { padding: 0.15rem 0.75rem; background: var(--color-paper); border: 1px solid var(--color-line); }
 .shot-contoh { position: absolute; right: 0.5rem; top: 50%; translate: 0 -50%; background: var(--color-paper); }
 .shot-img { display: block; width: 100%; height: auto; }
+/* Jangan perbesar screenshot melewati ukuran aslinya (huruf jadi pecah). +2px untuk garis tepi bingkai. */
+@media (min-width: 768px) {
+  .shot.has-img { max-width: calc(var(--nat, 100vw) + 2px); }
+}
 .shot-cap-note { color: var(--color-ink-3); }
 .shot-empty {
   position: relative;
