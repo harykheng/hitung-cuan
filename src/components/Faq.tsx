@@ -40,7 +40,7 @@ export function Faq() {
     },
     {
       q: 'Bagaimana kalau berhenti berlangganan?',
-      a: 'Setelah langganan habis, admin menonaktifkan akunmu, jadi kamu tidak bisa masuk. Datamu tetap tersimpan, dan akunmu aktif lagi kalau kamu memperpanjang lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
+      a: 'Setelah langganan habis, akunmu otomatis menjadi mode baca saja: kamu masih bisa melihat Rekap, tapi tidak bisa mengunggah atau mengubah data. Datamu tetap tersimpan, dan akses penuh kembali kalau kamu memperpanjang lewat admin. Kalau sudah 3 bulan tidak berlangganan, datamu dihapus. Mau dihapus lebih cepat? Hubungi admin lewat WhatsApp.',
     },
     {
       q: 'Bagaimana kalau tokonya lebih dari satu?',
