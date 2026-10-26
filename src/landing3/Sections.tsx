@@ -239,6 +239,14 @@ export function Pricing() {
             Akun dibuat oleh pengelola setelah kamu chat lewat WhatsApp. {REPLY_PROMISE}. Upload data bulan lalu dan lihat
             untung aslimu sebelum memutuskan berlangganan.
           </p>
+          <ul className="pricing-incl">
+            {INCLUDED.map((x) => (
+              <li key={x}>
+                <CheckIcon className="pricing-check" />
+                {x}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="pricing-main">
@@ -281,34 +289,22 @@ export function Pricing() {
             </tbody>
           </table>
 
-          <ul className="pricing-incl">
-            {INCLUDED.map((x) => (
-              <li key={x}>
-                <CheckIcon className="pricing-check" />
-                {x}
-              </li>
-            ))}
-          </ul>
-
-          <Cta lokasi="harga" className="pricing-cta" />
+          {/* Dua aksi dalam satu baris: mulai uji coba (utama, pil indigo) dan bayar (sekunder, kotak bergaris). */}
+          <div className="pricing-actions">
+            <Cta lokasi="harga" />
+            <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="pay-btn">
+              Bayar di Lynk.id
+              <ExternalIcon className="pay-icon" />
+              <span className="sr-only"> (halaman pembayaran, tab baru)</span>
+            </a>
+          </div>
           <p className="pricing-small">
-            Bayar hanya kalau mau lanjut setelah {TRIAL_DAYS} hari. Tidak ada tagihan otomatis.{' '}
+            Bayar hanya kalau mau lanjut setelah {TRIAL_DAYS} hari, lewat halaman resmi{' '}
+            <span className="pay-url">{LYNK_LABEL}</span>, lalu kirim buktinya ke admin. Tidak ada tagihan otomatis.{' '}
             <a href="/syarat/" className="inline-link">
-              Baca Syarat Layanan
+              Syarat Layanan
             </a>
           </p>
-          <div className="pricing-pay">
-            <p className="pay-lead">Sudah selesai uji coba dan mau lanjut?</p>
-            <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="pay-btn">
-              Bayar langganan di Lynk.id
-              <ExternalIcon className="pay-icon" />
-              <span className="sr-only"> (membuka halaman pembayaran di tab baru)</span>
-            </a>
-            <p className="pay-note">
-              Halaman resmi: <span className="pay-url">{LYNK_LABEL}</span>. Setelah bayar, kirim buktinya ke admin lewat
-              WhatsApp supaya aksesmu diperpanjang.
-            </p>
-          </div>
         </div>
       </Wrap>
     </section>
