@@ -6,7 +6,7 @@ import { useSource } from '../lib/source'
 import { trackCta } from '../lib/track'
 import { generalMessage, waLink } from '../lib/whatsapp'
 import { PREVIEW_SCREENS } from './content'
-import { ArrowDown, BrowserIcon, Cta, PlusMinus, Shot, SkipIcon, StoreIcon, Wrap } from './ui'
+import { ArrowDown, BrowserIcon, Cta, ExternalIcon, PlusMinus, Shot, SkipIcon, StoreIcon, Wrap } from './ui'
 
 /* ---------- Yang bisa dicek: daftar indeks selebar halaman ---------- */
 
@@ -297,13 +297,18 @@ export function Pricing() {
               Baca Syarat Layanan
             </a>
           </p>
-          <p className="pricing-pay">
-            Pembayaran hanya lewat halaman resmi kami di Lynk.id:{' '}
-            <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="inline-link pricing-lynk">
-              {LYNK_LABEL}
+          <div className="pricing-pay">
+            <p className="pay-lead">Sudah selesai uji coba dan mau lanjut?</p>
+            <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="pay-btn">
+              Bayar langganan di Lynk.id
+              <ExternalIcon className="pay-icon" />
+              <span className="sr-only"> (membuka halaman pembayaran di tab baru)</span>
             </a>
-            . Setelah bayar, kirim buktinya ke admin lewat WhatsApp supaya aksesmu diperpanjang.
-          </p>
+            <p className="pay-note">
+              Halaman resmi: <span className="pay-url">{LYNK_LABEL}</span>. Setelah bayar, kirim buktinya ke admin lewat
+              WhatsApp supaya aksesmu diperpanjang.
+            </p>
+          </div>
         </div>
       </Wrap>
     </section>

@@ -1204,9 +1204,49 @@ html.js .sheet { --p1: 0; --p2: 0; --p3: 0; }
 .pricing-check { flex: none; width: 1.25rem; height: 1.25rem; margin-top: 0.1rem; color: var(--color-gain); }
 .pricing-cta { margin-top: 2rem; width: 100%; }
 .pricing-small { margin-top: 0.85rem; font-size: 0.875rem; line-height: 1.6; color: var(--color-ink-2); }
-.pricing-pay { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: var(--color-ink-2); }
-/* URL ditulis lengkap; boleh patah di HP supaya tidak membuat gulir horizontal. */
-.pricing-lynk { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; overflow-wrap: anywhere; }
+.pricing-pay { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
+.pay-lead { font-weight: 600; }
+/* Tombol bayar: kotak bergaris (bentuk sel), sengaja berbeda dari pil indigo WhatsApp supaya tidak bersaing. */
+.pay-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--color-ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-decoration: none;
+}
+.pay-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--sel-fill);
+  scale: 0 1;
+  transform-origin: left center;
+  transition: scale 0.5s var(--ease-out);
+}
+.pay-icon { width: 1.1rem; height: 1.1rem; transition: translate 0.35s var(--ease-out); }
+@media (hover: hover) {
+  .pay-btn:hover::before { scale: 1 1; }
+  .pay-btn:hover .pay-icon { translate: 3px -3px; }
+}
+.pay-btn:focus-visible::before { scale: 1 1; }
+.pay-btn:active::before { scale: 1 1; }
+.pay-note { margin-top: 0.6rem; font-size: 0.8125rem; line-height: 1.6; color: var(--color-ink-2); }
+.pay-url { font-family: var(--font-mono); font-weight: 500; color: var(--color-ink); overflow-wrap: anywhere; }
+@media (max-width: 1023px) {
+  .pay-btn { width: 100%; }
+}
 @media (min-width: 1024px) {
   .pricing-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
   .pricing-side { grid-column: 1 / span 5; }

@@ -144,3 +144,9 @@ export const StoreIcon = ({ className = 'size-8' }: IconProps) => (
     <path d="M4.5 6v6c0 1.5 3.4 2.75 7.5 2.75s7.5-1.25 7.5-2.75V6M4.5 12v6c0 1.5 3.4 2.75 7.5 2.75s7.5-1.25 7.5-2.75v-6" />
   </svg>
 )
+/** Tautan keluar (halaman pembayaran Lynk.id). */
+export const ExternalIcon = ({ className = 'size-5' }: IconProps) => (
+  <svg {...base} className={className} strokeWidth={2.25}>
+    <path d="M8 16 16 8M9.5 8H16v6.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
