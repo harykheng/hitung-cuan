@@ -19,6 +19,13 @@
  */
 
 export const CTA_LABEL = 'Tanya akses HitungCuan'
+
+/**
+ * Video panduan pemakaian di YouTube (dari pemilik, 26 Okt 2026). Sengaja hanya tautan yang dibuka di tab baru, bukan
+ * pemutar yang ditanam: pemutar YouTube memasang cookie dan penyimpanan lokal, sedangkan /privasi/ menyatakan halaman
+ * ini tidak memakai keduanya. Kalau suatu saat ditanam, perbarui /privasi/ lebih dulu.
+ */
+export const GUIDE_VIDEO = { url: 'https://www.youtube.com/watch?v=UURLCuPI4MI', minutes: 8 }
 export const CTA_LABEL_SHORT = 'Tanya akses'
 
 export const NAV = [

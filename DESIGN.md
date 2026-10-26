@@ -225,7 +225,11 @@ bukti bayar dikirim ke admin lewat WhatsApp. `/privasi/` menyebut Lynk.id sebaga
 halaman Lynk.id di atas" disetujui pemilik (26 Okt 2026): janji ini berlaku untuk semua admin, tanpa pengecualian
 transfer langsung. Di bagian Harga, Lynk.id tampil sebagai tombol kotak bergaris (bukan pil, supaya tidak bersaing
 dengan CTA WhatsApp), sejajar dengan tombol WhatsApp; URL resmi lengkap hanya di FAQ "Bagaimana cara bayar?",
-`/syarat/`, dan footer, supaya bagian Harga ringkas (permintaan pemilik). Isi halaman
+`/syarat/`, dan footer, supaya bagian Harga ringkas (permintaan pemilik).
+
+**Video panduan (26 Okt 2026):** tutorial 8 menit di YouTube (`GUIDE_VIDEO` di `content.ts`) hanya ditautkan, tidak
+ditanam: di bawah tangga Cara kerja dan sebagai FAQ "Ada panduan cara pakainya?". Pemutar YouTube memasang cookie dan
+penyimpanan lokal, padahal `/privasi/` menyatakan halaman ini tidak memakai keduanya. Isi halaman
 Lynk.id (nama penjual, harga) belum bisa dicek dari lingkungan pengembangan dan harus dicocokkan pemilik.
 
 **Isi.** Klaim privasi, FAQ, dan footer memakai kalimat yang sudah dicocokkan dengan aplikasi di landing 2 dan `main`

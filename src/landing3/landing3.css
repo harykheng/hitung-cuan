@@ -1038,8 +1038,29 @@ html.js .sheet { --p1: 0; --p2: 0; --p3: 0; }
     opacity: var(--head, 1);
   }
 }
+.guide { margin-top: 3rem; font-size: 1.0625rem; color: var(--color-ink-2); }
+.guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-ember);
+}
+.guide-icon { width: 1.05rem; height: 1.05rem; transition: translate 0.35s var(--ease-out); }
+@media (hover: hover) {
+  .guide-link:hover .guide-icon { translate: 3px -3px; }
+}
+.guide-link:focus-visible .guide-icon { translate: 3px -3px; }
+@media (min-width: 1024px) {
+  .guide { margin-top: 4rem; }
+}
 .note {
-  margin-top: 4.5rem;
+  margin-top: 3rem;
   display: grid;
   gap: 0.85rem;
   max-width: 62rem;

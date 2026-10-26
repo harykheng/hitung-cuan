@@ -5,7 +5,7 @@ import { rp } from '../lib/format'
 import { useSource } from '../lib/source'
 import { trackCta } from '../lib/track'
 import { generalMessage, waLink } from '../lib/whatsapp'
-import { PREVIEW_SCREENS } from './content'
+import { GUIDE_VIDEO, PREVIEW_SCREENS } from './content'
 import { ArrowDown, BrowserIcon, Cta, ExternalIcon, PlusMinus, Shot, SkipIcon, StoreIcon, Wrap } from './ui'
 
 /* ---------- Yang bisa dicek: daftar indeks selebar halaman ---------- */
@@ -118,6 +118,14 @@ export function Steps() {
             </li>
           ))}
         </ol>
+        <p className="guide">
+          Mau lihat langsung cara pakainya?{' '}
+          <a href={GUIDE_VIDEO.url} target="_blank" rel="noopener noreferrer" className="guide-link">
+            Tonton panduan di YouTube ({GUIDE_VIDEO.minutes} menit)
+            <ExternalIcon className="guide-icon" />
+            <span className="sr-only"> (tab baru)</span>
+          </a>
+        </p>
         <aside className="note" aria-label="Catatan tentang status hasil">
           <span className="note-chip">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -372,6 +380,18 @@ export function Faq() {
     {
       q: 'Kenapa hasil bulan saya belum lengkap?',
       a: 'Biasanya karena laporan penghasilan bulan itu belum diunggah, ada uang cair yang belum cocok dengan pesanannya, HPP sebagian produk belum terisi, atau biaya bulan itu belum disimpan. Aplikasi menyebut mana yang kurang.',
+    },
+    {
+      q: 'Ada panduan cara pakainya?',
+      a: (
+        <>
+          Ada.{' '}
+          <a href={GUIDE_VIDEO.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+            Video panduan pemakaian HitungCuan di YouTube
+          </a>{' '}
+          ({GUIDE_VIDEO.minutes} menit). Kalau masih ada yang bingung, tanyakan ke admin lewat WhatsApp.
+        </>
+      ),
     },
     {
       q: 'Apakah HitungCuan menjamin toko pasti untung?',
