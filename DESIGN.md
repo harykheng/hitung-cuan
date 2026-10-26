@@ -221,7 +221,10 @@ janji baru. Uji coba juga disebut di hero (baris kepercayaan), Cara kerja, FAQ, 
 description. Setelah uji coba atau langganan habis, akun otomatis menjadi **mode baca saja** (dikonfirmasi pemilik dan kode aplikasi,
 23 Okt 2026), bukan dinonaktifkan; FAQ, `/syarat/`, dan `/privasi/` sudah mengikuti. **Pembayaran lewat Lynk.id** (keputusan pemilik,
 26 Okt 2026): tautan resmi `LYNK_URL` di `src/config.ts`, ditulis lengkap di bagian Harga, FAQ, footer, dan `/syarat/`, lalu
-bukti bayar dikirim ke admin lewat WhatsApp. `/privasi/` menyebut Lynk.id sebagai pemroses pembayaran. Isi halaman
+bukti bayar dikirim ke admin lewat WhatsApp. `/privasi/` menyebut Lynk.id sebagai pemroses pembayaran. Kalimat `/syarat/` "Kami hanya menerima pembayaran lewat
+halaman Lynk.id di atas" disetujui pemilik (26 Okt 2026): janji ini berlaku untuk semua admin, tanpa pengecualian
+transfer langsung. Di bagian Harga, Lynk.id tampil sebagai tombol kotak bergaris (bukan pil, supaya tidak bersaing
+dengan CTA WhatsApp) dengan URL resmi sebagai keterangan kecil. Isi halaman
 Lynk.id (nama penjual, harga) belum bisa dicek dari lingkungan pengembangan dan harus dicocokkan pemilik.
 
 **Isi.** Klaim privasi, FAQ, dan footer memakai kalimat yang sudah dicocokkan dengan aplikasi di landing 2 dan `main`
