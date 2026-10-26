@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { CheckIcon, InAppWaHelp } from '../components/ui'
-import { APP_URL, PRICE_MONTHLY, PRICE_YEARLY, REPLY_PROMISE, STUDIO_URL, TRIAL_DAYS } from '../config'
+import { APP_URL, LYNK_LABEL, LYNK_URL, PRICE_MONTHLY, PRICE_YEARLY, REPLY_PROMISE, STUDIO_URL, TRIAL_DAYS } from '../config'
 import { rp } from '../lib/format'
 import { useSource } from '../lib/source'
 import { trackCta } from '../lib/track'
@@ -215,7 +215,8 @@ export function Privacy() {
 /*
  * Ditambahkan atas keputusan pemilik (23 Okt 2026), menggantikan larangan harga di brief landing 2 dan 3, sesuai
  * LANDINGPAGE.md di shopee-profit-calc (keputusan #1 dan #2). Semua angka dari src/config.ts. Kalimat uji coba, tagihan,
- * pembayaran, dan refund sama dengan bagian Harga dan /syarat/ di main; jangan menambah janji baru di sini.
+ * dan refund sama dengan bagian Harga dan /syarat/ di main. Cara bayar: halaman Lynk.id resmi (LYNK_URL di config.ts),
+ * lalu bukti bayar ke admin lewat WhatsApp (keputusan pemilik, 26 Okt 2026). Jangan menambah janji baru di sini.
  * Harga ditulis sebagai lembar kecil: satu baris per pilihan, kursor sel di baris uji coba (langkah pertama).
  */
 const INCLUDED = [
@@ -296,6 +297,13 @@ export function Pricing() {
               Baca Syarat Layanan
             </a>
           </p>
+          <p className="pricing-pay">
+            Pembayaran hanya lewat halaman resmi kami di Lynk.id:{' '}
+            <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="inline-link pricing-lynk">
+              {LYNK_LABEL}
+            </a>
+            . Setelah bayar, kirim buktinya ke admin lewat WhatsApp supaya aksesmu diperpanjang.
+          </p>
         </div>
       </Wrap>
     </section>
@@ -344,7 +352,17 @@ export function Faq() {
     },
     {
       q: 'Bagaimana cara bayar? Ada refund?',
-      a: `Untuk saat ini pembayaran lewat chat admin di WhatsApp. Tidak ada refund, jadi manfaatkan uji coba gratis ${TRIAL_DAYS} hari untuk memastikan HitungCuan cocok dengan tokomu.`,
+      a: (
+        <>
+          Setelah uji coba, pembayaran lewat halaman resmi HitungCuan di Lynk.id:{' '}
+          <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="inline-link">
+            {LYNK_LABEL}
+          </a>
+          . Pastikan tautan yang kamu buka sama persis dengan ini. Setelah bayar, kirim buktinya ke admin lewat WhatsApp
+          supaya aksesmu diperpanjang. Tidak ada refund, jadi manfaatkan uji coba gratis {TRIAL_DAYS} hari untuk memastikan
+          HitungCuan cocok dengan tokomu.
+        </>
+      ),
     },
     {
       q: 'Apa yang terjadi setelah uji coba habis?',
@@ -435,6 +453,11 @@ export function Footer() {
               className="foot-link"
             >
               WhatsApp pengelola
+            </a>
+          </li>
+          <li>
+            <a href={LYNK_URL} target="_blank" rel="noopener noreferrer" className="foot-link">
+              Halaman pembayaran (Lynk.id)
             </a>
           </li>
           <li>

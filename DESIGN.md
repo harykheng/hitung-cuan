@@ -219,8 +219,10 @@ Rp49.917 per bulan, hemat Rp229.000), semua dari `src/config.ts`. Kalimat uji co
 lewat chat admin di WhatsApp"), dan "tidak ada refund" sama dengan bagian Harga, FAQ, dan `/syarat/` di `main`; tidak ada
 janji baru. Uji coba juga disebut di hero (baris kepercayaan), Cara kerja, FAQ, pesan WhatsApp bawaan, dan meta
 description. Setelah uji coba atau langganan habis, akun otomatis menjadi **mode baca saja** (dikonfirmasi pemilik dan kode aplikasi,
-23 Okt 2026), bukan dinonaktifkan; FAQ, `/syarat/`, dan `/privasi/` sudah mengikuti. Pembayaran lewat Lynk.id masih
-dibahas dan belum ada di halaman.
+23 Okt 2026), bukan dinonaktifkan; FAQ, `/syarat/`, dan `/privasi/` sudah mengikuti. **Pembayaran lewat Lynk.id** (keputusan pemilik,
+26 Okt 2026): tautan resmi `LYNK_URL` di `src/config.ts`, ditulis lengkap di bagian Harga, FAQ, footer, dan `/syarat/`, lalu
+bukti bayar dikirim ke admin lewat WhatsApp. `/privasi/` menyebut Lynk.id sebagai pemroses pembayaran. Isi halaman
+Lynk.id (nama penjual, harga) belum bisa dicek dari lingkungan pengembangan dan harus dicocokkan pemilik.
 
 **Isi.** Klaim privasi, FAQ, dan footer memakai kalimat yang sudah dicocokkan dengan aplikasi di landing 2 dan `main`
 ("tidak diambil", bukan "tidak dibaca"). Kolom data pembeli di lembar contoh tidak pernah diisi, bahkan dengan data rekaan:

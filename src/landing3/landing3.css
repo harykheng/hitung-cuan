@@ -1204,6 +1204,9 @@ html.js .sheet { --p1: 0; --p2: 0; --p3: 0; }
 .pricing-check { flex: none; width: 1.25rem; height: 1.25rem; margin-top: 0.1rem; color: var(--color-gain); }
 .pricing-cta { margin-top: 2rem; width: 100%; }
 .pricing-small { margin-top: 0.85rem; font-size: 0.875rem; line-height: 1.6; color: var(--color-ink-2); }
+.pricing-pay { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: var(--color-ink-2); }
+/* URL ditulis lengkap; boleh patah di HP supaya tidak membuat gulir horizontal. */
+.pricing-lynk { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; overflow-wrap: anywhere; }
 @media (min-width: 1024px) {
   .pricing-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
   .pricing-side { grid-column: 1 / span 5; }
