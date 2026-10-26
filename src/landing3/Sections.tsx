@@ -298,9 +298,9 @@ export function Pricing() {
               <span className="sr-only"> (halaman pembayaran, tab baru)</span>
             </a>
           </div>
+          {/* URL lengkap Lynk.id ada di FAQ "Bagaimana cara bayar?" dan /syarat/, supaya bagian ini tetap ringkas. */}
           <p className="pricing-small">
-            Bayar hanya kalau mau lanjut setelah {TRIAL_DAYS} hari, lewat halaman resmi{' '}
-            <span className="pay-url">{LYNK_LABEL}</span>, lalu kirim buktinya ke admin. Tidak ada tagihan otomatis.{' '}
+            Bayar setelah uji coba lewat Lynk.id resmi. Tidak ada tagihan otomatis.{' '}
             <a href="/syarat/" className="inline-link">
               Syarat Layanan
             </a>
