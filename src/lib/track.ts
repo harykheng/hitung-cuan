@@ -69,7 +69,7 @@ export function trackOnce(name: string, props: Props = {}): void {
   track(name, props)
 }
 
-const sumber = () => getSourceCode(window.location.search)
+const sumber = () => getSourceCode(window.location.search, window.location.pathname)
 
 /** Satu kali per pemuatan halaman: penyebut CTR per sumber. */
 export const trackVisit = () => trackOnce('kunjungan', { sumber: sumber() })

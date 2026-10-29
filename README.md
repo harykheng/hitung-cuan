@@ -58,6 +58,10 @@ Selama nomornya masih placeholder, `npm run build` menampilkan peringatan.
 
 ## Kode sumber (`?src=`) dan pelacakan
 
+**Landing v2** (`/v2/`, kode di `src/v2/`, entry `v2/index.html`) adalah halaman alternatif untuk diuji melawan landing
+utama. Ikut di-prerender oleh `scripts/prerender.mjs`, diberi `noindex`, dan kodenya `HC-V2` (lihat DESIGN.md, bagian
+"Landing v2").
+
 Pesan WhatsApp ditutup dengan `Kode: HC-{SRC}`. `{SRC}` diambil dari `?src=` (huruf besar, A–Z, 0–9, `_`, `-`, maks.
 24 karakter). Tanpa parameter → `HC-WEB`. Contoh: `https://hitungcuan.studioharel.id/?src=tt01` → `Kode: HC-TT01`.
 
@@ -77,6 +81,7 @@ Peristiwa (semua juga dikirim sebagai `CustomEvent('hc:track')`):
 | `scroll_depth` | 25/50/75/100% | `persen` |
 
 `sumber` = kode `?src=` dalam huruf besar (sama dengan `Kode: HC-...` di pesan WhatsApp), atau `WEB` tanpa parameter.
+Di Landing v2 (`/v2/`) kode halamannya ditaruh di depan: `V2` tanpa parameter, `V2-TT01` untuk `/v2/?src=tt01`.
 
 **CTR per sumber = jumlah `cta_click` ÷ jumlah `kunjungan`**, dengan `sumber` yang sama. Di dashboard Umami, buka
 peristiwa `kunjungan` dan `cta_click` lalu lihat rincian properti `sumber`. Karena `cta_click` hanya dihitung sekali per

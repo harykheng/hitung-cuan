@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HitungCuan: Saldo cair banyak, untungnya berapa?</title>
+    <!--
+      Landing v2 (halaman alternatif untuk diuji, DESIGN.md bagian "Landing v2"). Sengaja noindex selama masa uji supaya
+      tidak bersaing dengan landing utama di hasil pencarian; header X-Robots-Tag di public/_headers berisi hal yang sama.
+      Tanpa canonical: canonical ke / bersama noindex memberi sinyal yang saling bertentangan.
+    -->
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="Ubah file export Shopee jadi untung bersih per bulan dan per produk, cek iklan per produk, dan simulasikan harga jual. Uji coba gratis 7 hari lewat WhatsApp."
+    />
+    <meta name="theme-color" content="#fffbf6" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="HitungCuan" />
+    <meta property="og:url" content="https://hitungcuan.studioharel.id/v2/" />
+    <meta property="og:title" content="HitungCuan: Saldo cair banyak, untungnya berapa?" />
+    <meta
+      property="og:description"
+      content="Cari tahu untung bersih toko Shopee-mu dari file export Seller Centre. Uji coba gratis 7 hari lewat WhatsApp."
+    />
+    <!-- ?v= dinaikkan tiap og.png diganti: WhatsApp dan Threads menyimpan gambar share berdasarkan URL lengkapnya. -->
+    <meta property="og:image" content="https://hitungcuan.studioharel.id/og.png?v=5" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="HitungCuan, aplikasi web untuk penjual Shopee: Jangan cuma lihat omzet. Cari tahu untung bersih toko Shopee-mu." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!--
+      Konten disembunyikan untuk animasi hanya kalau JavaScript jalan (lihat index.css). Kelas "motion" (landing 3)
+      hanya dipasang tanpa reduced motion (tidak dipakai Landing v2).
+      Kalau bundle belum jalan setelah 4 detik (gagal muat atau jaringan lambat), kelas "js" dicabut supaya semua
+      konten tampil. main.tsx memasang data-hc begitu bundle berjalan.
+    -->
+    <script>
+      document.documentElement.classList.add("js");
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion");
+      setTimeout(function () {
+        var d = document.documentElement;
+        if (!d.hasAttribute("data-hc")) d.classList.remove("js", "motion");
+      }, 4000);
+    </script>
+  </head>
+  <body>
+    <div id="root"><!--app--></div>
+    <script type="module" src="/src/v2/main.tsx"></script>
+    <!--
+      Statistik kunjungan: Umami Cloud, tanpa cookie (lihat /privasi/ dan README). Ditaruh setelah bundle supaya
+      hidrasi tidak menunggu skrip pihak ketiga; track.ts menahan peristiwa sampai skrip ini siap.
+      data-domains: hanya mencatat di domain produksi, jadi localhost dan preview Cloudflare tidak ikut terhitung.
+    -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="d672037b-49cb-4bcb-8aa6-fc19c68183b7" data-domains="hitungcuan.studioharel.id"></script>
+  </body>
+</html>

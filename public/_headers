@@ -4,3 +4,7 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+
+# Landing v2 sedang diuji: jangan diindeks (sama dengan meta robots di v2/index.html).
+/v2/*
+  X-Robots-Tag: noindex

@@ -264,6 +264,47 @@ kelas menengah), dan halaman 404 khusus (butuh perubahan `wrangler.jsonc`; audit
 lambat dan 4G lambat, CLS 0, 60 fps, tanpa gulir horizontal di 390 dan 1440px, reduced motion tanpa teks tersembunyi,
 semua target hover utama bereaksi. Nilai kritik adalah **penilaian sendiri**, bukan kritikus terpisah.
 
+## Landing v2 (`/v2/`, branch `landing-5`, 29 Okt 2026)
+
+Halaman alternatif untuk diuji melawan landing utama, di rute terpisah `/v2/` (`v2/index.html`, kode di `src/v2/`).
+Ritmenya meniru halaman penjualan panjang yang ditunjuk pemilik (kadev.academy/tiktokbrandgrowthhack): masalah →
+studi kasus → sebelum/sesudah → cara kerja → isi aplikasi → harga → FAQ → penutup, dengan bar CTA bawah di HP.
+
+**Keputusan pemilik (29 Okt 2026):** kulit ikut dokumen ini (bagian dasar, bukan penyimpangan landing 3), testimoni
+dibuang, rute terpisah `/v2/`, kode sumber WhatsApp `V2`, `noindex`, studi kasus memakai toko rekaan, teks disetujui.
+
+**Yang sengaja tidak diambil dari halaman rujukan**, karena melanggar aturan isi di atas (README, R-17, R-18, R-36):
+testimoni, angka hasil ("20M+/bulan"), hitung mundur yang mulai ulang untuk setiap pengunjung, dan "Total Nilai" dengan
+harga per item rekaan. Penggantinya: strip tiga fakta layanan di hero (uji coba, tiga laporan, waktu balas admin),
+studi kasus toko rekaan berlabel Contoh (toko pakaian yang sama dengan lembar "Saring" landing 3; hitungannya ditulis di
+`src/v2/content.ts`), dan daftar isi paket tanpa harga per baris. Penutup tidak menyebut diskon atau batas waktu. Kalau
+suatu saat ada promo bertanggal, hitung mundur hanya boleh ke tanggal itu.
+
+**Isi.** Setiap kalimat tentang aplikasi (cara kerja, fitur, privasi, harga, FAQ) disalin dari landing 3, yang sudah
+dicocokkan dengan aplikasi. Kalau salah satu berubah, ubah keduanya. Kartu "Kalau ini kamu" menggambarkan keadaan seller,
+bukan klaim aplikasi. Sisi "Sesudah" hanya menyebut apa yang ditampilkan aplikasi, ditutup kalimat "HitungCuan tidak
+menjamin toko untung" (sama dengan FAQ).
+
+**Komponen.** Memakai komponen landing 1 di `src/components/ui.tsx` (Section, H2, Cta, ExampleTag, Sticker) dan
+`BottomBar`/`SkipLink` dari `Bars.tsx`. Lembar putih 24px dengan `shadow-sheet` hanya untuk isi kerja (kartu "Yang
+sebenarnya", sisi Sesudah, kartu privasi, lembar harga, bingkai screenshot); kartu pembanding ("Yang terlihat", Sebelum)
+datar tanpa bayangan. Stiker Rugi (`loss`) dan Tipis (`sun`) dipakai sebagai status, selalu dengan kata dan ikon.
+Tombol Lynk.id berupa kotak bergaris, sama dengan landing 3. Tanpa GSAP, Lenis, atau JetBrains Mono; gerak hanya stiker
+tersetempel dan bar bawah HP.
+
+**Pengukuran.** `src/lib/whatsapp.ts` (`pageCode`) memberi kode `V2` di depan kode sumber untuk path `/v2/`: tanpa
+`?src=` jadi `HC-V2`, dengan `?src=tt01` jadi `HC-V2-TT01`. Properti `sumber` di Umami ikut berubah, jadi CTR dan chat
+`/v2/` terpisah dari landing utama.
+
+**Index.** `<meta name="robots" content="noindex">` di `v2/index.html` dan `X-Robots-Tag: noindex` untuk `/v2/*` di
+`public/_headers`. Sengaja tanpa canonical dan tanpa JSON-LD. Halaman tidak diblokir di `robots.txt`, supaya mesin pencari
+tetap bisa membaca `noindex`-nya. Gambar share masih `og.png` landing 3 ("Jangan cuma lihat omzet"), belum dibuat ulang
+untuk judul v2.
+
+**Kalau v2 dipilih:** pindahkan isinya ke `/`, hapus `v2/` dan `src/v2/`, input `v2` di `vite.config.ts`, `renderV2` di
+`src/entry-server.tsx` dan `scripts/prerender.mjs`, blok `/v2/*` di `public/_headers`, lalu perbarui bagian ini. Kalau
+ditolak, hapus hal yang sama tanpa memindahkan isinya.
+
 ## Warna
 
 **Aturan permukaan.** Teks di permukaan terang memakai skala `ink`. Teks di permukaan gelap (`night`, `night-deep`) memakai `on-night` atau `on-night-muted`. Jangan menaruh `ink` di permukaan gelap atau `on-night` di permukaan terang. Token nada (`.tone-light`, `.tone-dark`) mengatur ini per bagian.
