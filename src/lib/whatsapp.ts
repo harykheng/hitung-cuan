@@ -1,4 +1,4 @@
-import { DEFAULT_SOURCE, WA_NUMBER } from '../config'
+import { DEFAULT_SOURCE, TRIAL_DAYS, WA_NUMBER } from '../config'
 
 /** Ambil ?src= dari URL: huruf besar, hanya A-Z 0-9 _ -, maks 24 karakter. */
 export function getSourceCode(search: string): string {
@@ -16,7 +16,7 @@ const withCode = (lines: string[], source: string) => [...lines, `Kode: HC-${sou
 /** Pesan bawaan semua tombol "Tanya akses". Sejak 23 Okt 2026 landing 3 menampilkan uji coba, jadi pesannya memintanya. */
 export function generalMessage(source: string): string {
   return withCode(
-    ['Halo admin HitungCuan, saya seller Shopee dan mau tanya akses dan uji coba gratis 30 hari HitungCuan untuk toko saya. Mohon info langkah selanjutnya.'],
+    [`Halo admin HitungCuan, saya seller Shopee dan mau tanya akses dan uji coba gratis ${TRIAL_DAYS} hari HitungCuan untuk toko saya. Mohon info langkah selanjutnya.`],
     source,
   )
 }
@@ -31,7 +31,7 @@ export function simulatorMessage(
 ): string {
   return withCode(
     [
-      `Halo admin HitungCuan, saya sudah coba simulator di halaman kalian: modal Rp${p.hpp}, harga Rp${p.harga}, ROAS Shopee ${p.roas}, hasilnya "${p.verdict}". Saya mau minta uji coba gratis 30 hari untuk toko saya.`,
+      `Halo admin HitungCuan, saya sudah coba simulator di halaman kalian: modal Rp${p.hpp}, harga Rp${p.harga}, ROAS Shopee ${p.roas}, hasilnya "${p.verdict}". Saya mau minta uji coba gratis ${TRIAL_DAYS} hari untuk toko saya.`,
     ],
     source,
   )

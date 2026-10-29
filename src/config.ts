@@ -13,7 +13,14 @@ export const APP_URL = 'https://app.studioharel.id'
 /** Harga dan uji coba, harus sama dengan yang benar-benar ditagih admin. */
 export const PRICE_MONTHLY = 69000
 export const PRICE_YEARLY = 599000
-export const TRIAL_DAYS = 30
+export const TRIAL_DAYS = 7
+
+/**
+ * Batas uji coba yang diputuskan pemilik (29 Okt 2026): data 1 bulan dan 10 kali simulasi harga. Aplikasi
+ * (shopee-profit-calc) BELUM membatasinya. Selama `enforced` false, landing tidak menyebut batas ini; ubah ke true hanya
+ * setelah aplikasi benar-benar membatasi, lalu tambahkan juga baris batasnya di /syarat/ (bagian "Uji coba gratis").
+ */
+export const TRIAL_LIMITS = { months: 1, simulations: 10, enforced: false }
 
 /**
  * Halaman pembayaran resmi di Lynk.id (dari pemilik, 26 Okt 2026). Ditulis lengkap di halaman supaya seller bisa

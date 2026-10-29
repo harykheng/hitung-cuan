@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { CheckIcon, InAppWaHelp } from '../components/ui'
-import { APP_URL, LYNK_LABEL, LYNK_URL, PRICE_MONTHLY, PRICE_YEARLY, REPLY_PROMISE, STUDIO_URL, TRIAL_DAYS } from '../config'
+import { APP_URL, LYNK_LABEL, LYNK_URL, PRICE_MONTHLY, PRICE_YEARLY, REPLY_PROMISE, STUDIO_URL, TRIAL_DAYS, TRIAL_LIMITS } from '../config'
 import { rp } from '../lib/format'
 import { useSource } from '../lib/source'
 import { trackCta } from '../lib/track'
@@ -272,7 +272,11 @@ export function Pricing() {
               <tr className="is-trial">
                 <th scope="row">
                   Uji coba
-                  <span className="price-note">{TRIAL_DAYS} hari, semua fitur, tanpa kartu kredit</span>
+                  <span className="price-note">
+                    {TRIAL_LIMITS.enforced
+                      ? `${TRIAL_DAYS} hari, data ${TRIAL_LIMITS.months} bulan, ${TRIAL_LIMITS.simulations} kali simulasi harga, tanpa kartu kredit`
+                      : `${TRIAL_DAYS} hari, semua fitur, tanpa kartu kredit`}
+                  </span>
                 </th>
                 <td className="is-num">
                   <span className="price-sel">Gratis</span>
