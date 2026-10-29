@@ -275,9 +275,19 @@ dibuang, rute terpisah `/v2/`, kode sumber WhatsApp `V2`, `noindex`, studi kasus
 
 **Yang sengaja tidak diambil dari halaman rujukan**, karena melanggar aturan isi di atas (README, R-17, R-18, R-36):
 testimoni, angka hasil ("20M+/bulan"), hitung mundur yang mulai ulang untuk setiap pengunjung, dan "Total Nilai" dengan
-harga per item rekaan. Penggantinya: strip tiga fakta layanan di hero (uji coba, tiga laporan, waktu balas admin),
-studi kasus toko rekaan berlabel Contoh (toko pakaian yang sama dengan lembar "Saring" landing 3; hitungannya ditulis di
-`src/v2/content.ts`), dan daftar isi paket tanpa harga per baris. Penutup tidak menyebut diskon atau batas waktu. Kalau
+harga per item rekaan. Penggantinya: studi kasus toko rekaan berlabel Contoh (toko pakaian yang sama dengan lembar
+"Saring" landing 3; hitungannya ditulis di `src/v2/content.ts`), strip tiga fakta layanan (uji coba, tiga laporan, waktu
+balas admin) di Cara kerja, dan daftar isi paket tanpa harga per baris.
+
+**Revisi "cerita dulu" (keputusan pemilik, 29 Okt 2026).** Versi pertama terasa sama dengan landing utama: kulit,
+komponen, dan kalimatnya sama, hanya urutannya yang beda. Supaya `/v2/` menguji hipotesis "cerita dulu, produk belakangan",
+hero kini dibuka dengan studi kasus: judul "Omzet Rp20 juta. Untung bersihnya Rp3 juta." dan lembar rekap Contoh (omzet
+sampai untung bersih, stiker Rugi untuk Celana Kulot). Penjelasan produk turun ke satu kalimat; screenshot Rekap dan strip
+fakta pindah ke Cara kerja. Lalu dua bagian baru: "Ke mana Rp17 juta-nya?" (bilah tinta per pos biaya, sekadar gambaran
+dengan angka tertulis) dan tabel per produk ("Produk dengan iklan paling besar justru rugi"), sebelum kartu "Kenapa bisa
+begitu". Judul hero sengaja netral, tanpa "cuma": untung 15% dari omzet bukan hasil yang buruk, dan kejutannya ada di
+selisih Rp17 juta serta produk yang rugi. Kalimat penutup bagian selisih memakai versi aman ("tidak tercatat di buku
+modal"), bukan "dipotong sebelum uangnya sampai", yang hanya benar untuk iklan Shopee. Teks tentang aplikasi tidak berubah. Penutup tidak menyebut diskon atau batas waktu. Kalau
 suatu saat ada promo bertanggal, hitung mundur hanya boleh ke tanggal itu.
 
 **Isi.** Setiap kalimat tentang aplikasi (cara kerja, fitur, privasi, harga, FAQ) disalin dari landing 3, yang sudah

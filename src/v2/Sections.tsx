@@ -8,10 +8,13 @@ import { trackCta } from '../lib/track'
 import { generalMessage, waLink } from '../lib/whatsapp'
 import {
   BEFORE_AFTER,
+  CASE_GAP,
+  CASE_LABEL,
+  CASE_LEAKS,
   CASE_NET,
   CASE_PRODUCTS,
-  CASE_REAL,
-  CASE_SEEN,
+  CASE_SHEET,
+  type CaseStatus,
   FEATURES,
   INCLUDED,
   KICKER,
@@ -85,32 +88,67 @@ function Shot({ slot, priority = false, className = '' }: { slot: ScreenSlot; pr
   )
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: dibuka dengan studi kasus ---------- */
 
 /*
- * Pengganti "3 angka bukti" di halaman rujukan: tiga fakta tentang layanan, bukan angka hasil (README, R-17, R-18).
+ * Revisi 29 Okt 2026 (keputusan pemilik): layar pertama berisi satu cerita, yaitu toko contoh dengan jawabannya lebih dulu
+ * (DESIGN.md: "jawaban dulu, hitungan di lembar"). Penjelasan produk turun ke satu kalimat; screenshot aplikasi dan strip
+ * fakta pindah ke Cara kerja.
  */
-const FACTS = [
-  { big: `${TRIAL_DAYS} hari`, small: 'uji coba gratis' },
-  { big: '3 laporan', small: 'pesanan, penghasilan, iklan' },
-  { big: '1×24 jam', small: 'paling lama admin membalas' },
-]
+function CaseSheet() {
+  return (
+    <div className="rounded-3xl bg-paper p-6 shadow-sheet sm:p-7">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-display text-lg font-bold">Rekap bulan ini</p>
+        <ExampleTag />
+      </div>
+      <dl className="mt-3 divide-y divide-rule">
+        {CASE_SHEET.map((r) => (
+          <div key={r.label} className="flex items-baseline justify-between gap-4 py-2.5">
+            <dt className={r.total ? 'font-semibold' : 'text-fg-2'}>{r.label}</dt>
+            <dd className={`shrink-0 tabular-nums ${r.total ? 'font-bold' : 'font-semibold'}`}>{r.value}</dd>
+          </div>
+        ))}
+        <div className="flex items-baseline justify-between gap-4 border-t-2 border-fg pt-3">
+          <dt className="font-display text-xl font-extrabold">Untung bersih</dt>
+          <dd className="font-display text-xl font-extrabold tabular-nums">
+            <span className="hl">{CASE_NET}</span>
+          </dd>
+        </div>
+      </dl>
+      <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl bg-tint p-4">
+        <Sticker kind="takedown" rot={-3} delay={300}>
+          Rugi
+        </Sticker>
+        <p className="text-sm text-fg-2">
+          <span className="font-semibold text-fg">Celana Kulot</span>{' '}
+          <span className="font-semibold text-fg tabular-nums">−Rp0,6 juta</span> setelah iklan
+        </p>
+      </div>
+    </div>
+  )
+}
 
 export function Hero() {
   return (
     <section id="hero" aria-labelledby="judul-utama" className="tone-light bg-canvas pt-10 pb-14 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
-      <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12">
+      <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
         <div>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className={KICKER}>{CASE_LABEL}</p>
+            <ExampleTag />
+          </div>
           <h1
             id="judul-utama"
-            className="font-display text-[2.5rem] leading-none font-extrabold tracking-tight text-balance sm:text-5xl lg:text-[3.6rem]"
+            className="mt-4 font-display text-[2.5rem] leading-none font-extrabold tracking-tight text-balance sm:text-5xl lg:text-[3.6rem]"
           >
-            Saldo cair banyak. <span className="hl">Untungnya berapa?</span>
+            Omzet Rp20{'\u00a0'}juta. <span className="hl">Untung bersihnya Rp3{'\u00a0'}juta.</span>
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-fg-2 sm:text-xl">
-            Unggah file export Seller Centre. HitungCuan merangkumnya jadi untung bersih per bulan dan per produk, mengecek
-            iklan per produk, dan membantu menyimulasikan harga jual.
+            Pesanannya ramai dan saldonya cair. Tapi setelah potongan Shopee, modal, dan iklan, yang tersisa Rp3{'\u00a0'}juta,
+            dan satu produk ternyata rugi. <span className="font-semibold text-fg">Tokomu bagaimana?</span>
           </p>
+          <p className="mt-3 max-w-xl text-fg-2">HitungCuan menghitungnya dari file export Seller Centre-mu sendiri.</p>
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Cta lokasi="hero" />
             <a href="#cara-kerja" className={LINK}>
@@ -122,16 +160,8 @@ export function Hero() {
             File export dibaca di browser; file asli tidak diunggah. Akun dibuat oleh pengelola lewat WhatsApp. Bukan
             produk resmi Shopee.
           </p>
-          <dl className="mt-8 grid grid-cols-3 divide-x divide-rule rounded-2xl border border-rule bg-paper">
-            {FACTS.map((f) => (
-              <div key={f.big} className="flex flex-col-reverse justify-end px-3 py-4 text-center sm:px-4">
-                <dt className="mt-1 text-xs leading-snug text-fg-2 sm:text-sm">{f.small}</dt>
-                <dd className="font-display text-base font-extrabold whitespace-nowrap min-[360px]:text-lg sm:text-2xl">{f.big}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
-        <Shot slot={HERO_SCREEN} priority />
+        <CaseSheet />
       </Container>
     </section>
   )
@@ -144,9 +174,9 @@ export function Problems() {
     <Section tone="paper" labelledby="masalah-judul">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <div>
-          <p className={KICKER}>Kalau ini kamu</p>
+          <p className={KICKER}>Kenapa bisa begitu</p>
           <H2 id="masalah-judul" className="mt-3">
-            Omzet ramai, tapi uangnya entah ke mana.
+            Selisih ini tidak kelihatan kalau yang dilihat cuma omzet.
           </H2>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-fg-2">
             Lima tanda angka tokomu belum terbaca sampai habis.
@@ -168,81 +198,110 @@ export function Problems() {
   )
 }
 
-/* ---------- Studi kasus (toko rekaan) ---------- */
+/* ---------- Ke mana Rp17 juta-nya? (toko rekaan) ---------- */
 
-function Rows({ rows }: { rows: readonly { label: string; value: string }[] }) {
+/* Bilah hanya gambaran (aria-hidden); angkanya tertulis di sebelahnya. Panjang = bagian dari selisih Rp17 juta. */
+export function Leaks() {
+  const total = CASE_LEAKS.reduce((n, x) => n + x.jt, 0)
   return (
-    <dl className="divide-y divide-rule">
-      {rows.map((r) => (
-        <div key={r.label} className="flex items-baseline justify-between gap-4 py-2.5">
-          <dt className="text-fg-2">{r.label}</dt>
-          <dd className="shrink-0 font-semibold tabular-nums">{r.value}</dd>
-        </div>
-      ))}
-    </dl>
+    <Section tone="tint" labelledby="selisih-judul">
+      <div className="flex flex-wrap items-center gap-3">
+        <p className={KICKER}>{CASE_LABEL}</p>
+        <ExampleTag />
+      </div>
+      <H2 id="selisih-judul" className="mt-3">
+        Rp20{'\u00a0'}juta masuk, Rp3{'\u00a0'}juta tersisa. Ke mana {CASE_GAP}-nya?
+      </H2>
+      <ul className="mt-10 grid max-w-4xl gap-6">
+        {CASE_LEAKS.map((x) => (
+          <li key={x.label}>
+            <div className="flex items-baseline justify-between gap-4">
+              <span className="font-semibold">{x.label}</span>
+              <span className="shrink-0 font-display text-lg font-extrabold tabular-nums">{x.value}</span>
+            </div>
+            <div aria-hidden="true" className="mt-2 h-3 overflow-hidden rounded-full bg-paper">
+              <div className="h-full rounded-full bg-fg" style={{ width: `${Math.max((x.jt / total) * 100, 1.5)}%` }} />
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-10 max-w-2xl text-lg leading-relaxed text-fg-2">
+        Paling besar memang modal. Tapi yang paling sering tidak terasa adalah potongan dan iklan, karena keduanya tidak
+        tercatat di buku modal.
+      </p>
+    </Section>
   )
 }
 
-export function CaseStudy() {
+/* ---------- Per produk (toko rekaan) ---------- */
+
+const STATUS: Record<CaseStatus, { kind: 'aman' | 'kecil' | 'takedown'; label: string }> = {
+  aman: { kind: 'aman', label: 'Aman' },
+  tipis: { kind: 'kecil', label: 'Tipis' },
+  rugi: { kind: 'takedown', label: 'Rugi' },
+}
+
+export function Products() {
   return (
-    <Section tone="tint" labelledby="kasus-judul">
+    <Section tone="paper" labelledby="produk-judul">
       <div className="flex flex-wrap items-center gap-3">
-        <p className={KICKER}>Studi kasus</p>
+        <p className={KICKER}>Per produk</p>
         <ExampleTag />
       </div>
-      <H2 id="kasus-judul" className="mt-3">
-        Omzet Rp20 juta. Untungnya ternyata Rp3 juta.
+      <H2 id="produk-judul" className="mt-3">
+        Produk dengan iklan paling besar justru rugi.
       </H2>
       <p className="mt-4 max-w-2xl text-lg leading-relaxed text-fg-2">
-        Toko pakaian rekaan, satu bulan. Filenya sama, hanya dibaca sampai habis: potongan Shopee, modal, iklan, dan biaya
-        lain ikut dihitung.
+        Dari omzet saja, Celana Kulot terlihat laku. Setelah iklan dan modalnya dihitung, setiap bulan dia menggerus untung.
       </p>
-
-      <div className="mt-10 grid items-start gap-6 lg:grid-cols-[minmax(0,5fr)_auto_minmax(0,7fr)] lg:gap-8">
-        <div className="rounded-3xl border border-rule p-6 sm:p-7">
-          <p className="font-display text-lg font-bold">Yang terlihat</p>
-          <div className="mt-3">
-            <Rows rows={CASE_SEEN} />
-          </div>
-          <p className="mt-4 text-sm text-fg-2">Angka yang biasa dilihat di Seller Centre dan saldo.</p>
-        </div>
-
-        <div aria-hidden="true" className="flex justify-center self-center text-fg-3">
-          <svg viewBox="0 0 24 24" className="size-8 rotate-90 lg:rotate-0" fill="none" stroke="currentColor" strokeWidth={2.25}>
-            <path d="M5 12h14M12.5 5.5 19 12l-6.5 6.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-
-        <div className="rounded-3xl bg-paper p-6 shadow-sheet sm:p-7">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="font-display text-lg font-bold">Yang sebenarnya</p>
-            <ExampleTag />
-          </div>
-          <p className="mt-3 font-display text-2xl leading-tight font-extrabold sm:text-3xl">
-            Untung bersihnya <span className="hl whitespace-nowrap">{CASE_NET}</span>, dan satu produk rugi.
-          </p>
-          <div className="mt-4">
-            <Rows rows={CASE_REAL} />
-            <div className="flex items-baseline justify-between gap-4 border-t-2 border-fg pt-3">
-              <span className="font-display text-lg font-extrabold">Untung bersih</span>
-              <span className="font-display text-lg font-extrabold tabular-nums">{CASE_NET}</span>
-            </div>
-          </div>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+      <div className="mt-10 max-w-4xl rounded-3xl bg-paper shadow-sheet">
+        <table className="w-full border-collapse text-left">
+          <caption className="sr-only">Contoh untung per produk satu bulan, toko pakaian rekaan</caption>
+          <thead>
+            <tr className="border-b border-rule text-sm text-fg-3">
+              <th scope="col" className="px-5 py-3 font-semibold sm:px-6">
+                Produk
+              </th>
+              <th scope="col" className="hidden px-3 py-3 text-right font-semibold sm:table-cell">
+                Omzet
+              </th>
+              <th scope="col" className="hidden px-3 py-3 text-right font-semibold sm:table-cell">
+                Iklan
+              </th>
+              <th scope="col" className="px-5 py-3 text-right font-semibold sm:px-6">
+                Untung
+              </th>
+            </tr>
+          </thead>
+          <tbody>
             {CASE_PRODUCTS.map((p) => (
-              <li key={p.name} className="rounded-2xl bg-tint p-4">
-                <Sticker kind={p.status === 'rugi' ? 'takedown' : 'kecil'} rot={p.status === 'rugi' ? -3 : 2}>
-                  {p.status === 'rugi' ? 'Rugi' : 'Tipis'}
-                </Sticker>
-                <p className="mt-3 font-semibold">{p.name}</p>
-                <p className="text-sm text-fg-2">
-                  <span className="font-semibold text-fg tabular-nums">{p.value}</span>, {p.note}
-                </p>
-              </li>
+              <tr key={p.name} className={`border-b border-rule last:border-b-0 ${p.status === 'rugi' ? 'bg-tint' : ''}`}>
+                <th scope="row" className="px-5 py-4 align-middle sm:px-6">
+                  <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                    <span className="font-semibold">{p.name}</span>
+                    <Sticker kind={STATUS[p.status].kind} rot={0}>
+                      {STATUS[p.status].label}
+                    </Sticker>
+                  </span>
+                  <span className="mt-1 block text-sm font-normal text-fg-2 sm:hidden">
+                    Omzet <span className="whitespace-nowrap">{p.omzet}</span> · Iklan{' '}
+                    <span className="whitespace-nowrap">{p.iklan}</span>
+                  </span>
+                </th>
+                <td className="hidden px-3 py-4 text-right tabular-nums sm:table-cell">{p.omzet}</td>
+                <td className={`hidden px-3 py-4 text-right tabular-nums sm:table-cell ${p.status === 'rugi' ? 'font-semibold' : ''}`}>
+                  {p.iklan}
+                </td>
+                <td className="px-5 py-4 text-right font-display font-extrabold whitespace-nowrap tabular-nums sm:px-6">{p.untung}</td>
+              </tr>
             ))}
-          </ul>
-        </div>
+          </tbody>
+        </table>
       </div>
+      <p className="mt-4 text-sm text-fg-2">
+        Contoh, toko rekaan. Untung per produk sebelum biaya lain (Rp0,4 juta). "Tipis" di contoh ini berarti untung di bawah
+        15% dari omzet produknya.
+      </p>
     </Section>
   )
 }
@@ -254,7 +313,7 @@ export function BeforeAfter() {
     <Section tone="paper" labelledby="beda-judul">
       <p className={KICKER}>Yang berubah</p>
       <H2 id="beda-judul" className="mt-3">
-        Yang kamu lihat setelah datanya masuk.
+        Yang berubah: kamu tidak menebak lagi.
       </H2>
       <ul className="mt-10 grid gap-4">
         {BEFORE_AFTER.map((x) => (
@@ -285,17 +344,32 @@ export function BeforeAfter() {
 
 /* ---------- Cara kerja ---------- */
 
+/* Pengganti "3 angka bukti" di halaman rujukan: tiga fakta tentang layanan, bukan angka hasil (README, R-17, R-18). */
+const FACTS = [
+  { big: `${TRIAL_DAYS} hari`, small: 'uji coba gratis' },
+  { big: '3 laporan', small: 'pesanan, penghasilan, iklan' },
+  { big: '1×24 jam', small: 'paling lama admin membalas' },
+]
+
 export function Steps() {
   return (
     <Section id="cara-kerja" tone="canvas" labelledby="cara-judul">
       <p className={KICKER}>Cara kerja</p>
       <H2 id="cara-judul" className="mt-3">
-        Tiga langkah, dari file export sampai jawaban.
+        Hitungan seperti tadi, dari file tokomu sendiri.
       </H2>
       <p className="mt-4 max-w-2xl text-lg leading-relaxed text-fg-2">
         Sebelum mulai: akun dan akses tokomu dibuat oleh pengelola lewat WhatsApp, dengan uji coba gratis {TRIAL_DAYS}{' '}
         hari. {REPLY_PROMISE}.
       </p>
+      <dl className="mt-8 grid max-w-2xl grid-cols-3 divide-x divide-rule rounded-2xl border border-rule bg-paper">
+        {FACTS.map((f) => (
+          <div key={f.big} className="flex flex-col-reverse justify-end px-3 py-4 text-center sm:px-4">
+            <dt className="mt-1 text-xs leading-snug text-fg-2 sm:text-sm">{f.small}</dt>
+            <dd className="font-display text-base font-extrabold whitespace-nowrap min-[360px]:text-lg sm:text-2xl">{f.big}</dd>
+          </div>
+        ))}
+      </dl>
       <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
         {STEPS.map((s, i) => (
           <li key={s.title}>
@@ -313,6 +387,7 @@ export function Steps() {
           </li>
         ))}
       </ol>
+      <Shot slot={HERO_SCREEN} className="mt-12 max-w-3xl" />
       <p className="mt-10 text-fg-2">
         Mau lihat langsung cara pakainya?{' '}
         <a href={GUIDE_VIDEO.url} target="_blank" rel="noopener noreferrer" className={LINK}>
@@ -331,7 +406,7 @@ export function Features() {
     <Section id="yang-bisa-dicek" tone="paper" labelledby="fitur-judul">
       <p className={KICKER}>Isi aplikasi</p>
       <H2 id="fitur-judul" className="mt-3">
-        Tiga hal yang bisa kamu cek.
+        Setelah datanya masuk, ini yang bisa kamu cek.
       </H2>
       <ul className="mt-12 grid gap-16 lg:gap-20">
         {FEATURES.map((f, i) => {
@@ -361,6 +436,9 @@ export function Privacy() {
       <H2 id="privasi-judul" className="mt-3">
         Apa yang dibaca, apa yang dilewati, apa yang disimpan.
       </H2>
+      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-fg-2">
+        File pesananmu dibaca untuk hitungan tadi, tapi data pembelinya dilewati.
+      </p>
       <ul className="mt-10 grid gap-6 md:grid-cols-3">
         {PRIVACY.map((p) => (
           <li key={p.title} className="rounded-3xl bg-paper p-6 shadow-sheet">
@@ -401,7 +479,7 @@ export function Pricing() {
         <div>
           <p className={KICKER}>Harga</p>
           <H2 id="harga-judul" className="mt-3">
-            Coba gratis {TRIAL_DAYS} hari dulu, bayar kalau cocok.
+            Cari tahu angka tokomu dulu. Gratis {TRIAL_DAYS}{'\u00a0'}hari.
           </H2>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-fg-2">
             Akun dibuat oleh pengelola setelah kamu chat lewat WhatsApp. {REPLY_PROMISE}. Upload data bulan lalu dan lihat
@@ -564,7 +642,7 @@ export function Closing() {
           id="penutup-judul"
           className="font-display text-3xl leading-[1.08] font-extrabold tracking-tight text-balance sm:text-4xl lg:text-[2.75rem]"
         >
-          Bulan depan masih menebak untung dari saldo cair?
+          Toko contoh tadi untung Rp3{'\u00a0'}juta. Tokomu berapa?
         </h2>
         <p className="mt-4 text-lg text-fg-2">
           Coba HitungCuan gratis {TRIAL_DAYS} hari. Akunnya dibuat admin lewat WhatsApp.
